@@ -86,6 +86,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@OrbitStream" },
     ],
+    scripts: [
+      { src: "https://www.googletagmanager.com/gtag/js?id=G-YVYZ8KL1V9", async: true },
+      {
+        children: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-YVYZ8KL1V9');`,
+      },
+    ],
     links: [
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
       { rel: "stylesheet", href: appCss },
