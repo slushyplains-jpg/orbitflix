@@ -1,23 +1,22 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import {
   Play,
   Plus,
   Info,
-  Search,
-  Bell,
   ChevronRight,
   ChevronLeft,
   Star,
   Volume2,
   Clock,
   Calendar,
-  X,
 } from "lucide-react";
 import { tmdbApi, IMG_URL, type TMDBItem } from "@/lib/tmdb";
 import heroFallback from "@/assets/hero-astronaut.jpg";
 import w1 from "@/assets/wide-1.jpg";
+import { Nav } from "@/components/site/Nav";
+import { Footer } from "@/components/site/Footer";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -91,152 +90,6 @@ function Index() {
       />
       <Footer />
     </div>
-  );
-}
-
-/* ─── NAV ─── */
-function Nav() {
-  const [scrolled, setScrolled] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [query, setQuery] = useState("");
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const { data: searchResults } = useQuery({
-    queryKey: ["search", query],
-    queryFn: () => tmdbApi.search(query),
-    enabled: query.length > 1,
-  });
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    if (searchOpen) setTimeout(() => inputRef.current?.focus(), 50);
-  }, [searchOpen]);
-
-  const results =
-    searchResults?.results?.filter((r) => r.media_type !== "person" && r.poster_path) ?? [];
-
-  return (
-    <>
-      <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-          scrolled ? "backdrop-blur-xl bg-background/70 border-b border-border" : ""
-        }`}
-      >
-        <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-5 md:px-10">
-          <div className="flex items-center gap-12">
-            <Link to="/" className="flex items-baseline gap-1 font-display text-2xl font-bold tracking-tight">
-              ORBIT<sup className="text-[10px] font-normal text-muted-foreground">®</sup>
-            </Link>
-            <nav className="hidden items-center gap-8 text-sm font-medium text-muted-foreground md:flex">
-              {["Home", "Films", "Series", "Anime", "My List"].map((l, i) => (
-                <a
-                  key={l}
-                  href="#"
-                  className={`transition-colors hover:text-foreground ${i === 0 ? "text-foreground" : ""}`}
-                >
-                  {l}
-                </a>
-              ))}
-            </nav>
-          </div>
-          <div className="flex items-center gap-2 md:gap-4">
-            <button
-              onClick={() => setSearchOpen(true)}
-              className="rounded-full p-2 text-muted-foreground transition-colors hover:bg-surface hover:text-foreground"
-            >
-              <Search className="h-4 w-4" />
-            </button>
-            <button className="rounded-full p-2 text-muted-foreground transition-colors hover:bg-surface hover:text-foreground">
-              <Bell className="h-4 w-4" />
-            </button>
-            <div className="hidden h-8 w-px bg-border md:block" />
-            <button className="hidden rounded-full border border-border px-5 py-2 text-xs font-semibold uppercase tracking-widest transition-colors hover:bg-foreground hover:text-primary-foreground md:block">
-              Subscribe
-            </button>
-            <div className="h-9 w-9 rounded-full bg-gradient-to-br from-ice to-accent ring-2 ring-border" />
-          </div>
-        </div>
-      </header>
-
-      {/* Search overlay */}
-      {searchOpen && (
-        <div className="fixed inset-0 z-[100] flex flex-col bg-background/95 backdrop-blur-2xl">
-          <div className="flex items-center gap-4 border-b border-border px-6 py-5 md:px-10">
-            <Search className="h-5 w-5 text-muted-foreground flex-shrink-0" />
-            <input
-              ref={inputRef}
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search movies, series, anime..."
-              className="flex-1 bg-transparent text-xl outline-none placeholder:text-muted-foreground"
-            />
-            <button onClick={() => { setSearchOpen(false); setQuery(""); }}>
-              <X className="h-5 w-5 text-muted-foreground hover:text-foreground" />
-            </button>
-          </div>
-
-          <div className="flex-1 overflow-y-auto px-6 py-8 md:px-10">
-            {query.length > 1 && results.length === 0 && (
-              <p className="text-muted-foreground">No results for "{query}"</p>
-            )}
-            {results.length > 0 && (
-              <>
-                <p className="mb-6 text-xs uppercase tracking-[0.25em] text-muted-foreground">
-                  {results.length} results
-                </p>
-                <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
-                  {results.map((item) => {
-                    const type = item.media_type === "tv" ? "tv" : "movie";
-                    return (
-                      <SearchResultCard
-                        key={item.id}
-                        item={item}
-                        type={type}
-                        onSelect={() => { setSearchOpen(false); setQuery(""); }}
-                      />
-                    );
-                  })}
-                </div>
-              </>
-            )}
-            {query.length <= 1 && (
-              <p className="text-muted-foreground">Start typing to search…</p>
-            )}
-          </div>
-        </div>
-      )}
-    </>
-  );
-}
-
-function SearchResultCard({
-  item,
-  type,
-  onSelect,
-}: {
-  item: TMDBItem;
-  type: "movie" | "tv";
-  onSelect: () => void;
-}) {
-  const to = type === "movie" ? "/movie/$movieId" : "/tv/$tvId";
-  const params = type === "movie" ? { movieId: String(item.id) } : { tvId: String(item.id) };
-  return (
-    <Link to={to} params={params} onClick={onSelect} className="group block">
-      <div className="aspect-[2/3] overflow-hidden rounded-md border border-border bg-surface">
-        <img
-          src={IMG_URL(item.poster_path, "w300")}
-          alt={item.title || item.name}
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
-        />
-      </div>
-      <p className="mt-2 text-xs font-medium leading-tight truncate">{item.title || item.name}</p>
-    </Link>
   );
 }
 
@@ -578,57 +431,3 @@ function Stat({ label, value, icon }: { label: string; value: string; icon?: Rea
   );
 }
 
-/* ─── FOOTER ─── */
-function Footer() {
-  return (
-    <footer className="relative mt-20 border-t border-border bg-surface/30 pb-10 pt-20">
-      <div className="mx-auto max-w-[1600px] px-6 md:px-10">
-        <div className="grid grid-cols-12 gap-10">
-          <div className="col-span-12 md:col-span-6">
-            <div className="flex items-baseline gap-1 font-display text-3xl font-bold tracking-tight">
-              ORBIT<sup className="text-xs font-normal text-muted-foreground">®</sup>
-            </div>
-            <p className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
-              A cinematic streaming service for film, series and anime. Built for the dark hours, designed for the screen.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <input
-                placeholder="your@email.com"
-                className="w-64 rounded-full border border-border bg-background px-5 py-3 text-sm placeholder:text-muted-foreground focus:border-ice focus:outline-none"
-              />
-              <button className="rounded-full bg-foreground px-6 py-3 text-xs font-semibold uppercase tracking-widest text-primary-foreground">
-                Start Free Trial
-              </button>
-            </div>
-          </div>
-
-          {[
-            { h: "Browse", l: ["Films", "Series", "Anime", "Documentaries", "New & Popular"] },
-            { h: "Account", l: ["Profile", "My List", "Devices", "Subscription"] },
-            { h: "Studio", l: ["About", "Press", "Careers", "Contact"] },
-          ].map((c) => (
-            <div key={c.h} className="col-span-6 md:col-span-2">
-              <div className="mb-5 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">{c.h}</div>
-              <ul className="space-y-3 text-sm">
-                {c.l.map((i) => (
-                  <li key={i}>
-                    <a href="#" className="text-foreground/80 transition-colors hover:text-ice">{i}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-border pt-6 text-[11px] uppercase tracking-[0.2em] text-muted-foreground md:flex-row md:items-center">
-          <div>© {new Date().getFullYear()} Orbit Pictures · All rights reserved</div>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-foreground">Terms</a>
-            <a href="#" className="hover:text-foreground">Privacy</a>
-            <a href="#" className="hover:text-foreground">Cookie Preferences</a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
