@@ -147,7 +147,6 @@ function SearchResultCard({
   const to = type === "movie" ? "/movie/$movieId" : "/tv/$tvId";
   const params = type === "movie" ? { movieId: String(item.id) } : { tvId: String(item.id) };
   return (
-    // @ts-expect-error dynamic params
     <Link to={to} params={params} onClick={onSelect} className="group block">
       <div className="aspect-[2/3] overflow-hidden rounded-md border border-border bg-surface">
         <img

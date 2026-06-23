@@ -226,7 +226,6 @@ function SearchResultCard({
   const to = type === "movie" ? "/movie/$movieId" : "/tv/$tvId";
   const params = type === "movie" ? { movieId: String(item.id) } : { tvId: String(item.id) };
   return (
-    // @ts-expect-error dynamic params before routeTree regenerates
     <Link to={to} params={params} onClick={onSelect} className="group block">
       <div className="aspect-[2/3] overflow-hidden rounded-md border border-border bg-surface">
         <img
@@ -290,14 +289,12 @@ function Hero({ item }: { item?: TMDBItem }) {
           </div>
 
           <div className="mt-10 flex flex-wrap items-center gap-3">
-            {/* @ts-expect-error dynamic params */}
             <Link to={to} params={params} className="group inline-flex items-center gap-3 rounded-full bg-foreground px-7 py-3.5 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.02]">
               <Play className="h-4 w-4 fill-current" /> Watch Now
             </Link>
             <button className="inline-flex items-center gap-2 rounded-full border border-border bg-background/40 px-6 py-3.5 text-sm font-medium backdrop-blur-md transition-colors hover:bg-surface">
               <Plus className="h-4 w-4" /> My List
             </button>
-            {/* @ts-expect-error dynamic params */}
             <Link to={to} params={params} className="inline-flex items-center gap-2 rounded-full border border-border bg-background/40 p-3.5 backdrop-blur-md transition-colors hover:bg-surface">
               <Info className="h-4 w-4" />
             </Link>
@@ -433,7 +430,6 @@ function PosterCard({
   const tag = type === "tv" ? "SERIES" : "FILM";
 
   return (
-    // @ts-expect-error dynamic params before routeTree regenerates
     <Link
       to={to}
       params={params}
@@ -537,7 +533,6 @@ function FeatureBlock({ item }: { item?: TMDBItem }) {
                 <p className="mt-3 max-w-md text-sm text-muted-foreground line-clamp-2">{item.overview}</p>
               )}
               {item && (
-                // @ts-expect-error dynamic params
                 <Link to={to} params={params} className="mt-6 inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-xs font-semibold uppercase tracking-widest text-primary-foreground">
                   <Play className="h-3 w-3 fill-current" /> Watch Now
                 </Link>

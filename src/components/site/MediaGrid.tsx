@@ -34,7 +34,6 @@ export function MediaGrid({
 
         return (
           <Link
-            // @ts-expect-error dynamic params
             to={to}
             params={params}
             key={item.id}

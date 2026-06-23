@@ -169,7 +169,6 @@ function SimilarCard({ item, type }: { item: TMDBItem; type: "movie" | "tv" }) {
   const to = type === "movie" ? "/movie/$movieId" : "/tv/$tvId";
   const params = type === "movie" ? { movieId: String(item.id) } : { tvId: String(item.id) };
   return (
-    // @ts-expect-error dynamic params
     <Link to={to} params={params} className="group block">
       <div className="overflow-hidden rounded-md border border-border bg-surface aspect-[2/3]">
         {item.poster_path ? (

@@ -58,7 +58,6 @@ function MyListPage() {
                   return (
                     <div key={`${entry.type}-${entry.id}`} className="group relative">
                       <Link
-                        // @ts-expect-error dynamic params
                         to={to}
                         params={params}
                         className="block aspect-[2/3] overflow-hidden rounded-md border border-border bg-surface"
