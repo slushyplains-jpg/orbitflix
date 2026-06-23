@@ -9,10 +9,94 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as SubscriptionRouteImport } from './routes/subscription'
+import { Route as SeriesRouteImport } from './routes/series'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as PressRouteImport } from './routes/press'
+import { Route as MyListRouteImport } from './routes/my-list'
+import { Route as ListRouteImport } from './routes/list'
+import { Route as FilmsRouteImport } from './routes/films'
+import { Route as DevicesRouteImport } from './routes/devices'
+import { Route as CookiesRouteImport } from './routes/cookies'
+import { Route as CareersRouteImport } from './routes/careers'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AnimeRouteImport } from './routes/anime'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TvTvIdRouteImport } from './routes/tv.$tvId'
 import { Route as MovieMovieIdRouteImport } from './routes/movie.$movieId'
 
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SubscriptionRoute = SubscriptionRouteImport.update({
+  id: '/subscription',
+  path: '/subscription',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeriesRoute = SeriesRouteImport.update({
+  id: '/series',
+  path: '/series',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PressRoute = PressRouteImport.update({
+  id: '/press',
+  path: '/press',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MyListRoute = MyListRouteImport.update({
+  id: '/my-list',
+  path: '/my-list',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ListRoute = ListRouteImport.update({
+  id: '/list',
+  path: '/list',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FilmsRoute = FilmsRouteImport.update({
+  id: '/films',
+  path: '/films',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DevicesRoute = DevicesRouteImport.update({
+  id: '/devices',
+  path: '/devices',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CareersRoute = CareersRouteImport.update({
+  id: '/careers',
+  path: '/careers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnimeRoute = AnimeRouteImport.update({
+  id: '/anime',
+  path: '/anime',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -31,36 +115,242 @@ const MovieMovieIdRoute = MovieMovieIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/anime': typeof AnimeRoute
+  '/auth': typeof AuthRoute
+  '/careers': typeof CareersRoute
+  '/cookies': typeof CookiesRoute
+  '/devices': typeof DevicesRoute
+  '/films': typeof FilmsRoute
+  '/list': typeof ListRoute
+  '/my-list': typeof MyListRoute
+  '/press': typeof PressRoute
+  '/privacy': typeof PrivacyRoute
+  '/profile': typeof ProfileRoute
+  '/series': typeof SeriesRoute
+  '/subscription': typeof SubscriptionRoute
+  '/terms': typeof TermsRoute
   '/movie/$movieId': typeof MovieMovieIdRoute
   '/tv/$tvId': typeof TvTvIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/anime': typeof AnimeRoute
+  '/auth': typeof AuthRoute
+  '/careers': typeof CareersRoute
+  '/cookies': typeof CookiesRoute
+  '/devices': typeof DevicesRoute
+  '/films': typeof FilmsRoute
+  '/list': typeof ListRoute
+  '/my-list': typeof MyListRoute
+  '/press': typeof PressRoute
+  '/privacy': typeof PrivacyRoute
+  '/profile': typeof ProfileRoute
+  '/series': typeof SeriesRoute
+  '/subscription': typeof SubscriptionRoute
+  '/terms': typeof TermsRoute
   '/movie/$movieId': typeof MovieMovieIdRoute
   '/tv/$tvId': typeof TvTvIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/anime': typeof AnimeRoute
+  '/auth': typeof AuthRoute
+  '/careers': typeof CareersRoute
+  '/cookies': typeof CookiesRoute
+  '/devices': typeof DevicesRoute
+  '/films': typeof FilmsRoute
+  '/list': typeof ListRoute
+  '/my-list': typeof MyListRoute
+  '/press': typeof PressRoute
+  '/privacy': typeof PrivacyRoute
+  '/profile': typeof ProfileRoute
+  '/series': typeof SeriesRoute
+  '/subscription': typeof SubscriptionRoute
+  '/terms': typeof TermsRoute
   '/movie/$movieId': typeof MovieMovieIdRoute
   '/tv/$tvId': typeof TvTvIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/movie/$movieId' | '/tv/$tvId'
+  fullPaths:
+    | '/'
+    | '/anime'
+    | '/auth'
+    | '/careers'
+    | '/cookies'
+    | '/devices'
+    | '/films'
+    | '/list'
+    | '/my-list'
+    | '/press'
+    | '/privacy'
+    | '/profile'
+    | '/series'
+    | '/subscription'
+    | '/terms'
+    | '/movie/$movieId'
+    | '/tv/$tvId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/movie/$movieId' | '/tv/$tvId'
-  id: '__root__' | '/' | '/movie/$movieId' | '/tv/$tvId'
+  to:
+    | '/'
+    | '/anime'
+    | '/auth'
+    | '/careers'
+    | '/cookies'
+    | '/devices'
+    | '/films'
+    | '/list'
+    | '/my-list'
+    | '/press'
+    | '/privacy'
+    | '/profile'
+    | '/series'
+    | '/subscription'
+    | '/terms'
+    | '/movie/$movieId'
+    | '/tv/$tvId'
+  id:
+    | '__root__'
+    | '/'
+    | '/anime'
+    | '/auth'
+    | '/careers'
+    | '/cookies'
+    | '/devices'
+    | '/films'
+    | '/list'
+    | '/my-list'
+    | '/press'
+    | '/privacy'
+    | '/profile'
+    | '/series'
+    | '/subscription'
+    | '/terms'
+    | '/movie/$movieId'
+    | '/tv/$tvId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnimeRoute: typeof AnimeRoute
+  AuthRoute: typeof AuthRoute
+  CareersRoute: typeof CareersRoute
+  CookiesRoute: typeof CookiesRoute
+  DevicesRoute: typeof DevicesRoute
+  FilmsRoute: typeof FilmsRoute
+  ListRoute: typeof ListRoute
+  MyListRoute: typeof MyListRoute
+  PressRoute: typeof PressRoute
+  PrivacyRoute: typeof PrivacyRoute
+  ProfileRoute: typeof ProfileRoute
+  SeriesRoute: typeof SeriesRoute
+  SubscriptionRoute: typeof SubscriptionRoute
+  TermsRoute: typeof TermsRoute
   MovieMovieIdRoute: typeof MovieMovieIdRoute
   TvTvIdRoute: typeof TvTvIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/subscription': {
+      id: '/subscription'
+      path: '/subscription'
+      fullPath: '/subscription'
+      preLoaderRoute: typeof SubscriptionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/series': {
+      id: '/series'
+      path: '/series'
+      fullPath: '/series'
+      preLoaderRoute: typeof SeriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/press': {
+      id: '/press'
+      path: '/press'
+      fullPath: '/press'
+      preLoaderRoute: typeof PressRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/my-list': {
+      id: '/my-list'
+      path: '/my-list'
+      fullPath: '/my-list'
+      preLoaderRoute: typeof MyListRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/list': {
+      id: '/list'
+      path: '/list'
+      fullPath: '/list'
+      preLoaderRoute: typeof ListRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/films': {
+      id: '/films'
+      path: '/films'
+      fullPath: '/films'
+      preLoaderRoute: typeof FilmsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/devices': {
+      id: '/devices'
+      path: '/devices'
+      fullPath: '/devices'
+      preLoaderRoute: typeof DevicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/careers': {
+      id: '/careers'
+      path: '/careers'
+      fullPath: '/careers'
+      preLoaderRoute: typeof CareersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/anime': {
+      id: '/anime'
+      path: '/anime'
+      fullPath: '/anime'
+      preLoaderRoute: typeof AnimeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -87,6 +377,20 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnimeRoute: AnimeRoute,
+  AuthRoute: AuthRoute,
+  CareersRoute: CareersRoute,
+  CookiesRoute: CookiesRoute,
+  DevicesRoute: DevicesRoute,
+  FilmsRoute: FilmsRoute,
+  ListRoute: ListRoute,
+  MyListRoute: MyListRoute,
+  PressRoute: PressRoute,
+  PrivacyRoute: PrivacyRoute,
+  ProfileRoute: ProfileRoute,
+  SeriesRoute: SeriesRoute,
+  SubscriptionRoute: SubscriptionRoute,
+  TermsRoute: TermsRoute,
   MovieMovieIdRoute: MovieMovieIdRoute,
   TvTvIdRoute: TvTvIdRoute,
 }
