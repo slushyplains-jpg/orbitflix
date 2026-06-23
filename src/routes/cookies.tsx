@@ -2,7 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { PageShell, PageHero } from "@/components/site/PageShell";
 
-const CATEGORIES = [
+interface CookieCategory {
+  id: string;
+  name: string;
+  body: string;
+  required?: boolean;
+}
+
+const CATEGORIES: CookieCategory[] = [
   {
     id: "essential",
     name: "Strictly necessary",
@@ -24,7 +31,7 @@ const CATEGORIES = [
     name: "Marketing",
     body: "Measures the impact of our ad campaigns and lets us show you relevant ORBIT promotions off-site.",
   },
-] as const;
+];
 
 export const Route = createFileRoute("/cookies")({
   head: () => ({
