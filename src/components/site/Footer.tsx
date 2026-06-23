@@ -43,16 +43,12 @@ export function Footer() {
             <p className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
               A cinematic streaming service for film, series and anime. Built for the dark hours, designed for the screen.
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <input
-                placeholder="your@email.com"
-                className="w-64 rounded-full border border-border bg-background px-5 py-3 text-sm placeholder:text-muted-foreground focus:border-ice focus:outline-none"
-              />
+            <div className="mt-8">
               <Link
                 to="/auth"
-                className="rounded-full bg-foreground px-6 py-3 text-xs font-semibold uppercase tracking-widest text-primary-foreground"
+                className="inline-block rounded-full border border-border px-6 py-3 text-xs font-semibold uppercase tracking-widest transition-colors hover:bg-foreground hover:text-primary-foreground"
               >
-                Start Free Trial
+                Sign In
               </Link>
             </div>
           </div>

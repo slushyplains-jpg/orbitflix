@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Bell, Search, X } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { tmdbApi, IMG_URL, type TMDBItem } from "@/lib/tmdb";
+import { useAuth } from "@/hooks/use-auth";
 
 const LINKS: { label: string; to: string }[] = [
   { label: "Home", to: "/" },
@@ -17,6 +18,7 @@ export function Nav() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const { user } = useAuth();
 
   const { data: searchResults } = useQuery({
     queryKey: ["search", query],
@@ -74,13 +76,21 @@ export function Nav() {
               <Bell className="h-4 w-4" />
             </button>
             <div className="hidden h-8 w-px bg-border md:block" />
-            <Link
-              to="/subscription"
-              className="hidden rounded-full border border-border px-5 py-2 text-xs font-semibold uppercase tracking-widest transition-colors hover:bg-foreground hover:text-primary-foreground md:block"
-            >
-              Subscribe
-            </Link>
-            <Link to="/profile" className="h-9 w-9 rounded-full bg-gradient-to-br from-ice to-accent ring-2 ring-border" />
+            {user ? (
+              <Link
+                to="/profile"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-ice to-accent ring-2 ring-border text-sm font-bold text-primary-foreground"
+              >
+                {(user.email ?? "?")[0].toUpperCase()}
+              </Link>
+            ) : (
+              <Link
+                to="/auth"
+                className="hidden rounded-full border border-border px-5 py-2 text-xs font-semibold uppercase tracking-widest transition-colors hover:bg-foreground hover:text-primary-foreground md:block"
+              >
+                Sign In
+              </Link>
+            )}
           </div>
         </div>
       </header>
