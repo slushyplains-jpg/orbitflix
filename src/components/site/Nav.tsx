@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { Bell, Search, X } from "lucide-react";
+import { Bell, Search, X, Menu } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { tmdbApi, IMG_URL, type TMDBItem } from "@/lib/tmdb";
 import { useAuth } from "@/hooks/use-auth";
@@ -16,6 +16,7 @@ const LINKS: { label: string; to: string }[] = [
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [query, setQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const { user } = useAuth();
@@ -36,6 +37,13 @@ export function Nav() {
     if (searchOpen) setTimeout(() => inputRef.current?.focus(), 50);
   }, [searchOpen]);
 
+  // Close mobile menu on route change / scroll
+  useEffect(() => {
+    if (mobileOpen) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
+
   const results =
     searchResults?.results?.filter((r) => r.media_type !== "person" && r.poster_path) ?? [];
 
@@ -48,7 +56,7 @@ export function Nav() {
       >
         <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-5 md:px-10">
           <div className="flex items-center gap-12">
-            <Link to="/" className="flex items-baseline gap-1 font-display text-2xl font-bold tracking-tight">
+            <Link to="/" className="flex items-baseline gap-1 font-display text-2xl font-bold tracking-tight" onClick={() => setMobileOpen(false)}>
               ORBIT<sup className="text-[10px] font-normal text-muted-foreground">®</sup>
             </Link>
             <nav className="hidden items-center gap-8 text-sm font-medium text-muted-foreground md:flex">
@@ -72,7 +80,7 @@ export function Nav() {
             >
               <Search className="h-4 w-4" />
             </button>
-            <button className="rounded-full p-2 text-muted-foreground transition-colors hover:bg-surface hover:text-foreground">
+            <button className="hidden rounded-full p-2 text-muted-foreground transition-colors hover:bg-surface hover:text-foreground md:flex">
               <Bell className="h-4 w-4" />
             </button>
             <div className="hidden h-8 w-px bg-border md:block" />
@@ -91,8 +99,52 @@ export function Nav() {
                 Sign In
               </Link>
             )}
+            {/* Hamburger — mobile only */}
+            <button
+              onClick={() => setMobileOpen((v) => !v)}
+              className="rounded-full p-2 text-muted-foreground transition-colors hover:bg-surface hover:text-foreground md:hidden"
+              aria-label="Toggle menu"
+            >
+              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile menu */}
+        {mobileOpen && (
+          <div className="border-t border-border bg-background/95 backdrop-blur-2xl md:hidden">
+            <nav className="flex flex-col px-6 py-6 gap-1">
+              {LINKS.map((l) => (
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  activeOptions={{ exact: true }}
+                  activeProps={{ className: "text-foreground bg-surface" }}
+                  className="rounded-lg px-4 py-3 text-base font-medium text-muted-foreground transition-colors hover:bg-surface hover:text-foreground"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {l.label}
+                </Link>
+              ))}
+              <div className="mt-4 border-t border-border pt-4">
+                {user ? (
+                  <Link to="/profile" onClick={() => setMobileOpen(false)}
+                    className="flex items-center gap-3 rounded-lg px-4 py-3 text-base font-medium text-muted-foreground hover:bg-surface hover:text-foreground">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-ice to-accent text-sm font-bold text-primary-foreground">
+                      {(user.email ?? "?")[0].toUpperCase()}
+                    </div>
+                    Profile
+                  </Link>
+                ) : (
+                  <Link to="/auth" onClick={() => setMobileOpen(false)}
+                    className="block rounded-full border border-border px-5 py-3 text-center text-sm font-semibold uppercase tracking-widest transition-colors hover:bg-foreground hover:text-primary-foreground">
+                    Sign In
+                  </Link>
+                )}
+              </div>
+            </nav>
+          </div>
+        )}
       </header>
 
       {searchOpen && (

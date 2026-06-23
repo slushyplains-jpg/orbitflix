@@ -17,16 +17,7 @@ const COLS: { h: string; l: FooterLink[] }[] = [
     l: [
       { label: "Profile", to: "/profile" },
       { label: "My List", to: "/list" },
-      { label: "Devices", to: "/devices" },
-      { label: "Subscription", to: "/subscription" },
       { label: "Sign In", to: "/auth" },
-    ],
-  },
-  {
-    h: "Studio",
-    l: [
-      { label: "Press", to: "/press" },
-      { label: "Careers", to: "/careers" },
     ],
   },
 ];

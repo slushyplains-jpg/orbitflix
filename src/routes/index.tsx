@@ -4,6 +4,7 @@ import { useRef } from "react";
 import {
   Play,
   Plus,
+  Check,
   Info,
   ChevronRight,
   ChevronLeft,
@@ -13,6 +14,7 @@ import {
   Calendar,
 } from "lucide-react";
 import { tmdbApi, IMG_URL, type TMDBItem } from "@/lib/tmdb";
+import { useMyList } from "@/hooks/use-my-list";
 import heroFallback from "@/assets/hero-astronaut.jpg";
 import w1 from "@/assets/wide-1.jpg";
 import { Nav } from "@/components/site/Nav";
@@ -123,14 +125,14 @@ function Hero({ item }: { item?: TMDBItem }) {
         ))}
       </div>
 
-      <div className="relative z-10 mx-auto grid h-screen max-w-[1600px] grid-cols-12 gap-6 px-6 pb-16 pt-32 md:px-10 md:pt-36">
+      <div className="relative z-10 mx-auto grid min-h-screen max-w-[1600px] grid-cols-12 gap-6 px-6 pb-24 pt-28 md:h-screen md:pb-16 md:px-10 md:pt-36">
         <div className="col-span-12 flex flex-col justify-between md:col-span-5">
           <div>
             <div className="mb-6 flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-muted-foreground">
               <span className="h-px w-8 bg-ice/60" />
               <span>Featured · {mediaType === "tv" ? "Series" : "Original Film"}</span>
             </div>
-            <h1 className="font-display text-5xl font-bold leading-[0.95] tracking-tight md:text-7xl lg:text-[5.5rem]">
+            <h1 className="font-display text-4xl font-bold leading-[0.95] tracking-tight sm:text-5xl md:text-7xl lg:text-[5.5rem]">
               {firstPart}<br />
               <span className="text-ice text-glow">{secondPart}</span>
             </h1>
@@ -177,7 +179,7 @@ function Hero({ item }: { item?: TMDBItem }) {
         </div>
       </div>
 
-      <div className="absolute bottom-10 left-1/2 z-10 -translate-x-1/2">
+      <div className="absolute bottom-10 left-1/2 z-10 hidden -translate-x-1/2 md:block">
         <button className="group flex h-28 w-28 animate-float-slow flex-col items-center justify-center rounded-full border border-border bg-background/30 text-xs uppercase tracking-[0.2em] text-foreground backdrop-blur-md transition-all hover:border-ice hover:bg-background/60">
           Discover
           <ChevronRight className="mt-1 h-3 w-3 rotate-90" />
@@ -281,6 +283,18 @@ function PosterCard({
   const title = item.title || item.name || "";
   const year = (item.release_date || item.first_air_date)?.slice(0, 4) ?? "";
   const tag = type === "tv" ? "SERIES" : "FILM";
+  const { add, remove, isInList } = useMyList();
+  const inList = isInList(item.id, type);
+
+  function handleListToggle(e: React.MouseEvent) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (inList) {
+      remove(item.id, type);
+    } else {
+      add({ id: item.id, type, title, poster_path: item.poster_path ?? null });
+    }
+  }
 
   return (
     <Link
@@ -317,9 +331,16 @@ function PosterCard({
           <div className="flex h-9 w-9 items-center justify-center rounded-full bg-foreground text-primary-foreground">
             <Play className="h-3.5 w-3.5 fill-current" />
           </div>
-          <div className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background/60 backdrop-blur-md">
-            <Plus className="h-3.5 w-3.5" />
-          </div>
+          <button
+            onClick={handleListToggle}
+            className={`flex h-9 w-9 items-center justify-center rounded-full border backdrop-blur-md transition-colors ${
+              inList
+                ? "border-ice bg-ice/20 text-ice"
+                : "border-border bg-background/60 text-foreground hover:border-ice hover:text-ice"
+            }`}
+          >
+            {inList ? <Check className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
+          </button>
         </div>
       </div>
     </Link>
@@ -353,7 +374,7 @@ function SpotlightStrip() {
     <section className="relative overflow-hidden border-y border-border bg-surface/30 py-12">
       <div className="mx-auto max-w-[1600px] px-6 md:px-10">
         <div className="flex flex-wrap items-baseline justify-between gap-6">
-          {["AWARD WINNING", "ORIGINALS", "4K · HDR · ATMOS", "NO ADS", "OFFLINE", "GLOBAL CATALOGUE"].map((s) => (
+          {["WARNER BROS", "MARVEL STUDIOS", "A24 · NEON · MUBI", "NETFLIX", "HBO · MAX", "DISNEY · PIXAR"].map((s) => (
             <span key={s} className="font-display text-xl font-medium tracking-tight text-muted-foreground md:text-3xl">
               {s} <span className="text-ice">+</span>
             </span>
@@ -373,7 +394,7 @@ function FeatureBlock({ item }: { item?: TMDBItem }) {
   const params = type === "tv" ? { tvId: String(item?.id) } : { movieId: String(item?.id) };
 
   return (
-    <section className="relative py-24">
+    <section className="relative py-12 md:py-24">
       <div className="mx-auto grid max-w-[1600px] grid-cols-12 gap-6 px-6 md:px-10">
         <div className="col-span-12 md:col-span-7">
           <div className="relative aspect-[16/10] overflow-hidden rounded-lg border border-border film-grain">
@@ -397,22 +418,22 @@ function FeatureBlock({ item }: { item?: TMDBItem }) {
         <div className="col-span-12 flex flex-col gap-6 md:col-span-5">
           <div className="rounded-lg border border-border bg-surface p-8">
             <div className="mb-3 flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-muted-foreground">
-              <span className="h-px w-8 bg-ice/60" /> Editor's Note
+              <span className="h-px w-8 bg-ice/60" /> Curator's Pick
             </div>
-            <h3 className="font-display text-2xl font-semibold leading-snug">Expand your horizons.</h3>
+            <h3 className="font-display text-2xl font-semibold leading-snug">Where every frame matters.</h3>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Become part of the story. Drift through star systems, follow detectives through moonlit alleys, and watch animation built for the late hours. Our editors curate every collection by hand.
+              From Sundance breakouts to blockbuster franchises. Stream the latest from A24, Warner Bros, Marvel, HBO, and more — handpicked by our editorial team every week.
             </p>
             <a href="#" className="mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-foreground">
-              Read more <ChevronRight className="h-3 w-3" />
+              Explore picks <ChevronRight className="h-3 w-3" />
             </a>
           </div>
 
           <div className="grid grid-cols-2 gap-6">
-            <Stat label="Titles" value="12,400+" />
-            <Stat label="Originals" value="320" icon={<Star className="h-3 w-3 fill-ice text-ice" />} />
-            <Stat label="Runtime" value="∞" icon={<Clock className="h-3 w-3" />} />
-            <Stat label="Updated" value="Weekly" icon={<Calendar className="h-3 w-3" />} />
+            <Stat label="Studios" value="50+" />
+            <Stat label="Awards" value="2,100+" icon={<Star className="h-3 w-3 fill-ice text-ice" />} />
+            <Stat label="Countries" value="190+" icon={<Clock className="h-3 w-3" />} />
+            <Stat label="Updated" value="Daily" icon={<Calendar className="h-3 w-3" />} />
           </div>
         </div>
       </div>

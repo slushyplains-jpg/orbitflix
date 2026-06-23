@@ -28,7 +28,7 @@ export function PageHero({
           <span className="h-px w-8 bg-ice/60" />
           {eyebrow}
         </div>
-        <h1 className="font-display text-5xl font-bold leading-[0.95] tracking-tight md:text-7xl">
+        <h1 className="font-display text-4xl font-bold leading-[0.95] tracking-tight sm:text-5xl md:text-7xl">
           {title}
         </h1>
         {description && (

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <!-- Clip to only the area INSIDE the planet circle -->
+    <clipPath id="inside-planet">
+      <circle cx="256" cy="256" r="183"/>
+    </clipPath>
+    <!-- Clip to only the area OUTSIDE the planet circle -->
+    <clipPath id="outside-planet">
+      <path d="M0,0 H512 V512 H0 Z M256,73 a183,183 0 1,0 0.001,0 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="96" fill="#0a0a0a"/>
+
+  <!-- Ring behind planet (clipped to planet interior, dimmer) -->
+  <ellipse cx="256" cy="256" rx="340" ry="76"
+    transform="rotate(-45 256 256)"
+    stroke="#7dd3fc" stroke-width="30" fill="none" opacity="0.35"
+    clip-path="url(#inside-planet)"
+  />
+
+  <!-- Planet circle -->
+  <circle cx="256" cy="256" r="183" stroke="#e2e8f0" stroke-width="32" fill="#0a0a0a"/>
+
+  <!-- Ring in front of planet (clipped outside planet) -->
+  <ellipse cx="256" cy="256" rx="340" ry="76"
+    transform="rotate(-45 256 256)"
+    stroke="#e2e8f0" stroke-width="32" fill="none"
+    clip-path="url(#outside-planet)"
+  />
+
+  <!-- Center hub -->
+  <circle cx="256" cy="256" r="28" fill="#0a0a0a" stroke="#e2e8f0" stroke-width="20"/>
+</svg>
