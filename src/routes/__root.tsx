@@ -150,10 +150,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <Outlet />
-      <TelegramBanner />
-      <FloatingShare />
       <AiConcierge />
-      <VpnBanner />
     </QueryClientProvider>
   );
 }
