@@ -108,8 +108,7 @@ _Hasync.push(['Histats.track_hits','']);
 hs.src='//s10.histats.com/js15_as.js';
 (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(hs);})();`,
       },
-      // Cloudflare Web Analytics — replace TOKEN with your Cloudflare Analytics token
-      { src: "https://static.cloudflareinsights.com/beacon.min.js", defer: true, "data-cf-beacon": '{"token":"YOUR_CF_TOKEN"}' },
+      { src: "https://static.cloudflareinsights.com/beacon.min.js", defer: true, "data-cf-beacon": '{"token":"9e9f4c95643d4d7781381ea1af15629f"}' },
       // PropellerAds pop-under — replace ZONE_ID with your PropellerAds zone ID from the dashboard
       {
         children: `(function(d,z,s){s.src='https://'+d+'/400/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('perttelimers.net',ZONE_ID,document.createElement('script'));`,
