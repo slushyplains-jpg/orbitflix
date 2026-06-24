@@ -96,13 +96,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:description", content: "Stream thousands of movies, TV series and anime for free on ORBIT." },
     ],
     scripts: [
-      { src: "https://www.googletagmanager.com/gtag/js?id=G-YVYZ8KL1V9", async: true },
-      {
-        children: `window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-YVYZ8KL1V9');`,
-      },
       // Histats analytics — replace XXXXXXXX with your Histats site ID
       {
         children: `var _Hasync=_Hasync||[];
