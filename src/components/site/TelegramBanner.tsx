@@ -49,7 +49,7 @@ export function TelegramBanner() {
               If that happens, the ORBIT Telegram channel will be the only place where you'll find the new link. Join now while you're thinking about it.
             </p>
             <a
-              href="https://t.me/orbitstream"
+              href="https://t.me/+Ej3I0qkIEJFkZWI0"
               target="_blank"
               rel="noopener noreferrer"
               onClick={dismiss}
