@@ -14,6 +14,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { TelegramBanner } from "../components/site/TelegramBanner";
 import { FloatingShare } from "../components/site/FloatingShare";
 import { AiConcierge } from "../components/site/AiConcierge";
+import { VpnBanner } from "../components/site/VpnBanner";
 
 function NotFoundComponent() {
   return (
@@ -102,6 +103,22 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-YVYZ8KL1V9');`,
       },
+      // Histats analytics — replace XXXXXXXX with your Histats site ID
+      {
+        children: `var _Hasync=_Hasync||[];
+_Hasync.push(['Histats.start','1,XXXXXXXX,4,0,0,0,00010000']);
+_Hasync.push(['Histats.fasi','1']);
+_Hasync.push(['Histats.track_hits','']);
+(function(){var hs=document.createElement('script');hs.type='text/javascript';hs.async=true;
+hs.src='//s10.histats.com/js15_as.js';
+(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(hs);})();`,
+      },
+      // Cloudflare Web Analytics — replace TOKEN with your Cloudflare Analytics token
+      { src: "https://static.cloudflareinsights.com/beacon.min.js", defer: true, "data-cf-beacon": '{"token":"YOUR_CF_TOKEN"}' },
+      // PropellerAds pop-under — replace ZONE_ID with your PropellerAds zone ID from the dashboard
+      {
+        children: `(function(d,z,s){s.src='https://'+d+'/400/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('perttelimers.net',ZONE_ID,document.createElement('script'));`,
+      },
     ],
     links: [
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
@@ -143,6 +160,7 @@ function RootComponent() {
       <TelegramBanner />
       <FloatingShare />
       <AiConcierge />
+      <VpnBanner />
     </QueryClientProvider>
   );
 }
