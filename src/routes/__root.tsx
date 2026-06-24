@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { TelegramBanner } from "../components/site/TelegramBanner";
+import { FloatingShare } from "../components/site/FloatingShare";
 
 function NotFoundComponent() {
   return (
@@ -139,6 +140,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <Outlet />
       <TelegramBanner />
+      <FloatingShare />
     </QueryClientProvider>
   );
 }

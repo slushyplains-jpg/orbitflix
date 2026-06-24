@@ -18,6 +18,7 @@ import { Route as PressRouteImport } from './routes/press'
 import { Route as MyListRouteImport } from './routes/my-list'
 import { Route as ListRouteImport } from './routes/list'
 import { Route as FilmsRouteImport } from './routes/films'
+import { Route as DmcaRouteImport } from './routes/dmca'
 import { Route as DevicesRouteImport } from './routes/devices'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as CareersRouteImport } from './routes/careers'
@@ -72,6 +73,11 @@ const FilmsRoute = FilmsRouteImport.update({
   path: '/films',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DmcaRoute = DmcaRouteImport.update({
+  id: '/dmca',
+  path: '/dmca',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DevicesRoute = DevicesRouteImport.update({
   id: '/devices',
   path: '/devices',
@@ -120,6 +126,7 @@ export interface FileRoutesByFullPath {
   '/careers': typeof CareersRoute
   '/cookies': typeof CookiesRoute
   '/devices': typeof DevicesRoute
+  '/dmca': typeof DmcaRoute
   '/films': typeof FilmsRoute
   '/list': typeof ListRoute
   '/my-list': typeof MyListRoute
@@ -139,6 +146,7 @@ export interface FileRoutesByTo {
   '/careers': typeof CareersRoute
   '/cookies': typeof CookiesRoute
   '/devices': typeof DevicesRoute
+  '/dmca': typeof DmcaRoute
   '/films': typeof FilmsRoute
   '/list': typeof ListRoute
   '/my-list': typeof MyListRoute
@@ -159,6 +167,7 @@ export interface FileRoutesById {
   '/careers': typeof CareersRoute
   '/cookies': typeof CookiesRoute
   '/devices': typeof DevicesRoute
+  '/dmca': typeof DmcaRoute
   '/films': typeof FilmsRoute
   '/list': typeof ListRoute
   '/my-list': typeof MyListRoute
@@ -180,6 +189,7 @@ export interface FileRouteTypes {
     | '/careers'
     | '/cookies'
     | '/devices'
+    | '/dmca'
     | '/films'
     | '/list'
     | '/my-list'
@@ -199,6 +209,7 @@ export interface FileRouteTypes {
     | '/careers'
     | '/cookies'
     | '/devices'
+    | '/dmca'
     | '/films'
     | '/list'
     | '/my-list'
@@ -218,6 +229,7 @@ export interface FileRouteTypes {
     | '/careers'
     | '/cookies'
     | '/devices'
+    | '/dmca'
     | '/films'
     | '/list'
     | '/my-list'
@@ -238,6 +250,7 @@ export interface RootRouteChildren {
   CareersRoute: typeof CareersRoute
   CookiesRoute: typeof CookiesRoute
   DevicesRoute: typeof DevicesRoute
+  DmcaRoute: typeof DmcaRoute
   FilmsRoute: typeof FilmsRoute
   ListRoute: typeof ListRoute
   MyListRoute: typeof MyListRoute
@@ -316,6 +329,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FilmsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dmca': {
+      id: '/dmca'
+      path: '/dmca'
+      fullPath: '/dmca'
+      preLoaderRoute: typeof DmcaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/devices': {
       id: '/devices'
       path: '/devices'
@@ -382,6 +402,7 @@ const rootRouteChildren: RootRouteChildren = {
   CareersRoute: CareersRoute,
   CookiesRoute: CookiesRoute,
   DevicesRoute: DevicesRoute,
+  DmcaRoute: DmcaRoute,
   FilmsRoute: FilmsRoute,
   ListRoute: ListRoute,
   MyListRoute: MyListRoute,

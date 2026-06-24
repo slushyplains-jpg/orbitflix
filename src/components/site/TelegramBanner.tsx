@@ -1,21 +1,18 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 
-const STORAGE_KEY = "orbit:tg-banner-dismissed";
-
 export function TelegramBanner() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (!localStorage.getItem(STORAGE_KEY)) {
-      const t = setTimeout(() => setVisible(true), 3000);
-      return () => clearTimeout(t);
-    }
+    const t = setTimeout(() => setVisible(true), 3000);
+    return () => clearTimeout(t);
   }, []);
 
   function dismiss() {
-    localStorage.setItem(STORAGE_KEY, "1");
     setVisible(false);
+    // Re-show after 2 minutes
+    setTimeout(() => setVisible(true), 120_000);
   }
 
   if (!visible) return null;
