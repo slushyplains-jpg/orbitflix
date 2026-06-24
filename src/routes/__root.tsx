@@ -96,6 +96,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:description", content: "Stream thousands of movies, TV series and anime for free on ORBIT." },
     ],
     scripts: [
+      // Monetag ads
+      { src: "https://quge5.com/88/tag.min.js", async: true, "data-zone": "253178", "data-cfasync": "false" },
       // Histats analytics — replace XXXXXXXX with your Histats site ID
       {
         children: `var _Hasync=_Hasync||[];
