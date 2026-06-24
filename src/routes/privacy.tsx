@@ -4,50 +4,53 @@ import { LegalPage } from "@/components/site/LegalPage";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy — ORBIT" },
-      { name: "description", content: "How ORBIT collects, uses, and protects your data." },
+      { title: "Privacy Policy — ORBIT" },
+      { name: "description", content: "How ORBIT handles your data, cookies, and privacy." },
     ],
   }),
   component: () => (
     <LegalPage
       eyebrow="Legal"
-      title="Privacy"
-      description="What we collect, why we collect it, and the controls you have."
-      updated="June 2026"
+      title="Privacy Policy"
+      description="ORBIT is designed with privacy as a core principle. Here's exactly what we collect and why."
+      updated="June 24, 2026"
       sections={[
         {
-          h: "What We Collect",
+          h: "Information We Collect",
           body: (
             <>
-              <p>Account details (name, email, billing method), your viewing activity, your device information, and basic interaction telemetry to keep the player smooth.</p>
-              <p>We do not sell your personal information.</p>
+              <p>ORBIT does not require user registration to browse content. We do not collect personal information such as names, email addresses, or payment details from anonymous visitors.</p>
+              <p>If you create an account, we store your email address solely for authentication purposes.</p>
             </>
           ),
         },
         {
-          h: "How We Use It",
-          body: <p>To run the service, personalize recommendations, prevent fraud, and meet our legal obligations. That's it.</p>,
+          h: "Local Storage",
+          body: <p>We use your browser's localStorage to save your watchlist and viewing preferences. This data is stored entirely on your device and is never transmitted to our servers. You can clear this data at any time through your browser settings.</p>,
         },
         {
-          h: "Your Controls",
-          body: (
-            <>
-              <p>You can edit your profile and preferences any time from the Profile page, remove devices from the Devices page, and cancel your subscription from Subscription.</p>
-              <p>For data export or deletion, email <a href="mailto:privacy@orbit.tv" className="text-ice hover:underline">privacy@orbit.tv</a>.</p>
-            </>
-          ),
+          h: "Cookies",
+          body: <p>ORBIT does not use tracking cookies. Third-party embed providers may set their own cookies when you play video content. We have no control over these third-party cookies. You can manage or block them via your browser settings.</p>,
         },
         {
-          h: "Sharing",
-          body: <p>We share data with vendors that help us run the service (payments, CDN, analytics) under strict data-processing agreements, and with authorities when legally required.</p>,
+          h: "Analytics",
+          body: <p>We use Google Analytics to understand aggregated site traffic patterns. This data is anonymized — no personally identifiable information is collected or stored. You can opt out via the <a href="/cookies" className="text-ice hover:underline">Cookie Preferences</a> page.</p>,
         },
         {
-          h: "Retention",
-          body: <p>We keep account data while your account is active and for a limited period afterward, as required by tax and accounting law.</p>,
+          h: "Third-Party Services",
+          body: <p>Video content is provided by third-party embed services. These services operate under their own privacy policies. ORBIT is not responsible for the privacy practices of third-party providers. Content metadata is sourced from The Movie Database (TMDb) API.</p>,
         },
         {
-          h: "Contact",
-          body: <p>Questions? Reach our privacy team at <a href="mailto:privacy@orbit.tv" className="text-ice hover:underline">privacy@orbit.tv</a>.</p>,
+          h: "Data Security",
+          body: <p>All connections to ORBIT are encrypted via HTTPS/TLS. We implement security headers (HSTS, X-Content-Type-Options, X-Frame-Options) to protect against common web vulnerabilities.</p>,
+        },
+        {
+          h: "Children's Privacy",
+          body: <p>ORBIT does not knowingly collect information from children under 13. If you are a parent or guardian and believe your child has provided personal information, please contact us immediately.</p>,
+        },
+        {
+          h: "Changes to This Policy",
+          body: <p>We may update this privacy policy from time to time. Changes will be posted on this page with an updated revision date. Continued use of ORBIT after changes constitutes your acceptance.</p>,
         },
       ]}
     />

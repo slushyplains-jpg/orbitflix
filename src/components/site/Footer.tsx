@@ -62,10 +62,11 @@ export function Footer() {
 
         <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-border pt-6 text-[11px] uppercase tracking-[0.2em] text-muted-foreground md:flex-row md:items-center">
           <div>© {new Date().getFullYear()} Orbit Pictures · All rights reserved</div>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap gap-6">
             <Link to="/terms" className="hover:text-foreground">Terms</Link>
             <Link to="/privacy" className="hover:text-foreground">Privacy</Link>
             <Link to="/cookies" className="hover:text-foreground">Cookie Preferences</Link>
+            <Link to="/dmca" className="hover:text-foreground">DMCA</Link>
           </div>
         </div>
       </div>

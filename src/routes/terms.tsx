@@ -4,50 +4,51 @@ import { LegalPage } from "@/components/site/LegalPage";
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
-      { title: "Terms of Use — ORBIT" },
-      { name: "description", content: "The terms that govern your use of the ORBIT streaming service." },
+      { title: "Terms of Service — ORBIT" },
+      { name: "description", content: "Terms governing your use of the ORBIT streaming platform." },
     ],
   }),
   component: () => (
     <LegalPage
       eyebrow="Legal"
-      title="Terms of Use"
-      description="The terms that govern your account, your subscription, and your access to the ORBIT service."
-      updated="June 2026"
+      title="Terms of Service"
+      description="By using ORBIT, you agree to the following terms. Please read them carefully."
+      updated="June 24, 2026"
       sections={[
         {
-          h: "Your Account",
+          h: "Acceptance of Terms",
+          body: <p>By accessing and using ORBIT, you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the service.</p>,
+        },
+        {
+          h: "Description of Service",
+          body: <p>ORBIT is a content discovery platform that indexes and organizes links to video content hosted by third-party providers. ORBIT does not host, upload, or store any video files on its servers. All content is sourced from independent third-party embed services freely available on the internet.</p>,
+        },
+        {
+          h: "User Responsibilities",
           body: (
-            <>
-              <p>You're responsible for the activity on your ORBIT account, including keeping your password safe and the people you share access with.</p>
-              <p>Accounts are for personal, non-commercial use. You must be the age of majority in your country to subscribe.</p>
-            </>
+            <ul className="list-disc pl-5 space-y-2">
+              <li>You are responsible for complying with all applicable local, state, national, and international laws and regulations.</li>
+              <li>You agree not to use the service for any unlawful purpose.</li>
+              <li>You agree not to attempt to gain unauthorized access to any part of the service.</li>
+              <li>You agree not to use automated systems (bots, scrapers) to access the service without prior written permission.</li>
+            </ul>
           ),
         },
         {
-          h: "Subscription & Billing",
-          body: (
-            <>
-              <p>Your subscription continues until you cancel. Cancellation takes effect at the end of the current billing period — no partial refunds.</p>
-              <p>Prices may change. We'll always notify you ahead of any change to the rate you pay.</p>
-            </>
-          ),
+          h: "Intellectual Property",
+          body: <p>All content metadata (titles, descriptions, images) is sourced from The Movie Database (TMDb) API. TMDb is not affiliated with ORBIT. Video content is provided by independent third-party embed services. ORBIT claims no ownership over any third-party content.</p>,
         },
         {
-          h: "Content & Catalogue",
-          body: <p>The ORBIT catalogue changes over time. Titles may be added or removed as our licensing agreements evolve. Availability also varies by region.</p>,
+          h: "Disclaimer of Warranties",
+          body: <p>ORBIT is provided "as is" and "as available" without any warranties of any kind, express or implied. We do not guarantee that the service will be uninterrupted, secure, or error-free. Content availability may change at any time without notice.</p>,
         },
         {
-          h: "Acceptable Use",
-          body: <p>Don't try to circumvent our security, scrape our streams, redistribute our content, or use the service in any way that violates the law. We may suspend accounts that do.</p>,
+          h: "Limitation of Liability",
+          body: <p>In no event shall ORBIT be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the service, including but not limited to loss of data, revenue, or goodwill.</p>,
         },
         {
-          h: "Termination",
-          body: <p>You can cancel at any time from your Subscription page. We may also terminate accounts that violate these terms.</p>,
-        },
-        {
-          h: "Liability",
-          body: <p>ORBIT is provided "as is." To the fullest extent allowed by law, we limit our liability for indirect or incidental damages arising from your use of the service.</p>,
+          h: "Changes to Terms",
+          body: <p>We reserve the right to modify these terms at any time. Continued use of the service after changes constitutes your acceptance of the new terms. We will post updates on this page with a revised date.</p>,
         },
       ]}
     />

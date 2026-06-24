@@ -13,23 +13,18 @@ const CATEGORIES: CookieCategory[] = [
   {
     id: "essential",
     name: "Strictly necessary",
-    body: "Required to keep you signed in, play video, and run security. Always on.",
+    body: "Required to keep you signed in and run core security functions. These cannot be disabled.",
     required: true,
   },
   {
-    id: "performance",
-    name: "Performance",
-    body: "Helps us measure player smoothness, error rates, and load times so we can keep the experience fast.",
+    id: "analytics",
+    name: "Analytics",
+    body: "Helps us understand aggregated traffic patterns via Google Analytics. Data is anonymized — no personal information is collected.",
   },
   {
-    id: "personalization",
-    name: "Personalization",
-    body: "Powers tailored recommendations, your continue-watching row, and personalized homepage.",
-  },
-  {
-    id: "marketing",
-    name: "Marketing",
-    body: "Measures the impact of our ad campaigns and lets us show you relevant ORBIT promotions off-site.",
+    id: "thirdparty",
+    name: "Third-party embeds",
+    body: "Video content is served by third-party embed providers. These providers may set their own cookies when you play content. We have no control over these.",
   },
 ];
 
@@ -37,7 +32,7 @@ export const Route = createFileRoute("/cookies")({
   head: () => ({
     meta: [
       { title: "Cookie Preferences — ORBIT" },
-      { name: "description", content: "Manage your cookie preferences for the ORBIT service." },
+      { name: "description", content: "Manage your cookie preferences for ORBIT." },
     ],
   }),
   component: CookiesPage,
@@ -46,9 +41,8 @@ export const Route = createFileRoute("/cookies")({
 function CookiesPage() {
   const [prefs, setPrefs] = useState<Record<string, boolean>>({
     essential: true,
-    performance: true,
-    personalization: true,
-    marketing: false,
+    analytics: true,
+    thirdparty: true,
   });
 
   return (
@@ -56,10 +50,14 @@ function CookiesPage() {
       <PageHero
         eyebrow="Legal · Preferences"
         title="Cookie Preferences"
-        description="ORBIT uses cookies and similar technologies to run the service and improve your experience. Decide what you're comfortable with."
+        description="ORBIT uses minimal cookies to keep the service running. Here's what each one does and how to control them."
       />
       <section className="py-16">
         <div className="mx-auto max-w-[900px] px-6 md:px-10">
+          <div className="mb-8 rounded-2xl border border-border bg-surface/50 p-6 text-sm leading-relaxed text-muted-foreground">
+            <p>ORBIT does not use advertising or tracking cookies. The categories below relate to functional and third-party embed cookies only. Third-party video providers may set their own cookies independent of your preferences here.</p>
+          </div>
+
           <div className="space-y-4">
             {CATEGORIES.map((c) => (
               <div key={c.id} className="flex items-start gap-5 rounded-2xl border border-border bg-surface p-6">
@@ -67,7 +65,7 @@ function CookiesPage() {
                   <h3 className="font-display text-lg font-semibold">{c.name}</h3>
                   <p className="mt-2 text-sm text-muted-foreground">{c.body}</p>
                   {c.required && (
-                    <p className="mt-2 text-[10px] uppercase tracking-[0.25em] text-ice">Required</p>
+                    <p className="mt-2 text-[10px] uppercase tracking-[0.25em] text-ice">Always active</p>
                   )}
                 </div>
                 <button
@@ -75,7 +73,7 @@ function CookiesPage() {
                   onClick={() => setPrefs((p) => ({ ...p, [c.id]: !p[c.id] }))}
                   className={`relative mt-1 h-7 w-12 flex-shrink-0 rounded-full transition-colors ${
                     prefs[c.id] ? "bg-ice" : "bg-border"
-                  } disabled:opacity-60`}
+                  } disabled:opacity-50`}
                   aria-label={`Toggle ${c.name}`}
                 >
                   <span
@@ -90,17 +88,13 @@ function CookiesPage() {
 
           <div className="mt-10 flex flex-wrap items-center justify-end gap-3">
             <button
-              onClick={() =>
-                setPrefs({ essential: true, performance: false, personalization: false, marketing: false })
-              }
+              onClick={() => setPrefs({ essential: true, analytics: false, thirdparty: false })}
               className="rounded-full border border-border px-6 py-3 text-xs font-semibold uppercase tracking-widest hover:bg-surface"
             >
               Reject all
             </button>
             <button
-              onClick={() =>
-                setPrefs({ essential: true, performance: true, personalization: true, marketing: true })
-              }
+              onClick={() => setPrefs({ essential: true, analytics: true, thirdparty: true })}
               className="rounded-full border border-border px-6 py-3 text-xs font-semibold uppercase tracking-widest hover:bg-surface"
             >
               Accept all

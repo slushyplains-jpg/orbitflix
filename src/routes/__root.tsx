@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { TelegramBanner } from "../components/site/TelegramBanner";
 
 function NotFoundComponent() {
   return (
@@ -77,14 +78,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "ORBIT — Stream Films, Series & Anime" },
-      { name: "description", content: "A cinematic streaming service for film, series and anime." },
+      { title: "ORBIT — Watch Free Movies, Series & Anime Online" },
+      { name: "description", content: "Stream thousands of movies, TV series and anime for free on ORBIT. No sign-up required. HD quality, updated daily." },
       { name: "author", content: "ORBIT" },
-      { property: "og:title", content: "ORBIT — Stream Films, Series & Anime" },
-      { property: "og:description", content: "A cinematic streaming service for film, series and anime." },
+      { name: "keywords", content: "watch movies online free, free streaming, watch anime online, watch tv series free, ORBIT stream" },
+      { name: "robots", content: "index, follow" },
+      { property: "og:title", content: "ORBIT — Watch Free Movies, Series & Anime Online" },
+      { property: "og:description", content: "Stream thousands of movies, TV series and anime for free on ORBIT. No sign-up required. HD quality, updated daily." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
+      { property: "og:site_name", content: "ORBIT" },
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@OrbitStream" },
+      { name: "twitter:title", content: "ORBIT — Watch Free Movies, Series & Anime Online" },
+      { name: "twitter:description", content: "Stream thousands of movies, TV series and anime for free on ORBIT." },
     ],
     scripts: [
       { src: "https://www.googletagmanager.com/gtag/js?id=G-YVYZ8KL1V9", async: true },
@@ -131,8 +137,8 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
+      <TelegramBanner />
     </QueryClientProvider>
   );
 }
