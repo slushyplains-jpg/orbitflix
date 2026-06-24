@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { TelegramBanner } from "../components/site/TelegramBanner";
 import { FloatingShare } from "../components/site/FloatingShare";
+import { AiConcierge } from "../components/site/AiConcierge";
 
 function NotFoundComponent() {
   return (
@@ -141,6 +142,7 @@ function RootComponent() {
       <Outlet />
       <TelegramBanner />
       <FloatingShare />
+      <AiConcierge />
     </QueryClientProvider>
   );
 }
