@@ -1,9 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
-import { Star, Clock, Calendar, Play } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Star, Clock, Calendar, Play, ServerCrash } from "lucide-react";
 import { tmdbApi, IMG_URL, type TMDBItem } from "@/lib/tmdb";
 import { Nav } from "@/components/site/Nav";
+
+type Server = "videasy" | "vidsrc";
+const SERVERS: { id: Server; label: string }[] = [
+  { id: "videasy", label: "Server 1" },
+  { id: "vidsrc", label: "Server 2" },
+];
 
 export const Route = createFileRoute("/movie/$movieId")({
   component: MoviePage,
@@ -12,6 +18,7 @@ export const Route = createFileRoute("/movie/$movieId")({
 function MoviePage() {
   const { movieId } = Route.useParams();
   const id = Number(movieId);
+  const [server, setServer] = useState<Server>("videasy");
 
   const { data: movie, isLoading } = useQuery({
     queryKey: ["movie", id],
@@ -33,6 +40,10 @@ function MoviePage() {
   const cast = movie.credits?.cast?.slice(0, 8) ?? [];
   const similar = movie.similar?.results?.filter((m) => m.poster_path).slice(0, 12) ?? [];
 
+  const playerSrc = server === "vidsrc"
+    ? `https://vidsrc.mov/embed/movie/${id}`
+    : `https://player.videasy.net/movie/${id}?color=6366f1&overlay=true`;
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Nav />
@@ -43,12 +54,34 @@ function MoviePage() {
           <div className="overflow-hidden rounded-xl bg-black">
             <div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
               <iframe
-                src={`https://player.videasy.net/movie/${id}?color=6366f1&overlay=true`}
+                key={server}
+                src={playerSrc}
                 style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
                 frameBorder="0"
                 allowFullScreen
                 allow="encrypted-media autoplay fullscreen"
               />
+            </div>
+          </div>
+
+          {/* Server selector */}
+          <div className="mt-3 flex items-center gap-3 rounded-lg border border-border bg-surface/50 px-4 py-2.5">
+            <ServerCrash className="h-3.5 w-3.5 flex-shrink-0 text-muted-foreground" />
+            <span className="text-xs text-muted-foreground">Experiencing issues?</span>
+            <div className="flex items-center gap-1.5 ml-auto">
+              {SERVERS.map((s) => (
+                <button
+                  key={s.id}
+                  onClick={() => setServer(s.id)}
+                  className={`rounded-md px-3 py-1 text-xs font-medium transition-colors ${
+                    server === s.id
+                      ? "bg-ice text-background"
+                      : "border border-border text-muted-foreground hover:text-foreground hover:border-foreground/30"
+                  }`}
+                >
+                  {s.label}
+                </button>
+              ))}
             </div>
           </div>
         </div>

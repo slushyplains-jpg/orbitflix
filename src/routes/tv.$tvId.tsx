@@ -1,9 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import { Star, Clock, Calendar, Tv, ChevronDown } from "lucide-react";
+import { Star, Clock, Calendar, Tv, ChevronDown, ServerCrash } from "lucide-react";
 import { tmdbApi, IMG_URL, type TMDBItem } from "@/lib/tmdb";
 import { Nav } from "@/components/site/Nav";
+
+type Server = "videasy" | "vidsrc";
+const SERVERS: { id: Server; label: string }[] = [
+  { id: "videasy", label: "Server 1" },
+  { id: "vidsrc", label: "Server 2" },
+];
 
 export const Route = createFileRoute("/tv/$tvId")({
   component: TVPage,
@@ -21,6 +27,7 @@ function TVPage() {
   const seasons = show?.seasons?.filter((s) => s.season_number > 0) ?? [];
   const [selectedSeason, setSelectedSeason] = useState(1);
   const [selectedEpisode, setSelectedEpisode] = useState(1);
+  const [server, setServer] = useState<Server>("videasy");
 
   useEffect(() => { setSelectedEpisode(1); }, [selectedSeason]);
 
@@ -55,13 +62,36 @@ function TVPage() {
               <div className="overflow-hidden rounded-xl bg-black">
                 <div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
                   <iframe
-                    key={`${id}-${selectedSeason}-${selectedEpisode}`}
-                    src={`https://player.videasy.net/tv/${id}/${selectedSeason}/${selectedEpisode}?color=6366f1&nextEpisode=true&autoplayNextEpisode=true&overlay=true`}
+                    key={`${server}-${id}-${selectedSeason}-${selectedEpisode}`}
+                    src={server === "vidsrc"
+                      ? `https://vidsrc.mov/embed/tv/${id}/${selectedSeason}/${selectedEpisode}`
+                      : `https://player.videasy.net/tv/${id}/${selectedSeason}/${selectedEpisode}?color=6366f1&nextEpisode=true&autoplayNextEpisode=true&overlay=true`}
                     style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
                     frameBorder="0"
                     allowFullScreen
                     allow="encrypted-media autoplay fullscreen"
                   />
+                </div>
+              </div>
+
+              {/* Server selector */}
+              <div className="mt-3 flex items-center gap-3 rounded-lg border border-border bg-surface/50 px-4 py-2.5">
+                <ServerCrash className="h-3.5 w-3.5 flex-shrink-0 text-muted-foreground" />
+                <span className="text-xs text-muted-foreground">Experiencing issues?</span>
+                <div className="flex items-center gap-1.5 ml-auto">
+                  {SERVERS.map((s) => (
+                    <button
+                      key={s.id}
+                      onClick={() => setServer(s.id)}
+                      className={`rounded-md px-3 py-1 text-xs font-medium transition-colors ${
+                        server === s.id
+                          ? "bg-ice text-background"
+                          : "border border-border text-muted-foreground hover:text-foreground hover:border-foreground/30"
+                      }`}
+                    >
+                      {s.label}
+                    </button>
+                  ))}
                 </div>
               </div>
             </div>
