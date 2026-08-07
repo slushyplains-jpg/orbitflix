@@ -1,33 +1,28 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, SlidersHorizontal } from "lucide-react";
-import { tmdbApi, MOVIE_GENRES, SORT_OPTIONS } from "@/lib/tmdb";
+import { useState } from "react";
+import { ChevronLeft, ChevronRight, Trophy } from "lucide-react";
+import { tmdbApi } from "@/lib/tmdb";
 import { PageShell, PageHero } from "@/components/site/PageShell";
 import { MediaGrid } from "@/components/site/MediaGrid";
 
-export const Route = createFileRoute("/films")({
+export const Route = createFileRoute("/top-imdb")({
   head: () => ({
     meta: [
-      { title: "Films — ORBIT" },
-      { name: "description", content: "Browse the ORBIT film catalogue. Popular, top rated, action, and sci-fi cinema curated for the night." },
-      { property: "og:title", content: "Films — ORBIT" },
-      { property: "og:description", content: "A handpicked universe of cinema." },
+      { title: "Top IMDb — ORBIT" },
+      { name: "description", content: "The highest-rated films of all time, ranked by IMDb score." },
+      { property: "og:title", content: "Top IMDb — ORBIT" },
     ],
   }),
-  component: FilmsPage,
+  component: TopImdbPage,
 });
 
-function FilmsPage() {
-  const [genre, setGenre] = useState(0);
-  const [sort, setSort] = useState("popularity.desc");
+function TopImdbPage() {
   const [page, setPage] = useState(1);
 
-  useEffect(() => { setPage(1); }, [genre, sort]);
-
   const { data, isLoading } = useQuery({
-    queryKey: ["discoverMovies", page, genre, sort],
-    queryFn: () => tmdbApi.discoverMovies(page, genre, sort),
+    queryKey: ["topImdb", page],
+    queryFn: () => tmdbApi.topImdb(page),
   });
 
   const totalPages = Math.min(data?.total_pages ?? 1, 500);
@@ -35,52 +30,23 @@ function FilmsPage() {
   return (
     <PageShell>
       <PageHero
-        eyebrow="Catalogue · Cinema"
-        title="Films"
-        description="From midnight noir to blockbuster spectacle — every frame curated for the screen."
+        eyebrow="Rankings · Cinema"
+        title={
+          <span className="flex items-center gap-4">
+            Top IMDb
+            <Trophy className="h-10 w-10 text-yellow-400 md:h-12 md:w-12" />
+          </span>
+        }
+        description="The greatest films ever made — ranked by audience ratings with over 5,000 votes."
       />
 
       <section className="py-10">
         <div className="mx-auto max-w-[1600px] px-6 md:px-10">
-
-          {/* Filters */}
-          <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            {/* Genre pills */}
-            <div className="flex flex-wrap gap-2">
-              {MOVIE_GENRES.map((g) => (
-                <button
-                  key={g.id}
-                  onClick={() => setGenre(g.id)}
-                  className={`rounded-full px-4 py-1.5 text-xs font-medium transition-colors ${
-                    genre === g.id
-                      ? "bg-ice text-background"
-                      : "border border-border text-muted-foreground hover:border-foreground/40 hover:text-foreground"
-                  }`}
-                >
-                  {g.name}
-                </button>
-              ))}
-            </div>
-
-            {/* Sort */}
-            <div className="flex items-center gap-2 flex-shrink-0">
-              <SlidersHorizontal className="h-3.5 w-3.5 text-muted-foreground" />
-              <select
-                value={sort}
-                onChange={(e) => setSort(e.target.value)}
-                className="rounded-md border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground focus:outline-none focus:ring-1 focus:ring-ice cursor-pointer"
-              >
-                {SORT_OPTIONS.map((o) => (
-                  <option key={o.value} value={o.value}>{o.label}</option>
-                ))}
-              </select>
-            </div>
+          {/* Rank numbers overlay grid */}
+          <div className="relative">
+            <MediaGrid items={data?.results ?? []} mediaType="movie" loading={isLoading} />
           </div>
 
-          {/* Grid */}
-          <MediaGrid items={data?.results ?? []} mediaType="movie" loading={isLoading} />
-
-          {/* Pagination */}
           {!isLoading && totalPages > 1 && (
             <div className="mt-12 flex items-center justify-center gap-2">
               <button
@@ -93,7 +59,7 @@ function FilmsPage() {
 
               {getPageNumbers(page, totalPages).map((p, i) =>
                 p === "..." ? (
-                  <span key={`ellipsis-${i}`} className="px-1 text-muted-foreground text-sm">…</span>
+                  <span key={`e-${i}`} className="px-1 text-muted-foreground text-sm">…</span>
                 ) : (
                   <button
                     key={p}

@@ -10,6 +10,7 @@ const LINKS: { label: string; to: string }[] = [
   { label: "Films", to: "/films" },
   { label: "Series", to: "/series" },
   { label: "Anime", to: "/anime" },
+  { label: "Top IMDb", to: "/top-imdb" },
   { label: "My List", to: "/my-list" },
 ];
 

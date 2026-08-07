@@ -74,6 +74,63 @@ export interface TVDetail extends TMDBItem {
   similar: TMDBList;
 }
 
+export const MOVIE_GENRES = [
+  { id: 0,   name: 'All' },
+  { id: 28,  name: 'Action' },
+  { id: 12,  name: 'Adventure' },
+  { id: 16,  name: 'Animation' },
+  { id: 35,  name: 'Comedy' },
+  { id: 80,  name: 'Crime' },
+  { id: 99,  name: 'Documentary' },
+  { id: 18,  name: 'Drama' },
+  { id: 14,  name: 'Fantasy' },
+  { id: 27,  name: 'Horror' },
+  { id: 10749, name: 'Romance' },
+  { id: 878, name: 'Sci-Fi' },
+  { id: 53,  name: 'Thriller' },
+  { id: 10752, name: 'War' },
+];
+
+export const TV_GENRES = [
+  { id: 0,   name: 'All' },
+  { id: 10759, name: 'Action' },
+  { id: 16,  name: 'Animation' },
+  { id: 35,  name: 'Comedy' },
+  { id: 80,  name: 'Crime' },
+  { id: 99,  name: 'Documentary' },
+  { id: 18,  name: 'Drama' },
+  { id: 10765, name: 'Sci-Fi' },
+  { id: 10766, name: 'Soap' },
+  { id: 10767, name: 'Talk' },
+  { id: 10768, name: 'War' },
+  { id: 37,  name: 'Western' },
+];
+
+export const ANIME_GENRES = [
+  { id: 0,   name: 'All' },
+  { id: 28,  name: 'Action' },
+  { id: 12,  name: 'Adventure' },
+  { id: 35,  name: 'Comedy' },
+  { id: 18,  name: 'Drama' },
+  { id: 14,  name: 'Fantasy' },
+  { id: 27,  name: 'Horror' },
+  { id: 10749, name: 'Romance' },
+  { id: 878, name: 'Sci-Fi' },
+];
+
+export const SORT_OPTIONS = [
+  { value: 'popularity.desc',     label: 'Most Popular' },
+  { value: 'vote_average.desc',   label: 'Top Rated' },
+  { value: 'release_date.desc',   label: 'Newest' },
+  { value: 'revenue.desc',        label: 'Box Office' },
+];
+
+export const TV_SORT_OPTIONS = [
+  { value: 'popularity.desc',     label: 'Most Popular' },
+  { value: 'vote_average.desc',   label: 'Top Rated' },
+  { value: 'first_air_date.desc', label: 'Newest' },
+];
+
 export const tmdbApi = {
   trending: () => tmdb<TMDBList>('/trending/all/week'),
   popularMovies: () => tmdb<TMDBList>('/movie/popular'),
@@ -89,9 +146,48 @@ export const tmdbApi = {
       sort_by: 'popularity.desc',
       with_origin_country: 'JP',
     }),
+  discoverMovies: (page: number, genre: number, sort: string) =>
+    tmdb<TMDBList>('/discover/movie', {
+      sort_by: sort,
+      page: String(page),
+      'vote_count.gte': '100',
+      ...(genre ? { with_genres: String(genre) } : {}),
+    }),
+  discoverTV: (page: number, genre: number, sort: string) =>
+    tmdb<TMDBList>('/discover/tv', {
+      sort_by: sort,
+      page: String(page),
+      'vote_count.gte': '50',
+      ...(genre ? { with_genres: String(genre) } : {}),
+    }),
+  discoverAnime: (page: number, genre: number, sort: string) =>
+    tmdb<TMDBList>('/discover/tv', {
+      with_genres: genre ? `16,${genre}` : '16',
+      sort_by: sort,
+      page: String(page),
+      with_origin_country: 'JP',
+      'vote_count.gte': '50',
+    }),
   movieDetail: (id: number) =>
     tmdb<MovieDetail>(`/movie/${id}`, { append_to_response: 'credits,similar,videos' }),
   tvDetail: (id: number) =>
     tmdb<TVDetail>(`/tv/${id}`, { append_to_response: 'credits,similar,videos' }),
+  topImdb: (page: number) =>
+    tmdb<TMDBList>('/discover/movie', {
+      sort_by: 'vote_average.desc',
+      page: String(page),
+      'vote_count.gte': '5000',
+    }),
+  movieReviews: (id: number) =>
+    tmdb<{ results: TMDBReview[] }>(`/movie/${id}/reviews`, { page: '1' }),
   search: (query: string) => tmdb<TMDBList>('/search/multi', { query }),
 };
+
+export interface TMDBReview {
+  id: string;
+  author: string;
+  author_details: { avatar_path: string | null; rating: number | null };
+  content: string;
+  created_at: string;
+  url: string;
+}

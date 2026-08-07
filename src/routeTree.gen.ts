@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TopImdbRouteImport } from './routes/top-imdb'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SubscriptionRouteImport } from './routes/subscription'
 import { Route as SeriesRouteImport } from './routes/series'
@@ -28,6 +29,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as TvTvIdRouteImport } from './routes/tv.$tvId'
 import { Route as MovieMovieIdRouteImport } from './routes/movie.$movieId'
 
+const TopImdbRoute = TopImdbRouteImport.update({
+  id: '/top-imdb',
+  path: '/top-imdb',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -136,6 +142,7 @@ export interface FileRoutesByFullPath {
   '/series': typeof SeriesRoute
   '/subscription': typeof SubscriptionRoute
   '/terms': typeof TermsRoute
+  '/top-imdb': typeof TopImdbRoute
   '/movie/$movieId': typeof MovieMovieIdRoute
   '/tv/$tvId': typeof TvTvIdRoute
 }
@@ -156,6 +163,7 @@ export interface FileRoutesByTo {
   '/series': typeof SeriesRoute
   '/subscription': typeof SubscriptionRoute
   '/terms': typeof TermsRoute
+  '/top-imdb': typeof TopImdbRoute
   '/movie/$movieId': typeof MovieMovieIdRoute
   '/tv/$tvId': typeof TvTvIdRoute
 }
@@ -177,6 +185,7 @@ export interface FileRoutesById {
   '/series': typeof SeriesRoute
   '/subscription': typeof SubscriptionRoute
   '/terms': typeof TermsRoute
+  '/top-imdb': typeof TopImdbRoute
   '/movie/$movieId': typeof MovieMovieIdRoute
   '/tv/$tvId': typeof TvTvIdRoute
 }
@@ -199,6 +208,7 @@ export interface FileRouteTypes {
     | '/series'
     | '/subscription'
     | '/terms'
+    | '/top-imdb'
     | '/movie/$movieId'
     | '/tv/$tvId'
   fileRoutesByTo: FileRoutesByTo
@@ -219,6 +229,7 @@ export interface FileRouteTypes {
     | '/series'
     | '/subscription'
     | '/terms'
+    | '/top-imdb'
     | '/movie/$movieId'
     | '/tv/$tvId'
   id:
@@ -239,6 +250,7 @@ export interface FileRouteTypes {
     | '/series'
     | '/subscription'
     | '/terms'
+    | '/top-imdb'
     | '/movie/$movieId'
     | '/tv/$tvId'
   fileRoutesById: FileRoutesById
@@ -260,12 +272,20 @@ export interface RootRouteChildren {
   SeriesRoute: typeof SeriesRoute
   SubscriptionRoute: typeof SubscriptionRoute
   TermsRoute: typeof TermsRoute
+  TopImdbRoute: typeof TopImdbRoute
   MovieMovieIdRoute: typeof MovieMovieIdRoute
   TvTvIdRoute: typeof TvTvIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/top-imdb': {
+      id: '/top-imdb'
+      path: '/top-imdb'
+      fullPath: '/top-imdb'
+      preLoaderRoute: typeof TopImdbRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -412,6 +432,7 @@ const rootRouteChildren: RootRouteChildren = {
   SeriesRoute: SeriesRoute,
   SubscriptionRoute: SubscriptionRoute,
   TermsRoute: TermsRoute,
+  TopImdbRoute: TopImdbRoute,
   MovieMovieIdRoute: MovieMovieIdRoute,
   TvTvIdRoute: TvTvIdRoute,
 }

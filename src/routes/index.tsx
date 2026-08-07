@@ -91,7 +91,7 @@ function Index() {
         items={scifiMovies?.results ?? []}
         mediaType="movie"
       />
-      <TelegramStrip />
+      {/* <TelegramStrip /> */}
       <Footer />
     </div>
   );
