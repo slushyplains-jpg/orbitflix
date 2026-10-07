@@ -44,6 +44,7 @@ export function RoomProvider({ children }: { children: ReactNode }) {
   const navigate = useNavigate();
 
   const connect = useCallback((room: string) => {
+    if (typeof WebSocket === "undefined") return;
     if (wsRef.current) {
       wsRef.current.close();
       wsRef.current = null;
@@ -90,7 +91,7 @@ export function RoomProvider({ children }: { children: ReactNode }) {
     setActiveRoom(room);
     if (srv) setServer(srv);
     roomRef.current = room;
-    window.postMessage({ type: "JOIN_ROOM", room }, "*");
+    if (typeof window !== "undefined") window.postMessage({ type: "JOIN_ROOM", room }, "*");
     connect(room);
   }, [connect]);
 
@@ -126,7 +127,7 @@ export function RoomProvider({ children }: { children: ReactNode }) {
 
   const copyRoomCode = useCallback((movieId: number) => {
     if (!activeRoom) return;
-    navigator.clipboard.writeText(`${movieId}-${SERVER_IDX[server]}-${activeRoom}`);
+    if (typeof navigator !== "undefined") navigator.clipboard.writeText(`${movieId}-${SERVER_IDX[server]}-${activeRoom}`);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   }, [activeRoom, server]);
