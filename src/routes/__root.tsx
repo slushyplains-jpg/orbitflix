@@ -15,6 +15,7 @@ import { TelegramBanner } from "../components/site/TelegramBanner";
 import { FloatingShare } from "../components/site/FloatingShare";
 import { AiConcierge } from "../components/site/AiConcierge";
 import { VpnBanner } from "../components/site/VpnBanner";
+import { RoomProvider } from "../contexts/RoomContext";
 
 function NotFoundComponent() {
   return (
@@ -150,11 +151,13 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
-      {/* <TelegramBanner /> */}
-      <FloatingShare />
-      <AiConcierge />
-      {/* <VpnBanner /> */}
+      <RoomProvider>
+        <Outlet />
+        {/* <TelegramBanner /> */}
+        <FloatingShare />
+        <AiConcierge />
+        {/* <VpnBanner /> */}
+      </RoomProvider>
     </QueryClientProvider>
   );
 }
