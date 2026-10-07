@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useRef, useState, useCallback, type ReactNode } from "react";
-import { useNavigate } from "@tanstack/react-router";
+import { useRouter } from "@tanstack/react-router";
 
 const WS_URL = "wss://api.orbitflix.site/room";
 
@@ -41,7 +41,7 @@ export function RoomProvider({ children }: { children: ReactNode }) {
   const roomRef = useRef<string | null>(null);
   const roomCmdHandlerRef = useRef<((event: string, time: number) => void) | null>(null);
   const isSyncingRef = useRef(false);
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const connect = useCallback((room: string) => {
     if (typeof WebSocket === "undefined") return;
@@ -138,7 +138,7 @@ export function RoomProvider({ children }: { children: ReactNode }) {
     if (!followPrompt) return;
     setServer(followPrompt.server);
     setFollowPrompt(null);
-    navigate({ to: "/movie/$movieId", params: { movieId: String(followPrompt.movieId) } });
+    router.navigate({ to: "/movie/$movieId", params: { movieId: String(followPrompt.movieId) } });
   }, [followPrompt, navigate]);
 
   // Cleanup on unmount
