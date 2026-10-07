@@ -1,9 +1,10 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { Bell, Search, X, Menu } from "lucide-react";
+import { Bell, Search, X, Menu, Users } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { tmdbApi, IMG_URL, type TMDBItem } from "@/lib/tmdb";
 import { useAuth } from "@/hooks/use-auth";
+import { useRoom, IDX_SERVER } from "@/contexts/RoomContext";
 
 const LINKS: { label: string; to: string }[] = [
   { label: "Home", to: "/" },
@@ -19,8 +20,38 @@ export function Nav() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const [roomOpen, setRoomOpen] = useState(false);
+  const [roomCode, setRoomCode] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const roomInputRef = useRef<HTMLInputElement>(null);
   const { user } = useAuth();
+  const navigate = useNavigate();
+  const { joinRoom } = useRoom();
+
+  function joinRoomFromNav() {
+    const raw = roomCode.trim().toUpperCase();
+    if (!raw) return;
+    setRoomOpen(false);
+    setRoomCode("");
+
+    const parts = raw.split("-");
+    if (parts.length >= 3) {
+      // Format: MOVIEID-SERVERIDX-SYNCCODE
+      const [movieId, serverIdx, ...rest] = parts;
+      const syncCode = rest.join("-");
+      const srv = IDX_SERVER[serverIdx];
+      joinRoom(syncCode, srv);
+      navigate({ to: "/movie/$movieId", params: { movieId } });
+    } else if (parts.length === 2) {
+      // Format: MOVIEID-SYNCCODE
+      const [movieId, syncCode] = parts;
+      joinRoom(syncCode);
+      navigate({ to: "/movie/$movieId", params: { movieId } });
+    } else {
+      // Bare sync code — join in current tab
+      joinRoom(raw);
+    }
+  }
 
   const { data: searchResults } = useQuery({
     queryKey: ["search", query],
@@ -37,6 +68,21 @@ export function Nav() {
   useEffect(() => {
     if (searchOpen) setTimeout(() => inputRef.current?.focus(), 50);
   }, [searchOpen]);
+
+  useEffect(() => {
+    if (roomOpen) setTimeout(() => roomInputRef.current?.focus(), 50);
+  }, [roomOpen]);
+
+  // Close room popover on outside click
+  useEffect(() => {
+    if (!roomOpen) return;
+    const handler = (e: MouseEvent) => {
+      const el = document.getElementById("__orbit_room_popover");
+      if (el && !el.contains(e.target as Node)) setRoomOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [roomOpen]);
 
   // Close mobile menu on route change / scroll
   useEffect(() => {
@@ -81,6 +127,42 @@ export function Nav() {
             >
               <Search className="h-4 w-4" />
             </button>
+
+            {/* Watch Together */}
+            <div id="__orbit_room_popover" className="relative hidden md:block">
+              <button
+                onClick={() => setRoomOpen((v) => !v)}
+                className="rounded-full p-2 text-muted-foreground transition-colors hover:bg-surface hover:text-foreground"
+                title="Watch Together"
+              >
+                <Users className="h-4 w-4" />
+              </button>
+              {roomOpen && (
+                <div className="absolute right-0 top-full mt-2 w-72 rounded-xl border border-border bg-background shadow-2xl p-4 z-[200]">
+                  <p className="text-sm font-medium mb-1">Watch Together</p>
+                  <p className="text-xs text-muted-foreground mb-3">Paste a room code from your friend to jump straight into the same movie.</p>
+                  <div className="flex gap-2">
+                    <input
+                      ref={roomInputRef}
+                      value={roomCode}
+                      onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
+                      onKeyDown={(e) => e.key === "Enter" && joinRoomFromNav()}
+                      placeholder="550-ABC123"
+                      className="flex-1 rounded-lg border border-border bg-surface px-3 py-2 text-sm font-mono tracking-widest placeholder:font-sans placeholder:tracking-normal placeholder:text-muted-foreground focus:outline-none focus:border-indigo-500"
+                      maxLength={16}
+                    />
+                    <button
+                      onClick={joinRoomFromNav}
+                      disabled={!roomCode.trim()}
+                      className="rounded-lg bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 px-4 py-2 text-sm font-medium text-white transition-colors"
+                    >
+                      Join
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+
             <button className="hidden rounded-full p-2 text-muted-foreground transition-colors hover:bg-surface hover:text-foreground md:flex">
               <Bell className="h-4 w-4" />
             </button>

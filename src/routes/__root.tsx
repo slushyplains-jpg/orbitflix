@@ -7,7 +7,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -15,6 +15,15 @@ import { TelegramBanner } from "../components/site/TelegramBanner";
 import { FloatingShare } from "../components/site/FloatingShare";
 import { AiConcierge } from "../components/site/AiConcierge";
 import { VpnBanner } from "../components/site/VpnBanner";
+import { RoomProvider } from "../contexts/RoomContext";
+
+// Only mount RoomProvider on the client — it uses WebSocket/window which crash CF Workers SSR
+function ClientRoomProvider({ children }: { children: ReactNode }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+  if (!mounted) return <>{children}</>;
+  return <RoomProvider>{children}</RoomProvider>;
+}
 
 function NotFoundComponent() {
   return (
@@ -150,11 +159,13 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
-      {/* <TelegramBanner /> */}
-      <FloatingShare />
-      <AiConcierge />
-      {/* <VpnBanner /> */}
+      <ClientRoomProvider>
+        <Outlet />
+        {/* <TelegramBanner /> */}
+        <FloatingShare />
+        <AiConcierge />
+        {/* <VpnBanner /> */}
+      </ClientRoomProvider>
     </QueryClientProvider>
   );
 }
