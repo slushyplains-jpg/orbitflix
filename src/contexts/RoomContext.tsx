@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useRef, useState, useCallback, type ReactNode } from "react";
-import { useRouter } from "@tanstack/react-router";
 
 const WS_URL = "wss://api.orbitflix.site/room";
 
@@ -30,7 +29,14 @@ interface RoomCtx {
   registerRoomCmdHandler: (fn: ((event: string, time: number) => void) | null) => void;
 }
 
-const RoomContext = createContext<RoomCtx | null>(null);
+const noop = () => {};
+const defaultCtx: RoomCtx = {
+  activeRoom: null, server: "videasy", setServer: noop,
+  joinRoom: noop, leaveRoom: noop, copyRoomCode: noop, copied: false,
+  broadcastMovieChange: noop, followPrompt: null, dismissFollowPrompt: noop,
+  acceptFollowPrompt: noop, sendVideoEvent: noop, registerRoomCmdHandler: noop,
+};
+const RoomContext = createContext<RoomCtx>(defaultCtx);
 
 export function RoomProvider({ children }: { children: ReactNode }) {
   const [activeRoom, setActiveRoom] = useState<string | null>(null);
@@ -41,7 +47,6 @@ export function RoomProvider({ children }: { children: ReactNode }) {
   const roomRef = useRef<string | null>(null);
   const roomCmdHandlerRef = useRef<((event: string, time: number) => void) | null>(null);
   const isSyncingRef = useRef(false);
-  const router = useRouter();
 
   const connect = useCallback((room: string) => {
     if (typeof WebSocket === "undefined") return;
@@ -138,7 +143,7 @@ export function RoomProvider({ children }: { children: ReactNode }) {
     if (!followPrompt) return;
     setServer(followPrompt.server);
     setFollowPrompt(null);
-    router.navigate({ to: "/movie/$movieId", params: { movieId: String(followPrompt.movieId) } });
+    if (typeof window !== "undefined") window.location.href = `/movie/${followPrompt.movieId}`;
   }, [followPrompt, navigate]);
 
   // Cleanup on unmount
@@ -196,7 +201,5 @@ function FollowPromptBanner() {
 }
 
 export function useRoom() {
-  const ctx = useContext(RoomContext);
-  if (!ctx) throw new Error("useRoom must be used inside RoomProvider");
-  return ctx;
+  return useContext(RoomContext);
 }
