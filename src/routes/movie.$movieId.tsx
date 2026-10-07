@@ -1,29 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useRef, useState } from "react";
-import { Star, Clock, Calendar, Play, ServerCrash, Quote, X, Users, Copy, Check } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Star, Clock, Calendar, Play, ServerCrash, Quote, X } from "lucide-react";
 import { tmdbApi, IMG_URL, type TMDBItem, type TMDBReview } from "@/lib/tmdb";
 import { Nav } from "@/components/site/Nav";
-import { useRoom, IDX_SERVER } from "@/contexts/RoomContext";
 
-// Commands the cloudorchestranova inner player accepts: { player: true, action: ... }
-// Seek format: "seek" + seconds (absolute), e.g. "seek42.5"
-// The relay chain (our page → vsembed → cloudorchestranova outer → inner player) forwards these.
-function sendPlayerCmd(iframe: HTMLIFrameElement | null, event: string, time: number) {
-  if (!iframe) return;
-  let action: string;
-  if (event === "play") action = "play";
-  else if (event === "pause") action = "pause";
-  else if (event === "seeked") action = `seek${time}`;
-  else return;
-  iframe.contentWindow?.postMessage({ player: true, action }, "*");
-}
-
-type Server = "videasy" | "vidsrc" | "clean";
+type Server = "videasy" | "vidsrc";
 const SERVERS: { id: Server; label: string }[] = [
   { id: "videasy", label: "Server 1" },
   { id: "vidsrc", label: "Server 2" },
-  { id: "clean", label: "Server 3" },
 ];
 
 export const Route = createFileRoute("/movie/$movieId")({
@@ -33,63 +18,7 @@ export const Route = createFileRoute("/movie/$movieId")({
 function MoviePage() {
   const { movieId } = Route.useParams();
   const id = Number(movieId);
-  const { activeRoom, server, setServer, joinRoom, leaveRoom, copyRoomCode, copied, broadcastMovieChange, sendVideoEvent, registerRoomCmdHandler } = useRoom();
-
-  const [roomOpen, setRoomOpen] = useState(false);
-  const [roomInput, setRoomInput] = useState("");
-  const mountedIdRef = useRef(id);
-  const prevIdRef = useRef<number | null>(null);
-  const iframeRef = useRef<HTMLIFrameElement | null>(null);
-
-  // Read room + server from URL on first load
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const urlRoom = urlParams.get("room")?.toUpperCase();
-    const urlServer = IDX_SERVER[urlParams.get("server") ?? ""];
-    if (urlRoom) {
-      joinRoom(urlRoom, urlServer ?? undefined);
-      window.history.replaceState({}, "", window.location.pathname);
-    }
-  }, []);
-
-  // Broadcast movie change to room when navigating to a new movie
-  useEffect(() => {
-    if (prevIdRef.current !== null && prevIdRef.current !== id && activeRoom) {
-      // Movie changed while in a room — broadcast after movie data loads
-      // We'll broadcast once movie title is available (see below)
-    }
-    prevIdRef.current = id;
-    setRoomOpen(false);
-    setRoomInput("");
-  }, [id]);
-
-  // Native (no-extension) sync for Server 3 via PLAYER_EVENT postMessages
-  useEffect(() => {
-    if (server !== "clean" || !activeRoom) {
-      registerRoomCmdHandler(null);
-      return;
-    }
-
-    // Send video events to room WS
-    const handler = (e: MessageEvent) => {
-      if (e.data?.type !== "PLAYER_EVENT") return;
-      const { player_status, player_progress } = e.data.data ?? {};
-      if (player_status === "playing") sendVideoEvent("play", player_progress ?? 0);
-      else if (player_status === "paused") sendVideoEvent("pause", player_progress ?? 0);
-      else if (player_status === "seeked") sendVideoEvent("seeked", player_progress ?? 0);
-    };
-    window.addEventListener("message", handler);
-
-    // Receive sync commands and control the iframe player
-    registerRoomCmdHandler((event, time) => {
-      sendPlayerCmd(iframeRef.current, event, time);
-    });
-
-    return () => {
-      window.removeEventListener("message", handler);
-      registerRoomCmdHandler(null);
-    };
-  }, [server, activeRoom, sendVideoEvent, registerRoomCmdHandler]);
+  const [server, setServer] = useState<Server>("videasy");
 
   const { data: movie, isLoading } = useQuery({
     queryKey: ["movie", id],
@@ -100,20 +29,6 @@ function MoviePage() {
     queryKey: ["movieReviews", id],
     queryFn: () => tmdbApi.movieReviews(id),
   });
-
-  // Broadcast movie change once title is known
-  const hasBroadcast = useRef(false);
-  useEffect(() => {
-    if (!movie?.title || !activeRoom) return;
-    if (hasBroadcast.current) return;
-    hasBroadcast.current = true;
-    broadcastMovieChange(id, movie.title, server);
-  }, [movie?.title, activeRoom]);
-
-  // Reset broadcast flag when movie changes
-  useEffect(() => {
-    hasBroadcast.current = false;
-  }, [id]);
 
   useEffect(() => {
     if (movie?.title) document.title = `${movie.title} — ORBIT`;
@@ -133,8 +48,6 @@ function MoviePage() {
 
   const playerSrc = server === "vidsrc"
     ? `https://vidsrc.mov/embed/movie/${id}`
-    : server === "clean"
-    ? `https://vsembed.ru/embed/movie/${id}/`
     : `https://player.videasy.net/movie/${id}?color=6366f1&overlay=true`;
 
   return (
@@ -147,8 +60,7 @@ function MoviePage() {
           <div className="overflow-hidden rounded-xl bg-black">
             <div style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
               <iframe
-                key={playerSrc}
-                ref={iframeRef}
+                key={server}
                 src={playerSrc}
                 style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
                 frameBorder="0"
@@ -177,61 +89,6 @@ function MoviePage() {
                 </button>
               ))}
             </div>
-          </div>
-
-          {/* Watch Together */}
-          <div className="mt-2 relative">
-            {activeRoom ? (
-              <div className="flex items-center gap-3 rounded-lg border border-indigo-500/40 bg-indigo-500/10 px-4 py-2.5">
-                <Users className="h-3.5 w-3.5 flex-shrink-0 text-indigo-400" />
-                <span className="text-xs text-indigo-300">Room: <span className="font-mono font-semibold tracking-widest">{activeRoom}</span></span>
-                <button onClick={() => copyRoomCode(id)} className="ml-auto flex items-center gap-1 text-xs text-indigo-400 hover:text-indigo-200 transition-colors">
-                  {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
-                  {copied ? "Copied!" : "Copy code"}
-                </button>
-                <button onClick={leaveRoom} className="text-indigo-400 hover:text-indigo-200 transition-colors">
-                  <X className="h-3.5 w-3.5" />
-                </button>
-              </div>
-            ) : (
-              <button
-                onClick={() => setRoomOpen((v) => !v)}
-                className="flex items-center gap-2 rounded-lg border border-border bg-surface/50 px-4 py-2.5 text-xs text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors w-full"
-              >
-                <Users className="h-3.5 w-3.5" />
-                Watch Together
-              </button>
-            )}
-
-            {roomOpen && !activeRoom && (
-              <div className="absolute top-full mt-1 left-0 right-0 z-50 rounded-xl border border-border bg-background shadow-2xl p-4">
-                <p className="text-sm font-medium mb-3">Watch Together</p>
-                <div className="flex gap-2 mb-3">
-                  <input
-                    value={roomInput}
-                    onChange={(e) => setRoomInput(e.target.value.toUpperCase())}
-                    onKeyDown={(e) => { if (e.key === "Enter") { joinRoom(roomInput); setRoomOpen(false); } }}
-                    placeholder="Enter room code"
-                    className="flex-1 rounded-lg border border-border bg-surface px-3 py-2 text-sm font-mono tracking-widest placeholder:font-sans placeholder:tracking-normal placeholder:text-muted-foreground focus:outline-none focus:border-indigo-500"
-                    maxLength={8}
-                  />
-                  <button
-                    onClick={() => { joinRoom(roomInput); setRoomOpen(false); }}
-                    disabled={!roomInput.trim()}
-                    className="rounded-lg bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 px-4 py-2 text-sm font-medium text-white transition-colors"
-                  >
-                    Join
-                  </button>
-                </div>
-                <button
-                  onClick={() => { joinRoom(Math.random().toString(36).slice(2, 8).toUpperCase()); setRoomOpen(false); }}
-                  className="w-full rounded-lg border border-border bg-surface/50 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Create new room
-                </button>
-                <p className="mt-3 text-xs text-muted-foreground">Requires the Frame Sync browser extension.</p>
-              </div>
-            )}
           </div>
         </div>
 
