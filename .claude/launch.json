@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dreamstream",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["--node-options=--max-old-space-size=4096", "vite", "dev", "--host"],
+      "port": 8082,
+      "autoPort": true
+    }
+  ]
+}

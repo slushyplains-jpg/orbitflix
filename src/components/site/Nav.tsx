@@ -129,7 +129,7 @@ export function Nav() {
             </button>
 
             {/* Watch Together */}
-            <div id="__orbit_room_popover" className="relative hidden md:block">
+            <div id="__orbit_room_popover" className="relative">
               <button
                 onClick={() => setRoomOpen((v) => !v)}
                 className="rounded-full p-2 text-muted-foreground transition-colors hover:bg-surface hover:text-foreground"

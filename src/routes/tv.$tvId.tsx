@@ -5,10 +5,11 @@ import { Star, Clock, Calendar, Tv, ChevronDown, ServerCrash } from "lucide-reac
 import { tmdbApi, IMG_URL, type TMDBItem } from "@/lib/tmdb";
 import { Nav } from "@/components/site/Nav";
 
-type Server = "videasy" | "vidsrc";
+type Server = "videasy" | "vidsrc" | "vsembed";
 const SERVERS: { id: Server; label: string }[] = [
   { id: "videasy", label: "Server 1" },
   { id: "vidsrc", label: "Server 2" },
+  { id: "vsembed", label: "Server 3" },
 ];
 
 export const Route = createFileRoute("/tv/$tvId")({
@@ -65,6 +66,8 @@ function TVPage() {
                     key={`${server}-${id}-${selectedSeason}-${selectedEpisode}`}
                     src={server === "vidsrc"
                       ? `https://vidsrc.mov/embed/tv/${id}/${selectedSeason}/${selectedEpisode}`
+                      : server === "vsembed"
+                      ? `https://vsembed.ru/embed/tv/${id}/${selectedSeason}/${selectedEpisode}/`
                       : `https://player.videasy.net/tv/${id}/${selectedSeason}/${selectedEpisode}?color=6366f1&nextEpisode=true&autoplayNextEpisode=true&overlay=true`}
                     style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
                     frameBorder="0"

@@ -40,8 +40,7 @@ Rules:
 - If asked something off-topic, gently redirect to film/series discovery.`;
 
 export const askConcierge = createServerFn({ method: "POST" })
-  .validator((data: { messages: ChatMessage[] }) => data)
-  .handler(async ({ data }) => {
+  .handler(async ({ data }: { data: { messages: ChatMessage[] } }) => {
     const apiKey = process.env.ANTHROPIC_API_KEY;
     if (!apiKey) {
       throw new Error(

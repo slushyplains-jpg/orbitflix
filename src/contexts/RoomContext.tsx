@@ -46,6 +46,7 @@ export function RoomProvider({ children }: { children: ReactNode }) {
   const roomRef = useRef<string | null>(null);
   const roomCmdHandlerRef = useRef<((event: string, time: number) => void) | null>(null);
   const isSyncingRef = useRef(false);
+  const lastSentRef = useRef<{ event: string; time: number } | null>(null);
 
   const connect = useCallback((room: string) => {
     if (typeof WebSocket === "undefined") return;
@@ -60,6 +61,15 @@ export function RoomProvider({ children }: { children: ReactNode }) {
 
     ws.onopen = () => {
       ws.send(JSON.stringify({ type: "join", room }));
+      // Block outgoing events while we wait for host's sync response
+      isSyncingRef.current = true;
+      setTimeout(() => {
+        if (ws.readyState === WebSocket.OPEN) {
+          ws.send(JSON.stringify({ type: "VIDEO_EVENT", room, event: "sync_request", time: 0 }));
+        }
+        // Keep blocking until sync response arrives (handled in onmessage) or timeout after 3s
+        setTimeout(() => { isSyncingRef.current = false; }, 2500);
+      }, 500);
     };
 
     ws.onmessage = (e) => {
@@ -74,10 +84,18 @@ export function RoomProvider({ children }: { children: ReactNode }) {
         });
       }
 
-      if (msg.type === "VIDEO_EVENT" && roomCmdHandlerRef.current) {
-        isSyncingRef.current = true;
-        roomCmdHandlerRef.current(msg.event, msg.time);
-        setTimeout(() => { isSyncingRef.current = false; }, 500);
+      if (msg.type === "VIDEO_EVENT") {
+        if (msg.event === "sync_request") {
+          roomCmdHandlerRef.current?.("sync_request", 0);
+          return;
+        }
+        console.log("[sync] RECV", msg.event, msg.time, "isSyncing:", isSyncingRef.current);
+        if (roomCmdHandlerRef.current) {
+          isSyncingRef.current = false;
+          roomCmdHandlerRef.current(msg.event, msg.time);
+          isSyncingRef.current = true;
+          setTimeout(() => { isSyncingRef.current = false; }, 600);
+        }
       }
     };
 
@@ -121,6 +139,9 @@ export function RoomProvider({ children }: { children: ReactNode }) {
   const sendVideoEvent = useCallback((event: string, time: number) => {
     if (isSyncingRef.current) return;
     if (!wsRef.current || wsRef.current.readyState !== WebSocket.OPEN || !roomRef.current) return;
+
+    lastSentRef.current = { event, time };
+    console.log("[sync] SEND", event, time);
     wsRef.current.send(JSON.stringify({ type: "VIDEO_EVENT", room: roomRef.current, event, time }));
   }, []);
 

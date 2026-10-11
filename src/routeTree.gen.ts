@@ -25,9 +25,12 @@ import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AnimeRouteImport } from './routes/anime'
+import { Route as AdminLoginRouteImport } from './routes/admin-login'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TvTvIdRouteImport } from './routes/tv.$tvId'
 import { Route as MovieMovieIdRouteImport } from './routes/movie.$movieId'
+import { Route as AdminReelRouteImport } from './routes/admin.reel'
 
 const TopImdbRoute = TopImdbRouteImport.update({
   id: '/top-imdb',
@@ -109,6 +112,16 @@ const AnimeRoute = AnimeRouteImport.update({
   path: '/anime',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin-login',
+  path: '/admin-login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -124,9 +137,16 @@ const MovieMovieIdRoute = MovieMovieIdRouteImport.update({
   path: '/movie/$movieId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminReelRoute = AdminReelRouteImport.update({
+  id: '/reel',
+  path: '/reel',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/admin-login': typeof AdminLoginRoute
   '/anime': typeof AnimeRoute
   '/auth': typeof AuthRoute
   '/careers': typeof CareersRoute
@@ -143,11 +163,14 @@ export interface FileRoutesByFullPath {
   '/subscription': typeof SubscriptionRoute
   '/terms': typeof TermsRoute
   '/top-imdb': typeof TopImdbRoute
+  '/admin/reel': typeof AdminReelRoute
   '/movie/$movieId': typeof MovieMovieIdRoute
   '/tv/$tvId': typeof TvTvIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/admin-login': typeof AdminLoginRoute
   '/anime': typeof AnimeRoute
   '/auth': typeof AuthRoute
   '/careers': typeof CareersRoute
@@ -164,12 +187,15 @@ export interface FileRoutesByTo {
   '/subscription': typeof SubscriptionRoute
   '/terms': typeof TermsRoute
   '/top-imdb': typeof TopImdbRoute
+  '/admin/reel': typeof AdminReelRoute
   '/movie/$movieId': typeof MovieMovieIdRoute
   '/tv/$tvId': typeof TvTvIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/admin-login': typeof AdminLoginRoute
   '/anime': typeof AnimeRoute
   '/auth': typeof AuthRoute
   '/careers': typeof CareersRoute
@@ -186,6 +212,7 @@ export interface FileRoutesById {
   '/subscription': typeof SubscriptionRoute
   '/terms': typeof TermsRoute
   '/top-imdb': typeof TopImdbRoute
+  '/admin/reel': typeof AdminReelRoute
   '/movie/$movieId': typeof MovieMovieIdRoute
   '/tv/$tvId': typeof TvTvIdRoute
 }
@@ -193,6 +220,8 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
+    | '/admin-login'
     | '/anime'
     | '/auth'
     | '/careers'
@@ -209,11 +238,14 @@ export interface FileRouteTypes {
     | '/subscription'
     | '/terms'
     | '/top-imdb'
+    | '/admin/reel'
     | '/movie/$movieId'
     | '/tv/$tvId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin'
+    | '/admin-login'
     | '/anime'
     | '/auth'
     | '/careers'
@@ -230,11 +262,14 @@ export interface FileRouteTypes {
     | '/subscription'
     | '/terms'
     | '/top-imdb'
+    | '/admin/reel'
     | '/movie/$movieId'
     | '/tv/$tvId'
   id:
     | '__root__'
     | '/'
+    | '/admin'
+    | '/admin-login'
     | '/anime'
     | '/auth'
     | '/careers'
@@ -251,12 +286,15 @@ export interface FileRouteTypes {
     | '/subscription'
     | '/terms'
     | '/top-imdb'
+    | '/admin/reel'
     | '/movie/$movieId'
     | '/tv/$tvId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
+  AdminLoginRoute: typeof AdminLoginRoute
   AnimeRoute: typeof AnimeRoute
   AuthRoute: typeof AuthRoute
   CareersRoute: typeof CareersRoute
@@ -391,6 +429,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnimeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin-login': {
+      id: '/admin-login'
+      path: '/admin-login'
+      fullPath: '/admin-login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -412,11 +464,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MovieMovieIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/reel': {
+      id: '/admin/reel'
+      path: '/reel'
+      fullPath: '/admin/reel'
+      preLoaderRoute: typeof AdminReelRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminReelRoute: typeof AdminReelRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminReelRoute: AdminReelRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
+  AdminLoginRoute: AdminLoginRoute,
   AnimeRoute: AnimeRoute,
   AuthRoute: AuthRoute,
   CareersRoute: CareersRoute,

@@ -40,6 +40,7 @@ function MoviePage() {
   const mountedIdRef = useRef(id);
   const prevIdRef = useRef<number | null>(null);
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
+  const lastProgressRef = useRef<{ time: number; wall: number; playing: boolean }>({ time: 0, wall: 0, playing: false });
 
   // Read room + server from URL on first load
   useEffect(() => {
@@ -70,18 +71,27 @@ function MoviePage() {
       return;
     }
 
-    // Send video events to room WS
+    // Send video events to room WS, track current progress + wall clock
     const handler = (e: MessageEvent) => {
       if (e.data?.type !== "PLAYER_EVENT") return;
       const { player_status, player_progress } = e.data.data ?? {};
-      if (player_status === "playing") sendVideoEvent("play", player_progress ?? 0);
-      else if (player_status === "paused") sendVideoEvent("pause", player_progress ?? 0);
-      else if (player_status === "seeked") sendVideoEvent("seeked", player_progress ?? 0);
+      if (player_progress != null) {
+        lastProgressRef.current = { time: player_progress, wall: Date.now(), playing: player_status === "playing" || (player_status == null && lastProgressRef.current.playing) };
+      }
+      if (player_status === "playing") { sendVideoEvent("play", player_progress ?? 0); }
+      else if (player_status === "paused") { sendVideoEvent("pause", player_progress ?? 0); }
+      else if (player_status === "seeked") { sendVideoEvent("seeked", player_progress ?? 0); }
     };
     window.addEventListener("message", handler);
 
     // Receive sync commands and control the iframe player
     registerRoomCmdHandler((event, time) => {
+      if (event === "sync_request") {
+        const { time: t, wall, playing } = lastProgressRef.current;
+        const estimated = playing ? t + (Date.now() - wall) / 1000 : t;
+        sendVideoEvent("seeked", Math.max(0, estimated));
+        return;
+      }
       sendPlayerCmd(iframeRef.current, event, time);
     });
 
