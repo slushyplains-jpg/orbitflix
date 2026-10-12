@@ -31,6 +31,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as TvTvIdRouteImport } from './routes/tv.$tvId'
 import { Route as MovieMovieIdRouteImport } from './routes/movie.$movieId'
 import { Route as AdminReelRouteImport } from './routes/admin.reel'
+import { Route as AdminExplainerRouteImport } from './routes/admin.explainer'
 
 const TopImdbRoute = TopImdbRouteImport.update({
   id: '/top-imdb',
@@ -142,6 +143,11 @@ const AdminReelRoute = AdminReelRouteImport.update({
   path: '/reel',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminExplainerRoute = AdminExplainerRouteImport.update({
+  id: '/explainer',
+  path: '/explainer',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -163,6 +169,7 @@ export interface FileRoutesByFullPath {
   '/subscription': typeof SubscriptionRoute
   '/terms': typeof TermsRoute
   '/top-imdb': typeof TopImdbRoute
+  '/admin/explainer': typeof AdminExplainerRoute
   '/admin/reel': typeof AdminReelRoute
   '/movie/$movieId': typeof MovieMovieIdRoute
   '/tv/$tvId': typeof TvTvIdRoute
@@ -187,6 +194,7 @@ export interface FileRoutesByTo {
   '/subscription': typeof SubscriptionRoute
   '/terms': typeof TermsRoute
   '/top-imdb': typeof TopImdbRoute
+  '/admin/explainer': typeof AdminExplainerRoute
   '/admin/reel': typeof AdminReelRoute
   '/movie/$movieId': typeof MovieMovieIdRoute
   '/tv/$tvId': typeof TvTvIdRoute
@@ -212,6 +220,7 @@ export interface FileRoutesById {
   '/subscription': typeof SubscriptionRoute
   '/terms': typeof TermsRoute
   '/top-imdb': typeof TopImdbRoute
+  '/admin/explainer': typeof AdminExplainerRoute
   '/admin/reel': typeof AdminReelRoute
   '/movie/$movieId': typeof MovieMovieIdRoute
   '/tv/$tvId': typeof TvTvIdRoute
@@ -238,6 +247,7 @@ export interface FileRouteTypes {
     | '/subscription'
     | '/terms'
     | '/top-imdb'
+    | '/admin/explainer'
     | '/admin/reel'
     | '/movie/$movieId'
     | '/tv/$tvId'
@@ -262,6 +272,7 @@ export interface FileRouteTypes {
     | '/subscription'
     | '/terms'
     | '/top-imdb'
+    | '/admin/explainer'
     | '/admin/reel'
     | '/movie/$movieId'
     | '/tv/$tvId'
@@ -286,6 +297,7 @@ export interface FileRouteTypes {
     | '/subscription'
     | '/terms'
     | '/top-imdb'
+    | '/admin/explainer'
     | '/admin/reel'
     | '/movie/$movieId'
     | '/tv/$tvId'
@@ -471,14 +483,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminReelRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/explainer': {
+      id: '/admin/explainer'
+      path: '/explainer'
+      fullPath: '/admin/explainer'
+      preLoaderRoute: typeof AdminExplainerRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
 interface AdminRouteChildren {
+  AdminExplainerRoute: typeof AdminExplainerRoute
   AdminReelRoute: typeof AdminReelRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminExplainerRoute: AdminExplainerRoute,
   AdminReelRoute: AdminReelRoute,
 }
 
