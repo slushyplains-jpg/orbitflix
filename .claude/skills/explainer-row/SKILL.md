@@ -21,13 +21,22 @@ A row feeds `/admin/explainer`. The render generates its own voiceover and times
 
 ## Standard protocol for every movie (saved from World War Z)
 
-1. **Story script** in column D, written as flowing narration (see style below). No colons or semicolons.
-2. **SDH track** fetched for the movie (hearing-impaired flag), used to check facts and pick clips.
-3. **Notes file** `notes/explainer/<movie>-script.md`: one row per sentence with its SDH timecode, or `UNVERIFIED`.
-4. **Clip plan** in column E: each clip has `start` (SDH cue or line time), `sentences` (0-based range), `quote` (SDH wording), and `action`. No durations, no totals in the sheet.
-5. **Render** does the timing: voiceover, sentence alignment with Whisper, even split within each sentence group, each clip fitted to its exact length, and the video checked against the voiceover length.
-6. **Notification** on completion or failure.
-7. **Visual check** by a human at each `start` when the row is built. Mark unchecked clips in the notes file.
+Run these steps in order for each new movie. Don't skip one.
+
+1. **Setup:** `python3.11 scripts/new-explainer.py <movie-slug> <imdb-id>`. This downloads the SDH track into `notes/explainer/<slug>/sdh.srt` and creates `script.md` and `clips.md` templates.
+2. **Story script:** write the narration as flowing story (see style below). No colons or semicolons. Put the final text in sheet column D.
+3. **Fact check:** fill `script.md` with one row per sentence: the SDH timecode behind each fact, or `UNVERIFIED`. Cut or reword any `UNVERIFIED` fact before rendering.
+4. **Clip plan:** pick clips from SDH cues and lines (action first, dialogue only as a hook). Fill `clips.md` with each clip's start, source, and status. Put the plan in sheet column E: `start`, `sentences`, `quote`, `action`. No durations or totals.
+5. **Sheet row:** columns D, E, and G only (script, plan, status). Status is `To-do` until step 6 is done.
+6. **Human check:** someone watches the stream at each `start` marked unverified in `clips.md`. Mark each clip checked or fixed.
+7. **Render:** the render does the timing, caption options, and length check. Set status to `READY_FOR_LOCAL_RENDER` once steps 1–6 pass.
+8. **Notification** on completion or failure.
+
+**Before a row is READY_FOR_LOCAL_RENDER:**
+- Every script fact is sourced or cut.
+- Every clip start comes from an SDH cue or line.
+- Sentence ranges cover every sentence once, in order.
+- Every clip marked unverified in `clips.md` has been human-checked.
 
 ## Fact checking: SDH subtitles check the story, they don't write it
 
