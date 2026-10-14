@@ -9,14 +9,14 @@ A row feeds `/admin/explainer`. The render generates its own voiceover and times
 
 ## Hard rules (never break these)
 
-1. **Never invent clip `start` times.** A start time must come from a verified source: a subtitle file (SRT) with timecodes, or a frame check against the film. If no source is available, leave the clip out and tell the user which beat is missing footage. The first plan was guessed this way and is the main reason footage mismatches.
+1. **Never invent clip `start` times.** A start time must come from an SDH subtitle timecode or cue. If no source is available, leave the clip out and tell the user which beat is missing footage. The first plan was guessed this way and is the main reason footage mismatches.
 2. **`quote` must be verbatim** from the subtitle line at that `start`, or `""` if the moment has no dialogue. Do not paraphrase or write dialogue from memory.
-3. **`action` describes only what is visible at that `start`.** If you have not verified the frame, write `"UNVERIFIED: <guess>"` so it is obvious.
+3. **`action` describes only what is visible at that `start`.** If you have not verified the frame, write `"UNVERIFIED: <guess>"` so it is obvious. Action text must match the SDH cue or line it's based on.
 4. **Do not write `duration` or the total in the sheet.** The render measures the voice and sizes clips. Column F is left empty.
 5. **Script (column D) must be the exact text that will be voiced.** Use periods and commas only. No colons, and no semicolons. Keep the sentences in order.
 6. **`sentences` is a 0-based inclusive range** into the script split by `(?<=[.!?])\s+`. Every sentence must belong to exactly one clip group, in order, with no gaps and no overlaps. Clips that share a range split that range evenly.
 7. **Clip `start` values must increase** within the plan so the parser's chronological check passes.
-8. **Status** is `To-do` for a new row that still needs review, or `READY_FOR_LOCAL_RENDER` only after every clip's `start` has been verified.
+8. **Status** is `To-do` for a new row that still needs review, or `READY_FOR_LOCAL_RENDER` only after every clip's `start` comes from an SDH cue or line.
 9. **Do not change other rows** or other columns when editing one row.
 
 ## Standard protocol for every movie (saved from World War Z)
@@ -27,16 +27,15 @@ Run these steps in order for each new movie. Don't skip one.
 2. **Story script:** write the narration as flowing story (see style below). No colons or semicolons. Put the final text in sheet column D.
 3. **Fact check:** fill `script.md` with one row per sentence: the SDH timecode behind each fact, or `UNVERIFIED`. Cut or reword any `UNVERIFIED` fact before rendering.
 4. **Clip plan:** pick clips from SDH cues and lines (action first, dialogue only as a hook). Fill `clips.md` with each clip's start, source, and status. Put the plan in sheet column E: `start`, `sentences`, `quote`, `action`. No durations or totals.
-5. **Sheet row:** columns D, E, and G only (script, plan, status). Status is `To-do` until step 6 is done.
-6. **Human check:** someone watches the stream at each `start` marked unverified in `clips.md`. Mark each clip checked or fixed.
-7. **Render:** the render does the timing, caption options, and length check. Set status to `READY_FOR_LOCAL_RENDER` once steps 1–6 pass.
-8. **Notification** on completion or failure.
+5. **Sheet row:** columns D, E, and G only (script, plan, status). Status is `To-do` until steps 1–4 are done.
+6. **Render:** the render does the timing, caption options, and length check. Set status to `READY_FOR_LOCAL_RENDER` once steps 1–5 pass.
+7. **Notification** on completion or failure.
 
 **Before a row is READY_FOR_LOCAL_RENDER:**
 - Every script fact is sourced or cut.
 - Every clip start comes from an SDH cue or line.
 - Sentence ranges cover every sentence once, in order.
-- Every clip marked unverified in `clips.md` has been human-checked.
+- Every clip marked unverified in `clips.md` is either replaced with a sourced cue or line, or removed.
 
 ## Fact checking: SDH subtitles check the story, they don't write it
 
