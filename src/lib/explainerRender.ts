@@ -31,6 +31,14 @@ type RenderOpts = {
   bg?: "blur" | "black";
   blurIntensity?: number;
   overlayText?: string;
+  captions?: boolean;
+  captionColor?: string;
+  captionFont?: string;
+  captionSize?: number;
+  captionTextColor?: string;
+  captionStroke?: number;
+  captionStrokeColor?: string;
+  captionY?: number;
   textSize?: number;
   textColor?: string;
   textX?: number;
@@ -240,8 +248,13 @@ async function assertRealVideo(file: string, expectedSec: number): Promise<void>
 }
 
 type SentenceWindow = { text: string; start: number; end: number };
+type AlignedWord = { sent: number; text: string; start: number; end: number };
 
-async function alignSentences(wav: string, textFile: string, jobDir: string): Promise<SentenceWindow[]> {
+async function alignSentences(
+  wav: string,
+  textFile: string,
+  jobDir: string,
+): Promise<{ sentences: SentenceWindow[]; words: AlignedWord[] }> {
   const path = (await import("path")).default;
   const fs = await import("fs");
   const candidates = [
@@ -252,7 +265,83 @@ async function alignSentences(wav: string, textFile: string, jobDir: string): Pr
   if (!alignScript) throw new Error(`explainer-align.py not found in: ${candidates.join(", ")}`);
   const outFile = path.join(jobDir, "align.json");
   await spawnDone("/usr/local/bin/python3.11", [alignScript, wav, textFile, outFile]);
-  return JSON.parse(fs.readFileSync(outFile, "utf8")) as SentenceWindow[];
+  return JSON.parse(fs.readFileSync(outFile, "utf8")) as {
+    sentences: SentenceWindow[];
+    words: AlignedWord[];
+  };
+}
+
+type CaptionStyle = {
+  fontFile: string;
+  size: number;
+  textColor: string;
+  highlightColor: string;
+  stroke: number;
+  strokeColor: string;
+  y: number;
+};
+
+async function buildCaptionTrack(
+  words: AlignedWord[],
+  jobDir: string,
+  style: CaptionStyle,
+  registerChild?: (proc: RenderChild) => void,
+): Promise<string> {
+  const path = (await import("path")).default;
+  const fs = await import("fs");
+  const chunks: AlignedWord[][] = [];
+  let current: AlignedWord[] = [];
+  for (const w of words) {
+    if (current.length && (current.length >= 3 || current[0].sent !== w.sent)) {
+      chunks.push(current);
+      current = [];
+    }
+    current.push(w);
+  }
+  if (current.length) chunks.push(current);
+
+  const states: { start: number; end: number; words: string[]; active: number; scale: number }[] = [];
+  let t = 0;
+  for (const chunk of chunks) {
+    const chunkStart = chunk[0].start;
+    const chunkEnd = chunk[chunk.length - 1].end;
+    if (chunkStart > t) states.push({ start: t, end: chunkStart, words: [], active: -1, scale: 1 });
+    const texts = chunk.map((w) => w.text);
+    chunk.forEach((w, k) => {
+      const end = k + 1 < chunk.length ? chunk[k + 1].start : chunkEnd;
+      if (k === 0) {
+        const POP = 0.05;
+        const pops = [0.85, 0.94];
+        let at = w.start;
+        for (const scale of pops) {
+          const stop = Math.min(end, at + POP);
+          if (stop > at) states.push({ start: at, end: stop, words: texts, active: k, scale });
+          at = stop;
+        }
+        if (end > at) states.push({ start: at, end, words: texts, active: k, scale: 1 });
+        return;
+      }
+      states.push({ start: w.start, end, words: texts, active: k, scale: 1 });
+    });
+    t = chunkEnd;
+  }
+  const statesFile = path.join(jobDir, "caption_states.json");
+  fs.writeFileSync(statesFile, JSON.stringify({ style, states }), "utf8");
+  const capDir = path.join(jobDir, "captions");
+  const scriptCandidates = [
+    path.join(process.cwd(), "scripts", "explainer-captions.py"),
+    path.resolve(path.dirname(new URL(import.meta.url).pathname), "../../scripts", "explainer-captions.py"),
+  ];
+  const capScript = scriptCandidates.find((c) => fs.existsSync(c));
+  if (!capScript) throw new Error(`explainer-captions.py not found in: ${scriptCandidates.join(", ")}`);
+  await spawnDone("/usr/local/bin/python3.11", [capScript, statesFile, capDir], registerChild);
+  const movFile = path.join(jobDir, "captions.mov");
+  await spawnDone(
+    "ffmpeg",
+    ["-y", "-f", "concat", "-safe", "0", "-i", path.join(capDir, "caps.txt"), "-vf", "fps=30", "-c:v", "qtrle", "-pix_fmt", "argb", movFile],
+    registerChild,
+  );
+  return movFile;
 }
 
 function clipShares(
@@ -492,7 +581,7 @@ export async function runRenderJob(
     };
 
     const vo = await ttsP;
-    const windows = await alignSentences(wavFile, textFile, jobDir);
+    const { sentences: windows, words: alignedWords } = await alignSentences(wavFile, textFile, jobDir);
     const shares = clipShares(opts.clips, windows, vo.duration);
     const queue = opts.clips.map((c, i) => ({ c, i }));
     const clipFiles: string[] = new Array(opts.clips.length);
@@ -515,17 +604,9 @@ export async function runRenderJob(
       Array.from({ length: Math.min(poolSize, queue.length) }, worker),
     ).then(() => clipFiles);
     const files = await sliceP;
-    const report: { clip: number; start: number; target: number; actual: number; shortBy: number }[] = [];
     for (let i = 0; i < files.length; i++) {
       const target = shares[i].duration;
       const actual = await probeDuration(files[i]);
-      report.push({
-        clip: i + 1,
-        start: opts.clips[i].start,
-        target: Number(target.toFixed(3)),
-        actual: Number(actual.toFixed(3)),
-        shortBy: Number((target - actual).toFixed(3)),
-      });
       if (actual > target + 0.02) {
         const trimmed = path.join(jobDir, `clip_fit_${String(i).padStart(3, "0")}.mp4`);
         await spawnDone(
@@ -536,7 +617,6 @@ export async function runRenderJob(
         files[i] = trimmed;
       }
     }
-    fs.writeFileSync(path.join(jobDir, "clip_report.json"), JSON.stringify(report, null, 2), "utf8");
 
     status({
       stage: "assembling",
@@ -594,7 +674,24 @@ export async function runRenderJob(
     const drawFilter = (await buildDrawText(opts, jobDir)).slice(1);
     const lookFilter = LOOK_PRESETS[opts.look ?? "none"] ?? "";
     const fxChain = [lookFilter, drawFilter].filter(Boolean).join(",");
-    const useText = fxChain.length > 0;
+    const captionMov = opts.captions
+      ? await buildCaptionTrack(
+          alignedWords,
+          jobDir,
+          {
+            fontFile: FONT_MAP[opts.captionFont ?? "Arial"]?.bold ?? "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
+            size: opts.captionSize ?? 64,
+            textColor: opts.captionTextColor ?? "#FFFFFF",
+            highlightColor: opts.captionColor ?? "#FFD400",
+            stroke: opts.captionStroke ?? 5,
+            strokeColor: opts.captionStrokeColor ?? "#000000",
+            y: opts.captionY ?? 62,
+          },
+          opts.registerChild,
+        )
+      : null;
+    const useText = fxChain.length > 0 || captionMov !== null;
+    const baseChain = fxChain.length > 0 ? `[0:v]${fxChain}[base]` : "[0:v]null[base]";
     const assembleArgs = useText
       ? [
           "-y",
@@ -606,8 +703,11 @@ export async function runRenderJob(
           listFile,
           "-i",
           wavFile,
+          ...(captionMov ? ["-i", captionMov] : []),
           "-filter_complex",
-          `[0:v]${fxChain}[vout]`,
+          captionMov
+            ? `${baseChain};[base][2:v]overlay=0:0:format=auto[vout]`
+            : `${baseChain.replace("[base]", "[vout]")}`,
           "-map",
           "[vout]",
           "-map",
@@ -650,6 +750,7 @@ export async function runRenderJob(
           "-movflags",
           "+faststart",
         ];
+    assembleArgs.push("-t", vo.duration.toFixed(3));
     assembleArgs.push(outPath);
     await spawnDone("ffmpeg", assembleArgs, opts.registerChild);
     for (let i = 0; i < 50; i++) {
@@ -661,6 +762,7 @@ export async function runRenderJob(
     }
 
     const videoSec = await probeDuration(outPath);
+    fs.promises.rm(jobDir, { recursive: true, force: true });
     if (Math.abs(videoSec - vo.duration) > 0.15)
       throw new Error(
         `Video ${videoSec.toFixed(2)}s does not match voiceover ${vo.duration.toFixed(2)}s`,

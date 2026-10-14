@@ -132,6 +132,14 @@ const renderExplainer = createServerFn({ method: "POST" }).handler(
       ttsSpeed?: number;
       enableScan?: boolean;
       look?: string;
+      captions?: boolean;
+      captionColor?: string;
+      captionFont?: string;
+      captionSize?: number;
+      captionTextColor?: string;
+      captionStroke?: number;
+      captionStrokeColor?: string;
+      captionY?: number;
       zoom?: number;
       bg?: "blur" | "black";
       blurIntensity?: number;
@@ -165,6 +173,14 @@ const renderExplainer = createServerFn({ method: "POST" }).handler(
       ttsSpeed: data.ttsSpeed,
       enableScan: data.enableScan,
       look: data.look,
+      captions: data.captions,
+      captionColor: data.captionColor,
+      captionFont: data.captionFont,
+      captionSize: data.captionSize,
+      captionTextColor: data.captionTextColor,
+      captionStroke: data.captionStroke,
+      captionStrokeColor: data.captionStrokeColor,
+      captionY: data.captionY,
       zoom: data.zoom,
       bg: data.bg,
       blurIntensity: data.blurIntensity,
@@ -245,6 +261,14 @@ type Snapshot = {
   enableScan?: boolean;
   zoom?: number;
   look?: string;
+  captions?: boolean;
+  captionColor?: string;
+  captionFont?: string;
+  captionSize?: number;
+  captionTextColor?: string;
+  captionStroke?: number;
+  captionStrokeColor?: string;
+  captionY?: number;
   bg?: "blur" | "black";
   blurIntensity?: number;
   overlayText?: string;
@@ -457,6 +481,67 @@ const VOICES = [
   { id: "bm_george", label: "George — male, British" },
 ];
 
+function CaptionPreview({
+  color,
+  textColor,
+  font,
+  size,
+  stroke,
+  strokeColor,
+  y,
+}: {
+  color: string;
+  textColor: string;
+  font: string;
+  size: number;
+  stroke: number;
+  strokeColor: string;
+  y: number;
+}) {
+  const words = ["Gerry", "has", "no", "choice"];
+  const [active, setActive] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setActive((a) => (a + 1) % words.length), 600);
+    return () => clearInterval(id);
+  }, []);
+  return (
+    <div
+      style={{
+        position: "absolute",
+        left: 0,
+        right: 0,
+        top: `${y}%`,
+        transform: "translateY(-50%)",
+        textAlign: "center",
+        fontFamily: `"${font}", sans-serif`,
+        fontWeight: 700,
+        fontSize: `${size / 3}px`,
+        lineHeight: 1.2,
+        color: textColor,
+        textShadow: stroke > 0 ? `${-stroke / 3}px ${-stroke / 3}px 0 ${strokeColor}, ${stroke / 3}px ${-stroke / 3}px 0 ${strokeColor}, ${-stroke / 3}px ${stroke / 3}px 0 ${strokeColor}, ${stroke / 3}px ${stroke / 3}px 0 ${strokeColor}` : "none",
+        pointerEvents: "none",
+      }}
+    >
+      {words.map((w, i) => (
+        <span
+          key={i}
+          style={{
+            display: "inline-block",
+            color: i === active ? "#000" : textColor,
+            background: i === active ? color : "transparent",
+            borderRadius: "0.25em",
+            padding: i === active ? "0 0.18em" : 0,
+            fontSize: i === active ? "1.08em" : "1em",
+            marginRight: i < words.length - 1 ? "0.3em" : 0,
+          }}
+        >
+          {w}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 function ExplainerPage() {
   const [tmdbId, setTmdbId] = useState("");
   const [outputDir, setOutputDir] = useState("");
@@ -472,6 +557,14 @@ function ExplainerPage() {
   const [ttsSpeed, setTtsSpeed] = useState(0.85);
   const [enableScan, setEnableScan] = useState(false);
   const [look, setLook] = useState("sharpen");
+  const [captions, setCaptions] = useState(false);
+  const [captionColor, setCaptionColor] = useState("#FFD400");
+  const [captionFont, setCaptionFont] = useState("Arial");
+  const [captionSize, setCaptionSize] = useState(64);
+  const [captionTextColor, setCaptionTextColor] = useState("#FFFFFF");
+  const [captionStroke, setCaptionStroke] = useState(5);
+  const [captionStrokeColor, setCaptionStrokeColor] = useState("#000000");
+  const [captionY, setCaptionY] = useState(62);
   const [previewIdx, setPreviewIdx] = useState(0);
   const [zoom, setZoom] = useState("2");
   const [bg, setBg] = useState<"blur" | "black">("blur");
@@ -623,6 +716,14 @@ function ExplainerPage() {
       enableScan,
       zoom: Number(zoom),
       look,
+      captions,
+      captionColor,
+      captionFont,
+      captionSize,
+      captionTextColor,
+      captionStroke,
+      captionStrokeColor,
+      captionY,
       bg,
       blurIntensity,
       overlayText: wrappedTextRef.current || overlayText,
@@ -828,6 +929,8 @@ function ExplainerPage() {
       if (typeof t.ttsSpeed === "number") setTtsSpeed(t.ttsSpeed);
       if (typeof t.enableScan === "boolean") setEnableScan(t.enableScan);
       if (typeof t.look === "string") setLook(t.look);
+      if (typeof t.captions === "boolean") setCaptions(t.captions);
+      if (typeof t.captionColor === "string") setCaptionColor(t.captionColor);
       if (t.zoom !== undefined) setZoom(String(t.zoom));
       if (t.bg === "blur" || t.bg === "black") setBg(t.bg);
       if (typeof t.blurIntensity === "number") setBlurIntensity(t.blurIntensity);
@@ -1541,6 +1644,55 @@ function ExplainerPage() {
               </div>
             )}
 
+            <div style={{ marginTop: "1rem", display: "flex", alignItems: "center", gap: "10px" }}>
+              <label style={{ ...labelStyle, margin: 0, display: "flex", alignItems: "center", gap: "6px", cursor: "pointer" }}>
+                <input type="checkbox" checked={captions} onChange={(e) => setCaptions(e.target.checked)} />
+                Word highlight captions
+              </label>
+              {captions && (
+                <input
+                  type="color"
+                  value={captionColor}
+                  onChange={(e) => setCaptionColor(e.target.value)}
+                  title="Highlight color"
+                  style={{ width: "40px", height: "28px", border: "1px solid #333", borderRadius: "4px", background: "#111", cursor: "pointer", padding: "2px" }}
+                />
+              )}
+            </div>
+
+            {captions && (
+              <div style={{ marginTop: "0.75rem", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.6rem" }}>
+                <div>
+                  <label style={labelStyle}>Caption font</label>
+                  <select value={captionFont} onChange={(e) => setCaptionFont(e.target.value)} style={{ ...inputStyle, cursor: "pointer" }}>
+                    {["Arial", "Impact", "Georgia", "Helvetica", "Times New Roman", "Courier New", "Verdana", "Trebuchet MS"].map((f) => (
+                      <option key={f} value={f}>{f}</option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label style={labelStyle}>Font size — {captionSize}px</label>
+                  <input type="range" min={32} max={120} value={captionSize} onChange={(e) => setCaptionSize(Number(e.target.value))} style={{ width: "100%", accentColor: "#e50914" }} />
+                </div>
+                <div>
+                  <label style={labelStyle}>Text color</label>
+                  <input type="color" value={captionTextColor} onChange={(e) => setCaptionTextColor(e.target.value)} style={{ width: "100%", height: "32px", border: "1px solid #333", borderRadius: "4px", background: "#111", cursor: "pointer", padding: "2px" }} />
+                </div>
+                <div>
+                  <label style={labelStyle}>Stroke — {captionStroke}px</label>
+                  <input type="range" min={0} max={10} value={captionStroke} onChange={(e) => setCaptionStroke(Number(e.target.value))} style={{ width: "100%", accentColor: "#e50914" }} />
+                </div>
+                <div>
+                  <label style={labelStyle}>Stroke color</label>
+                  <input type="color" value={captionStrokeColor} onChange={(e) => setCaptionStrokeColor(e.target.value)} style={{ width: "100%", height: "32px", border: "1px solid #333", borderRadius: "4px", background: "#111", cursor: "pointer", padding: "2px" }} />
+                </div>
+                <div>
+                  <label style={labelStyle}>Vertical position — {captionY}%</label>
+                  <input type="range" min={20} max={90} value={captionY} onChange={(e) => setCaptionY(Number(e.target.value))} style={{ width: "100%", accentColor: "#e50914" }} />
+                </div>
+              </div>
+            )}
+
             <div style={{ marginTop: "1rem" }}>
               <label style={labelStyle}>Text overlay</label>
               <textarea
@@ -1990,6 +2142,17 @@ function ExplainerPage() {
             height={640}
             style={{ position: "absolute", inset: 0, display: "block" }}
           />
+          {captions && (
+            <CaptionPreview
+              color={captionColor}
+              textColor={captionTextColor}
+              font={captionFont}
+              size={captionSize}
+              stroke={captionStroke}
+              strokeColor={captionStrokeColor}
+              y={captionY}
+            />
+          )}
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <button
