@@ -526,12 +526,7 @@ function CaptionPreview({
         <span
           key={i}
           style={{
-            display: "inline-block",
-            color: i === active ? "#000" : textColor,
-            background: i === active ? color : "transparent",
-            borderRadius: "0.25em",
-            padding: i === active ? "0 0.18em" : 0,
-            fontSize: i === active ? "1.08em" : "1em",
+            color: i === active ? color : textColor,
             marginRight: i < words.length - 1 ? "0.3em" : 0,
           }}
         >
