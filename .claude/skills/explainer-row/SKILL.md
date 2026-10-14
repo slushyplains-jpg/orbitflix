@@ -19,6 +19,12 @@ A row feeds `/admin/explainer`. The render generates its own voiceover and times
 8. **Status** is `To-do` for a new row that still needs review, or `READY_FOR_LOCAL_RENDER` only after every clip's `start` comes from an SDH cue or line.
 9. **Do not change other rows** or other columns when editing one row.
 
+## Target length: 60 seconds
+
+- **Script:** about 200–210 words, about 60 seconds of voice at 0.85x. Count the words before saving to the sheet.
+- **Clips:** 16–17 cuts, averaging about 3.6 seconds each. Each sentence group needs at least one clip.
+- **Cue check:** before writing the story, count the SDH action cues and sourced lines in the film. If there are fewer than about 20 usable moments, flag the movie in its notes as too thin for a 60-second Short.
+
 ## Standard protocol for every movie (saved from World War Z)
 
 Run these steps in order for each new movie. Don't skip one.
