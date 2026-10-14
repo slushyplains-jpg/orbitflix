@@ -10,7 +10,7 @@ W, H = 1080, 1920
 def render(words, active, style, out_path, fonts, scale):
     img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     if words:
-        base, big = fonts(round(style["size"] * scale)), fonts(round(style["size"] * 1.12 * scale))
+        base = big = fonts(round(style["size"] * scale))
         space = base.getlength(" ")
         widths = [(big if i == active else base).getlength(w) for i, w in enumerate(words)]
         x = (W - (sum(widths) + space * (len(words) - 1))) / 2
