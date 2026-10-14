@@ -1,6 +1,14 @@
-export type ExplainerClip = { start: number; duration: number; quote?: string };
+export type ExplainerClip = {
+  start: number;
+  duration?: number;
+  sentences?: [number, number];
+  quote?: string;
+  action?: string;
+  visual_prompt?: string;
+  needs_visual_scan?: boolean;
+};
 export type ExplainerStatus = {
-  stage: "preparing" | "slicing" | "voiceover" | "assembling" | "done" | "error";
+  stage: "preparing" | "slicing" | "voiceover" | "scanning" | "assembling" | "done" | "error";
   clipsDone: number;
   clipsTotal: number;
   message: string;
@@ -17,7 +25,9 @@ type RenderOpts = {
   jobKey: string;
   voice?: string;
   ttsSpeed?: number;
+  enableScan?: boolean;
   zoom?: number;
+  look?: string;
   bg?: "blur" | "black";
   blurIntensity?: number;
   overlayText?: string;
@@ -97,6 +107,18 @@ function buildSliceFilter(opts: Pick<RenderOpts, "zoom" | "bg" | "blurIntensity"
     "[bg][fg]overlay=(W-w)/2:(H-h)/2,fps=30,setsar=1[v]"
   );
 }
+
+export const LOOK_PRESETS: Record<string, string> = {
+  none: "",
+  sharpen: "unsharp=5:5:0.9:5:5:0.0:5:5:0.0",
+  vivid: "eq=saturation=1.25:contrast=1.08,unsharp=5:5:0.5",
+  cinematic:
+    "colorbalance=rs=-0.1:bs=0.15:rm=0.12:bm=-0.1,eq=saturation=1.08:contrast=1.05,unsharp=5:5:0.3",
+  noir: "hue=s=0,eq=contrast=1.15:brightness=-0.02",
+  bleach: "eq=contrast=1.35:saturation=0.35:brightness=0.04",
+  vintage: "curves=r='0/0.05 1/0.95':b='0/0 0.5/0.42',eq=saturation=0.8,vignette=PI/5",
+  night: "colortemperature=temperature=4200,eq=brightness=-0.03",
+};
 
 async function buildDrawText(opts: RenderOpts, jobDir: string): Promise<string> {
   const text = (opts.overlayText ?? "").trim();
@@ -217,6 +239,50 @@ async function assertRealVideo(file: string, expectedSec: number): Promise<void>
     );
 }
 
+type SentenceWindow = { text: string; start: number; end: number };
+
+async function alignSentences(wav: string, textFile: string, jobDir: string): Promise<SentenceWindow[]> {
+  const path = (await import("path")).default;
+  const fs = await import("fs");
+  const candidates = [
+    path.join(process.cwd(), "scripts", "explainer-align.py"),
+    path.resolve(path.dirname(new URL(import.meta.url).pathname), "../../scripts", "explainer-align.py"),
+  ];
+  const alignScript = candidates.find((c) => fs.existsSync(c));
+  if (!alignScript) throw new Error(`explainer-align.py not found in: ${candidates.join(", ")}`);
+  const outFile = path.join(jobDir, "align.json");
+  await spawnDone("/usr/local/bin/python3.11", [alignScript, wav, textFile, outFile]);
+  return JSON.parse(fs.readFileSync(outFile, "utf8")) as SentenceWindow[];
+}
+
+function clipShares(
+  clips: ExplainerClip[],
+  windows: SentenceWindow[],
+  voSec: number,
+): { start: number; duration: number }[] {
+  const groups: { from: number; to: number; idx: number[] }[] = [];
+  clips.forEach((c, i) => {
+    if (!c.sentences) throw new Error(`Clip ${c.start}s has no sentences range in the plan`);
+    const [from, to] = c.sentences;
+    if (from < 0 || to < from || to >= windows.length)
+      throw new Error(`Clip ${c.start}s sentences ${from}-${to} out of range (script has ${windows.length})`);
+    const last = groups[groups.length - 1];
+    if (last && last.from === from && last.to === to) last.idx.push(i);
+    else groups.push({ from, to, idx: [i] });
+  });
+  const shares: { start: number; duration: number }[] = new Array(clips.length);
+  groups.forEach((g, gi) => {
+    const groupStart = gi === 0 ? 0 : windows[g.from].start;
+    const groupEnd =
+      gi + 1 < groups.length ? windows[groups[gi + 1].from].start : voSec;
+    const each = (groupEnd - groupStart) / g.idx.length;
+    g.idx.forEach((clipIdx, k) => {
+      shares[clipIdx] = { start: groupStart + k * each, duration: each };
+    });
+  });
+  return shares;
+}
+
 export async function runRenderJob(
   opts: RenderOpts,
 ): Promise<{ path: string; voiceoverSec: number; videoSec: number }> {
@@ -280,18 +346,118 @@ export async function runRenderJob(
       return parsed;
     });
 
+    const WINDOW_SEC = 30;
+    const MAX_CLIP_SEC = 4.5;
+    const sources = opts.clips.map((c) => ({ url: streamUrl, headers, seek: c.start }));
+    const scanNotes: (string | undefined)[] = new Array(opts.clips.length).fill(undefined);
+    const scanTargets = opts.enableScan
+      ? opts.clips
+          .map((c, i) => ({ c, i }))
+          .filter((x) => x.c.needs_visual_scan && (x.c.visual_prompt ?? "").trim())
+      : [];
+    if (scanTargets.length) {
+      const scanCandidates = [
+        path.join(process.cwd(), "scripts", "siglip-scan.py"),
+        path.resolve(
+          path.dirname(new URL(import.meta.url).pathname),
+          "../../scripts",
+          "siglip-scan.py",
+        ),
+      ];
+      const scanScript = scanCandidates.find((c) => fs.existsSync(c));
+      if (!scanScript) throw new Error(`siglip-scan.py not found in: ${scanCandidates.join(", ")}`);
+      status({
+        stage: "scanning",
+        clipsDone: 0,
+        clipsTotal: scanTargets.length,
+        message: `Fetching ${scanTargets.length} ±15s windows`,
+      });
+      const winFile = (i: number) => path.join(jobDir, `window_${String(i).padStart(3, "0")}.mp4`);
+      const winStart = (c: ExplainerClip) => Math.max(0, c.start - 15);
+      let fetched = 0;
+      const fetchWindow = async ({ c, i }: { c: ExplainerClip; i: number }) => {
+        const wargs = ["-y"];
+        if (headers) wargs.push("-headers", headers);
+        wargs.push(
+          "-ss",
+          String(winStart(c)),
+          "-i",
+          streamUrl,
+          "-t",
+          String(WINDOW_SEC),
+          "-an",
+          "-c:v",
+          "copy",
+          "-avoid_negative_ts",
+          "make_zero",
+          winFile(i),
+        );
+        await spawnDone("ffmpeg", wargs, opts.registerChild);
+        fetched++;
+        status({
+          stage: "scanning",
+          clipsDone: fetched,
+          clipsTotal: scanTargets.length,
+          message: `Window @${c.start}s`,
+        });
+      };
+      for (let g = 0; g < scanTargets.length; g += 2) {
+        await Promise.all(scanTargets.slice(g, g + 2).map(fetchWindow));
+      }
+      const manifest = scanTargets.map(({ c, i }) => ({
+        id: i,
+        window: winFile(i),
+        offset: winStart(c),
+        prompt: (c.visual_prompt ?? "").trim(),
+      }));
+      const manifestFile = path.join(jobDir, "scan_manifest.json");
+      fs.writeFileSync(manifestFile, JSON.stringify(manifest), "utf8");
+      status({
+        stage: "scanning",
+        clipsDone: scanTargets.length,
+        clipsTotal: scanTargets.length,
+        message: "SigLIP scanning windows...",
+      });
+      const scanOut = await spawnDone(
+        "/usr/local/bin/python3.11",
+        [scanScript, manifestFile],
+        opts.registerChild,
+      );
+      for (const line of scanOut.trim().split("\n")) {
+        let r: { id: number; best_sec: number | null; score: number; flat: boolean };
+        try {
+          r = JSON.parse(line);
+        } catch {
+          continue;
+        }
+        const c = opts.clips[r.id];
+        if (!c || r.best_sec == null) continue;
+        const ws = winStart(c);
+        if (!r.flat && r.score >= 0.15) {
+          const rel = Math.max(0, Math.min(WINDOW_SEC - MAX_CLIP_SEC - 0.1, r.best_sec - ws));
+          sources[r.id] = { url: winFile(r.id), headers: "", seek: rel };
+          const shift = ws + rel - c.start;
+          scanNotes[r.id] = `shift ${shift >= 0 ? "+" : ""}${shift.toFixed(1)}s conf ${r.score}`;
+        } else {
+          scanNotes[r.id] = `scan rejected (${r.flat ? "flat scores" : `low conf ${r.score}`})`;
+        }
+      }
+    }
+
     let clipsDone = 0;
     const sliceClip = async (clip: ExplainerClip, i: number): Promise<string> => {
       const outFile = path.join(jobDir, `clip_${String(i).padStart(3, "0")}.mp4`);
+      const src = sources[i];
+      const share = shares[i].duration;
       const args = ["-y"];
-      if (headers) args.push("-headers", headers);
+      if (src.headers) args.push("-headers", src.headers);
       args.push(
         "-ss",
-        String(clip.start),
+        String(src.seek),
         "-i",
-        streamUrl,
+        src.url,
         "-t",
-        String(clip.duration),
+        (share + (i === opts.clips.length - 1 ? 2.5 : 0.6)).toFixed(3),
         "-an",
         "-filter_complex",
         sliceFilter,
@@ -308,7 +474,7 @@ export async function runRenderJob(
       for (let attempt = 1; ; attempt++) {
         try {
           await spawnDone("ffmpeg", args, opts.registerChild);
-          await assertRealVideo(outFile, clip.duration);
+          await assertRealVideo(outFile, share);
           break;
         } catch (e) {
           if (attempt >= 3) throw e;
@@ -320,11 +486,14 @@ export async function runRenderJob(
         stage: "slicing",
         clipsDone,
         clipsTotal: opts.clips.length,
-        message: `Slice ${clip.start}s × ${clip.duration}s`,
+        message: `Slice ${clip.start}s${scanNotes[i] ? ` (${scanNotes[i]})` : ""}`,
       });
       return outFile;
     };
 
+    const vo = await ttsP;
+    const windows = await alignSentences(wavFile, textFile, jobDir);
+    const shares = clipShares(opts.clips, windows, vo.duration);
     const queue = opts.clips.map((c, i) => ({ c, i }));
     const clipFiles: string[] = new Array(opts.clips.length);
     const poolSize = 3;
@@ -345,7 +514,29 @@ export async function runRenderJob(
     const sliceP = Promise.all(
       Array.from({ length: Math.min(poolSize, queue.length) }, worker),
     ).then(() => clipFiles);
-    const [vo, files] = await Promise.all([ttsP, sliceP]);
+    const files = await sliceP;
+    const report: { clip: number; start: number; target: number; actual: number; shortBy: number }[] = [];
+    for (let i = 0; i < files.length; i++) {
+      const target = shares[i].duration;
+      const actual = await probeDuration(files[i]);
+      report.push({
+        clip: i + 1,
+        start: opts.clips[i].start,
+        target: Number(target.toFixed(3)),
+        actual: Number(actual.toFixed(3)),
+        shortBy: Number((target - actual).toFixed(3)),
+      });
+      if (actual > target + 0.02) {
+        const trimmed = path.join(jobDir, `clip_fit_${String(i).padStart(3, "0")}.mp4`);
+        await spawnDone(
+          "ffmpeg",
+          ["-y", "-i", files[i], "-t", target.toFixed(3), "-an", "-c:v", "libx264", "-preset", "ultrafast", "-crf", "22", trimmed],
+          opts.registerChild,
+        );
+        files[i] = trimmed;
+      }
+    }
+    fs.writeFileSync(path.join(jobDir, "clip_report.json"), JSON.stringify(report, null, 2), "utf8");
 
     status({
       stage: "assembling",
@@ -353,41 +544,30 @@ export async function runRenderJob(
       clipsTotal: files.length,
       message: "Syncing clips to voiceover",
     });
-    const planTotal = opts.clips.reduce((a, c) => a + c.duration, 0);
-    const delta = vo.duration - planTotal;
-    if (delta > 0.2) {
-      if (vo.duration > planTotal * 1.6)
-        throw new Error(
-          `Voiceover ${vo.duration.toFixed(1)}s is far longer than clip plan ${planTotal.toFixed(1)}s — needs more cuts`,
-        );
-      const clips = files;
-      const pad = delta / clips.length;
-      const padded: string[] = [];
-      for (let i = 0; i < clips.length; i++) {
-        const out = path.join(jobDir, `clip_pad_${String(i).padStart(3, "0")}.mp4`);
-        await spawnDone(
-          "ffmpeg",
-          [
-            "-y",
-            "-i",
-            clips[i],
-            "-an",
-            "-vf",
-            `tpad=stop_mode=clone:stop_duration=${pad.toFixed(3)}`,
-            "-c:v",
-            "libx264",
-            "-preset",
-            "ultrafast",
-            "-crf",
-            "22",
-            out,
-          ],
-          opts.registerChild,
-        );
-        padded.push(out);
-      }
-      files.length = 0;
-      files.push(...padded);
+    const videoTotal = (await Promise.all(files.map(probeDuration))).reduce((a, b) => a + b, 0);
+    const tailPad = vo.duration - videoTotal;
+    if (tailPad > 0.05) {
+      const padded = path.join(jobDir, "clip_tail.mp4");
+      await spawnDone(
+        "ffmpeg",
+        [
+          "-y",
+          "-i",
+          files[files.length - 1],
+          "-an",
+          "-vf",
+          `tpad=stop_mode=clone:stop_duration=${tailPad.toFixed(3)}`,
+          "-c:v",
+          "libx264",
+          "-preset",
+          "ultrafast",
+          "-crf",
+          "22",
+          padded,
+        ],
+        opts.registerChild,
+      );
+      files[files.length - 1] = padded;
     }
 
     const listFile = path.join(jobDir, "concat.txt");
@@ -412,7 +592,9 @@ export async function runRenderJob(
     }
 
     const drawFilter = (await buildDrawText(opts, jobDir)).slice(1);
-    const useText = drawFilter.length > 0;
+    const lookFilter = LOOK_PRESETS[opts.look ?? "none"] ?? "";
+    const fxChain = [lookFilter, drawFilter].filter(Boolean).join(",");
+    const useText = fxChain.length > 0;
     const assembleArgs = useText
       ? [
           "-y",
@@ -425,7 +607,7 @@ export async function runRenderJob(
           "-i",
           wavFile,
           "-filter_complex",
-          `[0:v]${drawFilter}[vout]`,
+          `[0:v]${fxChain}[vout]`,
           "-map",
           "[vout]",
           "-map",
@@ -468,9 +650,6 @@ export async function runRenderJob(
           "-movflags",
           "+faststart",
         ];
-    if (planTotal + (delta > 0.2 ? delta : 0) > vo.duration + 0.05) {
-      assembleArgs.push("-t", vo.duration.toFixed(3));
-    }
     assembleArgs.push(outPath);
     await spawnDone("ffmpeg", assembleArgs, opts.registerChild);
     for (let i = 0; i < 50; i++) {
@@ -482,7 +661,10 @@ export async function runRenderJob(
     }
 
     const videoSec = await probeDuration(outPath);
-    fs.promises.rm(jobDir, { recursive: true, force: true });
+    if (Math.abs(videoSec - vo.duration) > 0.15)
+      throw new Error(
+        `Video ${videoSec.toFixed(2)}s does not match voiceover ${vo.duration.toFixed(2)}s`,
+      );
     status({ stage: "done", clipsDone: files.length, clipsTotal: files.length, message: outPath });
     return { path: outPath, voiceoverSec: vo.duration, videoSec };
   } catch (e) {

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
+import { assertAdmin } from "@/lib/adminAuth.server";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { runRenderJob, type ExplainerClip, type ExplainerStatus } from "@/lib/explainerRender";
 import {
@@ -24,8 +25,16 @@ type SaveResult = {
   size: number;
 };
 
+async function notifyMac(title: string, body: string) {
+  const { execFile } = await import("child_process");
+  const esc = (t: string) => t.replace(/[\\"]/g, " ").slice(0, 200);
+  const script = `display notification "${esc(body)}" with title "${esc(title)}" sound name "Glass"`;
+  execFile("osascript", ["-e", script], () => {});
+}
+
 const saveSubtitlesForMovie = createServerFn({ method: "POST" }).handler(
   async ({ data }: { data: { tmdbId: number; lang?: string; outputDir?: string } }) => {
+    await assertAdmin();
     const { default: path } = await import("path");
     const { default: os } = await import("os");
     const { writeFileSync, existsSync, statSync } = await import("fs");
@@ -90,6 +99,7 @@ const saveSubtitlesForMovie = createServerFn({ method: "POST" }).handler(
 );
 
 const pickFolder = createServerFn({ method: "GET" }).handler(async () => {
+  await assertAdmin();
   const { execFile } = await import("child_process");
   const script = `tell application "Finder" to set f to choose folder with prompt "Select output folder"\nreturn POSIX path of f`;
   return new Promise<{ path: string }>((resolve, reject) => {
@@ -120,6 +130,8 @@ const renderExplainer = createServerFn({ method: "POST" }).handler(
       outputDir?: string;
       voice?: string;
       ttsSpeed?: number;
+      enableScan?: boolean;
+      look?: string;
       zoom?: number;
       bg?: "blur" | "black";
       blurIntensity?: number;
@@ -132,6 +144,7 @@ const renderExplainer = createServerFn({ method: "POST" }).handler(
       fontStyle?: string;
     };
   }) => {
+    await assertAdmin();
     jobs[data.jobKey] = {
       status: {
         stage: "preparing",
@@ -150,6 +163,8 @@ const renderExplainer = createServerFn({ method: "POST" }).handler(
       outputDir: data.outputDir ?? "",
       voice: data.voice,
       ttsSpeed: data.ttsSpeed,
+      enableScan: data.enableScan,
+      look: data.look,
       zoom: data.zoom,
       bg: data.bg,
       blurIntensity: data.blurIntensity,
@@ -176,6 +191,7 @@ const renderExplainer = createServerFn({ method: "POST" }).handler(
             status: { ...jobs[data.jobKey].status, stage: "done", message: r.path },
             result: r,
           };
+        void notifyMac("Short ready", r.path.split("/").pop() ?? "Render finished");
       })
       .catch((e: Error) => {
         if (jobs[data.jobKey])
@@ -184,6 +200,7 @@ const renderExplainer = createServerFn({ method: "POST" }).handler(
             status: { ...jobs[data.jobKey].status, stage: "error", message: "failed" },
             error: e?.message ?? String(e),
           };
+        void notifyMac("Short failed", (e?.message ?? "Render error").slice(0, 150));
       });
     return { started: true };
   },
@@ -198,6 +215,7 @@ const getRenderStatus = createServerFn({ method: "GET" }).handler(
 
 const cancelRender = createServerFn({ method: "POST" }).handler(
   async ({ data }: { data: { jobKey: string } }) => {
+    await assertAdmin();
     for (const p of jobChildren[data.jobKey] ?? []) {
       try {
         p.kill();
@@ -224,7 +242,9 @@ type Snapshot = {
   outputDir?: string;
   voice?: string;
   ttsSpeed?: number;
+  enableScan?: boolean;
   zoom?: number;
+  look?: string;
   bg?: "blur" | "black";
   blurIntensity?: number;
   overlayText?: string;
@@ -236,15 +256,88 @@ type Snapshot = {
   fontStyle?: string;
 };
 
+async function driveDownloadText(fileId: string): Promise<string> {
+  const r = await fetch(
+    `https://drive.usercontent.google.com/download?id=${fileId}&export=download`,
+    { headers: { "User-Agent": "Mozilla/5.0" }, redirect: "follow" },
+  );
+  if (!r.ok) throw new Error(`HTTP ${r.status} on Drive file ${fileId}`);
+  return r.text();
+}
+
+async function fetchDriveFolderJson(folderId: string): Promise<string> {
+  const list = await fetch(`https://drive.google.com/embeddedfolderview?id=${folderId}`, {
+    headers: { "User-Agent": "Mozilla/5.0" },
+    redirect: "follow",
+  });
+  if (!list.ok)
+    throw new Error(
+      `Drive folder fetch failed (${list.status}) — share the folder as "Anyone with the link"`,
+    );
+  const html = await list.text();
+  const files: { id: string; name: string }[] = [];
+  for (
+    const m of html.matchAll(
+      /class="flip-entry" id="entry-[A-Za-z0-9_-]+".*?href="([^"]+)".*?flip-entry-title">([^<]+)</gs,
+    )
+  ) {
+    const fid = m[1].match(/\/file\/d\/([A-Za-z0-9_-]+)/);
+    if (fid) files.push({ id: fid[1], name: m[2].trim() });
+  }
+  if (!files.length)
+    throw new Error('Drive folder is empty or not shared with "Anyone with the link"');
+  const movieFiles = files.filter(
+    (f) => /\.json$/i.test(f.name) && f.name.toLowerCase() !== "index.json",
+  );
+  let ordered = movieFiles;
+  const index = files.find((f) => f.name.toLowerCase() === "index.json");
+  if (index) {
+    try {
+      const meta = JSON.parse(await driveDownloadText(index.id));
+      const arr: unknown[] = Array.isArray(meta) ? meta : [meta];
+      const byName = new Map(movieFiles.map((f) => [f.name.toLowerCase(), f]));
+      const mapped: typeof movieFiles = [];
+      for (const item of arr) {
+        const f = byName.get(String((item as Record<string, unknown>)?.file ?? "").toLowerCase());
+        if (f) mapped.push(f);
+      }
+      if (mapped.length) ordered = mapped;
+    } catch {
+      /* no readable index — fall back to every *.json in the folder */
+    }
+  }
+  const plans: unknown[] = [];
+  for (const f of ordered) {
+    try {
+      const data = JSON.parse(await driveDownloadText(f.id));
+      for (const item of Array.isArray(data) ? data : [data]) {
+        if (item && typeof item === "object" && Array.isArray((item as { clips?: unknown }).clips))
+          plans.push(item);
+      }
+    } catch {
+      /* skip unreadable/malformed file */
+    }
+  }
+  if (!plans.length) throw new Error("No movie JSON plans (with a clips array) found in folder");
+  return JSON.stringify(plans);
+}
+
 const fetchSheetCsv = createServerFn({ method: "POST" }).handler(
   async ({ data }: { data: { url: string } }) => {
+    await assertAdmin();
     let url = data.url.trim();
     if (!/^https?:\/\//i.test(url)) throw new Error("Enter a full https:// URL");
+    const df = url.match(/drive\.google\.com\/drive\/folders\/([a-zA-Z0-9-_]+)/);
+    if (df) return { text: await fetchDriveFolderJson(df[1]), resolvedUrl: `drive-folder:${df[1]}` };
     const g = url.match(/docs\.google\.com\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/);
     if (g && !/export|csv|gviz/i.test(url)) {
       const gid = url.match(/[#&?]gid=(\d+)/)?.[1] ?? "0";
       url = `https://docs.google.com/spreadsheets/d/${g[1]}/export?format=csv&gid=${gid}`;
     }
+    const dv =
+      url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9-_]+)/) ||
+      (/drive\.google\.com/.test(url) ? url.match(/[?&]id=([a-zA-Z0-9-_]+)/) : null);
+    if (dv) url = `https://drive.google.com/uc?export=download&id=${dv[1]}`;
     const res = await fetch(url, {
       headers: { "User-Agent": "Mozilla/5.0", Accept: "text/csv,*/*" },
       redirect: "follow",
@@ -255,7 +348,9 @@ const fetchSheetCsv = createServerFn({ method: "POST" }).handler(
       );
     const text = await res.text();
     if (text.length < 20 || /^\s*</.test(text))
-      throw new Error("Response doesn't look like CSV — check the URL and sharing settings");
+      throw new Error(
+        'Response isn\'t CSV/JSON — for Drive files use the Share link with access "Anyone with the link" (Viewer)',
+      );
     return { text, resolvedUrl: url };
   },
 );
@@ -264,6 +359,7 @@ const TEMPLATE_DIR = `${process.env.HOME}/Desktop/explainer-templates`;
 
 const saveTemplate = createServerFn({ method: "POST" }).handler(
   async ({ data }: { data: { name: string; settings: Record<string, unknown> } }) => {
+    await assertAdmin();
     const { mkdirSync, writeFileSync } = await import("fs");
     const { default: path } = await import("path");
     mkdirSync(TEMPLATE_DIR, { recursive: true });
@@ -278,6 +374,7 @@ const saveTemplate = createServerFn({ method: "POST" }).handler(
 );
 
 const listTemplates = createServerFn({ method: "GET" }).handler(async () => {
+  await assertAdmin();
   const { readdirSync, mkdirSync } = await import("fs");
   const { default: path } = await import("path");
   mkdirSync(TEMPLATE_DIR, { recursive: true });
@@ -290,6 +387,7 @@ const listTemplates = createServerFn({ method: "GET" }).handler(async () => {
 
 const loadTemplate = createServerFn({ method: "POST" }).handler(
   async ({ data }: { data: { name: string } }) => {
+    await assertAdmin();
     const { readFileSync } = await import("fs");
     const { default: path } = await import("path");
     return {
@@ -320,12 +418,33 @@ type RenderJob = {
 const STAGE_ICON: Record<string, string> = {
   queued: "⏱",
   preparing: "🔍",
+  scanning: "👁",
   voiceover: "🎙",
   slicing: "✂️",
   assembling: "🧩",
   done: "✅",
   error: "❌",
 };
+
+const PREVIEW_IMAGES = [
+  356394, 1287145, 1166209, 417074, 167699, 747894, 2662116, 2101187, 1529140, 1029141,
+].map(
+  (id) =>
+    `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop`,
+);
+
+const LOOK_CSS: Record<string, string> = {
+  none: "",
+  sharpen: "url(#explainer-sharpen)",
+  vivid: "saturate(1.25) contrast(1.08)",
+  cinematic: "saturate(1.1) contrast(1.05) hue-rotate(-6deg)",
+  noir: "grayscale(1) contrast(1.15) brightness(0.98)",
+  bleach: "contrast(1.35) saturate(0.35) brightness(1.04)",
+  vintage: "saturate(0.8) contrast(0.95) brightness(1.03)",
+  night: "brightness(0.97) saturate(0.92) hue-rotate(10deg)",
+};
+
+const SHOW_CSV_UI = true;
 
 const VOICES = [
   { id: "am_liam", label: "Liam — male, warm" },
@@ -351,6 +470,9 @@ function ExplainerPage() {
   const [renderJobs, setRenderJobs] = useState<RenderJob[]>([]);
   const [voice, setVoice] = useState("am_liam");
   const [ttsSpeed, setTtsSpeed] = useState(0.85);
+  const [enableScan, setEnableScan] = useState(false);
+  const [look, setLook] = useState("sharpen");
+  const [previewIdx, setPreviewIdx] = useState(0);
   const [zoom, setZoom] = useState("2");
   const [bg, setBg] = useState<"blur" | "black">("blur");
   const [blurIntensity, setBlurIntensity] = useState(20);
@@ -498,7 +620,9 @@ function ExplainerPage() {
       outputDir: outputDir.trim() || undefined,
       voice,
       ttsSpeed,
+      enableScan,
       zoom: Number(zoom),
+      look,
       bg,
       blurIntensity,
       overlayText: wrappedTextRef.current || overlayText,
@@ -632,6 +756,13 @@ function ExplainerPage() {
       const rows = parseAllRows(res.text);
       setSheetRows(rows);
       if (!rows.length) {
+        const t = res.text.trim();
+        if (t.startsWith("{") || t.startsWith("[")) {
+          setRowError(
+            "JSON loaded, but no rows passed — needs a clips array with numeric start/duration and status To-do / READY_FOR_LOCAL_RENDER",
+          );
+          return;
+        }
         const d = diagnoseSheet(res.text);
         if (!d.headerFound)
           setRowError(
@@ -658,6 +789,8 @@ function ExplainerPage() {
     return {
       voice,
       ttsSpeed,
+      enableScan,
+      look,
       zoom,
       bg,
       blurIntensity,
@@ -693,6 +826,8 @@ function ExplainerPage() {
       const { settings: t } = await loadTemplate({ data: { name: selectedTemplate } });
       if (typeof t.voice === "string") setVoice(t.voice);
       if (typeof t.ttsSpeed === "number") setTtsSpeed(t.ttsSpeed);
+      if (typeof t.enableScan === "boolean") setEnableScan(t.enableScan);
+      if (typeof t.look === "string") setLook(t.look);
       if (t.zoom !== undefined) setZoom(String(t.zoom));
       if (t.bg === "blur" || t.bg === "black") setBg(t.bg);
       if (typeof t.blurIntensity === "number") setBlurIntensity(t.blurIntensity);
@@ -1014,23 +1149,16 @@ function ExplainerPage() {
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           <div>
             <label style={{ ...labelStyle, color: "#fff", fontSize: "0.85rem" }}>
-              📋 Production plan — Google Sheet URL, CSV upload, or paste a row
+              📋 Production plan — Google Sheet URL or Drive JSON URL
             </label>
             <div style={{ display: "flex", gap: "6px", marginBottom: "8px" }}>
               <input
                 type="text"
-                placeholder="Public Google Sheet URL (shared as Anyone with the link)"
+                placeholder="Public Google Sheet, Drive JSON file, or Drive FOLDER URL (Anyone with the link)"
                 value={sheetUrl}
                 onChange={(e) => setSheetUrl(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") handleLoadSheet();
-                }}
-                style={{
-                  ...inputStyle,
-                  flex: 1,
-                  fontFamily: "monospace",
-                  fontSize: "0.72rem",
-                }}
+                onKeyDown={(e) => { if (e.key === "Enter") handleLoadSheet(); }}
+                style={{ ...inputStyle, flex: 1, fontFamily: "monospace", fontSize: "0.72rem" }}
               />
               <button
                 type="button"
@@ -1039,8 +1167,7 @@ function ExplainerPage() {
                 style={{
                   padding: "0.6rem 1rem",
                   background: sheetUrl.trim() && !sheetLoading ? "#16a34a" : "#1a1a1a",
-                  border: "none",
-                  borderRadius: "4px",
+                  border: "none", borderRadius: "4px",
                   color: sheetUrl.trim() && !sheetLoading ? "#fff" : "#555",
                   fontSize: "0.85rem",
                   cursor: sheetUrl.trim() && !sheetLoading ? "pointer" : "not-allowed",
@@ -1050,64 +1177,70 @@ function ExplainerPage() {
                 {sheetLoading ? "Loading..." : "🌐 Load Sheet"}
               </button>
             </div>
-            <textarea
-              rows={4}
-              placeholder={
-                '2026-10-11 17:15,The Matrix (1999) [TMDB: 603],tt0133093,"voiceover script…","[{""start"": 115.58, ""duration"": 1.5, …}]",52,To-do'
-              }
-              value={rowText}
-              onChange={(e) => setRowText(e.target.value)}
-              style={{
-                ...inputStyle,
-                resize: "vertical",
-                fontFamily: "monospace",
-                fontSize: "0.72rem",
-              }}
-            />
-            <div style={{ display: "flex", gap: "6px", marginTop: "6px" }}>
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept=".csv,.tsv,.txt"
-                style={{ display: "none" }}
-                onChange={(e) => {
-                  void handleFilePicked(e.target.files?.[0]);
-                  e.target.value = "";
+            {SHOW_CSV_UI && (
+              <textarea
+                rows={4}
+                placeholder={
+                  '2026-10-11 17:15,The Matrix (1999) [TMDB: 603],tt0133093,"voiceover script…","[{""start"": 115.58, ""duration"": 1.5, …}]",52,To-do'
+                }
+                value={rowText}
+                onChange={(e) => setRowText(e.target.value)}
+                style={{
+                  ...inputStyle,
+                  resize: "vertical",
+                  fontFamily: "monospace",
+                  fontSize: "0.72rem",
                 }}
               />
-              <button
-                type="button"
-                onClick={() => fileInputRef.current?.click()}
-                style={{
-                  padding: "0.6rem 1rem",
-                  background: "#6366f1",
-                  border: "none",
-                  borderRadius: "4px",
-                  color: "#fff",
-                  fontSize: "0.85rem",
-                  cursor: "pointer",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                📄 Upload CSV
-              </button>
-              <button
-                type="button"
-                onClick={handleParse}
-                disabled={!rowText.trim()}
-                style={{
-                  padding: "0.6rem 1rem",
-                  background: rowText.trim() ? "#6366f1" : "#1a1a1a",
-                  border: "none",
-                  borderRadius: "4px",
-                  color: rowText.trim() ? "#fff" : "#555",
-                  fontSize: "0.85rem",
-                  cursor: rowText.trim() ? "pointer" : "not-allowed",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                🔍 Parse Row
-              </button>
+            )}
+            <div style={{ display: "flex", gap: "6px", marginTop: "6px" }}>
+              {SHOW_CSV_UI && (
+                <>
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept=".csv,.tsv,.txt"
+                    style={{ display: "none" }}
+                    onChange={(e) => {
+                      void handleFilePicked(e.target.files?.[0]);
+                      e.target.value = "";
+                    }}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => fileInputRef.current?.click()}
+                    style={{
+                      padding: "0.6rem 1rem",
+                      background: "#6366f1",
+                      border: "none",
+                      borderRadius: "4px",
+                      color: "#fff",
+                      fontSize: "0.85rem",
+                      cursor: "pointer",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    📄 Upload CSV
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleParse}
+                    disabled={!rowText.trim()}
+                    style={{
+                      padding: "0.6rem 1rem",
+                      background: rowText.trim() ? "#6366f1" : "#1a1a1a",
+                      border: "none",
+                      borderRadius: "4px",
+                      color: rowText.trim() ? "#fff" : "#555",
+                      fontSize: "0.85rem",
+                      cursor: rowText.trim() ? "pointer" : "not-allowed",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    🔍 Parse Row
+                  </button>
+                </>
+              )}
               {rowError && (
                 <span
                   style={{
@@ -1173,7 +1306,7 @@ function ExplainerPage() {
                       }}
                     >
                       {row.date.split(" ").slice(0, 2).join(" ")} · <b>{row.title}</b> ·{" "}
-                      {row.wordCount}w · {row.clips.length} cuts · {row.planSec.toFixed(0)}s plan
+                      {row.wordCount}w · {row.clips.length} cuts
                     </span>
                     <button
                       type="button"
@@ -1221,8 +1354,6 @@ function ExplainerPage() {
                   </span>
                   <span style={{ color: "#0f0", fontSize: "0.75rem" }}>
                     {parsed.wordCount} words · {parsed.clips.length} cuts ·{" "}
-                    {parsed.planSec.toFixed(1)}s plan
-                    {parsed.estSec ? ` (sheet est ${parsed.estSec}s)` : ""} ·{" "}
                     {parsed.progress || "no status"}
                   </span>
                 </div>
@@ -1275,7 +1406,27 @@ function ExplainerPage() {
               </select>
             </div>
             <div style={{ flex: 1 }}>
-              <label style={labelStyle}>TTS speed — {ttsSpeed.toFixed(2)}x</label>
+              <label style={labelStyle}>
+                <span
+                  style={{ display: "flex", alignItems: "center", gap: "6px", cursor: "pointer" }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={enableScan}
+                    onChange={(e) => setEnableScan(e.target.checked)}
+                    style={{ accentColor: "#e50914" }}
+                  />
+                  SigLIP visual scan
+                </span>
+              </label>
+              <p style={{ color: "#555", fontSize: "0.68rem", margin: "4px 0 0" }}>
+                {enableScan
+                  ? "Re-locates flagged spectacle cuts by scanning ±15s windows"
+                  : "Off — trusting sheet timestamps"}
+              </p>
+              <label style={{ ...labelStyle, marginTop: "0.5rem" }}>
+                TTS speed — {ttsSpeed.toFixed(2)}x
+              </label>
               <input
                 type="range"
                 min={0.6}
@@ -1326,6 +1477,29 @@ function ExplainerPage() {
                   <span>2x</span>
                   <span>3x</span>
                 </div>
+              </div>
+              <div>
+                <label style={labelStyle}>Look (graded at assembly)</label>
+                <select
+                  value={look}
+                  onChange={(e) => setLook(e.target.value)}
+                  style={{ ...inputStyle, cursor: "pointer" }}
+                >
+                  {[
+                    ["none", "None (raw)"],
+                    ["sharpen", "Sharpen — crisper detail"],
+                    ["vivid", "Vivid — punchy + slight sharpen"],
+                    ["cinematic", "Cinematic — teal/orange"],
+                    ["noir", "Noir — black & white"],
+                    ["bleach", "Bleach bypass"],
+                    ["vintage", "Vintage — faded + vignette"],
+                    ["night", "Night — cool grade"],
+                  ].map(([v, lb]) => (
+                    <option key={v} value={v}>
+                      {lb}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div>
                 <label style={labelStyle}>Background</label>
@@ -1759,40 +1933,100 @@ function ExplainerPage() {
             background: "#000",
           }}
         >
-          {bg === "blur" ? (
+          <svg width="0" height="0" style={{ position: "absolute" }}>
+            <defs>
+              <filter id="explainer-sharpen">
+                <feConvolveMatrix
+                  order="3"
+                  kernelMatrix="0 -0.2 0 -0.2 1.8 -0.2 0 -0.2 0"
+                  preserveAlpha="true"
+                />
+              </filter>
+            </defs>
+          </svg>
+          <div style={{ position: "absolute", inset: 0, filter: LOOK_CSS[look] ?? "" }}>
+            {bg === "blur" ? (
+              <img
+                src={PREVIEW_IMAGES[previewIdx]}
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  filter: `blur(${Math.round((blurIntensity / 60) * 20 + 2)}px)`,
+                  transform: "scale(1.15)",
+                }}
+              />
+            ) : (
+              <div style={{ position: "absolute", inset: 0, background: "#000" }} />
+            )}
             <img
-              src="/preview.jpg"
+              src={PREVIEW_IMAGES[previewIdx]}
               style={{
                 position: "absolute",
-                inset: 0,
+                left: "50%",
+                top: "50%",
+                transform: `translate(-50%, -50%) scale(${Number(zoom)})`,
                 width: "100%",
-                height: "100%",
                 objectFit: "cover",
-                filter: `blur(${Math.round((blurIntensity / 60) * 20 + 2)}px)`,
-                transform: "scale(1.15)",
+                objectPosition: "center",
               }}
             />
-          ) : (
-            <div style={{ position: "absolute", inset: 0, background: "#000" }} />
-          )}
-          <img
-            src="/preview.jpg"
-            style={{
-              position: "absolute",
-              left: "50%",
-              top: "50%",
-              transform: `translate(-50%, -50%) scale(${Number(zoom)})`,
-              width: "100%",
-              objectFit: "cover",
-              objectPosition: "center",
-            }}
-          />
+            {look === "vintage" && (
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background:
+                    "radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.45) 100%)",
+                }}
+              />
+            )}
+          </div>
           <canvas
             ref={canvasRef}
             width={360}
             height={640}
             style={{ position: "absolute", inset: 0, display: "block" }}
           />
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <button
+            type="button"
+            onClick={() =>
+              setPreviewIdx((i) => (i - 1 + PREVIEW_IMAGES.length) % PREVIEW_IMAGES.length)
+            }
+            style={{
+              padding: "0.3rem 0.8rem",
+              background: "#1a1a1a",
+              border: "1px solid #333",
+              borderRadius: "4px",
+              color: "#fff",
+              fontSize: "0.9rem",
+              cursor: "pointer",
+            }}
+          >
+            ◀
+          </button>
+          <span style={{ color: "#555", fontSize: "0.72rem" }}>
+            {previewIdx + 1} / {PREVIEW_IMAGES.length}
+          </span>
+          <button
+            type="button"
+            onClick={() => setPreviewIdx((i) => (i + 1) % PREVIEW_IMAGES.length)}
+            style={{
+              padding: "0.3rem 0.8rem",
+              background: "#1a1a1a",
+              border: "1px solid #333",
+              borderRadius: "4px",
+              color: "#fff",
+              fontSize: "0.9rem",
+              cursor: "pointer",
+            }}
+          >
+            ▶
+          </button>
         </div>
         <p style={{ color: "#555", fontSize: "0.7rem", margin: 0 }}>1080×1920 frame</p>
       </div>

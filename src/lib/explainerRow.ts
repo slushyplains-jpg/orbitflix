@@ -7,8 +7,6 @@ export type ParsedRow = {
   script: string;
   wordCount: number;
   clips: ExplainerClip[];
-  planSec: number;
-  estSec: number;
   progress: string;
   warnings: string[];
 };
@@ -48,6 +46,31 @@ export function parseCsvRows(text: string, delim?: string): string[][] {
   return rows.filter((r) => r.some((f) => f.trim() !== ""));
 }
 
+function makeRow(
+  date: string,
+  rawTitle: string,
+  imdb: string,
+  script: string,
+  clips: ExplainerClip[],
+  progress: string,
+): ParsedRow {
+  const title = rawTitle.replace(/\s*\[TMDB:\s*\d+\]\s*$/i, "").trim();
+  const badOrder = clips.filter((c, i) => i > 0 && c.start <= clips[i - 1].start).length;
+  const warnings: string[] = [];
+  if (!script) warnings.push("Script field is empty");
+  if (badOrder) warnings.push(`${badOrder} clip(s) out of chronological order`);
+  return {
+    date,
+    title: title || "Explainer",
+    imdb,
+    script,
+    wordCount: script.split(/\s+/).filter(Boolean).length,
+    clips,
+    progress,
+    warnings,
+  };
+}
+
 function buildRow(
   r: string[],
   idx: {
@@ -62,7 +85,7 @@ function buildRow(
 ): ParsedRow | null {
   const cell = (i: number) => (i >= 0 ? (r[i] ?? "").trim() : "");
   const jsonCell = cell(idx.clips)
-    .replace(/^\uFEFF/, "")
+    .replace(/^﻿/, "")
     .replace(/[\u201c\u201d]/g, '"');
   let clips: ExplainerClip[];
   try {
@@ -71,43 +94,20 @@ function buildRow(
     return null;
   }
   if (!Array.isArray(clips) || !clips.length) return null;
-  if (!clips.every((c) => typeof c.start === "number" && typeof c.duration === "number"))
+  if (!clips.every((c) => typeof c.start === "number"))
     return null;
-  const title = cell(idx.title)
-    .replace(/\s*\[TMDB:\s*\d+\]\s*$/i, "")
-    .trim();
-  const script = cell(idx.script);
-  const estSec = Number(cell(idx.est)) || 0;
-  const planSec = clips.reduce((a, c) => a + c.duration, 0);
-  const outOfRange = clips.filter((c) => c.duration < 1.2 || c.duration > 1.8).length;
-  const badOrder = clips.filter((c, i) => i > 0 && c.start <= clips[i - 1].start).length;
-  const warnings: string[] = [];
-  if (!script) warnings.push("Script field is empty");
-  if (outOfRange) warnings.push(`${outOfRange} clip(s) outside 1.2–1.8s micro-cut range`);
-  if (badOrder) warnings.push(`${badOrder} clip(s) out of chronological order`);
-  if (Math.abs(planSec - estSec) > 6 && estSec)
-    warnings.push(`Clip plan totals ${planSec.toFixed(1)}s but sheet estimates ${estSec}s`);
-  return {
-    date: cell(idx.date),
-    title: title || "Explainer",
-    imdb: cell(idx.imdb),
-    script,
-    wordCount: script.split(/\s+/).filter(Boolean).length,
+  return makeRow(
+    cell(idx.date),
+    cell(idx.title),
+    cell(idx.imdb),
+    cell(idx.script),
     clips,
-    planSec,
-    estSec,
-    progress: cell(idx.progress),
-    warnings,
-  };
+    cell(idx.progress),
+  );
 }
 
 function headerMap(header: string[]) {
-  const h = header.map((x) =>
-    x
-      .replace(/^\uFEFF/, "")
-      .trim()
-      .toLowerCase(),
-  );
+  const h = header.map((x) => x.replace(/^﻿/, "").trim().toLowerCase());
   const find = (re: RegExp) => h.findIndex((x) => re.test(x));
   return {
     date: find(/date|timestamp/),
@@ -127,10 +127,40 @@ export function isTodo(progress: string): boolean {
 }
 
 /**
- * Header-aware: when a header row with a clip-plan column exists, only rows whose
- * Progress/Status column says "To-do" are returned. Falls back to positional parsing
- * for raw single-row pastes without headers.
+ * Drive JSON blueprint: one object or an array of objects shaped like
+ * { date, title, imdb_id, script, clips:[{clip,start,duration,quote,action}], duration, status }.
+ * Rows whose status is set must be an accepted "ready" value.
  */
+export function parsePlanJson(text: string): ParsedRow[] {
+  const data = JSON.parse(text) as unknown;
+  const arr = Array.isArray(data) ? data : [data];
+  const out: ParsedRow[] = [];
+  for (const item of arr as Record<string, unknown>[]) {
+    if (!item || typeof item !== "object") continue;
+    const clips = item.clips;
+    if (!Array.isArray(clips) || !clips.length) continue;
+    const ok = clips.every(
+      (c) =>
+        !!c &&
+        typeof (c as { start?: unknown }).start === "number",
+    );
+    if (!ok) continue;
+    const status = String(item.status ?? "").trim();
+    if (status && !isTodo(status)) continue;
+    out.push(
+      makeRow(
+        String(item.date ?? ""),
+        String(item.title ?? ""),
+        String(item.imdb_id ?? item.imdb ?? ""),
+        String(item.script ?? ""),
+        clips as ExplainerClip[],
+        status,
+      ),
+    );
+  }
+  return out;
+}
+
 export type SheetDiag = {
   headerFound: boolean;
   clipsHeader: string;
@@ -165,13 +195,7 @@ export function diagnoseSheet(text: string): SheetDiag {
     progressValues: [],
   };
   for (const r of rows.slice(1)) {
-    if (
-      !(r[col.clips] ?? "")
-        .trim()
-        .replace(/^\uFEFF/, "")
-        .startsWith("[")
-    )
-      continue;
+    if (!(r[col.clips] ?? "").trim().startsWith("[")) continue;
     diag.totalDataRows++;
     const parsed = buildRow(r, col);
     if (!parsed) continue;
@@ -184,7 +208,14 @@ export function diagnoseSheet(text: string): SheetDiag {
   return diag;
 }
 
+/**
+ * Header-aware CSV/TSV: when a header row with a clip-plan column exists, only rows whose
+ * Progress/Status column is an accepted "ready" value are returned. Falls back to positional
+ * parsing for raw single-row pastes without headers.
+ */
 export function parseAllRows(text: string, onlyTodo = true): ParsedRow[] {
+  const trimmed = text.trim();
+  if (trimmed.startsWith("{") || trimmed.startsWith("[")) return parsePlanJson(text);
   const rows = parseCsvRows(text);
   if (!rows.length) return [];
   const col = headerMap(rows[0]);
@@ -200,7 +231,6 @@ export function parseAllRows(text: string, onlyTodo = true): ParsedRow[] {
     }
     return out;
   }
-  // positional fallback (no header row)
   const out: ParsedRow[] = [];
   for (const r of rows) {
     const jsonIdx = r.findIndex((f) => f.trim().startsWith("["));
