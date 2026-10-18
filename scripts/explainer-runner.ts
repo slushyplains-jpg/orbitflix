@@ -2,7 +2,8 @@
 // Usage: npx -y tsx scripts/explainer-runner.ts <job.json>
 // The job file holds the row (title, script, clips), the stream (m3u8Url, or tmdbId to fetch one),
 // and the render settings from a template. Progress is written to <job.json>.status.json.
-// Fetching a link needs the ORBIT dev server running (EXPLAINER_PAGE_BASE, default http://localhost:8081).
+// Fetching a link needs the ORBIT dev server running. Its port is found automatically unless
+// EXPLAINER_PAGE_BASE is set. A saved m3u8Url that has expired is replaced with a fresh one.
 import { execFileSync, execFile } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
@@ -44,7 +45,7 @@ const jobFile = process.argv[2];
 if (!jobFile) throw new Error("usage: explainer-runner.ts <job.json>");
 const job = JSON.parse(fs.readFileSync(jobFile, "utf8")) as Job;
 const statusFile = `${jobFile}.status.json`;
-const base = process.env.EXPLAINER_PAGE_BASE ?? "http://localhost:8081";
+const base = process.env.EXPLAINER_PAGE_BASE ?? "";
 
 function writeStatus(state: Record<string, unknown>) {
   fs.writeFileSync(statusFile, JSON.stringify({ ...state, updatedAt: new Date().toISOString() }, null, 2));
@@ -54,11 +55,27 @@ function notify(title: string, body: string) {
   execFile("osascript", ["-e", `display notification "${body}" with title "${title}"`], () => {});
 }
 
+function linkWorks(url: string): boolean {
+  try {
+    const code = execFileSync("curl", ["-s", "-o", "/dev/null", "-w", "%{http_code}", "-m", "20",
+      "-H", "User-Agent: Mozilla/5.0", "-H", "Referer: https://stellarconductornexus.com/", url], { encoding: "utf8" });
+    return code.trim().startsWith("2");
+  } catch {
+    return false;
+  }
+}
+
 async function main() {
   const jobKey = `${job.tmdbId ?? "job"}-${Date.now()}`;
   let m3u8Url = job.m3u8Url ?? "";
+  // Stream tokens last about four hours, so a saved link may be dead by render time.
+  if (m3u8Url && job.tmdbId && !linkWorks(m3u8Url)) {
+    console.log("[runner] saved stream link has expired, fetching a fresh one");
+    m3u8Url = "";
+  }
   if (!m3u8Url) {
     if (!job.tmdbId) throw new Error("job needs m3u8Url or tmdbId");
+    // A bare path lets the link fetcher find whichever port the dev server is on.
     const pageUrl = `${base}/${job.mediaType ?? "movie"}/${job.tmdbId}`;
     const linkFile = `${jobFile}.link.txt`;
     writeStatus({ stage: "fetching-link", message: pageUrl });

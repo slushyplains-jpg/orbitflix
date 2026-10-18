@@ -1,156 +1,156 @@
 [
  {
-  "start": 641.17,
+  "start": 257.0,
   "sentences": [
    0,
    0
   ],
-  "quote": "Rob would have loved this place.",
-  "action": "Friends on a dark hillside at dusk (weak match)",
-  "visual_prompt": "people on a dark hillside at dusk",
+  "quote": "MAN 1: Listen, you take that ring off or I will fuck you up!",
+  "action": "Luke hides behind a shelf while the robbers attack",
+  "visual_prompt": "a man hiding behind a shop shelf, looking through the bottles",
   "needs_visual_scan": false
  },
  {
-  "start": 957.33,
+  "start": 591.0,
   "sentences": [
    1,
    1
   ],
-  "quote": "DOM: Hiking was easier yesterday.",
-  "action": "Group hiking through the forest with backpacks",
-  "visual_prompt": "a group hiking through a forest with backpacks",
+  "quote": "",
+  "action": "The four friends stand at a stone cairn in the mountains",
+  "visual_prompt": "four hikers at a stone cairn on a mountain",
   "needs_visual_scan": false
  },
  {
-  "start": 1006.9,
+  "start": 759.0,
   "sentences": [
    2,
    2
   ],
-  "quote": "",
-  "action": "Group taking a selfie in the forest",
-  "visual_prompt": "friends taking a selfie in a forest",
+  "quote": "You could probably walk it off, couldn't you?",
+  "action": "Dom bent over, limping on the hillside",
+  "visual_prompt": "a hiker limping and bending over in pain on a grassy hill",
   "needs_visual_scan": false
  },
  {
-  "start": 1354.69,
+  "start": 865.0,
   "sentences": [
    3,
    3
   ],
-  "quote": "That's the shape on the tree, I think.",
-  "action": "Cabin interior with lights (shape not clearly visible)",
-  "visual_prompt": "people in a dark cabin with a flashlight",
+  "quote": "",
+  "action": "The group walks off the trail toward a dark pine forest",
+  "visual_prompt": "hikers walking toward the edge of a dark pine forest",
   "needs_visual_scan": false
  },
  {
-  "start": 1365.26,
+  "start": 1162.0,
   "sentences": [
    4,
-   4
-  ],
-  "quote": "HUTCH: Whoever it was, they were packing.",
-  "action": "Empty cabin with flashlight beams",
-  "visual_prompt": "people in a dark cabin with flashlights",
-  "needs_visual_scan": false
- },
- {
-  "start": 1446.06,
-  "sentences": [
-   5,
    5
   ],
-  "quote": "(CHAIR SMASHES)",
-  "action": "Dark cabin interior, figure (chair not clearly visible)",
-  "visual_prompt": "a figure in a dark wooden cabin",
+  "quote": "- It's still bleeding. - So?",
+  "action": "A dark carcass hangs in the trees above the hikers",
+  "visual_prompt": "a dead animal hanging high in the trees above hikers",
   "needs_visual_scan": false
  },
  {
-  "start": 1570.87,
+  "start": 1352.0,
   "sentences": [
    6,
-   6
-  ],
-  "quote": "LUKE: Looked like that fucking thing in the tree.",
-  "action": "Carved wood and a figure in the dark",
-  "visual_prompt": "carved wood in the dark",
-  "needs_visual_scan": false
- },
- {
-  "start": 1595.0,
-  "sentences": [
-   7,
    7
   ],
   "quote": "",
-  "action": "Men wrapped in blankets by the fire",
-  "visual_prompt": "men wrapped in blankets near a fire",
+  "action": "Torch light on a symbol carved into a tree trunk",
+  "visual_prompt": "a strange symbol carved on a tree in torch light",
   "needs_visual_scan": false
  },
  {
-  "start": 1815.51,
+  "start": 1528.0,
   "sentences": [
    8,
    8
   ],
-  "quote": "(HUTCH SCREAMS AND GASPS)",
-  "action": "Bloodied man running through the forest",
-  "visual_prompt": "a bloodied man running through a forest",
+  "quote": "That's what that is, that's witchcraft.",
+  "action": "Torch light on the twig figure in the cabin",
+  "visual_prompt": "a twig figure lit by a torch in a dark room",
   "needs_visual_scan": false
  },
  {
-  "start": 1865.6,
+  "start": 1800.0,
   "sentences": [
    9,
    9
   ],
-  "quote": "Where's Phil?",
-  "action": "Flashlights searching a dark building",
-  "visual_prompt": "people searching a dark building with flashlights",
+  "quote": "(EXHALES SHARPLY)",
+  "action": "Luke in the forest, blood on his shirt, then the wounds on his chest",
+  "visual_prompt": "a man looking down at bloody wounds on his chest",
   "needs_visual_scan": false
  },
  {
-  "start": 2261.28,
+  "start": 1887.0,
   "sentences": [
    10,
    10
   ],
-  "quote": "Dom, I want out of these woods now.",
-  "action": "Men in the woods with backpacks",
-  "visual_prompt": "men walking through a forest with backpacks",
+  "quote": "Fuck!",
+  "action": "A shirtless man kneeling in the dark cabin",
+  "visual_prompt": "a shirtless man kneeling in a dark cabin",
   "needs_visual_scan": false
  },
  {
-  "start": 2379.4,
+  "start": 2010.0,
   "sentences": [
    11,
    11
   ],
-  "quote": "(ROARING)",
-  "action": "Men in the forest looking around",
-  "visual_prompt": "men in a forest looking around",
+  "quote": "We could end up in Norway for all we know.",
+  "action": "The friends walking on a forest path",
+  "visual_prompt": "hikers walking along a path in the forest",
   "needs_visual_scan": false
  },
  {
-  "start": 2405.23,
+  "start": 2632.0,
   "sentences": [
    12,
-   12
+   13
   ],
-  "quote": "Okay, listen, I'm not trying to fucking freak you out",
-  "action": "Men arguing in the forest",
-  "visual_prompt": "men arguing in a forest",
+  "quote": "",
+  "action": "A collapsed old tent on the forest floor",
+  "visual_prompt": "an abandoned collapsed tent in the forest",
   "needs_visual_scan": false
  },
  {
-  "start": 2687.87,
+  "start": 2370.0,
   "sentences": [
-   13,
-   13
+   14,
+   14
   ],
-  "quote": "It's getting dark again.",
-  "action": "Night, moon, and men with flashlights",
-  "visual_prompt": "a night sky with a moon and men with flashlights",
+  "quote": "",
+  "action": "Luke stares into the trees, then the empty forest",
+  "visual_prompt": "a man staring into a dense forest",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 2480.0,
+  "sentences": [
+   15,
+   16
+  ],
+  "quote": "No, I am not.",
+  "action": "Luke and Dom face to face, arguing",
+  "visual_prompt": "two men arguing face to face in a forest",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 2963.0,
+  "sentences": [
+   17,
+   18
+  ],
+  "quote": "- Get up, Hutch has gone. - What?",
+  "action": "A lit tent in the dark woods at night",
+  "visual_prompt": "a lit tent in a dark forest at night",
   "needs_visual_scan": false
  }
 ]

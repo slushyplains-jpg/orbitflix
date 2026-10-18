@@ -1,16 +1,18 @@
 """Automatic checks on a finished render.
 
-Usage: python3.11 explainer-verify.py <video.mp4>
-Checks: length 55-63 s, vertical 1080x1920, audio present, and no long black stretches.
+Usage: python3.11 explainer-verify.py <video.mp4> [template]
+Checks: length 55-63 s, vertical 1080x1920, audio present, no long black stretches, and
+burned-in captions in the template's caption band (when the template has captions on).
 Exit code 1 on any FAIL.
 """
 import json
+import os
 import re
 import subprocess
 import sys
 
 video = sys.argv[1]
-if not __import__("os").path.exists(video):
+if not os.path.exists(video):
     print("FAIL file not found:", video)
     print("RESULT FAIL")
     sys.exit(1)
@@ -31,7 +33,34 @@ bd = subprocess.run(["ffmpeg", "-v", "info", "-i", video, "-vf", "blackdetect=d=
 black = [float(x) for x in re.findall(r"black_duration:([\d.]+)", bd)]
 if sum(black) > 2.0:
     fails.append(f"{sum(black):.1f}s of near-black picture across {len(black)} stretches")
-print(f"length {dur:.1f}s, black {sum(black):.1f}s, audio {'yes' if has_audio else 'no'}")
+tpl_path = sys.argv[2] if len(sys.argv) > 2 else "final"
+if not os.path.exists(tpl_path):
+    tpl_path = os.path.expanduser(f"~/Desktop/explainer-templates/{tpl_path.removesuffix('.json')}.json")
+tpl = json.load(open(tpl_path, encoding="utf-8"))
+cap_note = "off in template"
+if tpl.get("captions"):
+    import numpy as np
+    # Captions are white with the active word in the caption colour. Look for that colour in a
+    # band around captionY, every 2 s. Short gaps between phrases are normal, so 60% is enough.
+    c = tpl.get("captionColor", "#FFD400").lstrip("#")
+    cr, cg, cb = (int(c[i:i + 2], 16) for i in (0, 2, 4))
+    cy = float(tpl.get("captionY", 78)) / 100
+    lo, hi = int(960 * max(0.0, cy - 0.10)), int(960 * min(1.0, cy + 0.10))
+    times = [t + 0.5 for t in range(1, max(2, int(dur) - 2), 2)]
+    hits = 0
+    for t in times:
+        raw = subprocess.run(["ffmpeg", "-v", "error", "-ss", str(t), "-i", video, "-frames:v", "1", "-vf", "scale=540:960",
+                              "-f", "rawvideo", "-pix_fmt", "rgb24", "-"], capture_output=True).stdout
+        if len(raw) != 540 * 960 * 3:
+            continue
+        band = np.frombuffer(raw, np.uint8).reshape(960, 540, 3)[lo:hi].astype(int)
+        near = (abs(band[..., 0] - cr) < 50) & (abs(band[..., 1] - cg) < 50) & (abs(band[..., 2] - cb) < 70)
+        hits += int(near.sum() > 300)
+    share = hits / len(times)
+    cap_note = f"in {hits}/{len(times)} samples"
+    if share < 0.6:
+        fails.append(f"captions found in only {hits}/{len(times)} samples, expected most of them")
+print(f"length {dur:.1f}s, black {sum(black):.1f}s, audio {'yes' if has_audio else 'no'}, captions {cap_note}")
 for f in fails:
     print("FAIL", f)
 print("RESULT", "FAIL" if fails else "PASS")

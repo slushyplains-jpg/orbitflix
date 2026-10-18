@@ -35,7 +35,7 @@ After each gate passes, record it: `python3.11 scripts/explainer-status.py <slug
 
 - Take movies in sheet order. Skip movies whose status shows `next: done`. A movie with no status file starts at research, even if its sheet row says READY_FOR_LOCAL_RENDER from the old process.
 - Work on movie N+1 while movie N renders.
-- If a movie cannot pass a gate after two honest attempts (for example the film is too thin to source 215 words), record why in `notes/explainer/<slug>/status.json` via a note on the last passed stage, tell the user, and move to the next movie.
+- If a movie cannot pass a gate after two honest attempts (for example the film is too thin to source 228 words), record why in `notes/explainer/<slug>/status.json` via a note on the last passed stage, tell the user, and move to the next movie.
 
 ## Folder layout per movie
 

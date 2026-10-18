@@ -14,7 +14,10 @@ import wave
 MIN_SEC, MAX_SEC = 55.0, 63.0
 here = os.path.dirname(os.path.abspath(__file__))
 script = sys.argv[1]
-tpl_path = sys.argv[2] if len(sys.argv) > 2 else os.path.expanduser("~/Desktop/explainer-templates/final.json")
+tpl_path = sys.argv[2] if len(sys.argv) > 2 else "final"
+# A bare name like "final" means a saved template in ~/Desktop/explainer-templates.
+if not os.path.exists(tpl_path):
+    tpl_path = os.path.expanduser(f"~/Desktop/explainer-templates/{tpl_path.removesuffix('.json')}.json")
 tpl = json.load(open(tpl_path, encoding="utf-8"))
 voice, speed = tpl.get("voice", "am_liam"), float(tpl.get("ttsSpeed", 1.0))
 out = os.path.join(tempfile.mkdtemp(prefix="voicecheck_"), "voice.wav")

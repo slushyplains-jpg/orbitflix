@@ -1,0 +1,28 @@
+{
+  "passed": {
+    "research": {
+      "at": "2026-10-18T13:43:58",
+      "note": "Wikipedia plot + SDH, story.md written"
+    },
+    "story": {
+      "at": "2026-10-18T13:43:58",
+      "note": "hook 1, script.txt 233 words, script.md fact check"
+    },
+    "lint": {
+      "at": "2026-10-18T13:43:58",
+      "note": "PASS 19 sentences 233 words"
+    },
+    "voice": {
+      "at": "2026-10-18T13:43:58",
+      "note": "PASS 56.5s at 1.0x"
+    },
+    "footage": {
+      "at": "2026-10-18T13:50:06",
+      "note": "14 clips from checked grids, lint plan PASS"
+    },
+    "sheet": {
+      "at": "2026-10-18T13:50:34",
+      "note": "row 7 D:G written, READY_FOR_LOCAL_RENDER"
+    }
+  }
+}

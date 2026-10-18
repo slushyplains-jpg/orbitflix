@@ -16,7 +16,7 @@ Read `notes/explainer/<slug>/story.md` (from `explainer-research`). If it is mis
 1. **Write three hook options** in `hooks.md`. A hook is one short sentence with a concrete, shocking image or fact that makes the viewer ask how or why. Pick the strongest and say why in one line.
    - Weak: "Four friends go hiking in Sweden."
    - Strong: "Luke hid behind a shelf while his best friend was beaten to death, and did nothing."
-2. **Write the script in this shape**, about 220 to 230 words, before thinking about clips:
+2. **Write the script in this shape**, about 235 to 245 words (Kokoro speaks about 4.1 words a second at 1.0x), before thinking about clips:
    - Hook (1 sentence).
    - Setup: who the protagonist is and what they carry, using the wound from the story bible (1 to 2 sentences).
    - Goal and the first mistake (1 to 2 sentences).

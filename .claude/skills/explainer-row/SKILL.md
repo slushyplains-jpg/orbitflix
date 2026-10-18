@@ -30,7 +30,7 @@ Build the values with `python3.11 scripts/explainer-row-values.py <slug> ready` 
 
 ## Targets
 
-14 cuts, about 220 to 230 words, 55 to 63 seconds of voice at the `final` template's speed (1.0x). The linter and voice check in `scripts/` enforce these.
+14 cuts, about 235 to 245 words, 55 to 63 seconds of voice at the `final` template's speed (1.0x). The linter and voice check in `scripts/` enforce these.
 
 ## When you don't know
 
