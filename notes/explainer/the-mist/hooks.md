@@ -1,7 +1,7 @@
-# The Mist (2007): hook options
+# Hook options
 
-1. A tentacle yanks a young grocery bagger out of a loading dock while his friends grab for his arms.
-2. A father argues with the men who want to send the bagger out, and they send him anyway.
-3. A dead tree smashes through a picture window, and a fog rolls in behind a family trip to town.
+1. In a sealed supermarket, an eight-year-old boy makes his father swear the monsters will never get him, no matter what.
+2. A tentacle drags a grocery bagger into the mist, and the whole store refuses to believe it.
+3. Spiders burst out of a trapped soldier's body while he gasps that it is the military's fault.
 
-**Chosen: 1.** It is one concrete, shocking picture from the best images (Norm at 0:26:37). It makes the viewer ask how a tentacle got in and why his friends are holding on. Option 2 is the wound, but it is abstract until the viewer sees the result, and option 3 is a list of events with no danger yet.
+Pick: 1. It states the single thread (a father's promise to his son) in one human image, and the words "no matter what" make the viewer ask what that promise will cost, without giving anything away. Options 2 and 3 are events the story still needs, so using one as the hook would make the script tell it twice.

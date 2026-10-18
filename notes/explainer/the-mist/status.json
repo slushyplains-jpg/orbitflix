@@ -1,36 +1,42 @@
 {
   "passed": {
     "research": {
-      "at": "2026-10-18T22:56:59",
-      "note": "story bible written from SDH and plot summary"
+      "at": "2026-10-18T23:32:47",
+      "note": "story.md rewritten from Wikipedia plot and full SDH read"
     },
     "story": {
-      "at": "2026-10-18T23:01:48",
-      "note": "hooks.md chosen, script.md fact check"
+      "at": "2026-10-18T23:32:48",
+      "note": "hooks.md, script.txt, script.md rewritten; factcheck PASS"
     },
     "lint": {
-      "at": "2026-10-18T23:01:48",
-      "note": "lint PASS, factcheck PASS"
+      "at": "2026-10-18T23:32:48",
+      "note": "lint PASS, no warnings, 16 sentences 236 words"
     },
     "voice": {
-      "at": "2026-10-18T23:01:48",
-      "note": "voice 59.8s PASS"
+      "at": "2026-10-18T23:32:48",
+      "note": "voicecheck PASS 62.1s"
     },
     "footage": {
-      "at": "2026-10-18T23:09:18",
-      "note": "14 clips chosen from checked grids"
+      "at": "2026-10-18T23:40:15",
+      "note": "14 clips from 14 checked grids (35 s windows); 2 weak: sentence 10 uses Carmody with candle (no morning deaths shot found), sentence 11 uses Billy crying (no pharmacy shot)"
     },
     "sheet": {
-      "at": "2026-10-18T23:09:39",
-      "note": "row 5 D:G written, READY_FOR_LOCAL_RENDER"
+      "at": "2026-10-18T23:40:38",
+      "note": "row 5 D5:G5 written, READY_FOR_LOCAL_RENDER"
     },
     "render": {
-      "at": "2026-10-18T23:13:27",
-      "note": "runner done, 59.83s"
+      "at": "2026-10-18T23:45:04",
+      "note": "rendered 14 clips, voice 62.08s video 62.10s"
     },
     "verify": {
-      "at": "2026-10-18T23:13:27",
-      "note": "verify PASS 59.8s, captions 26/28"
+      "at": "2026-10-18T23:45:14",
+      "note": "verify PASS 62.1s, captions 23/30"
     }
-  }
+  },
+  "history": [
+    {
+      "at": "2026-10-18T23:17:54",
+      "reset_from": "research"
+    }
+  ]
 }

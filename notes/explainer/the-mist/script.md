@@ -1,28 +1,24 @@
 # The Mist (2007): script fact check
 
-SDH source: `sdh.srt` (The.Mist.2007.DvDRip.Eng-FxM.en.HI.srt, times in the film as H:MM:SS). Plot summary = Wikipedia plot. "The preacher" = Mrs. Carmody. "Norm" is the grocery bagger.
+SDH source: `sdh.srt` (times in the film as H:MM:SS). Plot summary = Wikipedia plot. "Carmody" is the preacher credited as Mrs. Carmody (the period is dropped so the sentence split holds). Thread: a father trying to keep his son safe while the store turns on itself. The ending is withheld.
 
 | # | Sentence (short) | Source |
 |---|---|---|
-| 0 | Tentacle yanks a grocery bagger out of a loading dock while friends grab his arms | 0:26:37 "Hold him still!"; plot summary (Norm dragged away by a tentacled creature) |
-| 1 | David Drayton is an artist with a studio deadline | plot summary (artist); 0:02:02 "extend my deadline" |
-| 2 | A storm dropped a tree through his picture window; it belonged to his neighbor | 0:02:22 "tree was gonna come flying through the window"; 0:04:03 "our neighbor about his tree" |
-| 3 | He drives his son into town for supplies, and the mist rolls in | 0:04:01 "I'll take him to town with me"; plot summary (drive into town, mist over the lake) |
-| 4 | He argues with the men who want to send the bagger out | 0:24:10 "You guys gonna let this kid risk his life" |
-| 5 | They send him anyway | 0:24:43 "Norm, come on."; plot summary (Norm goes to fix the generator) |
-| 6 | A man outside screams that something in the mist has taken someone | 0:12:05 "...took John Lee!"; 0:12:08 "Something in the mist took John Lee." |
-| 7 | Everyone is told to stay inside, and the crowd shuts the doors | 0:12:12 "Shut the doors!"; 0:14:29 "Just stay inside the store." |
-| 8 | A woman walks out to find her children, though the crowd warns her not to | 0:14:33 "I gotta get home to my kids."; 0:14:54 "Ma'am, no, you can't go out there."; plot summary (leaves alone to find children) |
-| 9 | Norm is sent out to raise the loading door so the generator can run | 0:24:01 "I'm gonna start the motor, you raise the door"; plot summary |
-| 10 | Norm screams while his friends hold on; David shouts to start the generator | 0:26:37 "Hold him still!"; 0:27:32 "DAVID: Start the generator." |
-| 11 | The preacher calls Norm the first payment and demands more | 0:45:02 "Little Normie was first,"; 0:45:07 "The bill is due." |
-| 12 | Who is she going to sacrifice next? | 1:12:12 "who she's gonna sacrifice" (said by Bill about her) |
-| 13 | Some in the crowd call David a traitor and order him onto his knees | 1:30:21 "Get on your knees!"; 1:32:04 "Judas!" |
-| 14 | A soldier admits he is stationed at a secret base up on the mountain | 1:29:55 "It's the Arrowhead Project, isn't it?"; 1:30:42 "I'm stationed up there."; plot summary (soldier Jessup) |
-| 15 | The crowd decides that is why the wrath of heaven has come down | 1:30:32 "That's what brung down the wrath of God!" |
-| 16 | At dawn, the preacher says no one may leave, and the only car is parked at the far end of the lot | 1:36:55 "It's dawn."; 1:37:16 "My car's parked... far end."; 1:38:02 "You can't go out. I won't allow it." |
+| 0 | Boy makes his father swear the monsters will never get him, no matter what | 1:36:05 promise request; 1:36:11 "No matter what"; plot summary (son is eight, store closed off) |
+| 1 | David took Billy to town after a storm, leaving his wife at home | 0:04:01 take Billy to town; 0:07:19 David tries to phone Steph; plot summary (storm) |
+| 2 | Man with bloody nose bursts in, screaming something in the mist took his friend | 0:12:02 "Something in the mist"; 0:12:05 took John Lee; 0:18:21 nose stopped bleeding |
+| 3 | Doors bolted, Billy cries for his mom | 0:12:12 shut the doors; 0:17:20 "I want Mommy!" |
+| 4 | David warns the men not to open the loading door | 0:22:55 "you can't do that"; 0:23:19 "You open that door, and something gets in" |
+| 5 | They do, a tentacle drags a grocery bagger into the mist | 0:26:37 "Hold him still"; plot summary (Norm, bagger, dragged into the mist) |
+| 6 | Lawyer neighbor accuses him of faking it, zealot Carmody preaches God demands blood | 0:32:37 attorney; 0:34:13 accuses David; 0:34:41 lawsuit grudge; 0:44:42 "retribution in blood" |
+| 7 | Neighbor walks out tied to a rope, men holding it shout to cut it | 0:49:40 "Tie this around your waist"; 0:54:03 "Cut the rope!" |
+| 8 | He never returns | plot summary (Brent leaves with a group and does not return) |
+| 9 | Insects swarm the windows, a predator smashes the glass | 0:58:04 bugs; 0:59:31 attracted to light; plot summary (pterodactyl-like predator smashes window) |
+| 10 | People dead, Carmody who swore it would happen has followers | 1:05:44 "She said they would come at night"; 0:45:41 "They'll come tonight"; 1:12:04 "I count four" |
+| 11 | Burned man dying, David heads for the pharmacy, Billy begs him to stay | 1:09:30 "he's gonna die of infection"; 1:09:39 pharmacy; 1:14:10 "Daddy, don't go!" |
+| 12 | Soldier stuck to a post gasps it is the military's fault, spiders burst out | 1:21:15 "glued to this post"; 1:21:18 "It's all our fault"; 1:21:50; plot summary (spiders burst from the MP) |
+| 13 | Another soldier admits his base may have opened a door to another world, Carmody blames him | 1:31:12 other dimensions; 1:31:34 hole by accident; 1:33:01 "And it is his fault" |
+| 14 | Her followers stab him and throw him to the monsters | 1:33:39 "Stab him!"; 1:33:44 "Feed him to the beast"; plot summary (stabbed, thrown outside) |
+| 15 | At dawn Carmody blocks the door, followers shout they want Billy | 1:38:02 "You can't go out"; 1:39:33 "We want the boy"; 1:39:36 |
 
-Notes:
-- Sentence 12 is a question, not a claim. It is supported by the 1:12:12 line about who the preacher will sacrifice.
-- Nothing about the ending appears: no shooting of the group, no Billy, no rescue. Carmody's death and the Army arrival are held back.
-- Sentence 14 gives the Arrowhead clue only, without the military-experiment explanation.
+Lint notes: no warnings. Sentence 0 is the hook and is not repeated; sentences 12 and 13 use different soldiers (the pharmacy soldier dies in 12, the one named only as a soldier is killed in 14).

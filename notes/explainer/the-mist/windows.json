@@ -1,0 +1,16 @@
+[
+ {"name": "B01_hook_promise", "start": 5750, "end": 5785},
+ {"name": "B02_leave_wife", "start": 110, "end": 145},
+ {"name": "B03_bloody_man", "start": 715, "end": 750},
+ {"name": "B04_billy_cries", "start": 1035, "end": 1070},
+ {"name": "B05_warn_shutter_bagger", "start": 1440, "end": 1475},
+ {"name": "B06_preacher_neighbor", "start": 2600, "end": 2635},
+ {"name": "B07_rope_neighbor", "start": 3140, "end": 3175},
+ {"name": "B08_night_insects", "start": 3475, "end": 3510},
+ {"name": "B09_morning_followers", "start": 4310, "end": 4345},
+ {"name": "B10_burned_pharmacy", "start": 4160, "end": 4195},
+ {"name": "B11_soldier_spiders", "start": 4870, "end": 4905},
+ {"name": "B12_soldier_admits", "start": 5465, "end": 5500},
+ {"name": "B13_crowd_stabs", "start": 5600, "end": 5635},
+ {"name": "B14_dawn_blocks_door", "start": 5875, "end": 5910}
+]
