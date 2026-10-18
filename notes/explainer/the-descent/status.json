@@ -1,0 +1,36 @@
+{
+  "passed": {
+    "research": {
+      "at": "2026-10-19T00:07:37",
+      "note": "story bible, hooks written from sdh digest and Wikipedia plot"
+    },
+    "story": {
+      "at": "2026-10-19T00:07:37",
+      "note": "21 sentences, 245 words, hook picked, fact-check table written"
+    },
+    "lint": {
+      "at": "2026-10-19T00:07:41",
+      "note": "lint PASS, 245 words, est 59.7s, factcheck PASS"
+    },
+    "voice": {
+      "at": "2026-10-19T00:08:40",
+      "note": "voicecheck PASS 60.8s, 245 words"
+    },
+    "footage": {
+      "at": "2026-10-19T00:21:50",
+      "note": "14 clips from checked frames; picks.txt; clip plan gate RESULT PASS"
+    },
+    "sheet": {
+      "at": "2026-10-19T00:22:13",
+      "note": "row 6 D6:G6 written, status READY_FOR_LOCAL_RENDER"
+    },
+    "render": {
+      "at": "2026-10-19T00:26:45",
+      "note": "60.8s, The Descent (2005) (2).mp4"
+    },
+    "verify": {
+      "at": "2026-10-19T00:26:45",
+      "note": "length 60.8s, black 0.0s, audio yes, captions in 25/29 samples"
+    }
+  }
+}

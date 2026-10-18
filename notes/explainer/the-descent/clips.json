@@ -1,156 +1,156 @@
 [
  {
-  "start": 51.68,
+  "start": 294.0,
   "sentences": [
    0,
    0
   ],
-  "quote": "Look out girls, here we go.",
-  "action": "Group on the rapids, adventure trip",
-  "visual_prompt": "a group of women on a river rapid",
+  "quote": "",
+  "action": "Sarah in a teal-lit hospital corridor, face turned in distress",
+  "visual_prompt": "Sarah in a teal-lit hospital corridor, face turned in distress",
   "needs_visual_scan": false
  },
  {
-  "start": 1143.06,
+  "start": 1300.0,
   "sentences": [
    1,
    1
   ],
-  "quote": "You finally caught up with me.",
-  "action": "Juno leads the way through the forest",
-  "visual_prompt": "a woman with a red rope leading people through a forest",
+  "quote": "",
+  "action": "a climber in harness with rope at the cave approach",
+  "visual_prompt": "a climber in harness with rope at the cave approach",
   "needs_visual_scan": false
  },
  {
-  "start": 1157.0,
+  "start": 1960.0,
   "sentences": [
    2,
-   2
-  ],
-  "quote": "There's a river about half a mile ahead.",
-  "action": "The group walks through the forest",
-  "visual_prompt": "people walking through a forest",
-  "needs_visual_scan": false
- },
- {
-  "start": 1025.93,
-  "sentences": [
-   3,
    3
   ],
-  "quote": "Juno, are you sure this is the right way?",
-  "action": "Women in a car on a forest road",
-  "visual_prompt": "women in a car on a dark forest road",
+  "quote": "I can't. I can't.",
+  "action": "a face pressed into dark tight rock, headlamp on",
+  "visual_prompt": "a face pressed into dark tight rock, headlamp on",
   "needs_visual_scan": false
  },
  {
-  "start": 665.81,
+  "start": 2069.0,
   "sentences": [
    4,
    4
   ],
-  "quote": "Come on, light, you bastard.",
-  "action": "Women with a blue flare in the dark",
-  "visual_prompt": "women lighting a blue flare in a dark room",
+  "quote": "Sarah, keep hold of the rope!",
+  "action": "dust-covered rock wall in a tight passage",
+  "visual_prompt": "dust-covered rock wall in a tight passage",
   "needs_visual_scan": false
  },
  {
-  "start": 1409.43,
+  "start": 2144.0,
   "sentences": [
    5,
-   5
-  ],
-  "quote": "[SCREAMS]",
-  "action": "Women in a cave with headlamps, looking up",
-  "visual_prompt": "people in a cave with headlamps",
-  "needs_visual_scan": false
- },
- {
-  "start": 1442.0,
-  "sentences": [
-   6,
    6
   ],
-  "quote": "There's only one way out of this chamber and that's down the pipe.",
-  "action": "Cave passage with headlamps",
-  "visual_prompt": "people walking in a cave passage",
+  "quote": "I knew it. I knew this wasn't right.",
+  "action": "Juno in a yellow helmet, headlamp glare, looking uneasy",
+  "visual_prompt": "Juno in a yellow helmet, headlamp glare, looking uneasy",
   "needs_visual_scan": false
  },
  {
-  "start": 1497.1,
+  "start": 2178.0,
   "sentences": [
    7,
-   7
-  ],
-  "quote": "It's a drop.",
-  "action": "Dark cave with red flares",
-  "visual_prompt": "red flares in a dark cave",
-  "needs_visual_scan": false
- },
- {
-  "start": 1273.14,
-  "sentences": [
-   8,
    8
   ],
-  "quote": "OK, Sarah, Beth, you're up next.",
-  "action": "Women in the forest with packs",
-  "visual_prompt": "women in the forest with packs",
+  "quote": "Where... Where are we?",
+  "action": "two climbers in helmets looking at each other in a dim cave",
+  "visual_prompt": "two climbers in helmets looking at each other in a dim cave",
   "needs_visual_scan": false
  },
  {
-  "start": 1380.77,
+  "start": 2803.0,
   "sentences": [
    9,
    9
   ],
-  "quote": "Juno.",
-  "action": "Cave wall with climbing gear",
-  "visual_prompt": "climbing gear on a cave wall",
+  "quote": "",
+  "action": "a woman's raised hand at a rock wall in red flare light",
+  "visual_prompt": "a woman's raised hand at a rock wall in red flare light",
   "needs_visual_scan": false
  },
  {
-  "start": 1224.81,
+  "start": 2841.0,
   "sentences": [
    10,
    10
   ],
-  "quote": "Sam, stop poking it with a fucking stick.",
-  "action": "Group at roots and a stick in the forest",
-  "visual_prompt": "people in a forest near tree roots",
+  "quote": "",
+  "action": "red-lit cave floor with a dim figure at the bottom",
+  "visual_prompt": "red-lit cave floor with a dim figure at the bottom",
   "needs_visual_scan": false
  },
  {
-  "start": 1166.0,
+  "start": 2879.0,
   "sentences": [
    11,
-   11
-  ],
-  "quote": "It's rule number one - file a flight plan and stick to it.",
-  "action": "Group walking through the forest",
-  "visual_prompt": "a group walking through a forest",
-  "needs_visual_scan": false
- },
- {
-  "start": 1170.18,
-  "sentences": [
-   12,
    12
   ],
-  "quote": "You think it's dark when you turn out the lights. Well, down there it's pitch black.",
-  "action": "Group near a stream in the forest",
-  "visual_prompt": "people walking near a stream in a forest",
+  "quote": "",
+  "action": "runner's headlamp and a bright spot ahead in the dark passage",
+  "visual_prompt": "runner's headlamp and a bright spot ahead in the dark passage",
   "needs_visual_scan": false
  },
  {
-  "start": 1560.0,
+  "start": 2951.0,
   "sentences": [
    13,
-   13
+   14
   ],
   "quote": "",
-  "action": "Red-lit cave with headlamps",
-  "visual_prompt": "people in a red-lit cave with headlamps",
+  "action": "injured woman on the cave floor, leg out of place",
+  "visual_prompt": "injured woman on the cave floor, leg out of place",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 3131.0,
+  "sentences": [
+   15,
+   15
+  ],
+  "quote": "I just saw something ahead in the tunnel.",
+  "action": "Sarah in headlamp, a dark figure behind her in the tunnel",
+  "visual_prompt": "Sarah in headlamp, a dark figure behind her in the tunnel",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 3369.0,
+  "sentences": [
+   16,
+   17
+  ],
+  "quote": "Hello!",
+  "action": "dim frame: a woman beside a pale figure in teal light",
+  "visual_prompt": "dim frame: a woman beside a pale figure in teal light",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 3410.0,
+  "sentences": [
+   18,
+   19
+  ],
+  "quote": "",
+  "action": "group in a glowing cave with dark figures circling on the floor",
+  "visual_prompt": "group in a glowing cave with dark figures circling on the floor",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 4470.0,
+  "sentences": [
+   20,
+   20
+  ],
+  "quote": "Don't trust her.",
+  "action": "bloodied face lit by firelight in the dark",
+  "visual_prompt": "bloodied face lit by firelight in the dark",
   "needs_visual_scan": false
  }
 ]

@@ -1,0 +1,14 @@
+B01_hospital b | Sarah in a teal-lit hospital corridor, face turned in distress
+B02_cave_entry b | a climber in harness with rope at the cave approach
+B03_tunnel_stuck b | a face pressed into dark tight rock, headlamp on
+B04_buried a | dust-covered rock wall in a tight passage
+B05_juno_admits a | Juno in a yellow helmet, headlamp glare, looking uneasy
+B06_no_name c | two climbers in helmets looking at each other in a dim cave
+B07_piton a | a woman's raised hand at a rock wall in red flare light
+B08_named_place a | red-lit cave floor with a dim figure at the bottom
+B09_daylight_run 2879 | runner's headlamp and a bright spot ahead in the dark passage
+B10_leg_break b | injured woman on the cave floor, leg out of place
+B11_man_in_tunnel a | Sarah in headlamp, a dark figure behind her in the tunnel
+B12_roof_crossing 3369 | dim frame: a woman beside a pale figure in teal light
+B13_circling b | group in a glowing cave with dark figures circling on the floor
+B14_beth_dying 4470 | bloodied face lit by firelight in the dark

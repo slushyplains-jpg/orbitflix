@@ -1,0 +1,16 @@
+[
+  {"name": "B01_hospital", "sentences": [0, 0], "start": 280, "end": 318},
+  {"name": "B02_cave_entry", "sentences": [1, 1], "start": 1270, "end": 1305},
+  {"name": "B03_tunnel_stuck", "sentences": [2, 3], "start": 1960, "end": 2000},
+  {"name": "B04_buried", "sentences": [4, 4], "start": 2040, "end": 2080},
+  {"name": "B05_juno_admits", "sentences": [5, 6], "start": 2130, "end": 2170},
+  {"name": "B06_no_name", "sentences": [7, 8], "start": 2160, "end": 2195},
+  {"name": "B07_piton", "sentences": [9, 9], "start": 2800, "end": 2835},
+  {"name": "B08_named_place", "sentences": [10, 10], "start": 2836, "end": 2868},
+  {"name": "B09_daylight_run", "sentences": [11, 12], "start": 2870, "end": 2910},
+  {"name": "B10_leg_break", "sentences": [13, 14], "start": 2945, "end": 2985},
+  {"name": "B11_man_in_tunnel", "sentences": [15, 15], "start": 3120, "end": 3160},
+  {"name": "B12_roof_crossing", "sentences": [16, 17], "start": 3365, "end": 3400},
+  {"name": "B13_circling", "sentences": [18, 19], "start": 3395, "end": 3435},
+  {"name": "B14_beth_dying", "sentences": [20, 20], "start": 4440, "end": 4480}
+]

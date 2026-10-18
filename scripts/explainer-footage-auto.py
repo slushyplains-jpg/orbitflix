@@ -2,7 +2,9 @@
 
 Usage: python3.11 explainer-footage-auto.py <slug> <tmdb> [movie|tv]
 Reads notes/explainer/<slug>/beats.json:
-  [{"name": "B01_head", "sentences": [0, 0], "start": 1260, "end": 1300}, ...]   (14 beats, film seconds)
+  [{"name": "B01_head", "sentences": [0, 0], "at": 1281, "start": 1265, "end": 1300}, ...]   (14 beats, film seconds)
+  "at" is the subtitle or plot time of the moment the sentence describes. Candidates near it rank higher,
+  because the brightest shot in a window is often not the one the sentence is about.
 Then it:
   1. fetches a fresh stream link (kept in a temp file, never printed),
   2. builds the labeled grids for every beat in parallel (shots/<name>.jpg and .json, the fallback view),
@@ -61,7 +63,7 @@ with cf.ThreadPoolExecutor(4) as ex:
         print(("  " if code == 0 else "  FAILED ") + msg)
 
 
-def rank(frames):
+def rank(frames, at=None):
     picks = []
     for i in range(len(frames) - SPAN + 1):
         run = frames[i:i + SPAN]
@@ -69,6 +71,8 @@ def rank(frames):
             continue
         score = sum(min(f["luma"], 90) for f in run) / SPAN + min(sum(f["sharp"] for f in run) / SPAN, 60) / 2
         score += -8 * sum(f["dim"] or f["soft"] for f in run) + (15 if run[0]["cut"] else 0)
+        if at is not None:
+            score -= 2.5 * abs(run[0]["t"] - at)  # about 10 points lost per 4 s away from the moment
         picks.append((score, run[0]["t"]))
     picks.sort(reverse=True)
     out = []
@@ -83,7 +87,7 @@ def rank(frames):
 cands = {}
 for b in beats:
     p = os.path.join(shots, f"{b['name']}.json")
-    cands[b["name"]] = rank(json.load(open(p))) if os.path.exists(p) else []
+    cands[b["name"]] = rank(json.load(open(p)), b.get("at")) if os.path.exists(p) else []
 
 
 def still(job):

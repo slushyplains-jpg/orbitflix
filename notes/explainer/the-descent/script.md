@@ -1,28 +1,30 @@
 # The Descent (2005): script fact check
 
-SDH source: `The.Descent.2005.720p.BluRay.x264.DTS-WiKi [PublicHD]hi.srt`
-Timecodes are seconds in this release. Narration = connective wording, not a plot fact.
+| # | Sentence (short) | Source |
+|---|---|---|
+| 0 | Sarah wakes calling for her daughter, Beth says she is gone | 4:42, 4:51, 5:17, plot summary (Beth tells her) |
+| 1 | A year later, six women go caving to lift Sarah's grief | 10:52, 27:49, plot summary (a year later; six women) |
+| 2 | Sarah stuck in a tight tunnel, cannot breathe | 32:03, 32:33 |
+| 3 | Beth talks her through, they escape before collapse | 32:33, 34:07, 34:17 |
+| 4 | Only way back is buried | 34:50, 36:23, plot summary |
+| 5 | Leader Juno admits the truth | 35:54, 36:08, plot summary |
+| 6 | Told rescuers about a tourist cave, this is not it | 35:34, 35:54, plot summary (filed route differs) |
+| 7 | This one has no name | 36:08 |
+| 8 | Nobody knows where to look | 35:34, plot summary (no rescue party knows where they are) |
+| 9 | Rusted piton, a hundred years old | 44:59 |
+| 10 | Anyone who made it out would have named the place | 45:14 |
+| 11 | Youngest sees daylight, sprints | 47:59, 48:09 |
+| 12 | It is not daylight | 48:09, 53:25 |
+| 13 | Glowing rock, two miles underground, she drops into a hole | 53:25, 48:21, 49:12, 49:19 |
+| 14 | Leg breaks, bone sticking through, pushed back in | 50:34, 50:56, 49:06 |
+| 15 | Sarah sees a man, the others say it is the dark | 52:06, 52:46, 52:57 |
+| 16 | Something crosses the roof faster than any climber | 56:15, 56:25 |
+| 17 | That was no human | 56:25 |
+| 18 | Screeching starts, it circles them | 56:37, 56:50 |
+| 19 | Others torn from Sarah, screaming begins | 57:39, 58:03, 58:23 |
+| 20 | Sarah finds Beth dying, Beth whispers Juno did this to her | 1:14:09, 1:14:26, plot summary (Sarah finds the dying Beth) |
 
-Note: this SDH track gives fewer story facts than the other films checked so far. The script is 160 words, short of the 200-word target. Every plot fact left in the script is sourced; the rest is narration.
-
-| # | Sentence | Facts and SDH timecode | Status |
-|---|---|---|---|
-| 0 | Six women go caving on a trip they planned together, and the adventure is supposed to bring them closer. | "Here's to our adventure." 655. "I wanted us all to discover it." 2183 | SDH; "bring them closer" is narration |
-| 1 | Sarah is still shaken, and the group's first hardship leaves her struggling to breathe. | "[SARAH STRUGGLES FOR BREATH]" 1957. "Just a poxy cave" 2013 | SDH for the breathing; "still shaken" is narration |
-| 2 | The cave system is bigger than the guidebook suggested, and there is no easy way out. | "According to the guidebook, this cave system has three ways out." 2121. "We're two miles underground" 3216 | SDH |
-| 3 | Somewhere in the dark, something starts to growl, and the sound echoes off the stone. | "[GROWLING]" 3729. "[GROWLS]" 3860 | SDH |
-| 4 | Juno, who led them here, is holding the flare, and it is hers. | "Juno, the flare! Get rid of it!" 3437. "This is Juno's." 4491 | SDH |
-| 5 | Then Sarah is separated from the group, and her screams for help echo through the tunnels. | "Sarah! Run!" 3483. "Sarah!" 3886 | SDH; "for help" is narration |
-| 6 | The creatures, called crawlers, come out to hunt, and the women find themselves trapped in their path. | "[CRAWLER SQUEALS AND WHIMPERS]" 4614. "Whatever they are, they go to the surface to hunt." 4366 | SDH; "trapped in their path" is narration |
-| 7 | The others have to decide whether to keep searching for Sarah or save themselves. | "Look, she's dead, Juno. We can't wait for her." 4808 | SDH for the decision; "save themselves" is narration |
-| 8 | The group argues over whether Sarah can still be saved. | "Look, she's dead, Juno. We can't wait for her." 4808 | SDH (the argument is supported; the speaker needs checking in the picture) |
-| 9 | In the chaos, the women realize that the cave holds more than they ever imagined. | "[JUNO SCREAMS]" 5414 | Narration |
-| 10 | Every choice they make now could decide who gets out alive. | None | Narration (commentary, not a plot fact) |
-
-## Needs a decision before render
-1. Length: 160 words, short of the 200-word target. Add sourced beats after checking more of the SDH track.
-2. Sentence 8: the speaker of the line about Sarah is not confirmed. Check the picture.
-
-## Added to reach the 60-second target
-- Sentence 11: "Someone promises to get Sarah out of here" (SDH 3134 "Sarah, I promise you, I'm gonna get you out of here.") and "the only light down here is the light they carry" (SDH 3216).
-- Sentence 12: "There is no going back now" (SDH 2196 "there's no going back now"). The rest is narration.
+Notes:
+- Beth is named for the line "Beth, I'm coming back" at 32:33 and the hospital scene from plot summary. The subtitles do not name the speaker of every line, so speaker attribution for sentences 6, 14 and 20 rests on the plot summary.
+- "Hospital" and "a year later" are from the plot summary only, the subtitles have no captions for them.
+- The film's location is deliberately left out because the subtitles and plot sources disagree on it.
