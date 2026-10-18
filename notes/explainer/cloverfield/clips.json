@@ -1,156 +1,156 @@
 [
  {
-  "start": 372.0,
+  "start": 1273.0,
   "sentences": [
    0,
    0
   ],
-  "quote": "",
-  "action": "Party bar with guests",
-  "visual_prompt": "a party in a bar with guests",
+  "quote": "MAN: You gotta take your stuff and we gotta get out of here, man!",
+  "action": "The statue's head lying in the street, people filming it",
+  "visual_prompt": "the giant head of the Statue of Liberty in a city street at night",
   "needs_visual_scan": false
  },
  {
-  "start": 360.0,
+  "start": 594.0,
   "sentences": [
    1,
-   1
-  ],
-  "quote": "",
-  "action": "Hud's camera overlay, then the party",
-  "visual_prompt": "a dated camera frame of a party",
-  "needs_visual_scan": false
- },
- {
-  "start": 902.76,
-  "sentences": [
-   2,
    2
   ],
-  "quote": "You never even called me, Rob!",
-  "action": "Dark hallway, a man and woman on the stairs",
-  "visual_prompt": "two people arguing in a dark hallway",
+  "quote": "(ALL CHEERING)",
+  "action": "Rob arrives to his surprise party, smiling",
+  "visual_prompt": "a man in a suit greeted at a surprise party",
   "needs_visual_scan": false
  },
  {
-  "start": 1103.18,
+  "start": 857.0,
   "sentences": [
    3,
-   3
-  ],
-  "quote": "What the hell was that?",
-  "action": "Dark frames and dust, people in a bar",
-  "visual_prompt": "a dark room with people in a bar",
-  "needs_visual_scan": false
- },
- {
-  "start": 1370.29,
-  "sentences": [
-   4,
    4
   ],
-  "quote": "Jason, don't go out...",
-  "action": "A figure walks out of a smoky shop into the orange-lit street",
-  "visual_prompt": "a man walking out of a smoky shop into a street",
+  "quote": "Okay.",
+  "action": "Beth at the party, upset, talking to the camera",
+  "visual_prompt": "a woman at a party looking upset",
   "needs_visual_scan": false
  },
  {
-  "start": 1399.65,
+  "start": 1129.0,
   "sentences": [
    5,
-   5
-  ],
-  "quote": "Oh, my God. Marlena?",
-  "action": "Smoke, a figure on the ground",
-  "visual_prompt": "people in smoke on a city street",
-  "needs_visual_scan": false
- },
- {
-  "start": 1090.63,
-  "sentences": [
-   6,
    6
   ],
-  "quote": "It's not that simple.",
-  "action": "Rob on the stairs, talking",
-  "visual_prompt": "a man talking on a dark staircase",
+  "quote": "- Okay. - MAN: It was like a bomb.",
+  "action": "Panicked partygoers, then the TV news about the tanker",
+  "visual_prompt": "people at a party watching breaking news on a TV",
   "needs_visual_scan": false
  },
  {
-  "start": 1642.39,
+  "start": 1197.0,
   "sentences": [
    7,
-   7
-  ],
-  "quote": "Rob got a hold of Beth.",
-  "action": "Crowd on the dark bridge, a man in frame",
-  "visual_prompt": "a crowd on a dark bridge at night",
-  "needs_visual_scan": false
- },
- {
-  "start": 1728.14,
-  "sentences": [
-   8,
    8
   ],
-  "quote": "(BRIDGE CABLES SNAPPING)",
-  "action": "Bridge cables and crowd in the dark",
-  "visual_prompt": "cables and a crowd on a dark bridge",
+  "quote": "(EXPLOSION SOUNDS)",
+  "action": "A huge explosion lights up the skyline",
+  "visual_prompt": "a massive explosion in the city skyline at night",
   "needs_visual_scan": false
  },
  {
-  "start": 1857.48,
+  "start": 1597.0,
   "sentences": [
    9,
-   9
-  ],
-  "quote": "NEWSCASTER: ... burning right now.",
-  "action": "Breaking news on TV screens in a store",
-  "visual_prompt": "breaking news on a television in a store",
-  "needs_visual_scan": false
- },
- {
-  "start": 1896.23,
-  "sentences": [
-   10,
    10
   ],
-  "quote": "(CREATURE ROARING)",
-  "action": "Street and store with TVs as the military moves in",
-  "visual_prompt": "people in a city street near a store",
+  "quote": "Get across the bridge. Move in a quick and orderly fashion.",
+  "action": "Crowd crossing the Brooklyn Bridge in floodlight",
+  "visual_prompt": "a crowd on a bridge at night under floodlights",
   "needs_visual_scan": false
  },
  {
-  "start": 1981.06,
+  "start": 1687.0,
   "sentences": [
    11,
-   11
-  ],
-  "quote": "It fell. My apartment... The whole wall fell on me!",
-  "action": "Rob on the phone in a bar",
-  "visual_prompt": "a man on a phone in a dark room",
-  "needs_visual_scan": false
- },
- {
-  "start": 2013.8,
-  "sentences": [
-   12,
    12
   ],
-  "quote": "Rob, wait up! Rob!",
-  "action": "Rob walking through a dark street",
-  "visual_prompt": "a man walking down a dark city street at night",
+  "quote": "- LILY: Jason! - Can you see anything?",
+  "action": "Chaos on the bridge as the cables are hit",
+  "visual_prompt": "people screaming on a bridge as cables snap",
   "needs_visual_scan": false
  },
  {
-  "start": 2126.0,
+  "start": 1923.0,
   "sentences": [
    13,
    13
   ],
+  "quote": "MARTEL: Well, Bob, the military will not let us get too close,",
+  "action": "Store TVs showing breaking news and soldiers",
+  "visual_prompt": "TV screens in a store showing soldiers fighting",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 2005.0,
+  "sentences": [
+   14,
+   15
+  ],
   "quote": "",
-  "action": "Soldiers and military vehicles at night",
-  "visual_prompt": "soldiers and military vehicles on a city street at night",
+  "action": "Rob listening to the voicemail, then the empty street",
+  "visual_prompt": "a man listening to his phone, then a dark street",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 2108.0,
+  "sentences": [
+   16,
+   16
+  ],
+  "quote": "- Oh, shit. - Oh, my God!",
+  "action": "Soldiers firing in the street as smoke bursts",
+  "visual_prompt": "soldiers firing in a smoky city street at night",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 2699.0,
+  "sentences": [
+   17,
+   17
+  ],
+  "quote": "(CREATURE SCREECHING)",
+  "action": "A creature attacks in the subway tunnel",
+  "visual_prompt": "a creature attacking a woman in a dark tunnel",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 3100.0,
+  "sentences": [
+   18,
+   18
+  ],
+  "quote": "",
+  "action": "Marlena with blood running from her eyes",
+  "visual_prompt": "a woman with bleeding eyes in a field hospital",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 3317.0,
+  "sentences": [
+   19,
+   19
+  ],
+  "quote": "And then we could find some way down to her place.",
+  "action": "Rooftop view over the smoking city at night",
+  "visual_prompt": "a rooftop view of a ruined city at night",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 3297.0,
+  "sentences": [
+   20,
+   20
+  ],
+  "quote": "HUD: Oh, shit. I don't suppose she lives on the ground floor.",
+  "action": "A tall tower leaning against the next building",
+  "visual_prompt": "a skyscraper leaning against another building at night",
   "needs_visual_scan": false
  }
 ]

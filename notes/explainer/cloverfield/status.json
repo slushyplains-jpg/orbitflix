@@ -1,0 +1,36 @@
+{
+  "passed": {
+    "research": {
+      "at": "2026-10-18T18:29:20",
+      "note": "Wikipedia plot + SDH, story.md"
+    },
+    "story": {
+      "at": "2026-10-18T18:29:20",
+      "note": "hook 1, 229 words, script.md"
+    },
+    "lint": {
+      "at": "2026-10-18T18:29:20",
+      "note": "PASS (warnings: name count)"
+    },
+    "voice": {
+      "at": "2026-10-18T18:29:20",
+      "note": "PASS 60.2s"
+    },
+    "footage": {
+      "at": "2026-10-18T18:33:50",
+      "note": "14 clips from checked grids"
+    },
+    "sheet": {
+      "at": "2026-10-18T18:34:17",
+      "note": "row 4 written"
+    },
+    "render": {
+      "at": "2026-10-18T18:38:40",
+      "note": "60.2s, Cloverfield (2008) (2).mp4"
+    },
+    "verify": {
+      "at": "2026-10-18T18:38:41",
+      "note": "PASS 60.2s, black 1.3s, captions 25/29"
+    }
+  }
+}
