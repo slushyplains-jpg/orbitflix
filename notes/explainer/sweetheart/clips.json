@@ -1,0 +1,156 @@
+[
+ {
+  "start": 212.85,
+  "sentences": [
+   0,
+   0
+  ],
+  "quote": "Help!",
+  "action": "Jenn on the beach, shouting for help",
+  "visual_prompt": "a woman on a beach shouting for help",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 240.84,
+  "sentences": [
+   1,
+   1
+  ],
+  "quote": "I need to find you water. Water...",
+  "action": "Jenn gathering coconuts and leaves on the island",
+  "visual_prompt": "a woman gathering coconuts on a tropical island",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1041.67,
+  "sentences": [
+   2,
+   2
+  ],
+  "quote": "(fire crackling)",
+  "action": "Jenn sitting by a small fire",
+  "visual_prompt": "a woman sitting by a small fire at night",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1493.49,
+  "sentences": [
+   3,
+   3
+  ],
+  "quote": "(creature snarling)",
+  "action": "Dark jungle, shapes in the leaves (creature not clearly visible)",
+  "visual_prompt": "dark jungle leaves at night",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 2692.52,
+  "sentences": [
+   4,
+   4
+  ],
+  "quote": "and it drags its food back out to this...",
+  "action": "Friends talking on the beach",
+  "visual_prompt": "friends talking on a tropical beach",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 2634.83,
+  "sentences": [
+   5,
+   5
+  ],
+  "quote": "JENN: There was a family here a long time ago,",
+  "action": "Friends on the beach, coconut shells",
+  "visual_prompt": "people on a tropical beach with coconut shells",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 3026.82,
+  "sentences": [
+   6,
+   6
+  ],
+  "quote": "Jenn, you've been alone and you're scared,",
+  "action": "Friends arguing on the beach",
+  "visual_prompt": "people arguing on a tropical beach",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 3037.53,
+  "sentences": [
+   7,
+   7
+  ],
+  "quote": "I say we light a huge fire.",
+  "action": "Friends arguing on the beach (fire not visible)",
+  "visual_prompt": "people arguing on a tropical beach",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 2933.63,
+  "sentences": [
+   8,
+   8
+  ],
+  "quote": "I'm gonna get more food.",
+  "action": "Jenn walking alone on the beach",
+  "visual_prompt": "a woman walking alone on a beach",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 2900.0,
+  "sentences": [
+   9,
+   9
+  ],
+  "quote": "I saw a bunch of planes go that way.",
+  "action": "Jenn and friends on the beach (planes not visible)",
+  "visual_prompt": "people talking on a beach",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 2458.79,
+  "sentences": [
+   10,
+   10
+  ],
+  "quote": "(creature roars)",
+  "action": "Dark night scene (creature not clearly visible)",
+  "visual_prompt": "a dark night scene",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 3184.15,
+  "sentences": [
+   11,
+   11
+  ],
+  "quote": "Hey! Jenn!",
+  "action": "Friends running to the shore and a boat",
+  "visual_prompt": "people running to the shore with a red boat",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 3310.47,
+  "sentences": [
+   12,
+   12
+  ],
+  "quote": "Jenn, it's not that I don't believe you.",
+  "action": "Dark jungle, Jenn and a man",
+  "visual_prompt": "a woman and a man in a dark jungle",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 3396.49,
+  "sentences": [
+   13,
+   13
+  ],
+  "quote": "This whole thing, Jenn.",
+  "action": "Man by a fire at night",
+  "visual_prompt": "a man by a fire at night",
+  "needs_visual_scan": false
+ }
+]

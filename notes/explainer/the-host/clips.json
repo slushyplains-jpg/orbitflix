@@ -1,0 +1,156 @@
+[
+ {
+  "start": 137.39,
+  "sentences": [
+   0,
+   0
+  ],
+  "quote": "Let's just dump them in the Han River.",
+  "action": "Chemical bottles on a lab table, a man in scrubs",
+  "visual_prompt": "chemical bottles in a laboratory with a man in scrubs",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 838.71,
+  "sentences": [
+   1,
+   1
+  ],
+  "quote": "[MONSTER GROWLING]",
+  "action": "Crowd on the seawall turns to the water as the creature growls",
+  "visual_prompt": "a crowd on a seawall looking at the water",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1196.19,
+  "sentences": [
+   2,
+   2
+  ],
+  "quote": "Hyun-seo!",
+  "action": "A creature pulls a victim under the water by the bridge",
+  "visual_prompt": "a monster pulling a person under the water near a bridge",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 431.0,
+  "sentences": [
+   3,
+   3
+  ],
+  "quote": "Three squids for Mat number 4.",
+  "action": "Gang-du grilling squid at his snack stand",
+  "visual_prompt": "a man grilling squid at a food stall",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1727.31,
+  "sentences": [
+   4,
+   4
+  ],
+  "quote": "The U.S. Army has shipped a sample of the virus.",
+  "action": "TV news report with people in hazmat suits",
+  "visual_prompt": "hazmat workers and a television news report",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1892.0,
+  "sentences": [
+   5,
+   5
+  ],
+  "quote": "",
+  "action": "A man on a phone, hand at his head",
+  "visual_prompt": "a man on a phone in a hospital gown",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1897.73,
+  "sentences": [
+   6,
+   6
+  ],
+  "quote": "It's me, Hyun-seo!",
+  "action": "A man on a phone in a hospital gown, close-up",
+  "visual_prompt": "a man on a phone in a hospital gown",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1910.37,
+  "sentences": [
+   7,
+   7
+  ],
+  "quote": "It's like a big sewer. Really big and deep.",
+  "action": "Phone call in the hospital, the sewer described",
+  "visual_prompt": "a man on a phone in a hospital gown",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 2115.07,
+  "sentences": [
+   8,
+   8
+  ],
+  "quote": "Your daughter, Park Hyun-seo...",
+  "action": "A police officer beside a plastic curtain in a hospital",
+  "visual_prompt": "a police officer in a hospital behind a plastic curtain",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 2120.0,
+  "sentences": [
+   9,
+   9
+  ],
+  "quote": "Park Hyun-seo... She's on the deceased list.",
+  "action": "Officer and a man behind the curtain",
+  "visual_prompt": "a man behind a plastic curtain in a hospital",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 2326.36,
+  "sentences": [
+   10,
+   10
+  ],
+  "quote": "Out of the way! Quick!",
+  "action": "Gang-du pushes through a hospital corridor full of people in masks",
+  "visual_prompt": "a man pushing through a crowded hospital corridor",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 2291.87,
+  "sentences": [
+   11,
+   11
+  ],
+  "quote": "How long's it been since she's eaten?",
+  "action": "Crowd of people in a hospital corridor",
+  "visual_prompt": "a crowd of people in a hospital corridor",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 2330.7,
+  "sentences": [
+   12,
+   12
+  ],
+  "quote": "Gang-du, hurry up!",
+  "action": "Grandpa in a parking garage calling for Gang-du",
+  "visual_prompt": "an older man calling out in a parking garage",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 2346.63,
+  "sentences": [
+   13,
+   13
+  ],
+  "quote": "A3. Where is A3?",
+  "action": "Gang-du runs through the parking garage",
+  "visual_prompt": "people running through a parking garage",
+  "needs_visual_scan": false
+ }
+]

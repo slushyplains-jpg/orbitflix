@@ -538,35 +538,41 @@ export async function runRenderJob(
       const outFile = path.join(jobDir, `clip_${String(i).padStart(3, "0")}.mp4`);
       const src = sources[i];
       const share = shares[i].duration;
-      const args = ["-y"];
-      if (src.headers) args.push("-headers", src.headers);
-      args.push(
-        "-ss",
-        String(src.seek),
-        "-i",
-        src.url,
-        "-t",
-        (share + (i === opts.clips.length - 1 ? 2.5 : 0.6)).toFixed(3),
-        "-an",
-        "-filter_complex",
-        sliceFilter,
-        "-map",
-        "[v]",
-        "-c:v",
-        "libx264",
-        "-preset",
-        "veryfast",
-        "-crf",
-        "22",
-        outFile,
-      );
+      const sliceArgs = (seek: number) => {
+        const args = ["-y"];
+        if (src.headers) args.push("-headers", src.headers);
+        args.push(
+          "-ss",
+          String(seek),
+          "-i",
+          src.url,
+          "-t",
+          (share + (i === opts.clips.length - 1 ? 2.5 : 0.6)).toFixed(3),
+          "-an",
+          "-filter_complex",
+          sliceFilter,
+          "-map",
+          "[v]",
+          "-c:v",
+          "libx264",
+          "-preset",
+          "veryfast",
+          "-crf",
+          "22",
+          outFile,
+        );
+        return args;
+      };
+      // A bad stream segment fails the same seek every time, so later
+      // attempts nudge forward a little while staying in the same shot.
+      const nudges = [0, 1, 2.5];
       for (let attempt = 1; ; attempt++) {
         try {
-          await spawnDone("ffmpeg", args, opts.registerChild);
+          await spawnDone("ffmpeg", sliceArgs(src.seek + nudges[attempt - 1]), opts.registerChild);
           await assertRealVideo(outFile, share);
           break;
         } catch (e) {
-          if (attempt >= 3) throw e;
+          if (attempt >= nudges.length) throw e;
           await new Promise((r) => setTimeout(r, 2000 * attempt));
         }
       }

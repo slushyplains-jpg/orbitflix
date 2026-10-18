@@ -1,0 +1,156 @@
+[
+ {
+  "start": 179.76,
+  "sentences": [
+   0,
+   0
+  ],
+  "quote": "This is Dr. Miranda North,",
+  "action": "Space station and Earth at sunrise",
+  "visual_prompt": "a space station with Earth below",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 193.13,
+  "sentences": [
+   1,
+   1
+  ],
+  "quote": "Preparing to receive these samples",
+  "action": "Station corridors and a labeled capsule",
+  "visual_prompt": "a space station corridor with labeled containers",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 207.96,
+  "sentences": [
+   2,
+   2
+  ],
+  "quote": "Rory Adams will spacewalk to establish visual contact",
+  "action": "Airlock tunnel",
+  "visual_prompt": "a round airlock tunnel on a space station",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 510.26,
+  "sentences": [
+   3,
+   3
+  ],
+  "quote": "He got it.",
+  "action": "Rory holding the capsule",
+  "visual_prompt": "a man holding a capsule in a dark space station",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 741.82,
+  "sentences": [
+   4,
+   4
+  ],
+  "quote": "Did it just move?",
+  "action": "Organism on a dish under a microscope",
+  "visual_prompt": "an organism on a dish under a microscope",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 758.05,
+  "sentences": [
+   5,
+   5
+  ],
+  "quote": "It worked. You woke it.",
+  "action": "Hugh at the microscope",
+  "visual_prompt": "a man at a microscope in a lab",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 636.64,
+  "sentences": [
+   6,
+   6
+  ],
+  "quote": "Longer than we're used to seeing on Earth.",
+  "action": "Organism on the lab screens",
+  "visual_prompt": "a creature on lab screens",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1187.6,
+  "sentences": [
+   7,
+   7
+  ],
+  "quote": "They're also sharing electrical activity in what resembles a growing neural network.",
+  "action": "Crew watching the organism grow",
+  "visual_prompt": "people watching a lab monitor",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1276.19,
+  "sentences": [
+   8,
+   8
+  ],
+  "quote": "Its curiosity outweighs its fear.",
+  "action": "Crew faces and a hand on the controls",
+  "visual_prompt": "a woman looking at a screen on a spaceship",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1582.37,
+  "sentences": [
+   9,
+   9
+  ],
+  "quote": "Stop calling it fucking Calvin.",
+  "action": "Rory argues with the crew in the corridor",
+  "visual_prompt": "men arguing in a space station corridor",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1593.38,
+  "sentences": [
+   10,
+   10
+  ],
+  "quote": "This isn't and will never be a controlled experiment.",
+  "action": "Miranda argues with the crew",
+  "visual_prompt": "a woman in a space station corridor",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1619.12,
+  "sentences": [
+   11,
+   11
+  ],
+  "quote": "We believe it's likely due to the clamp failure in the lab,",
+  "action": "Man at a panel with glasses",
+  "visual_prompt": "a man with glasses at a control panel",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1631.21,
+  "sentences": [
+   12,
+   12
+  ],
+  "quote": "and Hugh, of course, has been beating himself up,",
+  "action": "Hugh with his hand to his face",
+  "visual_prompt": "a man with his hand to his face",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1657.0,
+  "sentences": [
+   13,
+   13
+  ],
+  "quote": "",
+  "action": "Crew faces, tense",
+  "visual_prompt": "people looking tense in a space station",
+  "needs_visual_scan": false
+ }
+]

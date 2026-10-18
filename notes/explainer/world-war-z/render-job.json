@@ -1,0 +1,154 @@
+{
+ "title": "World War Z",
+ "tmdbId": 72190,
+ "mediaType": "movie",
+ "script": "One bite turns a neighbor into a killer in seconds. A former United Nations investigator is stuck in traffic while the crowd turns on the cars around him. His wife and daughters are safe on a Navy carrier. But the officers give him one condition. Find where the outbreak began, because only then is there a chance of a vaccine, or lose the only safe place his family has. He follows the trail to a South Korean base, where the earliest mention of the word zombie sits in an old memo, and the dead pour out of the dark. In Jerusalem, a wall holds back the horde. Then one loud song draws every infected body toward it. The horde breaks over the top, and the wall gives way. Then a plane goes down, and the cabin shakes with each impact. A mayday call crackles through the radio. Then he learns that these things have a weakness. That changes what he is willing to try. Then word comes in from Cardiff that he is missing. The United Nations wants him back, and a helicopter is inbound. What is he willing to lose to stop this?",
+ "clips": [
+  {
+   "start": 416.0,
+   "sentences": [
+    0,
+    0
+   ],
+   "quote": "(EXPLOSION) (PEOPLE GASP)",
+   "action": "Dark smoke down the street, people running after the blast",
+   "visual_prompt": "dark smoke down a city street with people running",
+   "needs_visual_scan": false
+  },
+  {
+   "start": 432.0,
+   "sentences": [
+    1,
+    1
+   ],
+   "quote": "(CLAMORING) (CRASHING)",
+   "action": "Cars crashing in traffic, a driver fighting the wheel",
+   "visual_prompt": "a car crash in a jammed city street",
+   "needs_visual_scan": false
+  },
+  {
+   "start": 1749.0,
+   "sentences": [
+    2,
+    2
+   ],
+   "quote": "There you go, sweetheart.",
+   "action": "Family in the carrier bunks",
+   "visual_prompt": "a family in bunks on a navy ship",
+   "needs_visual_scan": false
+  },
+  {
+   "start": 1920.32,
+   "sentences": [
+    3,
+    4
+   ],
+   "quote": "Mr. Under-Secretary.",
+   "action": "Navy operations room, officers facing Gerry",
+   "visual_prompt": "navy officers in an operations room talking to a man",
+   "needs_visual_scan": false
+  },
+  {
+   "start": 2396.8,
+   "sentences": [
+    5,
+    5
+   ],
+   "quote": "(ZOMBIE SNARLING) (GUNSHOT FIRING)",
+   "action": "Soldiers firing in a dark hangar at night",
+   "visual_prompt": "soldiers firing guns at night in a dark hangar",
+   "needs_visual_scan": false
+  },
+  {
+   "start": 3559.0,
+   "sentences": [
+    6,
+    7
+   ],
+   "quote": "(SINGING AMPLIFIED)",
+   "action": "Soldiers at the Jerusalem wall, a crowd below",
+   "visual_prompt": "soldiers and a crowd at a tall wall in a desert city",
+   "needs_visual_scan": false
+  },
+  {
+   "start": 3637.88,
+   "sentences": [
+    8,
+    8
+   ],
+   "quote": "(PEOPLE SCREAMING)",
+   "action": "Crowd fleeing soldiers in the street",
+   "visual_prompt": "a panicked crowd running through a street",
+   "needs_visual_scan": false
+  },
+  {
+   "start": 4656.0,
+   "sentences": [
+    9,
+    9
+   ],
+   "quote": "(THUD)",
+   "action": "Plane cabin, passengers thrown around",
+   "visual_prompt": "passengers in a plane cabin in panic",
+   "needs_visual_scan": false
+  },
+  {
+   "start": 4762.8,
+   "sentences": [
+    10,
+    10
+   ],
+   "quote": "Mayday, mayday, mayday! Bravo 160 heavy.",
+   "action": "Pilots in the cockpit wearing oxygen masks",
+   "visual_prompt": "pilots in a cockpit wearing oxygen masks",
+   "needs_visual_scan": false
+  },
+  {
+   "start": 5481.56,
+   "sentences": [
+    11,
+    12
+   ],
+   "quote": "I believe these things have a weakness.",
+   "action": "Lab with a scientist and Gerry",
+   "visual_prompt": "a man and scientists in a lab",
+   "needs_visual_scan": false
+  },
+  {
+   "start": 5050.8,
+   "sentences": [
+    13,
+    13
+   ],
+   "quote": "Lane is M.I.A.",
+   "action": "Navy operations room, officers at screens",
+   "visual_prompt": "navy officers at screens in an operations room",
+   "needs_visual_scan": false
+  },
+  {
+   "start": 5042.0,
+   "sentences": [
+    14,
+    14
+   ],
+   "quote": "",
+   "action": "Helicopter on the carrier deck",
+   "visual_prompt": "a military helicopter on a ship deck",
+   "needs_visual_scan": false
+  },
+  {
+   "start": 5418.0,
+   "sentences": [
+    15,
+    15
+   ],
+   "quote": "",
+   "action": "Gerry in a dark office, hand to his face, thinking",
+   "visual_prompt": "a man in a dark office with his hand to his face",
+   "needs_visual_scan": false
+  }
+ ],
+ "ttsSpeed": 0.9,
+ "look": "none",
+ "captions": false
+}

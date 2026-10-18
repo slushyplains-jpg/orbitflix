@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "explainer": {
+      "command": "npx",
+      "args": ["-y", "tsx", "scripts/explainer-mcp/server.ts"]
+    }
+  }
+}

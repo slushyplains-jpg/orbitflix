@@ -1,0 +1,156 @@
+[
+ {
+  "start": 287.98,
+  "sentences": [
+   0,
+   0
+  ],
+  "quote": "When you're underwater for months at a time,",
+  "action": "Norah brushing her teeth in the station bathroom",
+  "visual_prompt": "a woman brushing her teeth in a station bathroom",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 432.02,
+  "sentences": [
+   1,
+   1
+  ],
+  "quote": "Pressure breach!",
+  "action": "Crew running through a smoky corridor",
+  "visual_prompt": "people running through a smoky corridor",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 486.61,
+  "sentences": [
+   2,
+   2
+  ],
+  "quote": "We gotta seal the bulkhead!",
+  "action": "Crew at the bulkhead and a panel",
+  "visual_prompt": "people at a bulkhead on a station",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 532.51,
+  "sentences": [
+   3,
+   3
+  ],
+  "quote": "Norah, Norah! They're not gonna make it.",
+  "action": "Norah under water in a corridor (weak)",
+  "visual_prompt": "a person lying in water in a corridor",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 553.91,
+  "sentences": [
+   4,
+   4
+  ],
+  "quote": "(explosion)",
+  "action": "People in water in the corridor, debris",
+  "visual_prompt": "people in water with debris in a corridor",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 598.74,
+  "sentences": [
+   5,
+   5
+  ],
+  "quote": "To all Kepler Station crew, structural failure is imminent.",
+  "action": "Norah at a panel with a radio",
+  "visual_prompt": "a woman at a panel with a radio",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 615.38,
+  "sentences": [
+   6,
+   6
+  ],
+  "quote": "Was that an earthquake?",
+  "action": "Norah with a radio and a corridor",
+  "visual_prompt": "a woman with a radio in a corridor",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 626.91,
+  "sentences": [
+   7,
+   7
+  ],
+  "quote": "All personnel report to pod bays.",
+  "action": "Dark corridor with lights (weak)",
+  "visual_prompt": "a dark corridor with lights",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 634.61,
+  "sentences": [
+   8,
+   8
+  ],
+  "quote": "Kepler Station status, 70% compromised.",
+  "action": "Dark corridors with lights and smoke (weak)",
+  "visual_prompt": "a dark corridor with lights and smoke",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 722.34,
+  "sentences": [
+   9,
+   9
+  ],
+  "quote": "I can reset breakers.",
+  "action": "Norah talking, screen shows 70% compromised",
+  "visual_prompt": "a woman talking beside a screen",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 772.04,
+  "sentences": [
+   10,
+   10
+  ],
+  "quote": "There's-there's evac pods in CR-7.",
+  "action": "Dark corridor with flashlights (weak)",
+  "visual_prompt": "people with flashlights in a dark corridor",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 867.34,
+  "sentences": [
+   11,
+   11
+  ],
+  "quote": "PAUL: Take him, take him.",
+  "action": "Crew helping a hurt man (dark)",
+  "visual_prompt": "people helping a man in a dark corridor",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 792.51,
+  "sentences": [
+   12,
+   12
+  ],
+  "quote": "Some of this water is definitely sewage.",
+  "action": "Flashlights in dark water (weak)",
+  "visual_prompt": "flashlights in dark water",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 905.0,
+  "sentences": [
+   13,
+   13
+  ],
+  "quote": "",
+  "action": "Crew with flashlights in a tunnel",
+  "visual_prompt": "people with flashlights in a dark tunnel",
+  "needs_visual_scan": false
+ }
+]

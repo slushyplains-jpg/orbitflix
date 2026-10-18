@@ -1,0 +1,156 @@
+[
+ {
+  "start": 51.68,
+  "sentences": [
+   0,
+   0
+  ],
+  "quote": "Look out girls, here we go.",
+  "action": "Group on the rapids, adventure trip",
+  "visual_prompt": "a group of women on a river rapid",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1143.06,
+  "sentences": [
+   1,
+   1
+  ],
+  "quote": "You finally caught up with me.",
+  "action": "Juno leads the way through the forest",
+  "visual_prompt": "a woman with a red rope leading people through a forest",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1157.0,
+  "sentences": [
+   2,
+   2
+  ],
+  "quote": "There's a river about half a mile ahead.",
+  "action": "The group walks through the forest",
+  "visual_prompt": "people walking through a forest",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1025.93,
+  "sentences": [
+   3,
+   3
+  ],
+  "quote": "Juno, are you sure this is the right way?",
+  "action": "Women in a car on a forest road",
+  "visual_prompt": "women in a car on a dark forest road",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 665.81,
+  "sentences": [
+   4,
+   4
+  ],
+  "quote": "Come on, light, you bastard.",
+  "action": "Women with a blue flare in the dark",
+  "visual_prompt": "women lighting a blue flare in a dark room",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1409.43,
+  "sentences": [
+   5,
+   5
+  ],
+  "quote": "[SCREAMS]",
+  "action": "Women in a cave with headlamps, looking up",
+  "visual_prompt": "people in a cave with headlamps",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1442.0,
+  "sentences": [
+   6,
+   6
+  ],
+  "quote": "There's only one way out of this chamber and that's down the pipe.",
+  "action": "Cave passage with headlamps",
+  "visual_prompt": "people walking in a cave passage",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1497.1,
+  "sentences": [
+   7,
+   7
+  ],
+  "quote": "It's a drop.",
+  "action": "Dark cave with red flares",
+  "visual_prompt": "red flares in a dark cave",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1273.14,
+  "sentences": [
+   8,
+   8
+  ],
+  "quote": "OK, Sarah, Beth, you're up next.",
+  "action": "Women in the forest with packs",
+  "visual_prompt": "women in the forest with packs",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1380.77,
+  "sentences": [
+   9,
+   9
+  ],
+  "quote": "Juno.",
+  "action": "Cave wall with climbing gear",
+  "visual_prompt": "climbing gear on a cave wall",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1224.81,
+  "sentences": [
+   10,
+   10
+  ],
+  "quote": "Sam, stop poking it with a fucking stick.",
+  "action": "Group at roots and a stick in the forest",
+  "visual_prompt": "people in a forest near tree roots",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1166.0,
+  "sentences": [
+   11,
+   11
+  ],
+  "quote": "It's rule number one - file a flight plan and stick to it.",
+  "action": "Group walking through the forest",
+  "visual_prompt": "a group walking through a forest",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1170.18,
+  "sentences": [
+   12,
+   12
+  ],
+  "quote": "You think it's dark when you turn out the lights. Well, down there it's pitch black.",
+  "action": "Group near a stream in the forest",
+  "visual_prompt": "people walking near a stream in a forest",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1560.0,
+  "sentences": [
+   13,
+   13
+  ],
+  "quote": "",
+  "action": "Red-lit cave with headlamps",
+  "visual_prompt": "people in a red-lit cave with headlamps",
+  "needs_visual_scan": false
+ }
+]

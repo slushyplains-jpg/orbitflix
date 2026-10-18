@@ -1,0 +1,156 @@
+[
+ {
+  "start": 223.32,
+  "sentences": [
+   0,
+   0
+  ],
+  "quote": "Mist.",
+  "action": "Mist over the lake, trees in the fog",
+  "visual_prompt": "mist over a lake with trees",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 91.86,
+  "sentences": [
+   1,
+   1
+  ],
+  "quote": "Whoa!",
+  "action": "Fallen tree roots at the house",
+  "visual_prompt": "a fallen tree at a white house",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 243.88,
+  "sentences": [
+   2,
+   2
+  ],
+  "quote": "I'm gonna go have a little chat with our neighbor about his tree.",
+  "action": "David talks to Norton in the woods",
+  "visual_prompt": "two men talking outside among trees",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 479.95,
+  "sentences": [
+   3,
+   3
+  ],
+  "quote": "Yeah, well, half the staff didn't show, plus the power's out.",
+  "action": "Supermarket checkout with staff",
+  "visual_prompt": "a supermarket checkout with workers",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 682.0,
+  "sentences": [
+   4,
+   4
+  ],
+  "quote": "",
+  "action": "Supermarket crowd with uniformed men",
+  "visual_prompt": "a crowd in a supermarket with uniformed men",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 837.3,
+  "sentences": [
+   5,
+   5
+  ],
+  "quote": "(screaming and shouting)",
+  "action": "Shoppers running with carts in the store",
+  "visual_prompt": "shoppers running with shopping carts in a store",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 728.96,
+  "sentences": [
+   6,
+   6
+  ],
+  "quote": "Something in the mist took John Lee.",
+  "action": "Crowd outside reacting",
+  "visual_prompt": "a crowd of people reacting outside",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 735.74,
+  "sentences": [
+   7,
+   7
+  ],
+  "quote": "Daddy, I'm scared. Can we go home?",
+  "action": "Parking lot and people outside",
+  "visual_prompt": "people in a parking lot",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 875.98,
+  "sentences": [
+   8,
+   8
+  ],
+  "quote": "No. No, don't go out there.",
+  "action": "Carmody in the store",
+  "visual_prompt": "an older woman in a supermarket",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 884.12,
+  "sentences": [
+   9,
+   9
+  ],
+  "quote": "Please, everybody, everybody just relax, okay?",
+  "action": "Crowd arguing in the store",
+  "visual_prompt": "people arguing in a supermarket",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 896.96,
+  "sentences": [
+   10,
+   10
+  ],
+  "quote": "Could be a poisonous gas cloud.",
+  "action": "A woman talking in the store",
+  "visual_prompt": "a woman talking in a supermarket",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1027.29,
+  "sentences": [
+   11,
+   11
+  ],
+  "quote": "It's okay. It's okay.",
+  "action": "Billy held by a man in the aisle",
+  "visual_prompt": "a man holding a boy in a supermarket aisle",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1236.34,
+  "sentences": [
+   12,
+   12
+  ],
+  "quote": "It's Judgment Day, and it's come round at last.",
+  "action": "Carmody in the store crowd",
+  "visual_prompt": "a woman in a supermarket crowd",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1394.0,
+  "sentences": [
+   13,
+   13
+  ],
+  "quote": "",
+  "action": "David in a dark store room",
+  "visual_prompt": "a man in a dark store room",
+  "needs_visual_scan": false
+ }
+]

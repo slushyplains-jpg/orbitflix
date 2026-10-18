@@ -30,7 +30,7 @@ interface RoomCtx {
 
 const noop = () => {};
 const defaultCtx: RoomCtx = {
-  activeRoom: null, server: "videasy", setServer: noop,
+  activeRoom: null, server: "clean", setServer: noop,
   joinRoom: noop, leaveRoom: noop, copyRoomCode: noop, copied: false,
   broadcastMovieChange: noop, followPrompt: null, dismissFollowPrompt: noop,
   acceptFollowPrompt: noop, sendVideoEvent: noop, registerRoomCmdHandler: noop,
@@ -39,7 +39,7 @@ const RoomContext = createContext<RoomCtx>(defaultCtx);
 
 export function RoomProvider({ children }: { children: ReactNode }) {
   const [activeRoom, setActiveRoom] = useState<string | null>(null);
-  const [server, setServer] = useState<Server>("videasy");
+  const [server, setServer] = useState<Server>("clean");
   const [copied, setCopied] = useState(false);
   const [followPrompt, setFollowPrompt] = useState<FollowPrompt | null>(null);
   const wsRef = useRef<WebSocket | null>(null);

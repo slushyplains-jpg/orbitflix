@@ -1,0 +1,156 @@
+[
+ {
+  "start": 372.0,
+  "sentences": [
+   0,
+   0
+  ],
+  "quote": "",
+  "action": "Party bar with guests",
+  "visual_prompt": "a party in a bar with guests",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 360.0,
+  "sentences": [
+   1,
+   1
+  ],
+  "quote": "",
+  "action": "Hud's camera overlay, then the party",
+  "visual_prompt": "a dated camera frame of a party",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 902.76,
+  "sentences": [
+   2,
+   2
+  ],
+  "quote": "You never even called me, Rob!",
+  "action": "Dark hallway, a man and woman on the stairs",
+  "visual_prompt": "two people arguing in a dark hallway",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1103.18,
+  "sentences": [
+   3,
+   3
+  ],
+  "quote": "What the hell was that?",
+  "action": "Dark frames and dust, people in a bar",
+  "visual_prompt": "a dark room with people in a bar",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1370.29,
+  "sentences": [
+   4,
+   4
+  ],
+  "quote": "Jason, don't go out...",
+  "action": "A figure walks out of a smoky shop into the orange-lit street",
+  "visual_prompt": "a man walking out of a smoky shop into a street",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1399.65,
+  "sentences": [
+   5,
+   5
+  ],
+  "quote": "Oh, my God. Marlena?",
+  "action": "Smoke, a figure on the ground",
+  "visual_prompt": "people in smoke on a city street",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1090.63,
+  "sentences": [
+   6,
+   6
+  ],
+  "quote": "It's not that simple.",
+  "action": "Rob on the stairs, talking",
+  "visual_prompt": "a man talking on a dark staircase",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1642.39,
+  "sentences": [
+   7,
+   7
+  ],
+  "quote": "Rob got a hold of Beth.",
+  "action": "Crowd on the dark bridge, a man in frame",
+  "visual_prompt": "a crowd on a dark bridge at night",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1728.14,
+  "sentences": [
+   8,
+   8
+  ],
+  "quote": "(BRIDGE CABLES SNAPPING)",
+  "action": "Bridge cables and crowd in the dark",
+  "visual_prompt": "cables and a crowd on a dark bridge",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1857.48,
+  "sentences": [
+   9,
+   9
+  ],
+  "quote": "NEWSCASTER: ... burning right now.",
+  "action": "Breaking news on TV screens in a store",
+  "visual_prompt": "breaking news on a television in a store",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1896.23,
+  "sentences": [
+   10,
+   10
+  ],
+  "quote": "(CREATURE ROARING)",
+  "action": "Street and store with TVs as the military moves in",
+  "visual_prompt": "people in a city street near a store",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1981.06,
+  "sentences": [
+   11,
+   11
+  ],
+  "quote": "It fell. My apartment... The whole wall fell on me!",
+  "action": "Rob on the phone in a bar",
+  "visual_prompt": "a man on a phone in a dark room",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 2013.8,
+  "sentences": [
+   12,
+   12
+  ],
+  "quote": "Rob, wait up! Rob!",
+  "action": "Rob walking through a dark street",
+  "visual_prompt": "a man walking down a dark city street at night",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 2126.0,
+  "sentences": [
+   13,
+   13
+  ],
+  "quote": "",
+  "action": "Soldiers and military vehicles at night",
+  "visual_prompt": "soldiers and military vehicles on a city street at night",
+  "needs_visual_scan": false
+ }
+]

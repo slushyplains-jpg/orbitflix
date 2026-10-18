@@ -28,7 +28,7 @@ function TVPage() {
   const seasons = show?.seasons?.filter((s) => s.season_number > 0) ?? [];
   const [selectedSeason, setSelectedSeason] = useState(1);
   const [selectedEpisode, setSelectedEpisode] = useState(1);
-  const [server, setServer] = useState<Server>("videasy");
+  const [server, setServer] = useState<Server>("vsembed");
 
   useEffect(() => { setSelectedEpisode(1); }, [selectedSeason]);
 

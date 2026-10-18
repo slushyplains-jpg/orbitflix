@@ -1,0 +1,122 @@
+// Renders one explainer row without the admin page.
+// Usage: npx -y tsx scripts/explainer-runner.ts <job.json>
+// The job file holds the row (title, script, clips), the stream (m3u8Url, or tmdbId to fetch one),
+// and the render settings from a template. Progress is written to <job.json>.status.json.
+// Fetching a link needs the ORBIT dev server running (EXPLAINER_PAGE_BASE, default http://localhost:8081).
+import { execFileSync, execFile } from "node:child_process";
+import fs from "node:fs";
+import path from "node:path";
+import { runRenderJob, type ExplainerClip } from "../src/lib/explainerRender";
+
+type Job = {
+  title: string;
+  tmdbId?: number;
+  mediaType?: "movie" | "tv";
+  m3u8Url?: string;
+  script: string;
+  clips: ExplainerClip[];
+  outputDir?: string;
+  voice?: string;
+  ttsSpeed?: number;
+  enableScan?: boolean;
+  look?: string;
+  zoom?: number;
+  bg?: "blur" | "black";
+  blurIntensity?: number;
+  overlayText?: string;
+  textSize?: number;
+  textColor?: string;
+  textX?: number;
+  textY?: number;
+  fontFamily?: string;
+  fontStyle?: string;
+  captions?: boolean;
+  captionColor?: string;
+  captionFont?: string;
+  captionSize?: number;
+  captionTextColor?: string;
+  captionStroke?: number;
+  captionStrokeColor?: string;
+  captionY?: number;
+};
+
+const jobFile = process.argv[2];
+if (!jobFile) throw new Error("usage: explainer-runner.ts <job.json>");
+const job = JSON.parse(fs.readFileSync(jobFile, "utf8")) as Job;
+const statusFile = `${jobFile}.status.json`;
+const base = process.env.EXPLAINER_PAGE_BASE ?? "http://localhost:8081";
+
+function writeStatus(state: Record<string, unknown>) {
+  fs.writeFileSync(statusFile, JSON.stringify({ ...state, updatedAt: new Date().toISOString() }, null, 2));
+}
+
+function notify(title: string, body: string) {
+  execFile("osascript", ["-e", `display notification "${body}" with title "${title}"`], () => {});
+}
+
+async function main() {
+  const jobKey = `${job.tmdbId ?? "job"}-${Date.now()}`;
+  let m3u8Url = job.m3u8Url ?? "";
+  if (!m3u8Url) {
+    if (!job.tmdbId) throw new Error("job needs m3u8Url or tmdbId");
+    const pageUrl = `${base}/${job.mediaType ?? "movie"}/${job.tmdbId}`;
+    const linkFile = `${jobFile}.link.txt`;
+    writeStatus({ stage: "fetching-link", message: pageUrl });
+    console.log(`[runner] fetching stream link from ${pageUrl}`);
+    execFileSync("/usr/local/bin/python3.11", [path.resolve("scripts/explainer-get-m3u8.py"), pageUrl, linkFile], {
+      stdio: "inherit",
+    });
+    m3u8Url = fs.readFileSync(linkFile, "utf8").trim();
+    fs.rmSync(linkFile, { force: true });
+  }
+
+  console.log(`[runner] rendering "${job.title}"`);
+  writeStatus({ stage: "preparing", message: "starting render" });
+  try {
+    const result = await runRenderJob({
+      m3u8Url,
+      script: job.script,
+      clips: job.clips,
+      title: job.title,
+      outputDir: job.outputDir ?? "",
+      jobKey,
+      voice: job.voice,
+      ttsSpeed: job.ttsSpeed ?? 0.9,
+      enableScan: job.enableScan ?? false,
+      look: job.look ?? "none",
+      zoom: job.zoom,
+      bg: job.bg,
+      blurIntensity: job.blurIntensity,
+      overlayText: job.overlayText,
+      textSize: job.textSize,
+      textColor: job.textColor,
+      textX: job.textX,
+      textY: job.textY,
+      fontFamily: job.fontFamily,
+      fontStyle: job.fontStyle,
+      captions: job.captions ?? false,
+      captionColor: job.captionColor,
+      captionFont: job.captionFont,
+      captionSize: job.captionSize,
+      captionTextColor: job.captionTextColor,
+      captionStroke: job.captionStroke,
+      captionStrokeColor: job.captionStrokeColor,
+      captionY: job.captionY,
+      onStatus: (s) => {
+        writeStatus({ ...s });
+        console.log(`[runner] ${s.stage} ${s.clipsDone}/${s.clipsTotal} ${s.message ?? ""}`);
+      },
+    });
+    writeStatus({ stage: "done", path: result.path, voiceoverSec: result.voiceoverSec, videoSec: result.videoSec });
+    console.log(`[runner] done: ${result.path} (voice ${result.voiceoverSec.toFixed(2)}s, video ${result.videoSec.toFixed(2)}s)`);
+    notify("Explainer render done", job.title);
+  } catch (err) {
+    const message = (err as Error).message;
+    writeStatus({ stage: "error", message });
+    console.error(`[runner] failed: ${message}`);
+    notify("Explainer render failed", job.title);
+    process.exitCode = 1;
+  }
+}
+
+void main();

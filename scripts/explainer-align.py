@@ -20,7 +20,11 @@ def main():
         sentences = split_sentences(f.read())
 
     model = WhisperModel("base.en", device="cpu", compute_type="int8")
-    segments, _ = model.transcribe(wav, language="en", word_timestamps=True)
+    # With word timestamps on, Whisper can stop early and drop the last sentence.
+    # Turning off conditioning on previous text keeps the full transcript.
+    segments, _ = model.transcribe(
+        wav, language="en", word_timestamps=True, condition_on_previous_text=False
+    )
     heard = [
         {"tok": norm(w.word), "start": w.start, "end": w.end}
         for seg in segments

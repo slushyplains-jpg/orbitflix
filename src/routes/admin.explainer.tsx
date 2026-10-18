@@ -887,6 +887,14 @@ function ExplainerPage() {
       ttsSpeed,
       enableScan,
       look,
+      captions,
+      captionColor,
+      captionFont,
+      captionSize,
+      captionTextColor,
+      captionStroke,
+      captionStrokeColor,
+      captionY,
       zoom,
       bg,
       blurIntensity,
@@ -926,6 +934,12 @@ function ExplainerPage() {
       if (typeof t.look === "string") setLook(t.look);
       if (typeof t.captions === "boolean") setCaptions(t.captions);
       if (typeof t.captionColor === "string") setCaptionColor(t.captionColor);
+      if (typeof t.captionFont === "string") setCaptionFont(t.captionFont);
+      if (typeof t.captionSize === "number") setCaptionSize(t.captionSize);
+      if (typeof t.captionTextColor === "string") setCaptionTextColor(t.captionTextColor);
+      if (typeof t.captionStroke === "number") setCaptionStroke(t.captionStroke);
+      if (typeof t.captionStrokeColor === "string") setCaptionStrokeColor(t.captionStrokeColor);
+      if (typeof t.captionY === "number") setCaptionY(t.captionY);
       if (t.zoom !== undefined) setZoom(String(t.zoom));
       if (t.bg === "blur" || t.bg === "black") setBg(t.bg);
       if (typeof t.blurIntensity === "number") setBlurIntensity(t.blurIntensity);
