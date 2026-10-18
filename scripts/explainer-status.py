@@ -6,14 +6,15 @@ Usage:
   python3.11 explainer-status.py <slug> --reset <stage>    redo from this stage: clears it and every later stage
   python3.11 explainer-status.py <slug> --accept <note>    mark every stage passed, only for a video the user has
                                                            already approved that was made before this pipeline
-Stages, in order: research, story, lint, voice, footage, sheet, render, verify
+Stages, in order: research, story, lint, voice, footage, render, verify
+The check scripts record their own stage when they pass, so this is mostly for showing status and resets.
 """
 import datetime
 import json
 import os
 import sys
 
-STAGES = ["research", "story", "lint", "voice", "footage", "sheet", "render", "verify"]
+STAGES = ["research", "story", "lint", "voice", "footage", "render", "verify"]
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 path = os.path.join(root, "notes", "explainer", sys.argv[1], "status.json")
 st = json.load(open(path)) if os.path.exists(path) else {"passed": {}}

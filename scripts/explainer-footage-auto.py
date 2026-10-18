@@ -20,6 +20,7 @@ import re
 import subprocess
 import sys
 import tempfile
+import time
 import functools
 
 print = functools.partial(print, flush=True)
@@ -42,10 +43,21 @@ PY = "/usr/local/bin/python3.11"
 SPAN = 5
 
 tmp = tempfile.mkdtemp(prefix=f"footage_{slug}_")
-link_file = os.path.join(tmp, "link.txt")
-print("fetching stream link")
-subprocess.run([PY, os.path.join(here, "explainer-get-m3u8.py"), f"/{kind}/{tmdb}", link_file], check=True,
-               stdout=subprocess.DEVNULL)
+# The link is cached outside the project (tokens never go in notes/) and reused by the render,
+# so one movie opens the headless browser once. Stream tokens last about four hours; reuse for three.
+cache_dir = os.path.expanduser("~/Desktop/explainer-jobs/.links")
+os.makedirs(cache_dir, mode=0o700, exist_ok=True)
+link_file = os.path.join(cache_dir, f"{kind}-{tmdb}.txt")
+fresh = os.path.exists(link_file) and time.time() - os.path.getmtime(link_file) < 3 * 3600
+if fresh and subprocess.run(["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}", "-m", "20", "-H", "User-Agent: Mozilla/5.0",
+                             "-H", "Referer: https://stellarconductornexus.com/", open(link_file).read().strip()],
+                            capture_output=True, text=True).stdout.startswith("2"):
+    print("reusing cached stream link")
+else:
+    print("fetching stream link")
+    subprocess.run([PY, os.path.join(here, "explainer-get-m3u8.py"), f"/{kind}/{tmdb}", link_file], check=True,
+                   stdout=subprocess.DEVNULL)
+    os.chmod(link_file, 0o600)
 link = open(link_file).read().strip()
 
 
@@ -53,7 +65,7 @@ def grid(beat):
     wf = os.path.join(tmp, f"{beat['name']}.windows.json")
     json.dump([{k: beat[k] for k in ("name", "start", "end")}], open(wf, "w"))
     try:
-        r = subprocess.run([PY, os.path.join(here, "explainer-shots.py"), link_file, wf, shots], capture_output=True,
+        r = subprocess.run([PY, os.path.join(here, "explainer-shots.py"), link_file, wf, shots, "--fast"], capture_output=True,
                            text=True, timeout=300)
     except subprocess.TimeoutExpired:
         return beat["name"], 1, f"{beat['name']}: timed out after 5 minutes"
@@ -146,5 +158,4 @@ with open(picks, "w", encoding="utf-8") as f:
     for b in beats:
         a, z = b["sentences"]
         f.write(f"{b['name']} {'a' if cands[b['name']] else 'NONE'} | {' '.join(sents[a:z + 1])[:90]}\n")
-os.remove(link_file)
 print(f"wrote candidates_1.jpg, candidates_2.jpg, candidates.json and default picks.txt in {d}")

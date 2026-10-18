@@ -1,6 +1,6 @@
 ---
 name: explainer-row
-description: Stage 6 of the explainer pipeline, and the reference for the sheet's data format. Use when writing or editing a row in the explainer sheet (script in column D, clip plan JSON in column E, status in column G), or when checking what a clip field means. For making a Short end to end, start with explainer-pipeline.
+description: Retired stage. The pipeline no longer writes the sheet; use this only if the user asks to write a movie's row by hand, and as the reference for the sheet's data format. Use when writing or editing a row in the explainer sheet (script in column D, clip plan JSON in column E, status in column G), or when checking what a clip field means. For making a Short end to end, start with explainer-pipeline.
 ---
 
 # Explainer rows (sheet format)
@@ -18,7 +18,7 @@ Stages 1 to 5 must have passed (`python3.11 scripts/explainer-status.py <slug>`)
 - Column F = empty. Durations never go in the sheet; the render sets clip lengths from the voice.
 - Column G = `READY_FOR_LOCAL_RENDER` (only after stages 1 to 5 pass), otherwise `To-do`.
 
-Build the values with `python3.11 scripts/explainer-row-values.py <slug> ready` and pass its output unchanged as `values` for range `Sheet1!D<row>:G<row>`. Never retype or hand-escape the JSON. Write columns D to G of that one row in a single update. Do not touch other rows or columns. Record the stage with `explainer-status.py <slug> sheet`.
+Build the values with `python3.11 scripts/explainer-row-values.py <slug> ready` and pass its output unchanged as `values` for range `Sheet1!D<row>:G<row>`. Never retype or hand-escape the JSON. Write columns D to G of that one row in a single update. Do not touch other rows or columns. There is no sheet stage in the tracker any more.
 
 ## Clip fields
 

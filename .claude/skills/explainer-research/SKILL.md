@@ -27,4 +27,4 @@ A script built only from subtitles turns into a transcript recap. Subtitles are 
 - **Best images:** 5 to 8 striking visual moments with approximate times (for the hook and for footage).
 - **Cliffhanger:** the most specific unanswered question at the point where the Short stops.
 
-The gate for this stage is simple: every field is filled. Record it with `explainer-status.py <slug> research`.
+The gate for this stage is that every field is filled. `explainer-factcheck.py` checks the fields and records research when the story stage passes.

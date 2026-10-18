@@ -21,6 +21,8 @@ from PIL import Image, ImageDraw, ImageFont
 
 LUMA_MIN, LUMA_DIM, SHARP_SOFT = 18.0, 35.0, 12.0
 H = "User-Agent: Mozilla/5.0\r\nReferer: https://stellarconductornexus.com/\r\n"
+FAST = "--fast" in sys.argv
+sys.argv = [a for a in sys.argv if a != "--fast"]
 link = open(sys.argv[1]).read().strip()
 windows = json.load(open(sys.argv[2]))
 outdir = sys.argv[3]
@@ -47,10 +49,20 @@ for w in windows:
                     "-vf", "fps=1,scale=240:-2", os.path.join(tmp, "f_%04d.jpg")], check=True)
     files = sorted(f for f in os.listdir(tmp) if f.endswith(".jpg"))
     # Shot changes from ffmpeg's scene detection on every frame, not on the 1 fps samples.
-    sc = subprocess.run(["ffmpeg", "-v", "info", "-headers", H, "-ss", str(s), "-t", str(e - s), "-i", link,
-                         "-vf", "scale=320:-2,select='gt(scene,0.25)',showinfo", "-an", "-f", "null", "-"],
-                        capture_output=True, text=True).stderr
-    cuts = [float(x) for x in re.findall(r"pts_time:([\d.]+)", sc)]
+    if FAST:
+        # --fast: a big change between neighbouring 1 fps frames marks a cut. It saves a second
+        # full decode of the window and is close enough for choosing where a clip starts.
+        cuts, prev = [], None
+        for k, f in enumerate(files):
+            cur = np.asarray(Image.open(os.path.join(tmp, f)).convert("L").resize((64, 36)), dtype=np.float32)
+            if prev is not None and np.abs(cur - prev).mean() > 28:
+                cuts.append(k - 0.5)
+            prev = cur
+    else:
+        sc = subprocess.run(["ffmpeg", "-v", "info", "-headers", H, "-ss", str(s), "-t", str(e - s), "-i", link,
+                             "-vf", "scale=320:-2,select='gt(scene,0.25)',showinfo", "-an", "-f", "null", "-"],
+                            capture_output=True, text=True).stderr
+        cuts = [float(x) for x in re.findall(r"pts_time:([\d.]+)", sc)]
     frames = []
     for k, f in enumerate(files):
         p = os.path.join(tmp, f)

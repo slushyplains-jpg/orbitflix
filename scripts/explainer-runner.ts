@@ -73,6 +73,17 @@ async function main() {
     console.log("[runner] saved stream link has expired, fetching a fresh one");
     m3u8Url = "";
   }
+  // The footage stage caches its link here; reuse it if it is under three hours old and still works.
+  const cached = job.tmdbId
+    ? path.join(process.env.HOME ?? "", "Desktop/explainer-jobs/.links", `${job.mediaType ?? "movie"}-${job.tmdbId}.txt`)
+    : "";
+  if (!m3u8Url && cached && fs.existsSync(cached) && Date.now() - fs.statSync(cached).mtimeMs < 3 * 3600 * 1000) {
+    const link = fs.readFileSync(cached, "utf8").trim();
+    if (linkWorks(link)) {
+      console.log("[runner] reusing cached stream link");
+      m3u8Url = link;
+    }
+  }
   if (!m3u8Url) {
     if (!job.tmdbId) throw new Error("job needs m3u8Url or tmdbId");
     // A bare path lets the link fetcher find whichever port the dev server is on.

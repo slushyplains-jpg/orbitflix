@@ -59,4 +59,4 @@ The linter prints an estimated voice length (within about 1 s). Adjust the scrip
 
 `python3.11 scripts/explainer-voicecheck.py notes/explainer/<slug>/script.txt` must print PASS (55 to 63 seconds with the `final` template's voice and speed). If it fails, it says how many words to add or cut. Change the script, then rerun both gates.
 
-Record each gate with `explainer-status.py <slug> story|lint|voice`.
+Run the checks in this order: `explainer-factcheck.py <slug>` (records research and story), then the linter (records lint), then the voice check (records voice). Do not record stages by hand.

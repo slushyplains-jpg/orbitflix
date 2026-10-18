@@ -34,3 +34,6 @@ if sec > MAX_SEC:
     print(f"FAIL too long by {sec - MAX_SEC:.1f}s, cut about {int((sec - MAX_SEC) * words / sec) + 1} words")
     sys.exit(1)
 print("PASS")
+sys.path.insert(0, here)
+from explainer_record import record, slug_of
+record(slug_of(script), "voice", f"{sec:.1f}s at {speed}x")

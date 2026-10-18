@@ -47,5 +47,17 @@ if missing:
 print(f"{len(sentences)} sentences, {len(covered & set(range(len(sentences))))} covered")
 for f in fails:
     print("FAIL", f)
+story = open(os.path.join(d, "story.md"), encoding="utf-8").read() if os.path.exists(os.path.join(d, "story.md")) else ""
+fields = ["Logline", "Protagonist", "Wound", "Goal and stakes", "Central mystery", "Key beats", "Turn", "Hold back", "Best images", "Cliffhanger"]
+missing_fields = [f for f in fields if f"**{f}" not in story]
+if missing_fields:
+    fails.append(f"story.md is missing fields: {missing_fields}")
+if not os.path.exists(os.path.join(d, "hooks.md")):
+    fails.append("hooks.md is missing")
 print("RESULT", "FAIL" if fails else "PASS")
+if not fails:
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from explainer_record import record
+    record(slug, "research", "story.md has every field")
+    record(slug, "story", f"{len(sentences)} sentences, every one sourced")
 sys.exit(1 if fails else 0)

@@ -14,9 +14,9 @@ Subtitles say when a line is spoken, not what is on screen. Every clip start is 
 3. **Edit `picks.txt` only where a is wrong:** change the letter to b or c. If none of the three fits, open that beat's full grid `shots/<name>.jpg` once and write a time instead (never a red DARK frame). Do not extract extra frames or rerun the tool.
 4. **Gate:** `python3.11 scripts/explainer-clips.py <slug>` must print RESULT PASS. It writes `clips.json` with subtitle quotes and regenerates `clips.md`.
 
-A normal run is about 6 tool calls: the tool, two image reads, one picks edit, the gate, the status record.
+A normal run is about 5 tool calls: the tool, two image reads, one picks edit, the gate.
 
-Record with `explainer-status.py <slug> footage`.
+`explainer-clips.py` records the footage stage when it passes.
 
 ## SigLIP
 

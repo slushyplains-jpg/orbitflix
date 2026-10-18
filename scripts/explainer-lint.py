@@ -5,6 +5,7 @@ Exit code 1 if any FAIL. WARN lines are style problems to fix unless there is a 
 The sentence split matches the aligner and the render: re.split(r"(?<=[.!?])\\s+").
 """
 import json
+import os
 import re
 import statistics
 import sys
@@ -115,6 +116,10 @@ def main():
     for w in warns:
         print("WARN", w)
     print("RESULT", "FAIL" if fails else ("PASS with warnings" if warns else "PASS"))
+    if not fails and len(sys.argv) == 2:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from explainer_record import record, slug_of
+        record(slug_of(sys.argv[1]), "lint", f"{len(sents)} sentences, {n} words, est {est:.1f}s")
     sys.exit(1 if fails else 0)
 
 

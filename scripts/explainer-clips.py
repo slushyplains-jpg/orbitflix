@@ -54,4 +54,7 @@ print(f"wrote clips.json with {len(clips)} clips")
 r = subprocess.run(["/usr/local/bin/python3.11", os.path.join(here, "explainer-lint.py"), os.path.join(d, "script.txt"), os.path.join(d, "clips.json")])
 if r.returncode == 0:
     subprocess.run(["/usr/local/bin/python3.11", os.path.join(here, "explainer-notes.py"), slug], stdout=subprocess.DEVNULL)
+    sys.path.insert(0, here)
+    from explainer_record import record
+    record(slug, "footage", f"{len(clips)} clips from picks.txt")
 sys.exit(r.returncode)

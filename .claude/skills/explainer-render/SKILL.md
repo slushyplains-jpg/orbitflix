@@ -11,7 +11,7 @@ description: Stages 7 and 8 of the explainer pipeline. Render a finished row wit
 
 ## Stage 7: render
 
-1. Confirm stages 1 to 6 passed: `python3.11 scripts/explainer-status.py <slug>`.
+1. Confirm stages 1 to 5 passed: `python3.11 scripts/explainer-status.py <slug>`.
 2. Build the job from the notes and template: `python3.11 scripts/explainer-job.py <slug> <tmdb> "<Title (Year)>" final`. Never hand-write job JSON.
 3. Make sure the dev server is running (preview tools; any port, the link fetcher finds it), then start the render with
    `python3.11 scripts/explainer-render-start.py ~/Desktop/explainer-jobs/<slug>.json`
@@ -25,4 +25,4 @@ description: Stages 7 and 8 of the explainer pipeline. Render a finished row wit
 
 `python3.11 scripts/explainer-verify.py "<output path>" final` must print RESULT PASS: 55 to 63 seconds, 1080x1920, audio present, under 2 seconds of black, and captions visible in the template's caption band in at least 60% of samples. A length failure means the script changed after the voice gate; go back to `explainer-story`.
 
-Record with `explainer-status.py <slug> render` and `... verify`, then report the output path, length, and any weak clips.
+`explainer-finish.py` records render and verify. Report the output path, length, and any weak clips.
