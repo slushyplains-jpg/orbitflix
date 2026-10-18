@@ -1,7 +1,7 @@
 """Automatic checks on a finished render.
 
 Usage: python3.11 explainer-verify.py <video.mp4> [template]
-Checks: length 55-63 s, vertical 1080x1920, audio present, no long black stretches, and
+Checks: length 57-61 s, vertical 1080x1920, audio present, no long black stretches, and
 burned-in captions in the template's caption band (when the template has captions on).
 Exit code 1 on any FAIL.
 """
@@ -22,8 +22,8 @@ dur = float(info["format"]["duration"])
 vs = [s for s in info["streams"] if s["codec_type"] == "video"]
 has_audio = any(s["codec_type"] == "audio" for s in info["streams"])
 fails = []
-if not 55 <= dur <= 63:
-    fails.append(f"length {dur:.1f}s, needs 55-63s")
+if not 56.5 <= dur <= 61.5:
+    fails.append(f"length {dur:.1f}s, needs 57-61s")
 if not vs or (vs[0].get("width"), vs[0].get("height")) != (1080, 1920):
     fails.append(f"frame size {vs[0].get('width') if vs else '?'}x{vs[0].get('height') if vs else '?'}, needs 1080x1920")
 if not has_audio:

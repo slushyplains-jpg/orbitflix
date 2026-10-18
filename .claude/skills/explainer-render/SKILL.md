@@ -23,6 +23,6 @@ description: Stages 7 and 8 of the explainer pipeline. Render a finished row wit
 
 ## Stage 8: verify
 
-`python3.11 scripts/explainer-verify.py "<output path>" final` must print RESULT PASS: 55 to 63 seconds, 1080x1920, audio present, under 2 seconds of black, and captions visible in the template's caption band in at least 60% of samples. A length failure means the script changed after the voice gate; go back to `explainer-story`.
+`python3.11 scripts/explainer-verify.py "<output path>" final` must print RESULT PASS: 57 to 61 seconds, 1080x1920, audio present, under 2 seconds of black, and captions visible in the template's caption band in at least 60% of samples. A length failure means the script changed after the voice gate; go back to `explainer-story`.
 
 `explainer-finish.py` records render and verify. Report the output path, length, and any weak clips.

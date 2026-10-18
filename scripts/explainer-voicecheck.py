@@ -2,7 +2,7 @@
 
 Usage: python3.11 explainer-voicecheck.py <script.txt> [template.json]
 Uses the same Kokoro TTS as the render, with the template's voice and speed.
-Exit code 1 if the voice is outside 55-63 seconds.
+Exit code 1 if the voice is outside 57-61 seconds.
 """
 import json
 import os
@@ -11,7 +11,8 @@ import sys
 import tempfile
 import wave
 
-MIN_SEC, MAX_SEC = 55.0, 63.0
+# A tight band keeps every Short the same feel; the estimate in the linter gets there in one try.
+MIN_SEC, MAX_SEC = 57.0, 61.0
 here = os.path.dirname(os.path.abspath(__file__))
 script = sys.argv[1]
 tpl_path = sys.argv[2] if len(sys.argv) > 2 else "final"

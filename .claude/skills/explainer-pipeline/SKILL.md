@@ -14,7 +14,7 @@ Every Short goes through the same seven stages. Each stage has an owning skill a
 | 1 | research | `explainer-research` | `story.md` exists with every field filled |
 | 2 | story | `explainer-story` | three hook options written, one chosen |
 | 3 | lint | `explainer-story` | `python3.11 scripts/explainer-lint.py notes/explainer/<slug>/script.txt` prints RESULT PASS (run after the fact check) |
-| 4 | voice | `explainer-story` | `python3.11 scripts/explainer-voicecheck.py notes/explainer/<slug>/script.txt` prints PASS (55 to 63 s) |
+| 4 | voice | `explainer-story` | `python3.11 scripts/explainer-voicecheck.py notes/explainer/<slug>/script.txt` prints PASS (57 to 61 s) |
 | 5 | footage | `explainer-footage` | `explainer-clips.py <slug>` prints RESULT PASS (14 clips) |
 | 6 | render | `explainer-render` | `explainer-finish.py` prints done |
 | 7 | verify | `explainer-render` | the video check inside `explainer-finish.py` prints RESULT PASS |

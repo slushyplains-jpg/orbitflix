@@ -10,7 +10,7 @@ Subtitles say when a line is spoken, not what is on screen. Every clip start is 
 ## Steps
 
 1. **Run the footage tool** (run it, do not read its source; the dev server must be running): `python3.11 scripts/explainer-footage-auto.py <slug> <tmdb>`. In about 3 minutes it builds `beats.json` from the script and the times cited in `script.md`, fetches the stream link, builds the grids, ranks three candidates per beat near each beat's moment, draws `candidates_1.jpg` and `candidates_2.jpg`, and writes a default `picks.txt` that picks candidate a for every beat.
-2. **Look at the two candidate sheets** (two Read calls). For each beat, check that candidate a shows what the sentence is about. Prefer action and faces reacting; never use the same shot twice.
+2. **Look at the two candidate sheets** (two Read calls). For each beat, check that candidate a shows what the sentence is about. For B01, the hook, choose the most striking of the three that fits; it decides whether people keep watching. Prefer action and faces reacting; never use the same shot twice.
 3. **Edit `picks.txt` only where a is wrong:** change the letter to b or c. If none of the three fits, open that beat's full grid `shots/<name>.jpg` once and write a time instead (never a red DARK frame). Do not extract extra frames or rerun the tool.
 4. **Gate:** `python3.11 scripts/explainer-clips.py <slug>` must print RESULT PASS. It writes `clips.json` with subtitle quotes and regenerates `clips.md`.
 

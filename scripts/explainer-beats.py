@@ -52,6 +52,7 @@ for k, g in enumerate(groups):
         at = ((prev or nxt or 60) + (nxt or prev or 60)) // 2
         flagged.append(k + 1)
     word = re.sub(r"[^a-z]", "", (re.findall(r"[A-Za-z]{5,}", sents[g[0]]) or ["beat"])[0].lower())
-    beats.append({"name": f"B{k + 1:02d}_{word}", "sentences": [g[0], g[-1]], "at": at, "start": max(0, at - 12), "end": at + 25})
+    pad = (20, 40) if k == 0 else (12, 25)  # wider search for the hook clip
+    beats.append({"name": f"B{k + 1:02d}_{word}", "sentences": [g[0], g[-1]], "at": at, "start": max(0, at - pad[0]), "end": at + pad[1]})
 json.dump(beats, open(os.path.join(d, "beats.json"), "w"), indent=1)
 print(f"wrote beats.json: {len(beats)} beats" + (f"; no cited time for beats {flagged}, check them" if flagged else ""))

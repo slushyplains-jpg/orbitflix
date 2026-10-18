@@ -54,9 +54,9 @@ Read `examples.md` in this folder first. It has two approved scripts with the jo
 
 ## Stage 4: voice gate
 
-The linter prints an estimated voice length (within about 1 s). Adjust the script until the estimate is 57 to 61 s before running the voice check, so the slow voice check normally runs once.
+The linter prints an estimated voice length (within about 1 s). Adjust the script until the estimate is 58 to 60 s before running the voice check, so the slow voice check normally runs once.
 
 
-`python3.11 scripts/explainer-voicecheck.py notes/explainer/<slug>/script.txt` must print PASS (55 to 63 seconds with the `final` template's voice and speed). If it fails, it says how many words to add or cut. Change the script, then rerun both gates.
+`python3.11 scripts/explainer-voicecheck.py notes/explainer/<slug>/script.txt` must print PASS (57 to 61 seconds with the `final` template's voice and speed). If it fails, it says how many words to add or cut. Change the script, then rerun both gates.
 
 Run the checks in this order: `explainer-factcheck.py <slug>` (records research and story), then the linter (records lint), then the voice check (records voice). Do not record stages by hand.

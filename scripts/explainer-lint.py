@@ -107,10 +107,10 @@ def main():
     sents, n, fails, warns = lint_script(text)
     if len(sys.argv) > 2:
         fails += lint_plan(json.load(open(sys.argv[2], encoding="utf-8")), len(sents))
-    # Fitted on past Kokoro am_liam renders at 1.0x (about +-1 s). Aim for 57-61 s here,
+    # Fitted on past Kokoro am_liam renders at 1.0x (about +-1 s). Aim for 58-60 s here,
     # then confirm once with explainer-voicecheck.py instead of running the voice repeatedly.
     est = 0.0565 * len(text) - 0.65 * len(sents)
-    print(f"{len(sents)} sentences, {n} words, estimated voice {est:.1f}s (aim 57-61)")
+    print(f"{len(sents)} sentences, {n} words, estimated voice {est:.1f}s (aim 58-60)")
     for f in fails:
         print("FAIL", f)
     for w in warns:

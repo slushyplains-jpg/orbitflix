@@ -78,7 +78,7 @@ with cf.ThreadPoolExecutor(4) as ex:
         print(("  " if code == 0 else "  FAILED ") + msg)
 
 
-def rank(frames, at=None, dark_ok=0):
+def rank(frames, at=None, dark_ok=0, near=2.5):
     picks = []
     for i in range(len(frames) - SPAN + 1):
         run = frames[i:i + SPAN]
@@ -88,7 +88,7 @@ def rank(frames, at=None, dark_ok=0):
         score = sum(min(f["luma"], 90) for f in run) / SPAN + min(sum(f["sharp"] for f in run) / SPAN, 60) / 2
         score += -8 * sum(f["dim"] or f["soft"] for f in run) + (15 if run[0]["cut"] else 0)
         if at is not None:
-            score -= 2.5 * abs(run[0]["t"] - at)  # about 10 points lost per 4 s away from the moment
+            score -= near * abs(run[0]["t"] - at)  # about 10 points lost per 4 s away from the moment
         picks.append((score, run[0]["t"]))
     picks.sort(reverse=True)
     out = []
@@ -105,7 +105,9 @@ for b in beats:
     p = os.path.join(shots, f"{b['name']}.json")
     frames = json.load(open(p)) if os.path.exists(p) else []
     # Dark scenes rarely give 5 clean seconds, so relax step by step rather than give no candidates.
-    cands[b["name"]] = rank(frames, b.get("at")) or rank(frames, b.get("at"), 1) or rank(frames, b.get("at"), 2)
+    # The hook clip is what stops the scroll, so beat 1 cares more about a striking frame than exact timing.
+    near = 0.8 if b is beats[0] else 2.5
+    cands[b["name"]] = rank(frames, b.get("at"), 0, near) or rank(frames, b.get("at"), 1, near) or rank(frames, b.get("at"), 2, near)
 
 
 def still(job):
