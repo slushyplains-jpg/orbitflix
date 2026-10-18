@@ -10,19 +10,12 @@ Subtitles say when a line is spoken, not what is on screen. Every clip start is 
 ## Steps
 
 1. **Group the script into 14 beats.** Each beat is one or two sentences, in order, covering every sentence once.
-2. **Write the picture each beat needs** in plain visible terms ("a man running through a smoky corridor"), using the story bible's best images.
-3. **Pick a search window per beat.** Start from the subtitle time of the moment, or the plot-summary position. Use 30 to 60 seconds. Put them in a windows file: `[{"name": "B03_bridge", "start": 1700, "end": 1740}]`.
-4. **Get a stream link** with `python3.11 scripts/explainer-get-m3u8.py /movie/<tmdb> <link.txt>` (start the dev server with preview tools first; the script finds its port). One link per session is enough; it lasts about four hours.
-5. **Build shot grids:** `python3.11 scripts/explainer-shots.py <link.txt> <windows.json> notes/explainer/<slug>/shots`. Each frame is labeled with its film time. Red DARK means near-black and unusable. Yellow DIM or SOFT means usable but check it (dark scenes and close-ups with soft backgrounds land here). "|" marks a shot change; it can miss cuts in very dark scenes, so treat it as a hint.
-6. **Get suggestions:** `python3.11 scripts/explainer-suggest.py notes/explainer/<slug>/shots` prints the three best starts per window by brightness, sharpness and shot changes. It cannot see what is in the picture.
-7. **Look at every grid and choose the start.** For each beat, first write in one line what the suggested frame shows. Use the suggestion only if that matches the sentence; otherwise pick the frame that does. Rules:
-   - Never choose a red DARK frame. Prefer white-labeled frames over yellow DIM or SOFT ones when the picture is equally right.
-   - Prefer a start at or just after a shot change, so the clip opens on a clean shot.
-   - Prefer action and faces reacting over people standing and talking.
-   - Do not reuse the same shot for two beats.
-   - If no frame fits, widen or move the window and build a new grid. If nothing fits after two tries, rewrite that sentence to match footage that exists.
-8. **Write `clips.json`**: `start`, `sentences`, `quote` (the subtitle line at that start, verbatim, or ""), `action` (what the chosen frame shows), `visual_prompt`, `needs_visual_scan: false`.
-9. **Gate:** `python3.11 scripts/explainer-lint.py script.txt clips.json` must print RESULT PASS. Then regenerate the log with `python3.11 scripts/explainer-notes.py <slug>`.
+2. **Pick a search window per beat**, 30 to 40 seconds, from the subtitle time of the moment (`sdh_digest.txt`) or the plot-summary position. Write `notes/explainer/<slug>/beats.json`:
+   `[{"name": "B01_head", "sentences": [0, 0], "start": 1260, "end": 1300}, ...]`
+3. **Run the footage tool** (dev server must be running; the tool finds it): `python3.11 scripts/explainer-footage-auto.py <slug> <tmdb>`. In about 2 to 3 minutes it fetches the stream link, builds every grid in parallel, ranks three candidate starts per beat, and draws `candidates_1.jpg` and `candidates_2.jpg` (each beat's sentence with candidates a, b, c).
+4. **Look at the two candidate sheets.** For each beat pick the candidate whose picture matches the sentence. Rules: prefer action and faces reacting over people standing and talking; never reuse the same shot for two beats. Only if none of a beat's three matches, open that beat's full grid `shots/<name>.jpg` and pick a frame time yourself (never a red DARK one).
+5. **Write `picks.txt`**, one line per beat in order: `B01_head b | what the frame shows`, or `B01_head 1273 | what the frame shows` for a time from the full grid.
+6. **Gate:** `python3.11 scripts/explainer-clips.py <slug>` writes `clips.json` (subtitle quotes filled in automatically), runs the plan check, and regenerates `clips.md`. It must print RESULT PASS.
 
 Record with `explainer-status.py <slug> footage`.
 

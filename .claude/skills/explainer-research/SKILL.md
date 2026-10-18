@@ -11,7 +11,7 @@ A script built only from subtitles turns into a transcript recap. Subtitles are 
 
 1. **Setup.** If the folder has no `sdh.srt`, run `python3.11 scripts/new-explainer.py <slug> <imdb-id>`. Get the TMDB id from `https://api.themoviedb.org/3/find/tt<imdb>?api_key=<key in repo>&external_source=imdb_id`.
 2. **Read a full plot summary.** Fetch the film's Wikipedia page (WebFetch) and read the Plot section, plus the TMDB overview. Take notes in your own words. Never paste the summary text into the project.
-3. **Read the subtitles across the whole film, not just the first half.** Pull lines from beginning to end so the story has a real shape. Note the subtitle time for each key moment.
+3. **Make the subtitle digest:** `python3.11 scripts/explainer-sdh-digest.py <slug>` writes `sdh_digest.txt`, half the size of the .srt with every line kept. Read the digest in one go (Read tool, whole file) instead of grepping the .srt many times. **Read it across the whole film, not just the first half.** Pull lines from beginning to end so the story has a real shape. Note the subtitle time for each key moment.
 4. **Write `story.md`** with every field below filled. If a field is truly unknown, write why.
 
 ## story.md fields

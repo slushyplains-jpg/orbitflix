@@ -5,6 +5,10 @@ description: Stages 7 and 8 of the explainer pipeline. Render a finished row wit
 
 # Render and verify
 
+## Quick path (use this)
+
+`python3.11 scripts/explainer-finish.py <slug> <tmdb> "<Title (Year)>" final` does stages 7 and 8 in one command: it builds the job, starts the detached render, waits, runs the video check, and records both stages. Run it with a Bash timeout of 600000 and `run_in_background: true`, then wait for its completion notice instead of polling. If it stops early, rerun it with `--wait-only`. The steps below explain what it does and how to handle failures.
+
 ## Stage 7: render
 
 1. Confirm stages 1 to 6 passed: `python3.11 scripts/explainer-status.py <slug>`.
