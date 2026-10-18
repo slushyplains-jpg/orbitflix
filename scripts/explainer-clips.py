@@ -35,7 +35,17 @@ for line in open(os.path.join(d, "picks.txt"), encoding="utf-8"):
     name, choice = head.split()
     if name not in beats:
         sys.exit(f"unknown beat {name}")
-    start = float(cands[name][choice]) if choice in "abc" else float(choice)
+    if choice in ("a", "b", "c"):
+        if choice not in cands.get(name, {}):
+            sys.exit(f"{name} has no candidate {choice}; pick another letter or a time from shots/{name}.jpg")
+        start = float(cands[name][choice])
+    elif ":" in choice:  # 53:40 or 1:02:14
+        parts = [float(x) for x in choice.split(":")]
+        start = parts[0] * 60 + parts[1] if len(parts) == 2 else parts[0] * 3600 + parts[1] * 60 + parts[2]
+    elif choice == "NONE":
+        sys.exit(f"{name} has no candidates; write a time from shots/{name}.jpg instead of NONE")
+    else:
+        start = float(choice)
     quote = next((x for a, b, x in cues if a <= start + 0.5 and b >= start), "")
     clips.append({"start": start, "sentences": beats[name]["sentences"], "quote": quote, "action": action.strip(),
                   "visual_prompt": action.strip(), "needs_visual_scan": False})

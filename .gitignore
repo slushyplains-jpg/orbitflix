@@ -36,3 +36,5 @@ dist-ssr
 # explainer stream links carry tokens
 notes/explainer/*/link*.txt
 notes/explainer/*/shots/
+notes/explainer/*/candidates*
+notes/explainer/*/sdh_digest.txt

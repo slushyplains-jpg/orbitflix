@@ -32,6 +32,9 @@ here = os.path.dirname(os.path.abspath(__file__))
 d = os.path.join(os.path.dirname(here), "notes/explainer", slug)
 shots = os.path.join(d, "shots")
 os.makedirs(shots, exist_ok=True)
+if not os.path.exists(os.path.join(d, "beats.json")):
+    # Beats come from the script and its fact check, so nobody has to search the subtitles.
+    subprocess.run(["/usr/local/bin/python3.11", os.path.join(here, "explainer-beats.py"), slug], check=True)
 beats = json.load(open(os.path.join(d, "beats.json")))
 sents = [s for s in re.split(r"(?<=[.!?])\s+", open(os.path.join(d, "script.txt"), encoding="utf-8").read().strip()) if s]
 H = "User-Agent: Mozilla/5.0\r\nReferer: https://stellarconductornexus.com/\r\n"
@@ -63,11 +66,12 @@ with cf.ThreadPoolExecutor(4) as ex:
         print(("  " if code == 0 else "  FAILED ") + msg)
 
 
-def rank(frames, at=None):
+def rank(frames, at=None, dark_ok=0):
     picks = []
     for i in range(len(frames) - SPAN + 1):
         run = frames[i:i + SPAN]
-        if not all(f["usable"] for f in run):
+        # The first frame must always be usable; dark films may allow a dark frame later in the run.
+        if not run[0]["usable"] or sum(not f["usable"] for f in run) > dark_ok:
             continue
         score = sum(min(f["luma"], 90) for f in run) / SPAN + min(sum(f["sharp"] for f in run) / SPAN, 60) / 2
         score += -8 * sum(f["dim"] or f["soft"] for f in run) + (15 if run[0]["cut"] else 0)
@@ -87,7 +91,9 @@ def rank(frames, at=None):
 cands = {}
 for b in beats:
     p = os.path.join(shots, f"{b['name']}.json")
-    cands[b["name"]] = rank(json.load(open(p)), b.get("at")) if os.path.exists(p) else []
+    frames = json.load(open(p)) if os.path.exists(p) else []
+    # Dark scenes rarely give 5 clean seconds, so relax step by step rather than give no candidates.
+    cands[b["name"]] = rank(frames, b.get("at")) or rank(frames, b.get("at"), 1) or rank(frames, b.get("at"), 2)
 
 
 def still(job):
@@ -134,5 +140,11 @@ for sheet_no in (1, 2):
             dr.text((x + 4, y + 26), f"{'abc'[k]}  {int(t // 60)}:{int(t % 60):02d}", fill=(255, 220, 0), font=font)
     img.save(os.path.join(d, f"candidates_{sheet_no}.jpg"), quality=85)
 json.dump({n: {"abc"[k]: t for k, t in enumerate(ts)} for n, ts in cands.items()}, open(os.path.join(d, "candidates.json"), "w"), indent=1)
+picks = os.path.join(d, "picks.txt")
+with open(picks, "w", encoding="utf-8") as f:
+    # Default: candidate a for every beat. Only lines whose picture does not fit need changing.
+    for b in beats:
+        a, z = b["sentences"]
+        f.write(f"{b['name']} {'a' if cands[b['name']] else 'NONE'} | {' '.join(sents[a:z + 1])[:90]}\n")
 os.remove(link_file)
-print(f"wrote candidates_1.jpg, candidates_2.jpg and candidates.json in {d}")
+print(f"wrote candidates_1.jpg, candidates_2.jpg, candidates.json and default picks.txt in {d}")
