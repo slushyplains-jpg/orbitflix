@@ -1,25 +1,28 @@
 # The Mist (2007): script fact check
 
-SDH source: `The.Mist.2007.DvDRip.Eng-FxM.en.HI.srt`
-Timecodes are seconds in this release. Narration = connective wording, not a plot fact.
+SDH source: `sdh.srt` (The.Mist.2007.DvDRip.Eng-FxM.en.HI.srt, times in the film as H:MM:SS). Plot summary = Wikipedia plot. "The preacher" = Mrs. Carmody. "Norm" is the grocery bagger.
 
-| # | Sentence | Facts and SDH timecode | Status |
-|---|---|---|---|
-| 0 | A storm tears through a quiet town, and a thick mist rolls in off the lake. | "Some storm, huh?" 373. "Mist." 223. "On the lake?" 226 | SDH |
-| 1 | David Drayton and his son Billy are at home when their neighbor Norton's dead tree comes crashing through the window. | "a tree was gonna come flying through the window" 142. "Norton's tree" 203 | SDH |
-| 2 | Norton, the neighbor, only wants to talk about insurance. | "Just think we should trade insurance info" 299. "I'll bring it by later" 337 | SDH (the "only" is narration) |
-| 3 | Then the mist swallows the streets, and people run for the nearest shelter they can find, which is the supermarket. | Supermarket: "We got plenty of them in the store" 1953. Pharmacy and town: 668 | Partly SDH; "swallows the streets" is narration |
-| 4 | Inside, the shoppers hear screams outside and see shapes moving in the fog. | "(screaming)" 821. "(monster sniffing)" 1627 | SDH |
-| 5 | David tells Billy to stay close, because nobody knows what is out there. | "I really don't want you running all over the place" 168. "You have no idea what's out there" 3082 | SDH (the wording of the reason is narration) |
-| 6 | All anyone can describe clearly are the tentacles, and they seem to come from everywhere. | "All we saw were tentacles." 2255. "Tentacles. Yeah." 2031 | SDH |
-| 7 | Mrs Carmody, a fanatical neighbor, tells everyone that this is judgment, and that nobody is going to save them. | "I'm trying to save your soul, you stupid man." 2634. "Who will save them? No one." 5263 | SDH for her lines; "fanatical" is narration |
-| 8 | David needs a weapon, so he asks whether anyone has a gun in the store. | "do you happen to have a gun in the store?" 2873 | SDH |
-| 9 | When the creatures come for the store, the group fights back, and gunfire echoes through the aisles. | "(monster shrieks)" 3843. "(gunshot)" 3881 | SDH |
-| 10 | Mrs Carmody's warnings grow louder, and the people around her begin to believe every word. | "I told you this would come!" 5171. "How will it end?" 5158 | SDH for the warnings; "believe every word" is narration |
-| 11 | Outside, the monsters keep roaring, and the mist seems to have no end. | "(distant monster roars)" 6366. "(distant monsters roar)" 6621 | SDH; "no end" is narration |
-| 12 | Then the shots ring out again, and the line between safety and horror disappears. | "(gunshot)" 5997. "I-- I killed her." 6021. "(gunshot)" 6798 | UNVERIFIED: the subtitles do not say who fires or who is shot. The ending must be confirmed from the picture before this sentence is used |
+| # | Sentence (short) | Source |
+|---|---|---|
+| 0 | Tentacle yanks a grocery bagger out of a loading dock while friends grab his arms | 0:26:37 "Hold him still!"; plot summary (Norm dragged away by a tentacled creature) |
+| 1 | David Drayton is an artist with a studio deadline | plot summary (artist); 0:02:02 "extend my deadline" |
+| 2 | A storm dropped a tree through his picture window; it belonged to his neighbor | 0:02:22 "tree was gonna come flying through the window"; 0:04:03 "our neighbor about his tree" |
+| 3 | He drives his son into town for supplies, and the mist rolls in | 0:04:01 "I'll take him to town with me"; plot summary (drive into town, mist over the lake) |
+| 4 | He argues with the men who want to send the bagger out | 0:24:10 "You guys gonna let this kid risk his life" |
+| 5 | They send him anyway | 0:24:43 "Norm, come on."; plot summary (Norm goes to fix the generator) |
+| 6 | A man outside screams that something in the mist has taken someone | 0:12:05 "...took John Lee!"; 0:12:08 "Something in the mist took John Lee." |
+| 7 | Everyone is told to stay inside, and the crowd shuts the doors | 0:12:12 "Shut the doors!"; 0:14:29 "Just stay inside the store." |
+| 8 | A woman walks out to find her children, though the crowd warns her not to | 0:14:33 "I gotta get home to my kids."; 0:14:54 "Ma'am, no, you can't go out there."; plot summary (leaves alone to find children) |
+| 9 | Norm is sent out to raise the loading door so the generator can run | 0:24:01 "I'm gonna start the motor, you raise the door"; plot summary |
+| 10 | Norm screams while his friends hold on; David shouts to start the generator | 0:26:37 "Hold him still!"; 0:27:32 "DAVID: Start the generator." |
+| 11 | The preacher calls Norm the first payment and demands more | 0:45:02 "Little Normie was first,"; 0:45:07 "The bill is due." |
+| 12 | Who is she going to sacrifice next? | 1:12:12 "who she's gonna sacrifice" (said by Bill about her) |
+| 13 | Some in the crowd call David a traitor and order him onto his knees | 1:30:21 "Get on your knees!"; 1:32:04 "Judas!" |
+| 14 | A soldier admits he is stationed at a secret base up on the mountain | 1:29:55 "It's the Arrowhead Project, isn't it?"; 1:30:42 "I'm stationed up there."; plot summary (soldier Jessup) |
+| 15 | The crowd decides that is why the wrath of heaven has come down | 1:30:32 "That's what brung down the wrath of God!" |
+| 16 | At dawn, the preacher says no one may leave, and the only car is parked at the far end of the lot | 1:36:55 "It's dawn."; 1:37:16 "My car's parked... far end."; 1:38:02 "You can't go out. I won't allow it." |
 
-## Needs a decision before render
-1. Sentence 12 (the ending): the subtitles show gunshots and "I killed her" but not who did what. Confirm the ending from the film, or cut this sentence and end on sentence 11.
-2. Sentence 4: "see shapes moving in the fog" is inferred from the monster cues.
-3. Sentence 11: "no end" is narration.
+Notes:
+- Sentence 12 is a question, not a claim. It is supported by the 1:12:12 line about who the preacher will sacrifice.
+- Nothing about the ending appears: no shooting of the group, no Billy, no rescue. Carmody's death and the Army arrival are held back.
+- Sentence 14 gives the Arrowhead clue only, without the military-experiment explanation.

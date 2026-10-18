@@ -1,0 +1,36 @@
+{
+  "passed": {
+    "research": {
+      "at": "2026-10-18T22:56:59",
+      "note": "story bible written from SDH and plot summary"
+    },
+    "story": {
+      "at": "2026-10-18T23:01:48",
+      "note": "hooks.md chosen, script.md fact check"
+    },
+    "lint": {
+      "at": "2026-10-18T23:01:48",
+      "note": "lint PASS, factcheck PASS"
+    },
+    "voice": {
+      "at": "2026-10-18T23:01:48",
+      "note": "voice 59.8s PASS"
+    },
+    "footage": {
+      "at": "2026-10-18T23:09:18",
+      "note": "14 clips chosen from checked grids"
+    },
+    "sheet": {
+      "at": "2026-10-18T23:09:39",
+      "note": "row 5 D:G written, READY_FOR_LOCAL_RENDER"
+    },
+    "render": {
+      "at": "2026-10-18T23:13:27",
+      "note": "runner done, 59.83s"
+    },
+    "verify": {
+      "at": "2026-10-18T23:13:27",
+      "note": "verify PASS 59.8s, captions 26/28"
+    }
+  }
+}
