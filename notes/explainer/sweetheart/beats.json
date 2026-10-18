@@ -1,0 +1,142 @@
+[
+ {
+  "name": "B01_buries",
+  "sentences": [
+   0,
+   1
+  ],
+  "at": 192,
+  "start": 180,
+  "end": 217
+ },
+ {
+  "name": "B02_storm",
+  "sentences": [
+   2,
+   2
+  ],
+  "at": 4141,
+  "start": 4129,
+  "end": 4166
+ },
+ {
+  "name": "B03_every",
+  "sentences": [
+   3,
+   3
+  ],
+  "at": 2686,
+  "start": 2674,
+  "end": 2711
+ },
+ {
+  "name": "B04_later",
+  "sentences": [
+   4,
+   4
+  ],
+  "at": 4158,
+  "start": 4146,
+  "end": 4183
+ },
+ {
+  "name": "B05_terrible",
+  "sentences": [
+   5,
+   6
+  ],
+  "at": 2774,
+  "start": 2762,
+  "end": 2799
+ },
+ {
+  "name": "B06_creature",
+  "sentences": [
+   7,
+   7
+  ],
+  "at": 2391,
+  "start": 2379,
+  "end": 2416
+ },
+ {
+  "name": "B07_stabs",
+  "sentences": [
+   8,
+   9
+  ],
+  "at": 2787,
+  "start": 2775,
+  "end": 2812
+ },
+ {
+  "name": "B08_washes",
+  "sentences": [
+   10,
+   10
+  ],
+  "at": 2628,
+  "start": 2616,
+  "end": 2653
+ },
+ {
+  "name": "B09_history",
+  "sentences": [
+   11,
+   12
+  ],
+  "at": 3307,
+  "start": 3295,
+  "end": 3332
+ },
+ {
+  "name": "B10_boyfriend",
+  "sentences": [
+   13,
+   13
+  ],
+  "at": 3392,
+  "start": 3380,
+  "end": 3417
+ },
+ {
+  "name": "B11_creature",
+  "sentences": [
+   14,
+   15
+  ],
+  "at": 3530,
+  "start": 3518,
+  "end": 3555
+ },
+ {
+  "name": "B12_lucas",
+  "sentences": [
+   16,
+   16
+  ],
+  "at": 2898,
+  "start": 2886,
+  "end": 2923
+ },
+ {
+  "name": "B13_hunts",
+  "sentences": [
+   17,
+   18
+  ],
+  "at": 3629,
+  "start": 3617,
+  "end": 3654
+ },
+ {
+  "name": "B14_alone",
+  "sentences": [
+   19,
+   19
+  ],
+  "at": 4141,
+  "start": 4129,
+  "end": 4166
+ }
+]

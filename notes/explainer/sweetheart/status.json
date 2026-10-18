@@ -1,0 +1,36 @@
+{
+  "passed": {
+    "research": {
+      "at": "2026-10-19T00:40:30",
+      "note": "story.md complete"
+    },
+    "story": {
+      "at": "2026-10-19T00:40:30",
+      "note": "hooks.md and script.txt written, factcheck PASS"
+    },
+    "lint": {
+      "at": "2026-10-19T00:40:30",
+      "note": "lint and factcheck PASS, 250 words"
+    },
+    "voice": {
+      "at": "2026-10-19T00:40:30",
+      "note": "voicecheck PASS 59.8s"
+    },
+    "footage": {
+      "at": "2026-10-19T00:42:53",
+      "note": "Picks reviewed; B05, B08 switched to c; B11 to 59:11; B06, B09, B10 set from grids; clips PASS"
+    },
+    "sheet": {
+      "at": "2026-10-19T00:43:12",
+      "note": "Sheet1 D8:G8 written from row values; B8 confirmed Sweetheart (2019)"
+    },
+    "render": {
+      "at": "2026-10-19T00:47:40",
+      "note": "59.8s, Sweetheart (2019) (2).mp4"
+    },
+    "verify": {
+      "at": "2026-10-19T00:47:40",
+      "note": "length 59.8s, black 0.0s, audio yes, captions in 23/28 samples"
+    }
+  }
+}

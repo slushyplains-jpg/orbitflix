@@ -1,25 +1,26 @@
-# Sweetheart (2019): script fact check
+# Fact check (script.txt)
 
-SDH source: `Sweetheart.2019.720p.AMZN.WEB-DL.DDP5.1.H.264-NTG-HI.srt`
-Timecodes are seconds in this release. Narration = connective wording, not a plot fact.
+| # | Sentence (short) | Source |
+|---|---|---|
+| 0 | Jenn buries her dying friend, and the grave is empty by morning | Plot summary; SDH 3:12, 46:14 |
+| 1 | A trail of blood leads into the sea | Plot summary; SDH 46:14 |
+| 2 | A week ago a storm sank her boat; stranded with almost no water | SDH 1:09:01, 4:00, 50:36 |
+| 3 | Every night something huge crawls out of the ocean to hunt her | SDH 44:46, 1:10:10 |
+| 4 | Days later another friend washes ashore dead; she uses the body as bait | SDH 1:09:18, 45:02; plot summary (bait) |
+| 5 | Two sets of eyes and a smell | SDH 46:14 |
+| 6 | She ties a hammock in the trees to watch for it | SDH 39:27; plot summary |
+| 7 | The creature finds the hammock and it drops | SDH 39:51, 40:15; plot summary |
+| 8 | She stabs it with a sharpened stick and it bleeds black | SDH 46:27; plot summary |
+| 9 | She barely gets away | SDH 40:56, 41:26; plot summary |
+| 10 | A raft brings Lucas, her boyfriend, and Mia, her friend | SDH 43:48, 1:09:18 |
+| 11 | Jenn has a history of lying and neither believes her | SDH 55:07, 44:37, 50:24 |
+| 12 | She runs for the raft alone and they tie her up | SDH 53:04, 54:18; plot summary |
+| 13 | He calls her a black cloud and says he pays for her life | SDH 56:32, 57:06, 57:42 |
+| 14 | The creature drags Mia into the water | SDH 58:50; plot summary |
+| 15 | Nobody calls Jenn a liar now (narration) | SDH 58:50 |
+| 16 | She and Lucas load the raft to sail west where planes fly | SDH 48:18, 1:03:17 |
+| 17 | It hunts them in daylight, which Jenn said it never did | SDH 1:00:29, 1:05:01 |
+| 18 | It rips through the raft and pulls her toward the dark | SDH 1:04:17, 1:05:01; plot summary |
+| 19 | Alone, she writes a letter for whoever finds her body and says she has stopped running | SDH 1:09:01, 1:10:25, 1:10:29 |
 
-Length: 177 words, under the 200-word target.
-
-| # | Sentence | Facts and SDH timecode | Status |
-|---|---|---|---|
-| 0 | A little more than a week ago, Jennifer Remming's boat went down in a storm. | "A little more than a week ago, my boat went down in a storm" 4147. "Jennifer Remming." 4246 | SDH |
-| 1 | Her friends Zack and Brad did not survive, and Zack washed ashore already dead. | "Zack and Brad from our group are both dead." 4155. "Zack washed ashore, already dead." 4165 | SDH |
-| 2 | Now Jenn is alone out here, desperate for water, with nothing for miles. | "I need to find you water." 241. "there's nothing for miles, Jenn." 3036 | SDH |
-| 3 | She buried her friend deep in the ground, but the creature came anyway. | "I buried him deep into the ground and this creature came" 2778 | SDH |
-| 4 | She believes a monster lives in the water, and she tries to warn anyone who will listen. | "It's a monster." 2682. "That there's a monster here" 4214 | SDH; "warn anyone who will listen" is narration |
-| 5 | Her note says the same thing, and she admits there is nothing she can do to prove it. | "If you find this note" 4230. "there's nothing I can do to prove that" 4181 | SDH |
-| 6 | Planes pass overhead, and each one gives her a little hope of rescue. | "I saw a bunch of planes go that way." 2900. "(plane flying overhead)" 1393 | SDH for the planes; "hope of rescue" is narration |
-| 7 | Then Lucas turns up, and his story does not quite add up. | "It's a miracle." 2631. "LUCAS: It's incredible." 2631 | SDH for Lucas's presence; "does not add up" is narration |
-| 8 | He says he saw nothing, and Jenn finds herself tied up as the tension grows. | "LUCAS: I didn't see anything." 3334. "Lucas, untie me." 3362 | SDH |
-| 9 | She fears she is being left behind to starve. | "and leaving me here to starve to death?" 3479 | SDH |
-| 10 | Something moves under the surface, and the creature's hiss echoes across the water. | "(creature hissing)" 2452 | SDH; the movement is narration |
-| 11 | Anyone who gets too close to it does not survive. | "It killed them." 2731 | SDH for the killing; "anyone who gets too close" is narration |
-| 12 | Jenn has to decide whether to trust Lucas, or to face the monster alone. | "Stop! Jenn! Wait!" 3191. "Shit. Lucas!" 3544 | Narration (the decision) |
-
-## Needs a decision before render
-1. Length: 177 words, under the 200-word target.
+Notes: lint passes with no warnings. Sentence 18 to 19 imply Lucas is gone without stating it; the plot summary says the creature drags him to his death after releasing Jenn.

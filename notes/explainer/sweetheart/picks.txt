@@ -1,0 +1,14 @@
+B01_buries a | Jenn buries her dying friend on the beach, and by morning his grave is empty. A trail of b
+B02_storm a | A week ago, a storm sank her boat, and now she is stranded on a tiny island with almost no
+B03_every a | Every night, something huge crawls out of the ocean to hunt her.
+B04_later a | Days later, another friend washes ashore already dead, and she uses the body as bait to se
+B05_terrible c | It has two sets of eyes and a terrible smell. So she ties a hammock high in the trees to w
+B06_creature 39:50 | The creature finds it anyway, and the hammock drops.
+B07_stabs a | Jenn stabs it with a sharpened stick, and it bleeds black. She barely gets away.
+B08_washes c | Then a raft washes up with her boyfriend, Lucas, and her friend Mia.
+B09_history 55:12 | But Jenn has a history of lying, and neither of them believes her. When she runs for the r
+B10_boyfriend 56:33 | Her own boyfriend calls her a black cloud and reminds her that he pays for her entire life
+B11_creature 59:11 | Then the creature drags Mia into the water. Nobody calls Jenn a liar now.
+B12_lucas a | The next day, she and Lucas load the raft to sail west, where the planes fly.
+B13_hunts a | But it hunts them in daylight, which Jenn swore it never did. It rips through the raft and
+B14_alone a | Now she is alone, writing a letter for whoever finds her body, and it says she has stopped

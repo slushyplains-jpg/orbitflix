@@ -1,156 +1,156 @@
 [
  {
-  "start": 212.85,
+  "start": 193.0,
   "sentences": [
    0,
-   0
-  ],
-  "quote": "Help!",
-  "action": "Jenn on the beach, shouting for help",
-  "visual_prompt": "a woman on a beach shouting for help",
-  "needs_visual_scan": false
- },
- {
-  "start": 240.84,
-  "sentences": [
-   1,
    1
   ],
-  "quote": "I need to find you water. Water...",
-  "action": "Jenn gathering coconuts and leaves on the island",
-  "visual_prompt": "a woman gathering coconuts on a tropical island",
+  "quote": "(gasps)",
+  "action": "Jenn buries her dying friend on the beach, and by morning his grave is empty. A trail of b",
+  "visual_prompt": "Jenn buries her dying friend on the beach, and by morning his grave is empty. A trail of b",
   "needs_visual_scan": false
  },
  {
-  "start": 1041.67,
+  "start": 4142.0,
   "sentences": [
    2,
    2
   ],
-  "quote": "(fire crackling)",
-  "action": "Jenn sitting by a small fire",
-  "visual_prompt": "a woman sitting by a small fire at night",
+  "quote": "JENN: I'm writing this letter",
+  "action": "A week ago, a storm sank her boat, and now she is stranded on a tiny island with almost no",
+  "visual_prompt": "A week ago, a storm sank her boat, and now she is stranded on a tiny island with almost no",
   "needs_visual_scan": false
  },
  {
-  "start": 1493.49,
+  "start": 2686.0,
   "sentences": [
    3,
    3
   ],
-  "quote": "(creature snarling)",
-  "action": "Dark jungle, shapes in the leaves (creature not clearly visible)",
-  "visual_prompt": "dark jungle leaves at night",
+  "quote": "Okay, I saw it.",
+  "action": "Every night, something huge crawls out of the ocean to hunt her.",
+  "visual_prompt": "Every night, something huge crawls out of the ocean to hunt her.",
   "needs_visual_scan": false
  },
  {
-  "start": 2692.52,
+  "start": 4159.0,
   "sentences": [
    4,
    4
   ],
-  "quote": "and it drags its food back out to this...",
-  "action": "Friends talking on the beach",
-  "visual_prompt": "friends talking on a tropical beach",
+  "quote": "Brad washed ashore",
+  "action": "Days later, another friend washes ashore already dead, and she uses the body as bait to se",
+  "visual_prompt": "Days later, another friend washes ashore already dead, and she uses the body as bait to se",
   "needs_visual_scan": false
  },
  {
-  "start": 2634.83,
+  "start": 2765.0,
   "sentences": [
    5,
-   5
-  ],
-  "quote": "JENN: There was a family here a long time ago,",
-  "action": "Friends on the beach, coconut shells",
-  "visual_prompt": "people on a tropical beach with coconut shells",
-  "needs_visual_scan": false
- },
- {
-  "start": 3026.82,
-  "sentences": [
-   6,
    6
   ],
-  "quote": "Jenn, you've been alone and you're scared,",
-  "action": "Friends arguing on the beach",
-  "visual_prompt": "people arguing on a tropical beach",
+  "quote": "Oh, fuck...",
+  "action": "It has two sets of eyes and a terrible smell. So she ties a hammock high in the trees to w",
+  "visual_prompt": "It has two sets of eyes and a terrible smell. So she ties a hammock high in the trees to w",
   "needs_visual_scan": false
  },
  {
-  "start": 3037.53,
+  "start": 2390.0,
   "sentences": [
    7,
    7
   ],
-  "quote": "I say we light a huge fire.",
-  "action": "Friends arguing on the beach (fire not visible)",
-  "visual_prompt": "people arguing on a tropical beach",
+  "quote": "",
+  "action": "The creature finds it anyway, and the hammock drops.",
+  "visual_prompt": "The creature finds it anyway, and the hammock drops.",
   "needs_visual_scan": false
  },
  {
-  "start": 2933.63,
+  "start": 2784.0,
   "sentences": [
    8,
-   8
-  ],
-  "quote": "I'm gonna get more food.",
-  "action": "Jenn walking alone on the beach",
-  "visual_prompt": "a woman walking alone on a beach",
-  "needs_visual_scan": false
- },
- {
-  "start": 2900.0,
-  "sentences": [
-   9,
    9
   ],
-  "quote": "I saw a bunch of planes go that way.",
-  "action": "Jenn and friends on the beach (planes not visible)",
-  "visual_prompt": "people talking on a beach",
+  "quote": "(stammers) It's massive.",
+  "action": "Jenn stabs it with a sharpened stick, and it bleeds black. She barely gets away.",
+  "visual_prompt": "Jenn stabs it with a sharpened stick, and it bleeds black. She barely gets away.",
   "needs_visual_scan": false
  },
  {
-  "start": 2458.79,
+  "start": 2621.0,
   "sentences": [
    10,
    10
   ],
-  "quote": "(creature roars)",
-  "action": "Dark night scene (creature not clearly visible)",
-  "visual_prompt": "a dark night scene",
+  "quote": "It's gonna be okay.",
+  "action": "Then a raft washes up with her boyfriend, Lucas, and her friend Mia.",
+  "visual_prompt": "Then a raft washes up with her boyfriend, Lucas, and her friend Mia.",
   "needs_visual_scan": false
  },
  {
-  "start": 3184.15,
+  "start": 3312.0,
   "sentences": [
    11,
-   11
-  ],
-  "quote": "Hey! Jenn!",
-  "action": "Friends running to the shore and a boat",
-  "visual_prompt": "people running to the shore with a red boat",
-  "needs_visual_scan": false
- },
- {
-  "start": 3310.47,
-  "sentences": [
-   12,
    12
   ],
   "quote": "Jenn, it's not that I don't believe you.",
-  "action": "Dark jungle, Jenn and a man",
-  "visual_prompt": "a woman and a man in a dark jungle",
+  "action": "But Jenn has a history of lying, and neither of them believes her. When she runs for the r",
+  "visual_prompt": "But Jenn has a history of lying, and neither of them believes her. When she runs for the r",
   "needs_visual_scan": false
  },
  {
-  "start": 3396.49,
+  "start": 3393.0,
   "sentences": [
    13,
    13
   ],
-  "quote": "This whole thing, Jenn.",
-  "action": "Man by a fire at night",
-  "visual_prompt": "a man by a fire at night",
+  "quote": "There's always a black cloud hanging over your head.",
+  "action": "Her own boyfriend calls her a black cloud and reminds her that he pays for her entire life",
+  "visual_prompt": "Her own boyfriend calls her a black cloud and reminds her that he pays for her entire life",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 3551.0,
+  "sentences": [
+   14,
+   15
+  ],
+  "quote": "- (grunts) - (growls)",
+  "action": "Then the creature drags Mia into the water. Nobody calls Jenn a liar now.",
+  "visual_prompt": "Then the creature drags Mia into the water. Nobody calls Jenn a liar now.",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 2899.0,
+  "sentences": [
+   16,
+   16
+  ],
+  "quote": "So, we're gonna head west.",
+  "action": "The next day, she and Lucas load the raft to sail west, where the planes fly.",
+  "visual_prompt": "The next day, she and Lucas load the raft to sail west, where the planes fly.",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 3633.0,
+  "sentences": [
+   17,
+   18
+  ],
+  "quote": "I've never seen it during the day.",
+  "action": "But it hunts them in daylight, which Jenn swore it never did. It rips through the raft and",
+  "visual_prompt": "But it hunts them in daylight, which Jenn swore it never did. It rips through the raft and",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 4142.0,
+  "sentences": [
+   19,
+   19
+  ],
+  "quote": "JENN: I'm writing this letter",
+  "action": "Now she is alone, writing a letter for whoever finds her body, and it says she has stopped",
+  "visual_prompt": "Now she is alone, writing a letter for whoever finds her body, and it says she has stopped",
   "needs_visual_scan": false
  }
 ]
