@@ -20,6 +20,12 @@ GENERIC_ENDINGS = [
     "will anyone be found",
 ]
 FILLER = ["changes everything", "nothing will ever be the same", "little do they know", "in a world where"]
+HARD_WORDS = ["reactor", "drilling", "quarantine", "protocol", "specimen", "organism", "submersible", "bulkhead",
+              "decompression", "implode", "implodes", "imploded", "containment", "radiation", "coolant", "thruster",
+              "thrusters", "atmosphere", "evacuation", "pressure suit", "pressure suits", "hypothermia", "firewall",
+              "hibernate", "hibernating", "trajectory", "orbit", "parasite", "pathogen", "facility", "personnel",
+              "catastrophic", "integrity", "compromised", "transmission", "frequency", "subsequently", "approximately",
+              "meltdown", "biologist", "exobiologist", "rebreather", "nitrogen", "oxygen scrubber"]
 REPORTING = re.compile(r"\b(says|said|asks|asked|tells|told|replies|insists)\b", re.I)
 
 
@@ -73,6 +79,22 @@ def lint_script(text):
     lens = [len(s.split()) for s in sents]
     if len(lens) > 2 and statistics.pstdev(lens) < 3:
         warns.append("sentence lengths are too uniform; mix short punches with longer lines")
+    # Plain words: the listener is half watching on a phone. Grade is the Flesch-Kincaid reading
+    # level from sentence length and syllables; hard words are jargon a stranger would not know.
+    words_l = re.findall(r"[a-z']+", text.lower())
+    syl = lambda w: max(1, len(re.findall(r"[aeiouy]+", w)) - (1 if w.endswith("e") and not w.endswith(("le", "ee")) and len(re.findall(r"[aeiouy]+", w)) > 1 else 0))
+    grade = 0.39 * len(words_l) / max(1, len(sents)) + 11.8 * sum(syl(w) for w in words_l) / max(1, len(words_l)) - 15.59
+    if grade > 7:
+        fails.append(f"reading level {grade:.1f} is too hard (max 7, aim under 5); use shorter sentences and everyday words")
+    elif grade > 5:
+        warns.append(f"reading level {grade:.1f}; aim under 5 with shorter sentences and everyday words")
+    hard = sorted({w for w in HARD_WORDS if re.search(rf"\b{w}\b", text.lower())})
+    if len(hard) >= 4:
+        fails.append(f"{len(hard)} hard words a stranger may not know: {hard}; say them in everyday words")
+    elif hard:
+        warns.append(f"hard words: {hard}; say them in everyday words if you can")
+    if len(re.findall(r"\bsomething\b", text.lower())) > 1:
+        warns.append("'something' used more than once; say what the danger is")
     names = set()
     for s in sents:
         for w in s.split()[1:]:

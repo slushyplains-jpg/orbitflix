@@ -16,17 +16,17 @@ A script built only from subtitles turns into a transcript recap. Subtitles are 
 
 ## story.md fields
 
-- **Logline:** one sentence, who wants what and what stands in the way.
-- **Protagonist:** who the Short follows, described by role.
-- **Wound:** the protagonist's guilt, loss, or flaw (this is usually the emotional core).
-- **The choice:** the one or two moments where the protagonist gives something up, breaks their own rule, or has to pick between two things they care about, with times. This is the spine of the script. If the protagonist never chooses anything in the film, pick the moment they are most tested. The strongest scene for the protagonist is often not the biggest event.
-- **Human detail:** one small, specific, human thing the viewer will remember (a wheelchair that feels like flying, a newborn the father never meets, a promise to a child), with its time. The script must use it once.
-- **Goal and stakes:** what they need, and what happens if they fail.
-- **Central mystery or threat:** the question the viewer will want answered.
-- **Key beats:** 8 to 12 events in film order, each with its subtitle time or "plot summary only", and a power mark. HIGH means someone chooses, sacrifices, breaks a rule or loses someone. LOW means the plot just moves. The script is built from the HIGH beats.
-- **Turn:** the midpoint reveal or reversal.
-- **Hold back:** the climax and ending. Note them here so the script can tease, not tell.
-- **Best images:** 5 to 8 striking visual moments with approximate times (for the hook and for footage).
-- **Cliffhanger:** the most specific unanswered question at the point where the Short stops.
+- **Premise:** one plain sentence a stranger understands at once: who, where, and what is going wrong.
+- **Protagonist:** name and role, plus the one thing that makes them specific (a job, a past, a habit).
+- **Wild facts:** the 3 to 5 most surprising true things in the film, with times. The hook comes from here. A wild fact is concrete and a little unbelievable ("a grandmother lifts a sports car with one hand", "a man flees a sinking station in his bathrobe, holding a stuffed bunny").
+- **Human detail:** one small human thing the viewer will remember, with its time.
+- **Wound:** the protagonist's loss, guilt or secret, with its time, or "none".
+- **Key beats:** 8 to 12 events in film order with times, each marked HIGH (someone chooses, sacrifices, dies, or a big reveal) or LOW (the plot just moves).
+- **Twist we can show:** the biggest reveal before the last third of the film, which the Short may use.
+- **Hold back:** the climax and the ending. The Short points at them but never tells them.
+- **Best images:** 5 to 8 striking visual moments with times (for the hook clip and the footage).
+- **Cliffhanger:** where the Short stops, just before the climax, as a specific dilemma or question.
+
+Subtitles hold the best human details (they were where the bunny and the fiancé in Underwater came from), so read the whole digest, not only the plot summary.
 
 The gate for this stage is that every field is filled. `explainer-factcheck.py` checks the fields and records research when the story stage passes.

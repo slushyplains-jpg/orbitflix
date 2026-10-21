@@ -1,32 +1,26 @@
 {
   "passed": {
     "research": {
-      "at": "2026-10-21T19:15:44",
+      "at": "2026-10-21T21:40:12",
       "note": "story.md has every field"
     },
     "story": {
-      "at": "2026-10-21T19:15:45",
-      "note": "20 sentences, every one sourced"
+      "at": "2026-10-21T21:40:12",
+      "note": "23 sentences, every one sourced"
     },
     "lint": {
-      "at": "2026-10-21T19:15:49",
-      "note": "20 sentences, 234 words, est 56.6s"
+      "at": "2026-10-21T21:40:12",
+      "note": "23 sentences, 237 words, est 56.3s"
     },
     "voice": {
-      "at": "2026-10-21T19:16:40",
-      "note": "58.0s at 1.0x"
-    },
-    "footage": {
-      "at": "2026-10-21T19:19:40",
-      "note": "14 clips from picks.txt"
-    },
-    "render": {
-      "at": "2026-10-21T19:23:05",
-      "note": "58.0s, Underwater (2020) (2).mp4"
-    },
-    "verify": {
-      "at": "2026-10-21T19:23:05",
-      "note": "length 58.0s, black 0.0s, audio yes, captions in 18/27 samples"
+      "at": "2026-10-21T21:41:06",
+      "note": "59.3s at 1.0x"
     }
-  }
+  },
+  "history": [
+    {
+      "at": "2026-10-21T21:40:12",
+      "reset_from": "research"
+    }
+  ]
 }
