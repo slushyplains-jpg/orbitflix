@@ -61,6 +61,12 @@ def lint_script(text):
     for w, c in openers.items():
         if c >= 3:
             warns.append(f"{c} sentences start with '{w}'")
+    chain = sum(1 for s in sents if re.match(r"^(then|so|now|and|when|after|later)\b", s.strip().lower()))
+    if chain > len(sents) * 0.4:
+        warns.append(f"{chain} of {len(sents)} sentences start with then/so/now/when; this reads as a recap, build around the protagonist's choice instead")
+    vague = len(re.findall(r"\b(one of them|someone|an? (?:engineer|commander|officer|soldier|doctor|scientist)|the (?:engineer|commander|officer|soldier|doctor|scientist))\b", text.lower()))
+    if vague > 2:
+        warns.append(f"{vague} role-only phrases ('one of them', 'the engineer'); name people who carry feeling, introduced once with their role")
     pattern = sum(1 for s in sents if re.match(r"^[^,]{3,}, and ", s))
     if pattern > len(sents) // 2:
         warns.append(f"{pattern} of {len(sents)} sentences use the 'X, and Y' shape; vary the rhythm")

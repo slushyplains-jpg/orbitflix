@@ -13,40 +13,29 @@ Read `notes/explainer/<slug>/story.md` (from `explainer-research`). If it is mis
 
 ## Stage 2: write
 
-Read `examples.md` in this folder first. It has two approved scripts with the job of every sentence labeled, and a rejected one with what was wrong. Write in the same pattern.
+Read `examples.md` in this folder first. It has approved scripts with each sentence's job labeled, a "same beat, two ways" pair, and a rejected script. The checks only catch rule-breaking, so quality comes from this stage. It is the cheapest stage in tokens, so do it carefully.
 
-1. **Write three hook options** in `hooks.md`. A hook is one short sentence with a concrete, shocking image or fact that makes the viewer ask how or why. Pick the strongest and say why in one line.
+1. **Write three hook options** in `hooks.md`. A hook puts a person in a situation that costs them something, in one concrete image that makes the viewer ask how or why. Not a gag, not a summary. Pick the strongest and say why in one line.
    - Weak: "Four friends go hiking in Sweden."
    - Strong: "Luke hid behind a shelf while his best friend was beaten to death, and did nothing."
-2. **Write the script in this shape**, about 230 to 240 words (Kokoro speaks 3.8 to 4.1 words a second at 1.0x, so the voice check decides), before thinking about clips:
-   - Hook (1 sentence).
-   - Setup: who the protagonist is and what they carry, using the wound from the story bible (1 to 2 sentences).
-   - Goal and the first mistake (1 to 2 sentences).
-   - Three escalations, each caused by the one before. Use "so," "but," "until," or "then" to link them (5 to 7 sentences).
-   - The turn: the reveal that changes what is at stake (1 to 2 sentences).
-   - Cliffhanger: stop before the climax, on a question only this film can raise (1 sentence).
-   **Fill-in outline.** Write one sentence per line below, in order, then join them. Each line takes its content from a `story.md` field, so nothing is invented:
-   1. Hook: the wound or the best image, as one concrete picture (Wound or Best images).
-   2. Setup: time and place, who they are, why they are there (Protagonist, Goal).
-   3. Problem that starts the trouble (first Key beat).
-   4. The choice that causes everything, starting "So" (Key beat).
-   5 to 7. Escalation 1: one concrete image, then a 3 to 6 word punch, then one extra detail (Key beat, Best images).
-   8 to 9. Escalation 2: a new place or danger, then its image (Key beat).
-   10 to 11. Escalation 3: the threat touches the protagonist, then a wrong detail (Key beat).
-   12 to 13. False hope, then hope breaks (Key beat).
-   14. The question the viewer is already asking, as a short sentence (optional).
-   15 to 16. The wound comes back: someone blames the protagonist, or the protagonist risks everything for it (Wound, Turn).
-   17. The turn: the threat strikes or the stakes jump (Turn).
-   18. Cliffhanger: the most specific open question at this point, as a statement, never "will they" (Cliffhanger).
-   Merge or split lines to fit the film, but keep the order of jobs.
-3. **Style rules.**
-   - Present tense. Show actions, not dialogue. At most two "says/asks/tells" in the whole script.
-   - Name only the protagonist and at most two others. Everyone else is a role ("his wife", "the guide").
-   - Mix sentence lengths. Use a 3 to 6 word sentence for punches.
-   - Every sentence must make the viewer want the next one. If a line could be cut without loss, cut it.
+2. **Write the spine in `spine.md`**, three lines: (a) what the protagonist believes or has promised, (b) the scene where they must choose against it or for it (from `story.md` "The choice", with times), (c) what it costs. The script is built around this scene. Give it about 40 percent of the words, told closely in the present tense (who does what, what is seen and heard). Every other beat gets one short sentence. Use the "Human detail" once, early or at the turn.
+3. **Write three drafts** in `drafts/draft_a.txt`, `draft_b.txt`, `draft_c.txt`, about 230 words each, from three different angles:
+   - **A, the choice:** open on the cost of the choice (the hook), rewind to what led to it, play the choice scene, end on the open question.
+   - **B, one scene:** tell the single most tense sequence moment by moment, compress everything before it to setup, stop before it ends.
+   - **C, the clock:** build on a ticking clock or a question the viewer wants answered, and keep raising it.
+   Do not polish. Drafts are cheap; keep each short.
+4. **Cold read.** Start a fresh helper that has not seen the notes (Agent tool, `subagent_type: "general-purpose"`, `model: "sonnet"`, `run_in_background: false`) and give it only the three drafts with this prompt:
+   > You are a viewer who has never seen the film. Below are three narration drafts for a 60 second vertical video. For each draft answer briefly: (1) what it is about, in one line; (2) who you care about, if anyone; (3) the sentence number where you first got bored or confused; (4) whether the first sentence would stop your scroll, yes or no and why. Then score each draft from 1 to 5 on Hook, Clarity, Curiosity, Emotion, Voice. Pick the best draft and list its three weakest sentences by number with a one line reason each. Be harsh. Reply in under 200 words. DRAFT A: ... DRAFT B: ... DRAFT C: ...
+5. **Choose by the cold read, not by your own favorite.** Take the best draft, rewrite its three weakest sentences, and borrow at most one strong line from another draft. Save the result as `script.txt`. Write `cold_read.md` with the scores, `Chosen: <A|B|C>`, the three weak sentences, and what you changed.
+6. **Style rules.**
+   - Present tense. Show actions, not retold dialogue. At most two "says/asks/tells" in the whole script.
+   - People carry the story. Name the protagonist and up to four others, each introduced once with their role on first mention ("Hugh, the biologist who woke it"), and only if the name carries feeling or the viewer must track them. Everyone else is a role. Never cast the whole script as roles ("an engineer", "the commander", "one of them"): at most two such phrases.
+   - The protagonist acts. In every escalation someone chooses something; things do not just happen. The choice scene must appear.
+   - Mix sentence lengths. Use 3 to 6 word lines for punches, and allow two or three short reaction lines ("That is the mistake.", "Nobody moves.").
+   - Each sentence answers the last question and opens a new one. If a line could be cut without loss, cut it. Avoid "Then ... then ..." chains.
    - No colons, semicolons, double quotes, or abbreviations with periods (Mr., Mrs., Dr., U.S.). They break the sentence split.
-   - Never reveal the ending. Never end on a template question ("What is out there?", "Will they make it?").
-4. **Fact check** in `script.md`: a table `| # | Sentence (short) | Source |` where # is the 0-based sentence number or a range like `4-5`, and Source has the SDH times (3:59, 1:02:14) and/or "plot summary". Before writing a row, grep `sdh.srt` near the cited time and confirm the line says what the sentence claims, including who does it. Cut or reword anything unconfirmed. Then run `python3.11 scripts/explainer-factcheck.py <slug>`; it must print RESULT PASS.
+   - Never reveal the ending. Never end on a template question ("What is out there?", "Will they make it?"). End on the most specific open question.
+7. **Fact check** in `script.md`: a table `| # | Sentence (short) | Source |` where # is the 0-based sentence number or a range like `4-5`, and Source has the SDH times (3:59, 1:02:14) and/or "plot summary". Before writing a row, grep `sdh.srt` near the cited time and confirm the line says what the sentence claims, including who does it. Cut or reword anything unconfirmed. Then run `python3.11 scripts/explainer-factcheck.py <slug>`; it must print RESULT PASS (it also checks that the spine, three drafts and the cold read exist).
 
 ## Stage 3: lint gate
 

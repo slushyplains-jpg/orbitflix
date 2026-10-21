@@ -48,12 +48,16 @@ print(f"{len(sentences)} sentences, {len(covered & set(range(len(sentences))))} 
 for f in fails:
     print("FAIL", f)
 story = open(os.path.join(d, "story.md"), encoding="utf-8").read() if os.path.exists(os.path.join(d, "story.md")) else ""
-fields = ["Logline", "Protagonist", "Wound", "Goal and stakes", "Central mystery", "Key beats", "Turn", "Hold back", "Best images", "Cliffhanger"]
+fields = ["Logline", "Protagonist", "Wound", "The choice", "Human detail", "Goal and stakes", "Central mystery", "Key beats", "Turn", "Hold back", "Best images", "Cliffhanger"]
 missing_fields = [f for f in fields if f"**{f}" not in story]
 if missing_fields:
     fails.append(f"story.md is missing fields: {missing_fields}")
-if not os.path.exists(os.path.join(d, "hooks.md")):
-    fails.append("hooks.md is missing")
+for need in ("hooks.md", "spine.md", "cold_read.md", "drafts/draft_a.txt", "drafts/draft_b.txt", "drafts/draft_c.txt"):
+    if not os.path.exists(os.path.join(d, need)):
+        fails.append(f"{need} is missing (spine, three drafts and a cold read are part of the story stage)")
+cr = os.path.join(d, "cold_read.md")
+if os.path.exists(cr) and not re.search(r"Chosen:\s*\**\s*[ABC]", open(cr, encoding="utf-8").read()):
+    fails.append("cold_read.md needs a line 'Chosen: A', 'Chosen: B' or 'Chosen: C'")
 print("RESULT", "FAIL" if fails else "PASS")
 if not fails:
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))

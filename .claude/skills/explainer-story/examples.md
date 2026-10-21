@@ -55,3 +55,21 @@ What was wrong:
 - Dialogue retold from subtitles: "Phil insists", "Gayle's name comes up", "someone asks". These confuse anyone who has not seen the film.
 - Spoils the reveal (the creature's name, the sacrifice) and ends on a template line.
 - Too short.
+
+## Same beat, two ways (Life, 2017)
+
+The protagonist is a quarantine officer whose one rule is that nothing from Mars leaves its box. Facts for the second version are from the subtitles at 38:35 to 39:15.
+
+Weak (events in order, nobody chooses):
+> An engineer breaks quarantine to save him, and Miranda screams that no one goes in. He burns Calvin, and it only grows. Then it slips out of the lab, and the second firewall fails.
+
+Strong (the protagonist's choice, shown):
+> Miranda has one rule. Nothing from Mars gets out. Then a man is being strangled behind the glass, and she is the one screaming that nobody opens the door.
+
+Why: the strong version uses the moment where the rule costs her something, names what is seen, and pays off her wound. The weak one is plot movement. When a film has a scene like this, it belongs in the script even if it is not the biggest event.
+
+## The three angles
+
+- **A, the choice:** open on the cost, rewind, play the choice, end on the open question.
+- **B, one scene:** one tense sequence told moment by moment; everything before it is one line of setup.
+- **C, the clock:** a ticking clock or unanswered question that keeps being raised.

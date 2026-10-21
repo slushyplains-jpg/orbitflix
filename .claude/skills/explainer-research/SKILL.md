@@ -19,9 +19,11 @@ A script built only from subtitles turns into a transcript recap. Subtitles are 
 - **Logline:** one sentence, who wants what and what stands in the way.
 - **Protagonist:** who the Short follows, described by role.
 - **Wound:** the protagonist's guilt, loss, or flaw (this is usually the emotional core).
+- **The choice:** the one or two moments where the protagonist gives something up, breaks their own rule, or has to pick between two things they care about, with times. This is the spine of the script. If the protagonist never chooses anything in the film, pick the moment they are most tested. The strongest scene for the protagonist is often not the biggest event.
+- **Human detail:** one small, specific, human thing the viewer will remember (a wheelchair that feels like flying, a newborn the father never meets, a promise to a child), with its time. The script must use it once.
 - **Goal and stakes:** what they need, and what happens if they fail.
 - **Central mystery or threat:** the question the viewer will want answered.
-- **Key beats:** 8 to 12 events in film order, each with its subtitle time or "plot summary only".
+- **Key beats:** 8 to 12 events in film order, each with its subtitle time or "plot summary only", and a power mark. HIGH means someone chooses, sacrifices, breaks a rule or loses someone. LOW means the plot just moves. The script is built from the HIGH beats.
 - **Turn:** the midpoint reveal or reversal.
 - **Hold back:** the climax and ending. Note them here so the script can tease, not tell.
 - **Best images:** 5 to 8 striking visual moments with approximate times (for the hook and for footage).
