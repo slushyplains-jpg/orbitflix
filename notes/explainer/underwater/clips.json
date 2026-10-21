@@ -1,156 +1,156 @@
 [
  {
-  "start": 287.98,
+  "start": 918.0,
   "sentences": [
    0,
    0
   ],
-  "quote": "When you're underwater for months at a time,",
-  "action": "Norah brushing her teeth in the station bathroom",
-  "visual_prompt": "a woman brushing her teeth in a station bathroom",
+  "quote": "PAUL: Okay, I got my robe and my lucky sock.",
+  "action": "A man in a bathrobe walks across the ocean floor with a stuffed bunny named Lil Paul under",
+  "visual_prompt": "A man in a bathrobe walks across the ocean floor with a stuffed bunny named Lil Paul under",
   "needs_visual_scan": false
  },
  {
-  "start": 432.02,
+  "start": 2344.0,
   "sentences": [
    1,
    1
   ],
-  "quote": "Pressure breach!",
-  "action": "Crew running through a smoky corridor",
-  "visual_prompt": "people running through a smoky corridor",
+  "quote": "I shot it. I'm naming it.",
+  "action": "Paul jokes about everything, even while the walls break.",
+  "visual_prompt": "Paul jokes about everything, even while the walls break.",
   "needs_visual_scan": false
  },
  {
-  "start": 486.61,
+  "start": 935.0,
   "sentences": [
    2,
    2
   ],
-  "quote": "We gotta seal the bulkhead!",
-  "action": "Crew at the bulkhead and a panel",
-  "visual_prompt": "people at a bulkhead on a station",
+  "quote": "",
+  "action": "Behind him, a drilling station is falling apart, and the only way out is a mile of black s",
+  "visual_prompt": "Behind him, a drilling station is falling apart, and the only way out is a mile of black s",
   "needs_visual_scan": false
  },
  {
-  "start": 532.51,
+  "start": 1489.0,
   "sentences": [
    3,
    3
   ],
-  "quote": "Norah, Norah! They're not gonna make it.",
-  "action": "Norah under water in a corridor (weak)",
-  "visual_prompt": "a person lying in water in a corridor",
+  "quote": "",
+  "action": "Norah, the engineer, has already watched Rodrigo implode in a cracked helmet.",
+  "visual_prompt": "Norah, the engineer, has already watched Rodrigo implode in a cracked helmet.",
   "needs_visual_scan": false
  },
  {
-  "start": 553.91,
+  "start": 2309.0,
   "sentences": [
    4,
-   4
-  ],
-  "quote": "(explosion)",
-  "action": "People in water in the corridor, debris",
-  "visual_prompt": "people in water with debris in a corridor",
-  "needs_visual_scan": false
- },
- {
-  "start": 598.74,
-  "sentences": [
-   5,
    5
   ],
-  "quote": "To all Kepler Station crew, structural failure is imminent.",
-  "action": "Norah at a panel with a radio",
-  "visual_prompt": "a woman at a panel with a radio",
+  "quote": "- Uh, I'm just looking for its... - (squeals)",
+  "action": "Something with no eyes hunts them by their lights. Then comes a pipe so tight they cross i",
+  "visual_prompt": "Something with no eyes hunts them by their lights. Then comes a pipe so tight they cross i",
   "needs_visual_scan": false
  },
  {
-  "start": 615.38,
+  "start": 2994.0,
   "sentences": [
    6,
-   6
-  ],
-  "quote": "Was that an earthquake?",
-  "action": "Norah with a radio and a corridor",
-  "visual_prompt": "a woman with a radio in a corridor",
-  "needs_visual_scan": false
- },
- {
-  "start": 626.91,
-  "sentences": [
-   7,
    7
   ],
-  "quote": "All personnel report to pod bays.",
-  "action": "Dark corridor with lights (weak)",
-  "visual_prompt": "a dark corridor with lights",
+  "quote": "",
+  "action": "Paul goes last. On the far side, Norah holds the rope.",
+  "visual_prompt": "Paul goes last. On the far side, Norah holds the rope.",
   "needs_visual_scan": false
  },
  {
-  "start": 634.61,
+  "start": 3075.0,
   "sentences": [
    8,
-   8
-  ],
-  "quote": "Kepler Station status, 70% compromised.",
-  "action": "Dark corridors with lights and smoke (weak)",
-  "visual_prompt": "a dark corridor with lights and smoke",
-  "needs_visual_scan": false
- },
- {
-  "start": 722.34,
-  "sentences": [
-   9,
    9
   ],
-  "quote": "I can reset breakers.",
-  "action": "Norah talking, screen shows 70% compromised",
-  "visual_prompt": "a woman talking beside a screen",
+  "quote": "- SMITH: Paul, can you hear me? - Yeah.",
+  "action": "His voice drops out of the radio. They pull, and he comes through grinning, joking about s",
+  "visual_prompt": "His voice drops out of the radio. They pull, and he comes through grinning, joking about s",
   "needs_visual_scan": false
  },
  {
-  "start": 772.04,
+  "start": 3144.0,
   "sentences": [
    10,
-   10
-  ],
-  "quote": "There's-there's evac pods in CR-7.",
-  "action": "Dark corridor with flashlights (weak)",
-  "visual_prompt": "people with flashlights in a dark corridor",
-  "needs_visual_scan": false
- },
- {
-  "start": 867.34,
-  "sentences": [
-   11,
    11
   ],
-  "quote": "PAUL: Take him, take him.",
-  "action": "Crew helping a hurt man (dark)",
-  "visual_prompt": "people helping a man in a dark corridor",
+  "quote": "",
+  "action": "His line is tangled, and something pulls him under. He shouts for the others to take Lil P",
+  "visual_prompt": "His line is tangled, and something pulls him under. He shouts for the others to take Lil P",
   "needs_visual_scan": false
  },
  {
-  "start": 792.51,
+  "start": 3170.0,
   "sentences": [
    12,
    12
   ],
-  "quote": "Some of this water is definitely sewage.",
-  "action": "Flashlights in dark water (weak)",
-  "visual_prompt": "flashlights in dark water",
+  "quote": "",
+  "action": "They cannot hold on, and the thing rips Paul out of his suit.",
+  "visual_prompt": "They cannot hold on, and the thing rips Paul out of his suit.",
   "needs_visual_scan": false
  },
  {
-  "start": 905.0,
+  "start": 3144.0,
   "sentences": [
    13,
-   13
+   14
   ],
   "quote": "",
-  "action": "Crew with flashlights in a tunnel",
-  "visual_prompt": "people with flashlights in a dark tunnel",
+  "action": "All that is left of him is a stuffed bunny, and Norah is holding it. She has lost someone",
+  "visual_prompt": "All that is left of him is a stuffed bunny, and Norah is holding it. She has lost someone",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 4338.0,
+  "sentences": [
+   15,
+   15
+  ],
+  "quote": "We used to all dive together.",
+  "action": "One night, she was too tired to dive with her fianc\u00e9, so he went alone, and she never foun",
+  "visual_prompt": "One night, she was too tired to dive with her fianc\u00e9, so he went alone, and she never foun",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 3907.0,
+  "sentences": [
+   16,
+   16
+  ],
+  "quote": "I'm still alive. I'm at the old Shepard drill.",
+  "action": "Now she walks on alone, with the bunny and a radio nobody answers.",
+  "visual_prompt": "Now she walks on alone, with the bunny and a radio nobody answers.",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 4210.0,
+  "sentences": [
+   17,
+   17
+  ],
+  "quote": "",
+  "action": "She finds Emily and Smith alive, and they reach the last station.",
+  "visual_prompt": "She finds Emily and Smith alive, and they reach the last station.",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 5079.0,
+  "sentences": [
+   18,
+   19
+  ],
+  "quote": "",
+  "action": "At the pod deck, a warning light shows one pod is dead. Norah tells the others there is on",
+  "visual_prompt": "At the pod deck, a warning light shows one pod is dead. Norah tells the others there is on",
   "needs_visual_scan": false
  }
 ]

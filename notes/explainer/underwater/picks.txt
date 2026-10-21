@@ -1,0 +1,14 @@
+B01_bathrobe c | A man in a bathrobe walks across the ocean floor with a stuffed bunny named Lil Paul under
+B02_jokes a | Paul jokes about everything, even while the walls break.
+B03_behind b | Behind him, a drilling station is falling apart, and the only way out is a mile of black s
+B04_norah a | Norah, the engineer, has already watched Rodrigo implode in a cracked helmet.
+B05_something a | Something with no eyes hunts them by their lights. Then comes a pipe so tight they cross i
+B06_beat a | Paul goes last. On the far side, Norah holds the rope.
+B07_voice b | His voice drops out of the radio. They pull, and he comes through grinning, joking about s
+B08_tangled a | His line is tangled, and something pulls him under. He shouts for the others to take Lil P
+B09_cannot c | They cannot hold on, and the thing rips Paul out of his suit.
+B10_stuffed a | All that is left of him is a stuffed bunny, and Norah is holding it. She has lost someone 
+B11_night a | One night, she was too tired to dive with her fiancé, so he went alone, and she never foun
+B12_walks b | Now she walks on alone, with the bunny and a radio nobody answers.
+B13_finds a | She finds Emily and Smith alive, and they reach the last station.
+B14_warning a | At the pod deck, a warning light shows one pod is dead. Norah tells the others there is on
