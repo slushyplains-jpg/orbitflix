@@ -1,156 +1,156 @@
 [
  {
-  "start": 918.0,
+  "start": 303.0,
   "sentences": [
    0,
-   0
-  ],
-  "quote": "PAUL: Okay, I got my robe and my lucky sock.",
-  "action": "A man in a bathrobe walks across the ocean floor with a stuffed bunny named Lil Paul under",
-  "visual_prompt": "A man in a bathrobe walks across the ocean floor with a stuffed bunny named Lil Paul under",
-  "needs_visual_scan": false
- },
- {
-  "start": 2344.0,
-  "sentences": [
-   1,
    1
   ],
-  "quote": "I shot it. I'm naming it.",
-  "action": "Paul jokes about everything, even while the walls break.",
-  "visual_prompt": "Paul jokes about everything, even while the walls break.",
+  "quote": "",
+  "action": "Norah works at the bottom of the ocean, in a giant underwater base. One day, the walls cra",
+  "visual_prompt": "Norah works at the bottom of the ocean, in a giant underwater base. One day, the walls cra",
   "needs_visual_scan": false
  },
  {
-  "start": 935.0,
+  "start": 517.0,
   "sentences": [
    2,
    2
   ],
-  "quote": "",
-  "action": "Behind him, a drilling station is falling apart, and the only way out is a mile of black s",
-  "visual_prompt": "Behind him, a drilling station is falling apart, and the only way out is a mile of black s",
+  "quote": "If you don't shut these doors,",
+  "action": "Her friends are on the other side of a door, running and screaming for her to wait.",
+  "visual_prompt": "Her friends are on the other side of a door, running and screaming for her to wait.",
   "needs_visual_scan": false
  },
  {
-  "start": 1489.0,
+  "start": 522.0,
   "sentences": [
    3,
    3
   ],
-  "quote": "",
-  "action": "Norah, the engineer, has already watched Rodrigo implode in a cracked helmet.",
-  "visual_prompt": "Norah, the engineer, has already watched Rodrigo implode in a cracked helmet.",
+  "quote": "- MAN: Wait! - NORAH: Hey, hey, hey.",
+  "action": "But if she waits, the water floods the whole base, and everyone dies.",
+  "visual_prompt": "But if she waits, the water floods the whole base, and everyone dies.",
   "needs_visual_scan": false
  },
  {
-  "start": 2309.0,
+  "start": 539.0,
   "sentences": [
    4,
    5
   ],
-  "quote": "- Uh, I'm just looking for its... - (squeals)",
-  "action": "Something with no eyes hunts them by their lights. Then comes a pipe so tight they cross i",
-  "visual_prompt": "Something with no eyes hunts them by their lights. Then comes a pipe so tight they cross i",
+  "quote": "",
+  "action": "So Norah closes the door. She has to live with that.",
+  "visual_prompt": "So Norah closes the door. She has to live with that.",
   "needs_visual_scan": false
  },
  {
-  "start": 2994.0,
+  "start": 629.0,
   "sentences": [
    6,
    7
   ],
-  "quote": "",
-  "action": "Paul goes last. On the far side, Norah holds the rope.",
-  "visual_prompt": "Paul goes last. On the far side, Norah holds the rope.",
+  "quote": "AI VOICE: All personnel report to pod bays",
+  "action": "And it is only the beginning. The base is falling apart, and every escape boat is already",
+  "visual_prompt": "And it is only the beginning. The base is falling apart, and every escape boat is already",
   "needs_visual_scan": false
  },
  {
-  "start": 3075.0,
+  "start": 1269.0,
   "sentences": [
    8,
    9
   ],
-  "quote": "- SMITH: Paul, can you hear me? - Yeah.",
-  "action": "His voice drops out of the radio. They pull, and he comes through grinning, joking about s",
-  "visual_prompt": "His voice drops out of the radio. They pull, and he comes through grinning, joking about s",
+  "quote": "Captain, there better be a good punchline,",
+  "action": "Their only way out is a crazy plan. They put on heavy diving suits and walk across the dar",
+  "visual_prompt": "Their only way out is a crazy plan. They put on heavy diving suits and walk across the dar",
   "needs_visual_scan": false
  },
  {
-  "start": 3144.0,
+  "start": 926.0,
   "sentences": [
    10,
-   11
+   10
   ],
-  "quote": "",
-  "action": "His line is tangled, and something pulls him under. He shouts for the others to take Lil P",
-  "visual_prompt": "His line is tangled, and something pulls him under. He shouts for the others to take Lil P",
+  "quote": "NORAH: The upper decks are collapsing. We gotta move fast.",
+  "action": "With them is Paul, who escaped in his bathrobe holding a stuffed bunny named Lil Paul.",
+  "visual_prompt": "With them is Paul, who escaped in his bathrobe holding a stuffed bunny named Lil Paul.",
   "needs_visual_scan": false
  },
  {
-  "start": 3170.0,
+  "start": 1845.0,
   "sentences": [
-   12,
+   11,
    12
   ],
   "quote": "",
-  "action": "They cannot hold on, and the thing rips Paul out of his suit.",
-  "visual_prompt": "They cannot hold on, and the thing rips Paul out of his suit.",
+  "action": "He keeps making jokes, even down here. But they are not alone.",
+  "visual_prompt": "He keeps making jokes, even down here. But they are not alone.",
   "needs_visual_scan": false
  },
  {
-  "start": 3144.0,
+  "start": 2307.0,
   "sentences": [
    13,
    14
   ],
-  "quote": "",
-  "action": "All that is left of him is a stuffed bunny, and Norah is holding it. She has lost someone",
-  "visual_prompt": "All that is left of him is a stuffed bunny, and Norah is holding it. She has lost someone",
+  "quote": "SMITH: Em, what are you doing?",
+  "action": "A creature with no eyes is following their lights. In a tight tunnel full of water, it gra",
+  "visual_prompt": "A creature with no eyes is following their lights. In a tight tunnel full of water, it gra",
   "needs_visual_scan": false
  },
  {
-  "start": 4338.0,
+  "start": 3142.0,
   "sentences": [
    15,
    15
   ],
-  "quote": "We used to all dive together.",
-  "action": "One night, she was too tired to dive with her fianc\u00e9, so he went alone, and she never foun",
-  "visual_prompt": "One night, she was too tired to dive with her fianc\u00e9, so he went alone, and she never foun",
+  "quote": "Grab him! Grab him!",
+  "action": "The last thing he screams is for someone to take his bunny.",
+  "visual_prompt": "The last thing he screams is for someone to take his bunny.",
   "needs_visual_scan": false
  },
  {
-  "start": 3907.0,
+  "start": 5122.0,
   "sentences": [
    16,
-   16
-  ],
-  "quote": "I'm still alive. I'm at the old Shepard drill.",
-  "action": "Now she walks on alone, with the bunny and a radio nobody answers.",
-  "visual_prompt": "Now she walks on alone, with the bunny and a radio nobody answers.",
-  "needs_visual_scan": false
- },
- {
-  "start": 4210.0,
-  "sentences": [
-   17,
    17
   ],
-  "quote": "",
-  "action": "She finds Emily and Smith alive, and they reach the last station.",
-  "visual_prompt": "She finds Emily and Smith alive, and they reach the last station.",
+  "quote": "Give it to his folks or something.",
+  "action": "Norah ends up holding it, and she keeps it with her the whole way. Only three of them make",
+  "visual_prompt": "Norah ends up holding it, and she keeps it with her the whole way. Only three of them make",
   "needs_visual_scan": false
  },
  {
-  "start": 5079.0,
+  "start": 4507.0,
   "sentences": [
    18,
    19
   ],
+  "quote": "NORAH: We're almost there.",
+  "action": "Above them, the ceiling is covered in these creatures, all asleep. They creep underneath t",
+  "visual_prompt": "Above them, the ceiling is covered in these creatures, all asleep. They creep underneath t",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 5080.0,
+  "sentences": [
+   20,
+   21
+  ],
+  "quote": "Yeah.",
+  "action": "Three people. Two boats.",
+  "visual_prompt": "Three people. Two boats.",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 5145.0,
+  "sentences": [
+   22,
+   22
+  ],
   "quote": "",
-  "action": "At the pod deck, a warning light shows one pod is dead. Norah tells the others there is on",
-  "visual_prompt": "At the pod deck, a warning light shows one pod is dead. Norah tells the others there is on",
+  "action": "And Norah is the one who has to decide who stays behind.",
+  "visual_prompt": "And Norah is the one who has to decide who stays behind.",
   "needs_visual_scan": false
  }
 ]

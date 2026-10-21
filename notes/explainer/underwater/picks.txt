@@ -1,14 +1,14 @@
-B01_bathrobe c | A man in a bathrobe walks across the ocean floor with a stuffed bunny named Lil Paul under
-B02_jokes a | Paul jokes about everything, even while the walls break.
-B03_behind b | Behind him, a drilling station is falling apart, and the only way out is a mile of black s
-B04_norah a | Norah, the engineer, has already watched Rodrigo implode in a cracked helmet.
-B05_something a | Something with no eyes hunts them by their lights. Then comes a pipe so tight they cross i
-B06_beat a | Paul goes last. On the far side, Norah holds the rope.
-B07_voice b | His voice drops out of the radio. They pull, and he comes through grinning, joking about s
-B08_tangled a | His line is tangled, and something pulls him under. He shouts for the others to take Lil P
-B09_cannot c | They cannot hold on, and the thing rips Paul out of his suit.
-B10_stuffed a | All that is left of him is a stuffed bunny, and Norah is holding it. She has lost someone 
-B11_night a | One night, she was too tired to dive with her fiancé, so he went alone, and she never foun
-B12_walks b | Now she walks on alone, with the bunny and a radio nobody answers.
-B13_finds a | She finds Emily and Smith alive, and they reach the last station.
-B14_warning a | At the pod deck, a warning light shows one pod is dead. Norah tells the others there is on
+B01_norah a | Norah works at the bottom of the ocean, in a giant underwater base. One day, the walls cra
+B02_friends b | Her friends are on the other side of a door, running and screaming for her to wait.
+B03_waits a | But if she waits, the water floods the whole base, and everyone dies.
+B04_norah a | So Norah closes the door. She has to live with that.
+B05_beginning a | And it is only the beginning. The base is falling apart, and every escape boat is already 
+B06_their a | Their only way out is a crazy plan. They put on heavy diving suits and walk across the dar
+B07_escaped a | With them is Paul, who escaped in his bathrobe holding a stuffed bunny named Lil Paul.
+B08_keeps a | He keeps making jokes, even down here. But they are not alone.
+B09_creature 38:27 | A creature with no eyes is following their lights. In a tight tunnel full of water, it gra
+B10_thing 52:22 | The last thing he screams is for someone to take his bunny.
+B11_norah a | Norah ends up holding it, and she keeps it with her the whole way. Only three of them make
+B12_above a | Above them, the ceiling is covered in these creatures, all asleep. They creep underneath t
+B13_three a | Three people. Two boats.
+B14_norah a | And Norah is the one who has to decide who stays behind.
