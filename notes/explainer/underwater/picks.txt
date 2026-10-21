@@ -1,14 +1,14 @@
-B01_norah a | Norah works at the bottom of the ocean, in a giant underwater base. One day, the walls cra
-B02_friends b | Her friends are on the other side of a door, running and screaming for her to wait.
-B03_waits a | But if she waits, the water floods the whole base, and everyone dies.
-B04_norah a | So Norah closes the door. She has to live with that.
-B05_beginning a | And it is only the beginning. The base is falling apart, and every escape boat is already 
-B06_their a | Their only way out is a crazy plan. They put on heavy diving suits and walk across the dar
-B07_escaped a | With them is Paul, who escaped in his bathrobe holding a stuffed bunny named Lil Paul.
-B08_keeps a | He keeps making jokes, even down here. But they are not alone.
-B09_creature 38:27 | A creature with no eyes is following their lights. In a tight tunnel full of water, it gra
-B10_thing 52:22 | The last thing he screams is for someone to take his bunny.
-B11_norah a | Norah ends up holding it, and she keeps it with her the whole way. Only three of them make
-B12_above a | Above them, the ceiling is covered in these creatures, all asleep. They creep underneath t
-B13_three a | Three people. Two boats.
-B14_norah a | And Norah is the one who has to decide who stays behind.
+B01_norah b | Norah running down a misty corridor as the alarms go off
+B02_friends 8:38 | Norah at the door with a crewmate on the floor, then the water explodes behind them
+B03_norah 8:59 | Norah's hand sinking into the flood water after the door is shut
+B04_beat b | Norah's face, lying in the water, shaken
+B05_falling a | Norah staring at the empty escape pod bay
+B06_their 56:33 | Norah's face lit inside her helmet, then the crew's lights on the dark sea floor
+B07_escaped a | Paul being pulled out from under the rubble
+B08_keeps a | the crew in diving suits wading through a dark flooded tunnel with their lights
+B09_creature a | the creature's tentacle wrapped against a diving suit
+B10_tight 52:17 | the dark flooded tunnel, then a hand holding the stuffed bunny, then Norah's face
+B11_norah a | helmets and lights in the dark as they reach the last base
+B12_above a | red-lit helmet creeping through the nest
+B13_three a | Emily at the escape pod door
+B14_norah b | Norah's face at the escape pods, deciding

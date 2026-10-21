@@ -62,6 +62,15 @@ else:
     if len(line) < 25 or line not in norm(open(ex_p, encoding="utf-8").read()):
         fails.append("hooks.md needs a last line 'Model line: ...' copied word for word from examples.md (at least 25 characters)")
 md = open(os.path.join(d, "script.md"), encoding="utf-8").read()
+hdr = next(([c.strip().lower() for c in l.strip().strip("|").split("|")] for l in md.splitlines() if l.startswith("| #")), [])
+if "picture" not in hdr:
+    fails.append("the script.md table needs a Picture column: the time each sentence's subject is on screen")
+else:
+    pi = hdr.index("picture")
+    for l in md.splitlines():
+        c = [x.strip() for x in l.strip().strip("|").split("|")] if l.startswith("|") else []
+        if len(c) > pi and re.fullmatch(r"\d+(\s*-\s*\d+)?", c[0]) and not re.search(r"\d{1,2}:\d{2}", c[pi]):
+            fails.append(f"sentence {c[0]} has no Picture time")
 vc = md.split("## Viral check", 1)[1] if "## Viral check" in md else ""
 need = ["Scroll", "Premise", "Root for", "Moments", "Ending", "Cut"]
 missing_vc = [k for k in need if not re.search(rf"\b{k}\b\s*[-:]", vc)]

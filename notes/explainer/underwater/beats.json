@@ -5,49 +5,49 @@
    0,
    1
   ],
-  "at": 287,
-  "start": 267,
-  "end": 327
+  "at": 430,
+  "start": 415,
+  "end": 460
  },
  {
   "name": "B02_friends",
   "sentences": [
    2,
-   2
-  ],
-  "at": 521,
-  "start": 509,
-  "end": 546
- },
- {
-  "name": "B03_waits",
-  "sentences": [
-   3,
    3
   ],
-  "at": 513,
-  "start": 501,
-  "end": 538
+  "at": 521,
+  "start": 515,
+  "end": 541
  },
  {
-  "name": "B04_norah",
+  "name": "B03_norah",
   "sentences": [
    4,
-   5
+   4
   ],
   "at": 541,
-  "start": 529,
-  "end": 566
+  "start": 535,
+  "end": 561
  },
  {
-  "name": "B05_beginning",
+  "name": "B04_beat",
   "sentences": [
-   6,
+   5,
+   6
+  ],
+  "at": 576,
+  "start": 570,
+  "end": 596
+ },
+ {
+  "name": "B05_falling",
+  "sentences": [
+   7,
    7
   ],
-  "at": 634,
-  "start": 622,
-  "end": 659
+  "at": 1054,
+  "start": 1048,
+  "end": 1074
  },
  {
   "name": "B06_their",
@@ -55,9 +55,9 @@
    8,
    9
   ],
-  "at": 1274,
-  "start": 1262,
-  "end": 1299
+  "at": 3389,
+  "start": 3383,
+  "end": 3409
  },
  {
   "name": "B07_escaped",
@@ -65,9 +65,9 @@
    10,
    10
   ],
-  "at": 912,
-  "start": 900,
-  "end": 937
+  "at": 889,
+  "start": 883,
+  "end": 909
  },
  {
   "name": "B08_keeps",
@@ -75,29 +75,29 @@
    11,
    12
   ],
-  "at": 1849,
-  "start": 1837,
-  "end": 1874
+  "at": 2785,
+  "start": 2779,
+  "end": 2805
  },
  {
   "name": "B09_creature",
   "sentences": [
    13,
-   14
+   13
   ],
-  "at": 2318,
-  "start": 2306,
-  "end": 2343
+  "at": 2310,
+  "start": 2304,
+  "end": 2330
  },
  {
-  "name": "B10_thing",
+  "name": "B10_tight",
   "sentences": [
-   15,
+   14,
    15
   ],
   "at": 3131,
-  "start": 3119,
-  "end": 3156
+  "start": 3125,
+  "end": 3151
  },
  {
   "name": "B11_norah",
@@ -105,9 +105,9 @@
    16,
    17
   ],
-  "at": 5121,
-  "start": 5109,
-  "end": 5146
+  "at": 4445,
+  "start": 4439,
+  "end": 4465
  },
  {
   "name": "B12_above",
@@ -115,9 +115,9 @@
    18,
    19
   ],
-  "at": 4518,
-  "start": 4506,
-  "end": 4543
+  "at": 4530,
+  "start": 4524,
+  "end": 4550
  },
  {
   "name": "B13_three",
@@ -125,9 +125,9 @@
    20,
    21
   ],
-  "at": 5080,
-  "start": 5068,
-  "end": 5105
+  "at": 5070,
+  "start": 5064,
+  "end": 5090
  },
  {
   "name": "B14_norah",
@@ -136,7 +136,7 @@
    22
   ],
   "at": 5146,
-  "start": 5134,
-  "end": 5171
+  "start": 5140,
+  "end": 5166
  }
 ]

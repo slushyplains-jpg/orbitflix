@@ -9,12 +9,12 @@ Subtitles say when a line is spoken, not what is on screen. Every clip start is 
 
 ## Steps
 
-1. **Run the footage tool** (run it, do not read its source; the dev server must be running): `python3.11 scripts/explainer-footage-auto.py <slug> <tmdb>`. In about 3 minutes it builds `beats.json` from the script and the times cited in `script.md`, fetches the stream link, builds the grids, ranks three candidates per beat near each beat's moment, draws `candidates_1.jpg` and `candidates_2.jpg`, and writes a default `picks.txt` that picks candidate a for every beat.
-2. **Look at the two candidate sheets** (two Read calls). For each beat, check that candidate a shows what the sentence is about. For B01, the hook, choose the most striking of the three that fits; it decides whether people keep watching. Prefer action and faces reacting; never use the same shot twice.
-3. **Edit `picks.txt` only where a is wrong:** change the letter to b or c. If none of the three fits, open that beat's full grid `shots/<name>.jpg` once and write a time instead (never a red DARK frame). Do not extract extra frames or rerun the tool.
-4. **Gate:** `python3.11 scripts/explainer-clips.py <slug>` must print RESULT PASS. It writes `clips.json` with subtitle quotes and regenerates `clips.md`.
+The session that wrote the story does this stage itself (no helper): picking a picture that matches a sentence needs judgment, and it is only two images.
 
-A normal run is about 5 tool calls: the tool, two image reads, one picks edit, the gate.
+1. **Run the footage tool** (run it, do not read its source; the dev server must be running): `python3.11 scripts/explainer-footage-auto.py <slug> <tmdb>`. In about 3 minutes it builds `beats.json` from the Picture times in `script.md` (pairing sentences that share a picture), fetches the stream link, builds the grids, ranks three candidates per beat near each Picture time, draws `candidates_1.jpg` and `candidates_2.jpg`, and writes a default `picks.txt`.
+2. **Look at both candidate sheets.** For every beat ask: would a viewer hearing this sentence nod at this picture? A clip must show the subject of the sentence (the person, the creature, the door, the walk), not people talking about it, not a map, not a different person.
+3. **Edit `picks.txt`:** keep `a` only if it passes that test, else `b` or `c`. If none passes, open that beat's grid `shots/<name>.jpg` and write a time that shows it (never a red DARK frame). If the grid has nothing either, the Picture time in `script.md` is wrong: fix it, delete `beats.json`, and rerun the tool. For B01, the hook, take the most striking frame that fits.
+4. **Gate:** `python3.11 scripts/explainer-clips.py <slug>` must print RESULT PASS. It writes `clips.json` with subtitle quotes and regenerates `clips.md`.
 
 `explainer-clips.py` records the footage stage when it passes.
 

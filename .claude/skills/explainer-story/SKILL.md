@@ -39,7 +39,8 @@ Read `notes/explainer/<slug>/story.md` (from `explainer-research`) and `examples
    - Moments: the 3 or 4 moments with their sentence numbers (more than 4 means it is too rushed).
    - Ending: the exact question the viewer has at the last word.
    - Cut: the weakest sentence in the draft, and what replaced it.
-6. **Fact check** in `script.md`, under the viral check: a table `| # | Sentence (short) | Source |` where # is the 0-based sentence number or a range like `4-5`, and Source has the SDH times (3:59, 1:02:14) and/or "plot summary". Before writing a row, look at `sdh.srt` near the cited time and confirm the line says what the sentence claims, including who does it. Then run `python3.11 scripts/explainer-factcheck.py <slug>`; it must print RESULT PASS. It also checks the story.md fields, the Model line in hooks.md, and the viral check.
+6. **Fact check and pictures** in `script.md`, under the viral check: a table `| # | Sentence (short) | Picture | Source |` where # is the 0-based sentence number or a range like `4-5`, and Source has the SDH times (3:59, 1:02:14) and/or "plot summary".
+   **Picture** is the time the thing is ON SCREEN, which is often not when someone talks about it: use action and sound cues in the digest ("(water rushing)", "(screaming)", "Run!"), the plot summary, and the scene order. "They walk across the ocean floor" needs the walking scene, not the scene where they plan it over a map. Give sentences that belong to one image the same Picture time; the footage tool pairs sentences by Picture time so one clip never has to show two scenes. Before writing a row, look at `sdh.srt` near the cited time and confirm the line says what the sentence claims, including who does it. Then run `python3.11 scripts/explainer-factcheck.py <slug>`; it must print RESULT PASS. It also checks the story.md fields, the Model line in hooks.md, the viral check, and that every sentence has a Picture time.
 
 ## Stage 3: lint gate
 

@@ -1,156 +1,156 @@
 [
  {
-  "start": 303.0,
+  "start": 428.0,
   "sentences": [
    0,
    1
   ],
   "quote": "",
-  "action": "Norah works at the bottom of the ocean, in a giant underwater base. One day, the walls cra",
-  "visual_prompt": "Norah works at the bottom of the ocean, in a giant underwater base. One day, the walls cra",
+  "action": "Norah running down a misty corridor as the alarms go off",
+  "visual_prompt": "Norah running down a misty corridor as the alarms go off",
   "needs_visual_scan": false
  },
  {
-  "start": 517.0,
+  "start": 518.0,
   "sentences": [
    2,
-   2
-  ],
-  "quote": "If you don't shut these doors,",
-  "action": "Her friends are on the other side of a door, running and screaming for her to wait.",
-  "visual_prompt": "Her friends are on the other side of a door, running and screaming for her to wait.",
-  "needs_visual_scan": false
- },
- {
-  "start": 522.0,
-  "sentences": [
-   3,
    3
   ],
-  "quote": "- MAN: Wait! - NORAH: Hey, hey, hey.",
-  "action": "But if she waits, the water floods the whole base, and everyone dies.",
-  "visual_prompt": "But if she waits, the water floods the whole base, and everyone dies.",
+  "quote": "it'll take the whole station with us!",
+  "action": "Norah at the door with a crewmate on the floor, then the water explodes behind them",
+  "visual_prompt": "Norah at the door with a crewmate on the floor, then the water explodes behind them",
   "needs_visual_scan": false
  },
  {
   "start": 539.0,
   "sentences": [
    4,
-   5
+   4
   ],
   "quote": "",
-  "action": "So Norah closes the door. She has to live with that.",
-  "visual_prompt": "So Norah closes the door. She has to live with that.",
+  "action": "Norah's hand sinking into the flood water after the door is shut",
+  "visual_prompt": "Norah's hand sinking into the flood water after the door is shut",
   "needs_visual_scan": false
  },
  {
-  "start": 629.0,
+  "start": 570.0,
   "sentences": [
-   6,
+   5,
+   6
+  ],
+  "quote": "",
+  "action": "Norah's face, lying in the water, shaken",
+  "visual_prompt": "Norah's face, lying in the water, shaken",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1052.0,
+  "sentences": [
+   7,
    7
   ],
-  "quote": "AI VOICE: All personnel report to pod bays",
-  "action": "And it is only the beginning. The base is falling apart, and every escape boat is already",
-  "visual_prompt": "And it is only the beginning. The base is falling apart, and every escape boat is already",
+  "quote": "- (switch clicks) - (door buzzes)",
+  "action": "Norah staring at the empty escape pod bay",
+  "visual_prompt": "Norah staring at the empty escape pod bay",
   "needs_visual_scan": false
  },
  {
-  "start": 1269.0,
+  "start": 3393.0,
   "sentences": [
    8,
    9
   ],
-  "quote": "Captain, there better be a good punchline,",
-  "action": "Their only way out is a crazy plan. They put on heavy diving suits and walk across the dar",
-  "visual_prompt": "Their only way out is a crazy plan. They put on heavy diving suits and walk across the dar",
+  "quote": "All we do now is follow these across the plateau.",
+  "action": "Norah's face lit inside her helmet, then the crew's lights on the dark sea floor",
+  "visual_prompt": "Norah's face lit inside her helmet, then the crew's lights on the dark sea floor",
   "needs_visual_scan": false
  },
  {
-  "start": 926.0,
+  "start": 892.0,
   "sentences": [
    10,
    10
   ],
-  "quote": "NORAH: The upper decks are collapsing. We gotta move fast.",
-  "action": "With them is Paul, who escaped in his bathrobe holding a stuffed bunny named Lil Paul.",
-  "visual_prompt": "With them is Paul, who escaped in his bathrobe holding a stuffed bunny named Lil Paul.",
+  "quote": "You sweet, flat-chested elven creature.",
+  "action": "Paul being pulled out from under the rubble",
+  "visual_prompt": "Paul being pulled out from under the rubble",
   "needs_visual_scan": false
  },
  {
-  "start": 1845.0,
+  "start": 2788.0,
   "sentences": [
    11,
    12
   ],
-  "quote": "",
-  "action": "He keeps making jokes, even down here. But they are not alone.",
-  "visual_prompt": "He keeps making jokes, even down here. But they are not alone.",
+  "quote": "SMITH: There's definitely something following us.",
+  "action": "the crew in diving suits wading through a dark flooded tunnel with their lights",
+  "visual_prompt": "the crew in diving suits wading through a dark flooded tunnel with their lights",
   "needs_visual_scan": false
  },
  {
-  "start": 2307.0,
+  "start": 2306.0,
   "sentences": [
    13,
-   14
+   13
   ],
   "quote": "SMITH: Em, what are you doing?",
-  "action": "A creature with no eyes is following their lights. In a tight tunnel full of water, it gra",
-  "visual_prompt": "A creature with no eyes is following their lights. In a tight tunnel full of water, it gra",
+  "action": "the creature's tentacle wrapped against a diving suit",
+  "visual_prompt": "the creature's tentacle wrapped against a diving suit",
   "needs_visual_scan": false
  },
  {
-  "start": 3142.0,
+  "start": 3137.0,
   "sentences": [
-   15,
+   14,
    15
   ],
-  "quote": "Grab him! Grab him!",
-  "action": "The last thing he screams is for someone to take his bunny.",
-  "visual_prompt": "The last thing he screams is for someone to take his bunny.",
+  "quote": "It's pulling me underwater!",
+  "action": "the dark flooded tunnel, then a hand holding the stuffed bunny, then Norah's face",
+  "visual_prompt": "the dark flooded tunnel, then a hand holding the stuffed bunny, then Norah's face",
   "needs_visual_scan": false
  },
  {
-  "start": 5122.0,
+  "start": 4452.0,
   "sentences": [
    16,
    17
   ],
-  "quote": "Give it to his folks or something.",
-  "action": "Norah ends up holding it, and she keeps it with her the whole way. Only three of them make",
-  "visual_prompt": "Norah ends up holding it, and she keeps it with her the whole way. Only three of them make",
+  "quote": "",
+  "action": "helmets and lights in the dark as they reach the last base",
+  "visual_prompt": "helmets and lights in the dark as they reach the last base",
   "needs_visual_scan": false
  },
  {
-  "start": 4507.0,
+  "start": 4530.0,
   "sentences": [
    18,
    19
   ],
-  "quote": "NORAH: We're almost there.",
-  "action": "Above them, the ceiling is covered in these creatures, all asleep. They creep underneath t",
-  "visual_prompt": "Above them, the ceiling is covered in these creatures, all asleep. They creep underneath t",
+  "quote": "EMILY: Oh, my God.",
+  "action": "red-lit helmet creeping through the nest",
+  "visual_prompt": "red-lit helmet creeping through the nest",
   "needs_visual_scan": false
  },
  {
-  "start": 5080.0,
+  "start": 5079.0,
   "sentences": [
    20,
    21
   ],
-  "quote": "Yeah.",
-  "action": "Three people. Two boats.",
-  "visual_prompt": "Three people. Two boats.",
+  "quote": "",
+  "action": "Emily at the escape pod door",
+  "visual_prompt": "Emily at the escape pod door",
   "needs_visual_scan": false
  },
  {
-  "start": 5145.0,
+  "start": 5140.0,
   "sentences": [
    22,
    22
   ],
-  "quote": "",
-  "action": "And Norah is the one who has to decide who stays behind.",
-  "visual_prompt": "And Norah is the one who has to decide who stays behind.",
+  "quote": "- (klaxon blares) - (heavy thud)",
+  "action": "Norah's face at the escape pods, deciding",
+  "visual_prompt": "Norah's face at the escape pods, deciding",
   "needs_visual_scan": false
  }
 ]
