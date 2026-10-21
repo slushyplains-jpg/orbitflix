@@ -1,0 +1,14 @@
+B01_schoolchildren c | Schoolchildren name the first alien ever found Calvin, and weeks later it grabs a scientis
+B02_miranda a | Miranda is the station's quarantine officer, and her rule is simple.
+B03_first a | The box is her first firewall, the lab is her second, and the station is her third.
+B04_biologist c | But Hugh, the biologist who woke it, calls these the greatest days of his life.
+B05_calvin c | So when Calvin falls dormant, he shocks it awake. His tool snaps, and Calvin grips his han
+B06_engineer c | An engineer breaks quarantine to save him, and Miranda screams that no one goes in.
+B07_burns a | He burns Calvin, and it only grows. Then it slips out of the lab, and the second firewall 
+B08_distress a | When the distress call dies, the commander walks out to fix it. Calvin is already waiting 
+B09_cracks a | Its grip cracks her suit's cooling, and she starts to drown in her helmet.
+B10_stays a | She will not let it in, so she stays outside.
+B11_earth 43:29 | With no word from Earth, the crew fires the thrusters to blast Calvin off the hull.
+B12_works a | That works, but the burn leaves the station falling toward Earth. So they decide to starve
+B13_appears a | Then a ship appears, and one of them runs to meet it, sure it is a rescue. It is not a res
+B14_miranda 70:55 | Miranda wrote the protocol herself, and it says Earth must push the third firewall into de

@@ -1,27 +1,25 @@
-# Life (2017): script fact check
+# Fact check (script.txt)
 
-SDH source: `Life.2017.720p.BluRay.x264-Replica-HI.srt`
-Timecodes are seconds in this release. Narration = connective wording, not a plot fact.
+| # | Sentence (short) | Source |
+|---|---|---|
+| 0 | Children name it Calvin; weeks later it grabs a scientist's hand | SDH 15:24, 26:49, 31:33 |
+| 1 | Miranda is the quarantine officer, her rule is simple | SDH 2:59, 27:19 |
+| 2 | Box is the first firewall, lab the second, station the third | SDH 1:10:26, 1:10:46 |
+| 3 | Hugh, who woke it, calls these the greatest days of his life | SDH 12:35, 18:23 |
+| 4 | It goes dormant; he shocks it awake | SDH 27:34, 28:48, 29:47 |
+| 5 | It breaks his tool and grips his hand | SDH 29:51, 30:01, 31:33 |
+| 6 | Engineer breaks quarantine, Miranda says no one is going in | SDH 31:55, 32:04, 32:13 |
+| 7 | He burns it; it only grows | SDH 36:48, 41:08 |
+| 8 | It slips out of the lab; the second firewall fails | SDH 42:12, 42:16 |
+| 9 | Distress call dies; the commander walks out to fix it | SDH 43:21, 43:53, 45:25 |
+| 10 | Calvin is already outside | SDH 46:28 |
+| 11 | It wraps her suit, cracks the cooling; she drowns inside her helmet | SDH 46:53, 47:35, 48:35 |
+| 12 | She will not let it in, so she stays outside | SDH 50:56 |
+| 13 | No word from Earth; thrusters fired to blast it off | SDH 43:21, 54:13, 54:35 |
+| 14 | The burn leaves the station falling | SDH 55:10, 55:21 |
+| 15 | They decide to starve Calvin of air | SDH 56:34, 56:47 |
+| 16 | A ship appears; one of them runs to meet it believing it is a rescue | SDH 1:09:38, 1:11:54 |
+| 17 | It is not (a rescue) | SDH 1:10:26 |
+| 18 | Miranda wrote the protocol; Earth will push the third firewall into deep space | SDH 1:10:46, 1:11:05, 1:11:10 |
 
-Length: 183 words, just under the 200-word target.
-
-| # | Sentence | Facts and SDH timecode | Status |
-|---|---|---|---|
-| 0 | A sample from Mars arrives at the space station, and the crew gets to work. | "Preparing to receive these samples" 193. "Closer to Proterozoic Earth than today's Mars" 697 | SDH |
-| 1 | Inside is a single-celled organism, and the crew names it Calvin. | "Unmistakably biological." 622. "fast-dividing single-celled organisms" 1201. "Calvin" 2157 | SDH |
-| 2 | Calvin grows very fast, and the lab becomes its home. | "Calvin was growing very fast" 1637. "in the lab" 1543 | SDH; "its home" is narration |
-| 3 | Rory is angry about the way the crew talks about Calvin. | "Stop calling it fucking 'Calvin.'" 1582 | SDH |
-| 4 | Then Calvin escapes its containment, and the station goes into lockdown. | "We need to get Calvin back behind Firewall One" 2157. "We need to reestablish quarantine." 2558 | SDH |
-| 5 | Communications with Control have failed, and the crew is on its own. | "Looks like communications just failed." 2591 | SDH; "on its own" is narration |
-| 6 | Rory goes into the lab to find Hugh, and an alarm starts blaring. | "Hugh?" 1901. "I'm going in there." 1921. "(ALARM BLARING)" 2083 | SDH |
-| 7 | Rory is strangled inside the lab while his crewmates beg someone to open the door. | "There's a man in there getting strangled." 2322. "Somebody open the fucking door!" 2318 | SDH |
-| 8 | Calvin is searching for a way out, and it is not going to stop. | "It's searching for a way out." 2482 | SDH; "not going to stop" is narration |
-| 9 | Hugh warns that Calvin knows exactly what it is doing. | "Commander, Calvin knows exactly what it's doing." 2860 | SDH |
-| 10 | Calvin grabs Kat's suit, and David can only watch as she disappears inside. | "Calvin just came out. It grabbed my suit." 2788. "Don't swallow it." 2959 | SDH; "can only watch" is narration |
-| 11 | Hugh is hurt, and the crew tries to save him with a defibrillator. | "get the ACLS kit and the defibrillator" 3683. "360 joules" 3693 | SDH for the defibrillator; "Hugh is hurt" is inferred |
-| 12 | Miranda and David plan to escape in the lifeboats, but someone has to call for help first, and Sho is moving the station back into stable orbit. | "We can escape in the lifeboats." 2668. "Moving us back into stable orbit." 3386. "Kat's distress call must have reached Earth." 4182 | SDH |
-| 13 | No one knows whether Calvin will follow them. | None | Narration |
-
-## Needs a decision before render
-1. Sentence 11: "Hugh is hurt" is inferred from the defibrillator scene. Confirm from the picture, or cut "Hugh is hurt, and".
-2. Length: 183 words, just under the 200-word target.
+Notes: "weeks later" comes from Miranda's log at 26:49 ("After weeks of stunning growth"). The speaker of the line at 43:53 is the commander in the plot summary. The plot summary confirms the third firewall is the station and that the ship is there to push it into deep space.

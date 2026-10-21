@@ -1,0 +1,142 @@
+[
+ {
+  "name": "B01_schoolchildren",
+  "sentences": [
+   0,
+   0
+  ],
+  "at": 924,
+  "start": 904,
+  "end": 964
+ },
+ {
+  "name": "B02_miranda",
+  "sentences": [
+   1,
+   1
+  ],
+  "at": 179,
+  "start": 167,
+  "end": 204
+ },
+ {
+  "name": "B03_first",
+  "sentences": [
+   2,
+   2
+  ],
+  "at": 4226,
+  "start": 4214,
+  "end": 4251
+ },
+ {
+  "name": "B04_biologist",
+  "sentences": [
+   3,
+   3
+  ],
+  "at": 755,
+  "start": 743,
+  "end": 780
+ },
+ {
+  "name": "B05_calvin",
+  "sentences": [
+   4,
+   5
+  ],
+  "at": 1654,
+  "start": 1642,
+  "end": 1679
+ },
+ {
+  "name": "B06_engineer",
+  "sentences": [
+   6,
+   6
+  ],
+  "at": 1915,
+  "start": 1903,
+  "end": 1940
+ },
+ {
+  "name": "B07_burns",
+  "sentences": [
+   7,
+   8
+  ],
+  "at": 2208,
+  "start": 2196,
+  "end": 2233
+ },
+ {
+  "name": "B08_distress",
+  "sentences": [
+   9,
+   10
+  ],
+  "at": 2601,
+  "start": 2589,
+  "end": 2626
+ },
+ {
+  "name": "B09_cracks",
+  "sentences": [
+   11,
+   11
+  ],
+  "at": 2813,
+  "start": 2801,
+  "end": 2838
+ },
+ {
+  "name": "B10_stays",
+  "sentences": [
+   12,
+   12
+  ],
+  "at": 3056,
+  "start": 3044,
+  "end": 3081
+ },
+ {
+  "name": "B11_earth",
+  "sentences": [
+   13,
+   13
+  ],
+  "at": 2601,
+  "start": 2589,
+  "end": 2626
+ },
+ {
+  "name": "B12_works",
+  "sentences": [
+   14,
+   15
+  ],
+  "at": 3310,
+  "start": 3298,
+  "end": 3335
+ },
+ {
+  "name": "B13_appears",
+  "sentences": [
+   16,
+   17
+  ],
+  "at": 4178,
+  "start": 4166,
+  "end": 4203
+ },
+ {
+  "name": "B14_miranda",
+  "sentences": [
+   18,
+   18
+  ],
+  "at": 4246,
+  "start": 4234,
+  "end": 4271
+ }
+]

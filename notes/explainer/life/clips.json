@@ -1,156 +1,156 @@
 [
  {
-  "start": 179.76,
+  "start": 924.0,
   "sentences": [
    0,
    0
   ],
-  "quote": "This is Dr. Miranda North,",
-  "action": "Space station and Earth at sunrise",
-  "visual_prompt": "a space station with Earth below",
+  "quote": "was chosen among 11,000 schools",
+  "action": "Schoolchildren name the first alien ever found Calvin, and weeks later it grabs a scientis",
+  "visual_prompt": "Schoolchildren name the first alien ever found Calvin, and weeks later it grabs a scientis",
   "needs_visual_scan": false
  },
  {
-  "start": 193.13,
+  "start": 179.0,
   "sentences": [
    1,
    1
   ],
-  "quote": "Preparing to receive these samples",
-  "action": "Station corridors and a labeled capsule",
-  "visual_prompt": "a space station corridor with labeled containers",
+  "quote": "",
+  "action": "Miranda is the station's quarantine officer, and her rule is simple.",
+  "visual_prompt": "Miranda is the station's quarantine officer, and her rule is simple.",
   "needs_visual_scan": false
  },
  {
-  "start": 207.96,
+  "start": 4217.0,
   "sentences": [
    2,
    2
   ],
-  "quote": "Rory Adams will spacewalk to establish visual contact",
-  "action": "Airlock tunnel",
-  "visual_prompt": "a round airlock tunnel on a space station",
+  "quote": "- (GRUNTS) - (RUMBLING)",
+  "action": "The box is her first firewall, the lab is her second, and the station is her third.",
+  "visual_prompt": "The box is her first firewall, the lab is her second, and the station is her third.",
   "needs_visual_scan": false
  },
  {
-  "start": 510.26,
+  "start": 757.0,
   "sentences": [
    3,
    3
   ],
-  "quote": "He got it.",
-  "action": "Rory holding the capsule",
-  "visual_prompt": "a man holding a capsule in a dark space station",
+  "quote": "(GASPS)",
+  "action": "But Hugh, the biologist who woke it, calls these the greatest days of his life.",
+  "visual_prompt": "But Hugh, the biologist who woke it, calls these the greatest days of his life.",
   "needs_visual_scan": false
  },
  {
-  "start": 741.82,
+  "start": 1667.0,
   "sentences": [
    4,
-   4
-  ],
-  "quote": "Did it just move?",
-  "action": "Organism on a dish under a microscope",
-  "visual_prompt": "an organism on a dish under a microscope",
-  "needs_visual_scan": false
- },
- {
-  "start": 758.05,
-  "sentences": [
-   5,
    5
   ],
-  "quote": "It worked. You woke it.",
-  "action": "Hugh at the microscope",
-  "visual_prompt": "a man at a microscope in a lab",
+  "quote": "\"It was all going so well.\"",
+  "action": "So when Calvin falls dormant, he shocks it awake. His tool snaps, and Calvin grips his han",
+  "visual_prompt": "So when Calvin falls dormant, he shocks it awake. His tool snaps, and Calvin grips his han",
   "needs_visual_scan": false
  },
  {
-  "start": 636.64,
+  "start": 1923.0,
   "sentences": [
    6,
    6
   ],
-  "quote": "Longer than we're used to seeing on Earth.",
-  "action": "Organism on the lab screens",
-  "visual_prompt": "a creature on lab screens",
+  "quote": "Don't do this.",
+  "action": "An engineer breaks quarantine to save him, and Miranda screams that no one goes in.",
+  "visual_prompt": "An engineer breaks quarantine to save him, and Miranda screams that no one goes in.",
   "needs_visual_scan": false
  },
  {
-  "start": 1187.6,
+  "start": 2221.0,
   "sentences": [
    7,
-   7
-  ],
-  "quote": "They're also sharing electrical activity in what resembles a growing neural network.",
-  "action": "Crew watching the organism grow",
-  "visual_prompt": "people watching a lab monitor",
-  "needs_visual_scan": false
- },
- {
-  "start": 1276.19,
-  "sentences": [
-   8,
    8
   ],
-  "quote": "Its curiosity outweighs its fear.",
-  "action": "Crew faces and a hand on the controls",
-  "visual_prompt": "a woman looking at a screen on a spaceship",
+  "quote": "",
+  "action": "He burns Calvin, and it only grows. Then it slips out of the lab, and the second firewall",
+  "visual_prompt": "He burns Calvin, and it only grows. Then it slips out of the lab, and the second firewall",
   "needs_visual_scan": false
  },
  {
-  "start": 1582.37,
+  "start": 2607.0,
   "sentences": [
    9,
-   9
-  ],
-  "quote": "Stop calling it fucking Calvin.",
-  "action": "Rory argues with the crew in the corridor",
-  "visual_prompt": "men arguing in a space station corridor",
-  "needs_visual_scan": false
- },
- {
-  "start": 1593.38,
-  "sentences": [
-   10,
    10
   ],
-  "quote": "This isn't and will never be a controlled experiment.",
-  "action": "Miranda argues with the crew",
-  "visual_prompt": "a woman in a space station corridor",
+  "quote": "",
+  "action": "When the distress call dies, the commander walks out to fix it. Calvin is already waiting",
+  "visual_prompt": "When the distress call dies, the commander walks out to fix it. Calvin is already waiting",
   "needs_visual_scan": false
  },
  {
-  "start": 1619.12,
+  "start": 2811.0,
   "sentences": [
    11,
    11
   ],
-  "quote": "We believe it's likely due to the clamp failure in the lab,",
-  "action": "Man at a panel with glasses",
-  "visual_prompt": "a man with glasses at a control panel",
+  "quote": "I'm closing the valve.",
+  "action": "Its grip cracks her suit's cooling, and she starts to drown in her helmet.",
+  "visual_prompt": "Its grip cracks her suit's cooling, and she starts to drown in her helmet.",
   "needs_visual_scan": false
  },
  {
-  "start": 1631.21,
+  "start": 3059.0,
   "sentences": [
    12,
    12
   ],
-  "quote": "and Hugh, of course, has been beating himself up,",
-  "action": "Hugh with his hand to his face",
-  "visual_prompt": "a man with his hand to his face",
+  "quote": "She's not letting Calvin back in here.",
+  "action": "She will not let it in, so she stays outside.",
+  "visual_prompt": "She will not let it in, so she stays outside.",
   "needs_visual_scan": false
  },
  {
-  "start": 1657.0,
+  "start": 2609.0,
   "sentences": [
    13,
    13
   ],
-  "quote": "",
-  "action": "Crew faces, tense",
-  "visual_prompt": "people looking tense in a space station",
+  "quote": "Yes, outside communications are down.",
+  "action": "With no word from Earth, the crew fires the thrusters to blast Calvin off the hull.",
+  "visual_prompt": "With no word from Earth, the crew fires the thrusters to blast Calvin off the hull.",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 3314.0,
+  "sentences": [
+   14,
+   15
+  ],
+  "quote": "- There. - SHO: We were already low after the Pilgrim.",
+  "action": "That works, but the burn leaves the station falling toward Earth. So they decide to starve",
+  "visual_prompt": "That works, but the burn leaves the station falling toward Earth. So they decide to starve",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 4167.0,
+  "sentences": [
+   16,
+   17
+  ],
+  "quote": "(MIRANDA PANTING)",
+  "action": "Then a ship appears, and one of them runs to meet it, sure it is a rescue. It is not a res",
+  "visual_prompt": "Then a ship appears, and one of them runs to meet it, sure it is a rescue. It is not a res",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 4255.0,
+  "sentences": [
+   18,
+   18
+  ],
+  "quote": "And if Firewall One or Two fail, they have two choices.",
+  "action": "Miranda wrote the protocol herself, and it says Earth must push the third firewall into de",
+  "visual_prompt": "Miranda wrote the protocol herself, and it says Earth must push the third firewall into de",
   "needs_visual_scan": false
  }
 ]
