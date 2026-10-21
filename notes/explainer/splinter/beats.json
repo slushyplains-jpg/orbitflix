@@ -1,0 +1,142 @@
+[
+ {
+  "name": "B01_criminal",
+  "sentences": [
+   0,
+   0
+  ],
+  "at": 3391,
+  "start": 3376,
+  "end": 3421
+ },
+ {
+  "name": "B02_starts",
+  "sentences": [
+   1,
+   2
+  ],
+  "at": 401,
+  "start": 395,
+  "end": 421
+ },
+ {
+  "name": "B03_criminals",
+  "sentences": [
+   3,
+   3
+  ],
+  "at": 677,
+  "start": 671,
+  "end": 697
+ },
+ {
+  "name": "B04_lonely",
+  "sentences": [
+   4,
+   5
+  ],
+  "at": 1336,
+  "start": 1330,
+  "end": 1356
+ },
+ {
+  "name": "B05_starts",
+  "sentences": [
+   6,
+   7
+  ],
+  "at": 1908,
+  "start": 1902,
+  "end": 1928
+ },
+ {
+  "name": "B06_splinter",
+  "sentences": [
+   8,
+   8
+  ],
+  "at": 3249,
+  "start": 3243,
+  "end": 3269
+ },
+ {
+  "name": "B07_dennis",
+  "sentences": [
+   9,
+   10
+  ],
+  "at": 3488,
+  "start": 3482,
+  "end": 3508
+ },
+ {
+  "name": "B08_afterwards",
+  "sentences": [
+   11,
+   11
+  ],
+  "at": 3552,
+  "start": 3546,
+  "end": 3572
+ },
+ {
+  "name": "B09_truck",
+  "sentences": [
+   12,
+   13
+  ],
+  "at": 3552,
+  "start": 3546,
+  "end": 3572
+ },
+ {
+  "name": "B10_creature",
+  "sentences": [
+   14,
+   14
+  ],
+  "at": 3533,
+  "start": 3527,
+  "end": 3553
+ },
+ {
+  "name": "B11_figures",
+  "sentences": [
+   15,
+   16
+  ],
+  "at": 3700,
+  "start": 3694,
+  "end": 3720
+ },
+ {
+  "name": "B12_packs",
+  "sentences": [
+   17,
+   18
+  ],
+  "at": 3783,
+  "start": 3777,
+  "end": 3803
+ },
+ {
+  "name": "B13_creature",
+  "sentences": [
+   19,
+   20
+  ],
+  "at": 3783,
+  "start": 3777,
+  "end": 3803
+ },
+ {
+  "name": "B14_beat",
+  "sentences": [
+   21,
+   21
+  ],
+  "at": 3934,
+  "start": 3928,
+  "end": 3954
+ }
+]

@@ -1,0 +1,156 @@
+[
+ {
+  "start": 3388.0,
+  "sentences": [
+   0,
+   0
+  ],
+  "quote": "Seth? What are we gonna do? What are we gonna do?",
+  "action": "Dennis grabbing his arm in pain",
+  "visual_prompt": "Dennis grabbing his arm in pain",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 406.0,
+  "sentences": [
+   1,
+   2
+  ],
+  "quote": "No. You can't see the stars from a motel. And that wasn't the deal.",
+  "action": "Seth in the forest on the camping trip",
+  "visual_prompt": "Seth in the forest on the camping trip",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 685.0,
+  "sentences": [
+   3,
+   3
+  ],
+  "quote": "Clear the back seat. Make room for two more.",
+  "action": "a gun pointed at Polly by the road during the carjacking",
+  "visual_prompt": "a gun pointed at Polly by the road during the carjacking",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1333.0,
+  "sentences": [
+   4,
+   5
+  ],
+  "quote": "",
+  "action": "the lonely gas station at night",
+  "visual_prompt": "the lonely gas station at night",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1908.0,
+  "sentences": [
+   6,
+   7
+  ],
+  "quote": "",
+  "action": "the security monitor showing the body on the ground",
+  "visual_prompt": "the security monitor showing the body on the ground",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 3251.0,
+  "sentences": [
+   8,
+   8
+  ],
+  "quote": "",
+  "action": "Dennis at the freezer door as the infection starts",
+  "visual_prompt": "Dennis at the freezer door as the infection starts",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 3484.0,
+  "sentences": [
+   9,
+   10
+  ],
+  "quote": "They shot me.",
+  "action": "the knife cutting into Dennis's arm",
+  "visual_prompt": "the knife cutting into Dennis's arm",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 3550.0,
+  "sentences": [
+   11,
+   11
+  ],
+  "quote": "...I figured if I ever got a second chance, she should too.",
+  "action": "Dennis looking down as he talks",
+  "visual_prompt": "Dennis looking down as he talks",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 3562.0,
+  "sentences": [
+   12,
+   13
+  ],
+  "quote": "",
+  "action": "Seth and Polly listening to Dennis",
+  "visual_prompt": "Seth and Polly listening to Dennis",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 3536.0,
+  "sentences": [
+   14,
+   14
+  ],
+  "quote": "You were gonna give your nest egg to that trucker's wife?",
+  "action": "the dark gas station canopy outside",
+  "visual_prompt": "the dark gas station canopy outside",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 3699.0,
+  "sentences": [
+   15,
+   16
+  ],
+  "quote": "It goes for the warmest thing and kills it.",
+  "action": "Seth explaining that it hunts by heat",
+  "visual_prompt": "Seth explaining that it hunts by heat",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 3783.0,
+  "sentences": [
+   17,
+   18
+  ],
+  "quote": "Here, gotta get this hand cold.",
+  "action": "Seth bent over the counter, getting ready",
+  "visual_prompt": "Seth bent over the counter, getting ready",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 3792.0,
+  "sentences": [
+   19,
+   20
+  ],
+  "quote": "You don't have to prove anything to me.",
+  "action": "the thermometer being checked",
+  "visual_prompt": "the thermometer being checked",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 3931.0,
+  "sentences": [
+   21,
+   21
+  ],
+  "quote": "",
+  "action": "Seth lying in the ice bags",
+  "visual_prompt": "Seth lying in the ice bags",
+  "needs_visual_scan": false
+ }
+]

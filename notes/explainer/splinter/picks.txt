@@ -1,0 +1,14 @@
+B01_criminal b | Dennis grabbing his arm in pain
+B02_starts b | Seth in the forest on the camping trip
+B03_criminals c | a gun pointed at Polly by the road during the carjacking
+B04_lonely c | the lonely gas station at night
+B05_starts a | the security monitor showing the body on the ground
+B06_splinter a | Dennis at the freezer door as the infection starts
+B07_dennis b | the knife cutting into Dennis's arm
+B08_afterwards a | Dennis looking down as he talks
+B09_truck b | Seth and Polly listening to Dennis
+B10_creature c | the dark gas station canopy outside
+B11_figures b | Seth explaining that it hunts by heat
+B12_packs a | Seth bent over the counter, getting ready
+B13_creature 3792 | the thermometer being checked
+B14_beat b | Seth lying in the ice bags

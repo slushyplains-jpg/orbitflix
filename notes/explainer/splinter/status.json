@@ -1,0 +1,32 @@
+{
+  "passed": {
+    "research": {
+      "at": "2026-10-21T22:37:50",
+      "note": "story.md has every field"
+    },
+    "story": {
+      "at": "2026-10-21T22:37:50",
+      "note": "22 sentences, every one sourced"
+    },
+    "lint": {
+      "at": "2026-10-21T22:32:40",
+      "note": "22 sentences, 248 words, est 58.1s"
+    },
+    "voice": {
+      "at": "2026-10-21T22:33:34",
+      "note": "60.0s at 1.0x"
+    },
+    "footage": {
+      "at": "2026-10-21T22:47:13",
+      "note": "14 clips from picks.txt"
+    },
+    "render": {
+      "at": "2026-10-21T22:52:14",
+      "note": "60.0s, Splinter (2008).mp4"
+    },
+    "verify": {
+      "at": "2026-10-21T22:52:14",
+      "note": "length 60.0s, black 0.0s, audio yes, captions in 21/28 samples"
+    }
+  }
+}
