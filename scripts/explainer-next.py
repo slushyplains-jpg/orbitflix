@@ -46,6 +46,16 @@ def main():
             continue
         folder = os.path.join(NOTES, slug)
         os.makedirs(folder, exist_ok=True)
+        if not os.path.exists(os.path.join(folder, "status.json")):
+            # A fresh start: files from an older pipeline must not be mistaken for this run's.
+            for f in ("story.md", "hooks.md", "script.txt", "script.md", "clips.json", "clips.md"):
+                src = os.path.join(folder, f)
+                if os.path.exists(src):
+                    stem, ext = os.path.splitext(f)
+                    n, dst = 1, os.path.join(folder, f"{stem}_old{ext}")
+                    while os.path.exists(dst):
+                        n, dst = n + 1, os.path.join(folder, f"{stem}_old{n}{ext}")
+                    os.rename(src, dst)
         if not os.path.exists(os.path.join(folder, "sdh.srt")):
             try:
                 _, text = newexp.find_sdh(row["imdb"])

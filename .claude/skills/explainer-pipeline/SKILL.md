@@ -40,11 +40,11 @@ Write these files with the Write tool and fix them with the Edit tool. Never edi
 
 ## 4. Check, voice and footage (1 command)
 
-`python3.11 scripts/explainer-prep.py <slug>` (Bash timeout 600000) runs the fact check and lint, then the voice and the footage tool at the same time: subtitle-to-stream sync, beats, grids, two candidate sheets. It needs the ORBIT dev server; start it with `preview_start` "dreamstream-cinema" if no site answers. If a check fails, fix with Edit and rerun. The voice fixes small length misses by speed; if it is far off, add story or cut the weakest sentence, never pad.
+`python3.11 scripts/explainer-prep.py <slug>` (Bash timeout 600000) runs the fact check and lint, then the voice and the footage tool at the same time: subtitle-to-stream sync, beats, grids, two candidate sheets. It needs the ORBIT dev server; start it with `preview_start` "dreamstream-cinema" if no site answers. If a check fails, fix with Edit and rerun. WARN lines are advice: fix one only if that line reads badly. The voice fixes small length misses by speed; if it is far off, add story or cut the weakest sentence, never pad.
 
 ## 5. Pick clips (2 reads, 1 edit)
 
-Read `candidates_1.jpg` and `candidates_2.jpg`. For each beat: would a viewer hearing the sentence nod at this picture? It must show the subject (the person, the creature, the door), not people talking about it. Edit `picks.txt`: keep `a` only if it passes, else `b` or `c`. If none passes, open that beat's `shots/<name>.jpg` once and write a time (m:ss) that shows it, never a red DARK frame. B01 is the hook: take the most striking frame that fits.
+Read `candidates_1.jpg` and `candidates_2.jpg`. For each beat: would a viewer hearing the sentence nod at this picture? It must show the subject (the person, the creature, the door), not people talking about it. Then rewrite `picks.txt` with ONE Write call (all 14 lines), not one edit per line: keep `a` only if it passes, else `b` or `c`. If none passes, or a beat says NONE, open that beat's `shots/<name>.jpg` once and write a time (m:ss) that shows it, never a red DARK frame. If the film never shows a sentence clearly, take the closest picture and note it in the report; do not rewrite the script at this point. B01 is the hook: take the most striking frame that fits.
 
 ## 6. Render and verify (1 command)
 

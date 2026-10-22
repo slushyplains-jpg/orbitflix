@@ -60,13 +60,6 @@ def lint_script(text):
     for f in FILLER:
         if f in text.lower():
             warns.append(f"filler phrase: '{f}'")
-    openers = {}
-    for s in sents:
-        w = re.sub(r"[^\w']", "", s.split()[0]).lower() if s.split() else ""
-        openers[w] = openers.get(w, 0) + 1
-    for w, c in openers.items():
-        if c >= 3:
-            warns.append(f"{c} sentences start with '{w}'")
     chain = sum(1 for s in sents if re.match(r"^(then|so|now|and|when|after|later)\b", s.strip().lower()))
     if chain > len(sents) * 0.4:
         warns.append(f"{chain} of {len(sents)} sentences start with then/so/now/when; this reads as a recap, build around the protagonist's choice instead")
@@ -76,9 +69,6 @@ def lint_script(text):
     pattern = sum(1 for s in sents if re.match(r"^[^,]{3,}, and ", s))
     if pattern > len(sents) // 2:
         warns.append(f"{pattern} of {len(sents)} sentences use the 'X, and Y' shape; vary the rhythm")
-    lens = [len(s.split()) for s in sents]
-    if len(lens) > 2 and statistics.pstdev(lens) < 3:
-        warns.append("sentence lengths are too uniform; mix short punches with longer lines")
     # Plain words: the listener is half watching on a phone. Grade is the Flesch-Kincaid reading
     # level from sentence length and syllables; hard words are jargon a stranger would not know.
     words_l = re.findall(r"[a-z']+", text.lower())

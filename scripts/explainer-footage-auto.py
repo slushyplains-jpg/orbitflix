@@ -160,7 +160,7 @@ for sheet_no in (1, 2):
         text = " ".join(sents[a:z + 1])
         dr.text((PAD, y), f"{b['name']}: {text[:120]}{'...' if len(text) > 120 else ''}", fill=(255, 255, 255), font=font)
         if not cands[b["name"]]:
-            dr.text((PAD, y + 30), "no usable 5 s run in this window: move or widen it", fill=(255, 90, 90), font=font)
+            dr.text((PAD, y + 30), "no candidates here: open this beat's grid in shots/ and write a time in picks.txt", fill=(255, 90, 90), font=font)
         for k, t in enumerate(cands[b["name"]]):
             x = PAD + k * (W + PAD)
             f = stills.get((b["name"], k, t))
