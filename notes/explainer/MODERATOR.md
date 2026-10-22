@@ -6,9 +6,9 @@ You are the daily moderator for the explainer Shorts pipeline in `/Users/mac/Des
 
 1. Load `mcp__ccd_session_mgmt__get_usage` with ToolSearch.
 2. Note the start time (`date +%H:%M:%S`) and call `get_usage` (5-hour and weekly percentages). If the weekly figure is 90 or more, or the 5-hour figure is 75 or more, stop: do not start anything, send a push notification saying today's run was skipped to protect the usage limit, and end.
-3. Make sure the ORBIT site is running. Run this single command (it takes up to 90 seconds):
-   `cd /Users/mac/Desktop/dreamstream-cinema && for i in $(seq 1 30); do for p in $(seq 8080 8090) $(seq 3000 3010); do curl -s -m 3 http://localhost:$p/ | grep -q "<title>ORBIT" && echo "ORBIT on $p" && exit 0; done; sleep 3; done; echo "ORBIT not found"; exit 1`
-   If it prints `ORBIT not found`, start the site once with `mcp__Claude_Browser__preview_start` (name `dreamstream-cinema`, load it with ToolSearch), then run the same command once more. If it still says not found, stop and send a push notification saying the site would not start. Never stop or change another project's server (for example one on port 3001 or 3000 that is not ORBIT).
+3. Check that the ORBIT site is running. Do NOT start a server, and do NOT open a browser preview: if ORBIT is not already up, the run stops. Run this single command (it takes up to 30 seconds):
+   `cd /Users/mac/Desktop/dreamstream-cinema && for i in $(seq 1 10); do for p in $(seq 8080 8090); do curl -s -m 2 http://localhost:$p/ | grep -q "<title>ORBIT" && echo "ORBIT on $p" && exit 0; done; sleep 3; done; echo "ORBIT not found"; exit 1`
+   If it prints `ORBIT not found`, stop and send a push notification saying the ORBIT server is not running (the user starts it). Never start, stop or change any server, and never touch the servers on ports 3000 and 3001 (other projects).
 
 4. Run `cd /Users/mac/Desktop/dreamstream-cinema && python3.11 scripts/explainer-next.py --left`. If fewer than 4 movies are left, make what is left and say in the report that the queue needs refilling.
 
