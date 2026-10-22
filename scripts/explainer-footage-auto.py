@@ -148,7 +148,7 @@ try:
     font = ImageFont.truetype("/System/Library/Fonts/Helvetica.ttc", 18)
 except Exception:
     font = ImageFont.load_default()
-W, TH, PAD = 360, 203, 6
+W, TH, PAD = 300, 169, 6
 per_sheet = (len(beats) + 1) // 2
 for sheet_no in (1, 2):
     part = beats[(sheet_no - 1) * per_sheet: sheet_no * per_sheet]

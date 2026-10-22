@@ -1,7 +1,9 @@
 """Stages 7 and 8 in one command: build the job, render detached, wait, verify, and record both stages.
 
-Usage: python3.11 explainer-finish.py <slug> <tmdb> "<Title (Year)>" [template] [movie|tv]
-Stages 1 to 6 must have passed. The render runs in its own process session, so if this command is
+Usage: python3.11 explainer-finish.py <slug> [--wait-only]
+   or: python3.11 explainer-finish.py <slug> <tmdb> "<Title (Year)>" [template] [movie|tv]
+With only the slug, the TMDB id and title come from movie.json. If picks.txt is newer than the clip
+plan, it builds the clip plan first (explainer-clips.py). Earlier stages must have passed. The render runs in its own process session, so if this command is
 interrupted the render keeps going; run it again with --wait-only to wait for it and verify.
 Prints the output path, length and the verify result. Exit code 1 on any failure.
 """
@@ -14,10 +16,15 @@ import time
 
 args = [a for a in sys.argv[1:] if a != "--wait-only"]
 wait_only = "--wait-only" in sys.argv
-slug, tmdb, title = args[0], args[1], args[2]
-template = args[3] if len(args) > 3 else "final"
-kind = args[4] if len(args) > 4 else "movie"
 here = os.path.dirname(os.path.abspath(__file__))
+slug = args[0]
+if len(args) >= 3:
+    tmdb, title = args[1], args[2]
+    template = args[3] if len(args) > 3 else "final"
+    kind = args[4] if len(args) > 4 else "movie"
+else:
+    m = json.load(open(os.path.join(os.path.dirname(here), "notes/explainer", slug, "movie.json")))
+    tmdb, title, template, kind = str(m["tmdb"]), m["title"], "final", m.get("kind", "movie")
 PY = "/usr/local/bin/python3.11"
 job = os.path.expanduser(f"~/Desktop/explainer-jobs/{slug}.json")
 log = job.removesuffix(".json") + ".log"
@@ -27,6 +34,13 @@ def run(*cmd):
     return subprocess.run([PY, *cmd], capture_output=True, text=True)
 
 
+notes = os.path.join(os.path.dirname(here), "notes/explainer", slug)
+picks, plan = os.path.join(notes, "picks.txt"), os.path.join(notes, "clips.json")
+if not wait_only and os.path.exists(picks) and (not os.path.exists(plan) or os.path.getmtime(picks) > os.path.getmtime(plan)):
+    r = run(os.path.join(here, "explainer-clips.py"), slug)
+    if r.returncode:
+        sys.exit("clip plan failed:\n" + "\n".join(l for l in r.stdout.splitlines() if l.startswith(("FAIL", "unknown"))) + r.stderr[-300:])
+    print("clip plan: PASS")
 status = run(os.path.join(here, "explainer-status.py"), slug).stdout
 if "next: render" not in status and not (wait_only and "next: render" in status):
     sys.exit(f"stages 1 to 6 must pass first:\n{status}")

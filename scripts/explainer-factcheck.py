@@ -46,22 +46,15 @@ if missing:
     fails.append(f"sentences with no row in script.md: {missing}")
 print(f"{len(sentences)} sentences, {len(covered & set(range(len(sentences))))} covered")
 story = open(os.path.join(d, "story.md"), encoding="utf-8").read() if os.path.exists(os.path.join(d, "story.md")) else ""
-fields = ["Premise", "Protagonist", "Wild facts", "Human detail", "Wound", "Key beats", "Twist we can show", "Hold back", "Best images", "Cliffhanger"]
+fields = ["Premise", "Wild facts", "Moments", "Hold back"]
 missing_fields = [f for f in fields if f"**{f}" not in story]
 if missing_fields:
     fails.append(f"story.md is missing fields: {missing_fields}")
-hooks_p = os.path.join(d, "hooks.md")
-if not os.path.exists(hooks_p):
-    fails.append("hooks.md is missing")
-else:
-    # The Model line proves examples.md was opened: it must be copied from it word for word.
-    m = re.search(r"Model line:\s*(.+)", open(hooks_p, encoding="utf-8").read())
-    ex_p = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".claude/skills/explainer-story/examples.md")
-    norm = lambda t: re.sub(r"\s+", " ", t.replace("\u2019", "'").replace("\u201c", '"').replace("\u201d", '"')).strip(" \"'>*|")
-    line = norm(m.group(1)) if m else ""
-    if len(line) < 25 or line not in norm(open(ex_p, encoding="utf-8").read()):
-        fails.append("hooks.md needs a last line 'Model line: ...' copied word for word from examples.md (at least 25 characters)")
 md = open(os.path.join(d, "script.md"), encoding="utf-8").read()
+mline = next((l for l in md.splitlines() if re.match(r"\W*Moments\b", l)), "")
+n_moments = len(re.findall(r"\(\d\)", mline))
+if not 3 <= n_moments <= 4:
+    fails.append(f"script.md needs a first line 'Moments: (1) name, 0 to 6; (2) ...' with 3 or 4 moments (found {n_moments})")
 hdr = next(([c.strip().lower() for c in l.strip().strip("|").split("|")] for l in md.splitlines() if l.startswith("| #")), [])
 if "picture" not in hdr:
     fails.append("the script.md table needs a Picture column: the time each sentence's subject is on screen")
@@ -71,15 +64,6 @@ else:
         c = [x.strip() for x in l.strip().strip("|").split("|")] if l.startswith("|") else []
         if len(c) > pi and re.fullmatch(r"\d+(\s*-\s*\d+)?", c[0]) and not re.search(r"\d{1,2}:\d{2}", c[pi]):
             fails.append(f"sentence {c[0]} has no Picture time")
-vc = md.split("## Viral check", 1)[1] if "## Viral check" in md else ""
-need = ["Scroll", "Premise", "Root for", "Moments", "Ending", "Cut"]
-missing_vc = [k for k in need if not re.search(rf"\b{k}\b\s*[-:]", vc)]
-mline = next((l for l in vc.splitlines() if re.search(r"\bMoments\b\s*[-:]", l)), "")
-n_moments = len(re.findall(r"\(\d\)", mline))
-if mline and not 3 <= n_moments <= 4:
-    fails.append(f"the viral check lists {n_moments} moments; a Short has 3 or 4, written as (1) name, sentences; (2) ...")
-if missing_vc:
-    fails.append(f"script.md needs a '## Viral check' section answering: {missing_vc}")
 for f in fails:
     print("FAIL", f)
 print("RESULT", "FAIL" if fails else "PASS")

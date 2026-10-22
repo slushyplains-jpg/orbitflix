@@ -20,6 +20,18 @@ for block in re.split(r"\n\s*\n", srt.strip()):
             continue
         g = list(map(int, m.groups()))
         text = re.sub(r"<[^>]+>|\{[^}]+\}", "", " ".join(lines[i + 1:])).strip()
+        # Filler tags ("(grunts)", "(panting)") say nothing about what is on screen.
+        text = re.sub(r"\((?:[^)]*\b(?:grunt|grunts|grunting|pant|panting|sigh|sighs|chuckle|chuckles|chuckling|laugh|laughs|laughing|"
+                      r"breath|breathing|breathes|exhale|exhales|inhale|inhales|groan|groans|groaning|gasp|gasps|gasping|sniffle|sniffles|"
+                      r"indistinct|whimper|whimpers|coughs?|clears throat|music|static)\b[^)]*)\)", "", text, flags=re.I)
+        text = text.strip(" -")  # speaker names stay: they say who does what
+        bare = re.sub(r"\([^)]*\)|\[[^\]]*\]|#|♪", "", text).strip()
+        has_cue = bool(re.search(r"\([^)]*\)", text))
+        # keep sound cues (they place events on screen) and real lines; drop music marks and "Yeah." / "What?"
+        if not bare and not has_cue:
+            continue
+        if len(bare.split()) < 3 and not has_cue:
+            continue
         if text and not re.search(r"www\.|osdb|opensubtitles|subtitles by", text, re.I):
             rows.append([g[0] * 3600 + g[1] * 60 + g[2], g[3] * 3600 + g[4] * 60 + g[5], text])
         break

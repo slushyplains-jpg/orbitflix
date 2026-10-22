@@ -1,47 +1,62 @@
 ---
 name: explainer-pipeline
-description: The master plan for making explainer Shorts, end to end. Start here for any request to make, redo, batch, or schedule explainer Shorts, or to continue a movie that is partway done. It runs the stages in order (research, story, lint, voice, footage, render, verify), names the skill that owns each stage, and blocks any stage until the one before it has passed its check.
+description: How to make one explainer Short end to end (pick the movie, research, script, checks, footage, render). Start here for any request to make, redo or continue an explainer Short. This file has everything a run needs; the other explainer skills are short references.
 ---
 
-# Explainer pipeline
+# Make one explainer Short
 
-Every Short goes through the same seven stages. Each stage has an owning skill and a gate: a script that must pass before the next stage starts. Gates are scripts, not judgment, so a skipped check cannot slip through.
+One fresh session per movie, on Sonnet. About 10 to 12 minutes. Keep turns few: each command below does several things.
 
-## Stages
+## 1. Pick the movie (1 command)
 
-| # | Stage | Owning skill | Gate that must pass |
-|---|---|---|---|
-| 1 | research | `explainer-research` | `story.md` exists with every field filled |
-| 2 | story | `explainer-story` | hooks with a Model line, one script in the viral-recap shape, the viral check and the fact check (checked by `explainer-factcheck.py`) |
-| 3 | lint | `explainer-story` | `explainer-check.py <slug>` (fact check, lint and voice in one command) prints ALL PASS |
-| 4 | voice | `explainer-story` | `python3.11 scripts/explainer-voicecheck.py notes/explainer/<slug>/script.txt` prints PASS (57 to 61 s) |
-| 5 | footage | `explainer-footage` | `explainer-clips.py <slug>` prints RESULT PASS (14 clips) |
-| 6 | render | `explainer-render` | `explainer-finish.py` prints done |
-| 7 | verify | `explainer-render` | the video check inside `explainer-finish.py` prints RESULT PASS |
+`python3.11 scripts/explainer-next.py` takes the next movie from `notes/explainer/queue.csv`, downloads its subtitles if missing, finds the TMDB id, writes `movie.json` and the subtitle digest, and prints the slug and the next stage. Use `explainer-next.py <slug>` for a specific movie. If a later stage is next, continue from that step below.
 
-Each check script records its own stage when it passes (`explainer-factcheck.py` records research and story, the linter records lint, the voice check records voice, `explainer-clips.py` records footage, `explainer-finish.py` records render and verify), so do not run `explainer-status.py` by hand to record. The tracker refuses to record a stage whose earlier stages have not passed. The Google Sheet is no longer written; the notes folder and the video are the record. Run `python3.11 scripts/explainer-status.py <slug>` first on any movie to see where to resume. To redo a movie, send it back with `--reset <stage>` (for example `--reset research` for a full rewrite). `--accept` is only for a video the user has explicitly approved that was made before this pipeline existed.
+## 2. Research (2 reads, 1 write)
 
-## Which model does what
+- WebFetch the film's Wikipedia page: the plot as numbered beats, who is who, the ending marked.
+- Read `notes/explainer/<slug>/sdh_digest.txt` once, whole (dialogue and sound cues with times). The best human details are there.
+- Write `story.md` with these four fields:
+  - **Premise:** one plain sentence: who, where, what goes wrong.
+  - **Wild facts:** 3 to 5 surprising true details, with times. The hook comes from here.
+  - **Moments:** the 3 or 4 moments the Short tells, each with the time it is on screen: the hook moment (the most shocking thing, ideally a choice), the human moment (someone we get attached to, and what happens to them), the big turn, the cliffhanger.
+  - **Hold back:** the climax and the ending.
 
-One session makes the whole Short, ideally on Sonnet (pick it in the model picker): research, story, footage picks, render. There are no helpers. The writing and the picture matching both need judgment, and the remaining steps are scripts, so a smaller model saves little and matches clips badly. Before footage, make sure the ORBIT dev server answers on a localhost port (start it with the preview tools if not). Run `scripts/explainer-finish.py` in the foreground with a Bash timeout of 600000, and rerun it with `--wait-only` if it times out.
+## 3. Write (2 writes)
 
-## Rules that apply to every stage
+`script.txt`, the narration:
+- 3 or 4 moments only, each in 3 to 6 sentences: where we are, what happens, what it costs, and one short line that lets it land ("She has to live with that."). Skipped events get one bridge line ("Then it gets worse."), never a summary.
+- About 230 words, 15 to 22 sentences.
+- Every sentence is something you can see on screen. No backstory told in dialogue, no side stories, no "he studies biology".
+- Words a 10-year-old knows. Say what the danger is (never "something" twice). Say cause and effect out loud. No clever lines. Present tense, active voice, at most two says/asks/tells.
+- Never reveal the ending; stop on the dilemma just before the climax. No colons, semicolons, double quotes, or abbreviations with periods.
 
-0. **Edit text files with the Edit or Write tool, never with Python, sed or heredoc scripts.** Run the pipeline's commands as they are; do not write new code during a run.
+Example (Underwater, approved): "Norah works at the bottom of the ocean, in a giant underwater base. One day, the walls crack, and water starts pouring in. Her friends are on the other side of a door, running and screaming for her to wait. But if she waits, the water floods the whole base, and everyone dies. So Norah closes the door. She has to live with that." ... "Three people. Two boats. And Norah is the one who has to decide who stays behind."
 
-1. **Never skip a gate.** If a gate fails, fix the cause in the owning stage and run the gate again. A failed length check goes back to the story stage, never forward.
-2. **Never render before stages 1 to 5 pass.** A render is the most expensive step and the only one the user sees.
-3. **One source of truth per file.** Final narration is `notes/explainer/<slug>/script.txt` (no `script_v2.txt`). The clip plan is `clips.json`. `clips.md` is generated by `scripts/explainer-notes.py`, never hand-edited.
-4. **Do not hand-write job JSON.** Build it with `scripts/explainer-job.py`.
-5. **Report honestly.** Say which gates passed, which clips are weak, and anything not checked.
-6. **One movie per session.** A fresh session per movie keeps usage low; do not batch several movies in one long session.
+`script.md`:
+- First line: `Moments: (1) the door, 0 to 6; (2) the plan, 7 to 9; (3) Paul, 10 to 16; (4) two boats, 17 to 22` (3 or 4, checked).
+- Then a table `| # | Sentence (short) | Picture | Source |`. # is the 0-based sentence number or a range like `4-5`. **Picture** is the time the thing is ON SCREEN: use sound and action cues and the scene order, not the line where someone talks about it, and give sentences about one image the same Picture time. **Source** is the subtitle times that prove the sentence, and/or "plot summary".
 
-## Batch runs (several movies, or the daily task)
+Write these files with the Write tool and fix them with the Edit tool. Never edit text with Python, sed or other code.
 
-- Take movies in sheet order. Skip movies whose status shows `next: done`. A movie with no status file starts at research. Movie order comes from column B of the sheet (read only).
-- Work on movie N+1 while movie N renders.
-- If a movie cannot pass a gate after two honest attempts (for example the film is too thin to source 228 words), record why in `notes/explainer/<slug>/status.json` via a note on the last passed stage, tell the user, and move to the next movie.
+## 4. Check, voice and footage (1 command)
 
-## Folder layout per movie
+`python3.11 scripts/explainer-prep.py <slug>` (Bash timeout 600000) runs the fact check and lint, then the voice and the footage tool at the same time: subtitle-to-stream sync, beats, grids, two candidate sheets. It needs the ORBIT dev server; start it with `preview_start` "dreamstream-cinema" if no site answers. If a check fails, fix with Edit and rerun. The voice fixes small length misses by speed; if it is far off, add story or cut the weakest sentence, never pad.
 
-`notes/explainer/<slug>/` holds `sdh.srt`, `story.md`, `hooks.md`, `script.txt`, `script.md` (fact check), `clips.json`, `clips.md` (generated), `status.json`, and `shots/` grids. Scratch frames go in the scratchpad, not the project.
+## 5. Pick clips (2 reads, 1 edit)
+
+Read `candidates_1.jpg` and `candidates_2.jpg`. For each beat: would a viewer hearing the sentence nod at this picture? It must show the subject (the person, the creature, the door), not people talking about it. Edit `picks.txt`: keep `a` only if it passes, else `b` or `c`. If none passes, open that beat's `shots/<name>.jpg` once and write a time (m:ss) that shows it, never a red DARK frame. B01 is the hook: take the most striking frame that fits.
+
+## 6. Render and verify (1 command)
+
+`python3.11 scripts/explainer-finish.py <slug>` (Bash timeout 600000; rerun with `--wait-only` if it times out). It builds the clip plan from `picks.txt`, renders with the saved voice, and verifies the video (57 to 61 s, 1080x1920, audio, little black, captions).
+
+## 7. Report
+
+The output path, the length, the time taken, and any clip that does not clearly show its sentence. Do not commit or push notes.
+
+## Rules
+
+- The commands record each stage; never record by hand. `python3.11 scripts/explainer-status.py <slug>` shows where a movie is; `--reset <stage>` redoes from that stage.
+- Never print stream links or tokens, and never save them in `notes/`.
+- If a step fails twice, stop and report. Do not write new code during a run.
+- When a Short comes out bad, fix this skill or a check, not only that movie.
