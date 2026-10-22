@@ -17,6 +17,7 @@ import concurrent.futures as cf
 import json
 import os
 import re
+import signal
 import subprocess
 import sys
 import tempfile
@@ -79,12 +80,15 @@ beats = json.load(open(os.path.join(d, "beats.json")))
 def grid(beat):
     wf = os.path.join(tmp, f"{beat['name']}.windows.json")
     json.dump([{k: beat[k] for k in ("name", "start", "end")}], open(wf, "w"))
+    p = subprocess.Popen([PY, os.path.join(here, "explainer-shots.py"), link_file, wf, shots, "--fast"], stdout=subprocess.PIPE,
+                         stderr=subprocess.PIPE, text=True, start_new_session=True)
     try:
-        r = subprocess.run([PY, os.path.join(here, "explainer-shots.py"), link_file, wf, shots, "--fast"], capture_output=True,
-                           text=True, timeout=300)
+        out, err = p.communicate(timeout=300)
     except subprocess.TimeoutExpired:
+        os.killpg(p.pid, signal.SIGKILL)  # the wrapper and every ffmpeg it started
+        p.communicate()
         return beat["name"], 1, f"{beat['name']}: timed out after 5 minutes"
-    return beat["name"], r.returncode, scrub(r.stdout.strip() or r.stderr.strip()[-200:])
+    return beat["name"], p.returncode, scrub(out.strip() or err.strip()[-200:])
 
 
 print(f"building {len(beats)} grids, 4 at a time")

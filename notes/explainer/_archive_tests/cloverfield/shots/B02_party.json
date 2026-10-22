@@ -1,0 +1,290 @@
+[
+ {
+  "t": 588.0,
+  "luma": 68.2,
+  "sharp": 507.3,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 589.0,
+  "luma": 54.5,
+  "sharp": 386.6,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": true
+ },
+ {
+  "t": 590.0,
+  "luma": 46.7,
+  "sharp": 6.4,
+  "usable": true,
+  "dim": false,
+  "soft": true,
+  "cut": true
+ },
+ {
+  "t": 591.0,
+  "luma": 64.3,
+  "sharp": 36.3,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": true
+ },
+ {
+  "t": 592.0,
+  "luma": 31.9,
+  "sharp": 49.3,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": true
+ },
+ {
+  "t": 593.0,
+  "luma": 34.6,
+  "sharp": 70.8,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 594.0,
+  "luma": 36.6,
+  "sharp": 89.2,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 595.0,
+  "luma": 42.3,
+  "sharp": 53.9,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 596.0,
+  "luma": 34.3,
+  "sharp": 119.7,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 597.0,
+  "luma": 47.5,
+  "sharp": 239.0,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 598.0,
+  "luma": 44.5,
+  "sharp": 65.9,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 599.0,
+  "luma": 44.6,
+  "sharp": 108.6,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": true
+ },
+ {
+  "t": 600.0,
+  "luma": 27.8,
+  "sharp": 137.6,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": true
+ },
+ {
+  "t": 601.0,
+  "luma": 19.5,
+  "sharp": 57.9,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 602.0,
+  "luma": 20.4,
+  "sharp": 34.1,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 603.0,
+  "luma": 22.6,
+  "sharp": 20.3,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 604.0,
+  "luma": 33.2,
+  "sharp": 59.2,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 605.0,
+  "luma": 30.0,
+  "sharp": 8.5,
+  "usable": true,
+  "dim": true,
+  "soft": true,
+  "cut": false
+ },
+ {
+  "t": 606.0,
+  "luma": 34.7,
+  "sharp": 25.0,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 607.0,
+  "luma": 36.2,
+  "sharp": 122.2,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 608.0,
+  "luma": 40.6,
+  "sharp": 456.1,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 609.0,
+  "luma": 43.7,
+  "sharp": 512.5,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 610.0,
+  "luma": 39.6,
+  "sharp": 361.4,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 611.0,
+  "luma": 43.8,
+  "sharp": 336.2,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 612.0,
+  "luma": 49.8,
+  "sharp": 171.2,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": true
+ },
+ {
+  "t": 613.0,
+  "luma": 53.2,
+  "sharp": 138.0,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": true
+ },
+ {
+  "t": 614.0,
+  "luma": 44.7,
+  "sharp": 267.4,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": true
+ },
+ {
+  "t": 615.0,
+  "luma": 38.7,
+  "sharp": 216.0,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 616.0,
+  "luma": 37.0,
+  "sharp": 96.5,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": true
+ },
+ {
+  "t": 617.0,
+  "luma": 32.9,
+  "sharp": 129.6,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 618.0,
+  "luma": 34.3,
+  "sharp": 181.7,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 619.0,
+  "luma": 40.6,
+  "sharp": 368.9,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ }
+]

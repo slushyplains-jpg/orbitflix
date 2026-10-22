@@ -1,0 +1,542 @@
+[
+ {
+  "t": 904.0,
+  "luma": 33.1,
+  "sharp": 300.0,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 905.0,
+  "luma": 36.6,
+  "sharp": 375.4,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 906.0,
+  "luma": 37.8,
+  "sharp": 385.1,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 907.0,
+  "luma": 34.9,
+  "sharp": 309.9,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 908.0,
+  "luma": 33.5,
+  "sharp": 327.4,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 909.0,
+  "luma": 27.5,
+  "sharp": 376.8,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 910.0,
+  "luma": 28.9,
+  "sharp": 375.6,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 911.0,
+  "luma": 26.5,
+  "sharp": 660.0,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": true
+ },
+ {
+  "t": 912.0,
+  "luma": 27.2,
+  "sharp": 681.8,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 913.0,
+  "luma": 28.1,
+  "sharp": 670.9,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 914.0,
+  "luma": 30.1,
+  "sharp": 658.4,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 915.0,
+  "luma": 28.2,
+  "sharp": 492.2,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 916.0,
+  "luma": 27.9,
+  "sharp": 482.0,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 917.0,
+  "luma": 28.2,
+  "sharp": 471.2,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 918.0,
+  "luma": 32.3,
+  "sharp": 510.5,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 919.0,
+  "luma": 36.1,
+  "sharp": 508.6,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 920.0,
+  "luma": 35.4,
+  "sharp": 577.9,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 921.0,
+  "luma": 35.2,
+  "sharp": 513.1,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 922.0,
+  "luma": 37.0,
+  "sharp": 502.4,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 923.0,
+  "luma": 38.5,
+  "sharp": 502.1,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 924.0,
+  "luma": 38.4,
+  "sharp": 492.3,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 925.0,
+  "luma": 39.8,
+  "sharp": 487.1,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 926.0,
+  "luma": 42.8,
+  "sharp": 524.1,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 927.0,
+  "luma": 42.3,
+  "sharp": 543.0,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 928.0,
+  "luma": 41.4,
+  "sharp": 591.1,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 929.0,
+  "luma": 23.2,
+  "sharp": 168.9,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": true
+ },
+ {
+  "t": 930.0,
+  "luma": 22.7,
+  "sharp": 139.3,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 931.0,
+  "luma": 23.2,
+  "sharp": 164.9,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 932.0,
+  "luma": 24.4,
+  "sharp": 150.0,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 933.0,
+  "luma": 21.6,
+  "sharp": 156.6,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 934.0,
+  "luma": 23.9,
+  "sharp": 566.3,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 935.0,
+  "luma": 23.0,
+  "sharp": 563.6,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 936.0,
+  "luma": 23.6,
+  "sharp": 574.0,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 937.0,
+  "luma": 40.8,
+  "sharp": 77.1,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": true
+ },
+ {
+  "t": 938.0,
+  "luma": 41.7,
+  "sharp": 77.7,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 939.0,
+  "luma": 41.8,
+  "sharp": 75.0,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 940.0,
+  "luma": 40.9,
+  "sharp": 70.8,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 941.0,
+  "luma": 41.0,
+  "sharp": 68.5,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 942.0,
+  "luma": 41.4,
+  "sharp": 63.5,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 943.0,
+  "luma": 42.8,
+  "sharp": 61.7,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 944.0,
+  "luma": 43.4,
+  "sharp": 59.8,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 945.0,
+  "luma": 43.2,
+  "sharp": 61.7,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 946.0,
+  "luma": 45.6,
+  "sharp": 58.6,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 947.0,
+  "luma": 40.3,
+  "sharp": 81.4,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": true
+ },
+ {
+  "t": 948.0,
+  "luma": 48.1,
+  "sharp": 224.3,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": true
+ },
+ {
+  "t": 949.0,
+  "luma": 45.4,
+  "sharp": 208.1,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 950.0,
+  "luma": 45.0,
+  "sharp": 156.5,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": true
+ },
+ {
+  "t": 951.0,
+  "luma": 44.8,
+  "sharp": 130.7,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 952.0,
+  "luma": 45.2,
+  "sharp": 387.4,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": true
+ },
+ {
+  "t": 953.0,
+  "luma": 46.2,
+  "sharp": 376.9,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 954.0,
+  "luma": 46.4,
+  "sharp": 359.0,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 955.0,
+  "luma": 52.0,
+  "sharp": 314.4,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": true
+ },
+ {
+  "t": 956.0,
+  "luma": 53.4,
+  "sharp": 310.5,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 957.0,
+  "luma": 54.9,
+  "sharp": 306.2,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 958.0,
+  "luma": 36.5,
+  "sharp": 253.8,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": true
+ },
+ {
+  "t": 959.0,
+  "luma": 36.6,
+  "sharp": 252.8,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 960.0,
+  "luma": 37.9,
+  "sharp": 253.6,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 961.0,
+  "luma": 49.5,
+  "sharp": 200.9,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": true
+ },
+ {
+  "t": 962.0,
+  "luma": 48.7,
+  "sharp": 201.2,
+  "usable": true,
+  "dim": false,
+  "soft": false,
+  "cut": false
+ },
+ {
+  "t": 963.0,
+  "luma": 34.4,
+  "sharp": 140.5,
+  "usable": true,
+  "dim": true,
+  "soft": false,
+  "cut": true
+ }
+]

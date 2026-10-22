@@ -39,3 +39,4 @@ notes/explainer/*/shots/
 notes/explainer/*/candidates*
 notes/explainer/*/sdh_digest.txt
 notes/explainer/*/voice.wav
+notes/explainer/.queue-cache.json

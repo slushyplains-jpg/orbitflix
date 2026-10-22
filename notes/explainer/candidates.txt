@@ -1,0 +1,186 @@
+horror|Hereditary|2018
+horror|Midsommar|2019
+horror|The Conjuring|2013
+horror|Insidious|2010
+horror|Sinister|2012
+horror|Smile|2022
+horror|Barbarian|2022
+horror|It Follows|2014
+horror|The Babadook|2014
+horror|Lights Out|2016
+horror|Oculus|2013
+horror|Mama|2013
+horror|Get Out|2017
+horror|Us|2019
+horror|Nope|2022
+horror|Split|2016
+horror|The Black Phone|2021
+horror|Don't Breathe|2016
+horror|The Strangers|2008
+horror|You're Next|2011
+horror|The Cabin in the Woods|2012
+horror|Escape Room|2019
+horror|Saw|2004
+horror|Cube|1997
+horror|The Platform|2019
+horror|Bird Box|2018
+horror|A Quiet Place|2018
+horror|A Quiet Place Part II|2020
+horror|10 Cloverfield Lane|2016
+horror|The Sixth Sense|1999
+horror|The Others|2001
+horror|Signs|2002
+horror|Fall|2022
+horror|Run|2020
+horror|Evil Dead|2013
+horror|Orphan|2009
+horror|The Ring|2002
+horror|Paranormal Activity|2007
+horror|Talk to Me|2022
+horror|The Menu|2022
+horror|Hush|2016
+horror|The Invisible Man|2020
+horror|Happy Death Day|2017
+horror|The Purge|2013
+horror|1408|2007
+horror|Vacancy|2007
+horror|Wolf Creek|2005
+horror|Eden Lake|2008
+creature|Cloverfield|2008
+creature|The Mist|2007
+creature|The Descent|2005
+creature|The Ritual|2017
+creature|Sweetheart|2019
+creature|Splinter|2008
+creature|Slither|2006
+creature|Underwater|2020
+creature|Life|2017
+creature|Alien|1979
+creature|Aliens|1986
+creature|The Thing|1982
+creature|Predator|1987
+creature|Prey|2022
+creature|Jaws|1975
+creature|The Meg|2018
+creature|Crawl|2019
+creature|Open Water|2003
+creature|The Shallows|2016
+creature|47 Meters Down|2017
+creature|Lake Placid|1999
+creature|Arachnophobia|1990
+creature|Tremors|1990
+creature|Train to Busan|2016
+creature|28 Days Later|2002
+creature|28 Weeks Later|2007
+creature|Dawn of the Dead|2004
+creature|Zombieland|2009
+creature|I Am Legend|2007
+creature|The Ruins|2008
+creature|Pitch Black|2000
+creature|Attack the Block|2011
+creature|Super 8|2011
+creature|Pacific Rim|2013
+creature|Godzilla|2014
+creature|Kong: Skull Island|2017
+creature|Jurassic Park|1993
+creature|Anaconda|1997
+creature|Snakes on a Plane|2006
+creature|Deep Blue Sea|1999
+creature|Eight Legged Freaks|2002
+creature|Mimic|1997
+creature|Monsters|2010
+creature|Dog Soldiers|2002
+creature|Gremlins|1984
+creature|Piranha 3D|2010
+scifi|Gravity|2013
+scifi|The Martian|2015
+scifi|Arrival|2016
+scifi|Ex Machina|2014
+scifi|Moon|2009
+scifi|Passengers|2016
+scifi|Edge of Tomorrow|2014
+scifi|Source Code|2011
+scifi|Looper|2012
+scifi|Minority Report|2002
+scifi|District 9|2009
+scifi|Chronicle|2012
+scifi|Oblivion|2013
+scifi|Sunshine|2007
+scifi|Event Horizon|1997
+scifi|Sphere|1998
+scifi|The Abyss|1989
+scifi|Contagion|2011
+scifi|Outbreak|1995
+scifi|The Day After Tomorrow|2004
+scifi|Deep Impact|1998
+scifi|Apollo 13|1995
+scifi|Annihilation|2018
+scifi|Elysium|2013
+scifi|Prometheus|2012
+scifi|Alien: Covenant|2017
+scifi|Ad Astra|2019
+scifi|The Island|2005
+scifi|Gattaca|1997
+scifi|Equilibrium|2002
+scifi|Dredd|2012
+scifi|Predestination|2014
+scifi|Coherence|2013
+scifi|Total Recall|1990
+scifi|RoboCop|1987
+scifi|Terminator 2: Judgment Day|1991
+scifi|The Terminator|1984
+scifi|Lucy|2014
+scifi|Limitless|2011
+scifi|I, Robot|2004
+scifi|Independence Day|1996
+scifi|War of the Worlds|2005
+scifi|Pandorum|2009
+scifi|Europa Report|2013
+scifi|The Signal|2014
+thriller|Cast Away|2000
+thriller|127 Hours|2010
+thriller|Buried|2010
+thriller|All Is Lost|2013
+thriller|Alive|1993
+thriller|The Impossible|2012
+thriller|Twister|1996
+thriller|Panic Room|2002
+thriller|Se7en|1995
+thriller|Shutter Island|2010
+thriller|The Silence of the Lambs|1991
+thriller|Misery|1990
+thriller|Taken|2008
+thriller|The Gift|2015
+thriller|Disturbia|2007
+thriller|Identity|2003
+thriller|Memento|2000
+thriller|The Prestige|2006
+thriller|Nightcrawler|2014
+thriller|Searching|2018
+thriller|Unfriended|2014
+thriller|Red Eye|2005
+thriller|Flightplan|2005
+thriller|Speed|1994
+thriller|Cliffhanger|1993
+thriller|Con Air|1997
+thriller|Die Hard|1988
+thriller|John Wick|2014
+thriller|Phone Booth|2002
+thriller|The Edge|1997
+thriller|Wind River|2017
+thriller|No Country for Old Men|2007
+thriller|Sicario|2015
+thriller|Dunkirk|2017
+thriller|The Fugitive|1993
+thriller|Crimson Tide|1995
+thriller|U-571|2000
+thriller|The Grey|2011
+thriller|The Hitcher|2007
+thriller|Mad Max: Fury Road|2015
+thriller|Rear Window|1954
+thriller|Psycho|1960
+thriller|The Birds|1963
+thriller|Duel|1971
+thriller|Prisoners|2013
+thriller|Gone Girl|2014
+thriller|Zodiac|2007

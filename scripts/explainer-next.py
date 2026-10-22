@@ -1,6 +1,9 @@
 """Pick the next movie and get it ready to write, in one command.
 
 Usage: python3.11 explainer-next.py [slug]
+       python3.11 explainer-next.py --skip <slug> <reason...>   mark a movie as unmakeable (no stream, no subtitles)
+       python3.11 explainer-next.py --log <slug> <text...>      add a line to notes/explainer/daily_log.csv
+       python3.11 explainer-next.py --left                      count the movies still to make
 Takes the first movie in notes/explainer/queue.csv that is not done (or the slug given), looks up its
 TMDB id if missing, downloads English SDH subtitles if missing, writes movie.json, and builds the short
 subtitle digest. Prints the movie and where it is in the pipeline. A movie with no SDH subtitles is
@@ -35,7 +38,34 @@ def tmdb_id(imdb):
 
 
 def main():
-    rows = list(csv.DictReader(open(QUEUE, encoding="utf-8")))
+    reader = csv.DictReader(open(QUEUE, encoding="utf-8"))
+    fields = reader.fieldnames
+    rows = list(reader)
+    if len(sys.argv) > 1 and sys.argv[1] == "--left":
+        todo = [r for r in rows if not done(r["slug"]) and r.get("tmdb") != "skip"]
+        print(f"{len(todo)} movies left, about {len(todo) // 4} days at 4 a day")
+        return
+    if len(sys.argv) > 2 and sys.argv[1] in ("--skip", "--log"):
+        import datetime
+        slug, text = sys.argv[2], " ".join(sys.argv[3:])
+        if sys.argv[1] == "--skip":
+            for r in rows:
+                if r["slug"] == slug:
+                    r["tmdb"] = "skip"
+            with open(QUEUE, "w", newline="", encoding="utf-8") as f:
+                w = csv.DictWriter(f, fieldnames=fields)
+                w.writeheader()
+                w.writerows(rows)
+            text = "SKIPPED: " + text
+        log = os.path.join(NOTES, "daily_log.csv")
+        new = not os.path.exists(log)
+        with open(log, "a", newline="", encoding="utf-8") as f:
+            w = csv.writer(f)
+            if new:
+                w.writerow(["when", "slug", "note"])
+            w.writerow([datetime.datetime.now().isoformat(timespec="minutes"), slug, text])
+        print(f"{'skipped and logged' if sys.argv[1] == '--skip' else 'logged'}: {slug}")
+        return
     want = sys.argv[1] if len(sys.argv) > 1 else None
     spec = importlib.util.spec_from_file_location("newexp", os.path.join(HERE, "new-explainer.py"))
     newexp = importlib.util.module_from_spec(spec)
@@ -72,7 +102,7 @@ def main():
     else:
         sys.exit("no movie left in the queue" if not want else f"{want} is not in the queue")
     with open(QUEUE, "w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=["slug", "title", "year", "imdb", "tmdb"])
+        w = csv.DictWriter(f, fieldnames=fields)
         w.writeheader()
         w.writerows(rows)
     subprocess.run([sys.executable, os.path.join(HERE, "explainer-sdh-digest.py"), slug], capture_output=True)

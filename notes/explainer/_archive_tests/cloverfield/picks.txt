@@ -1,0 +1,14 @@
+B01_head a | The night before he moves to Japan, the head of the Statue of Liberty comes crashing down 
+B02_party a | Earlier that night, Rob was at his own farewell party. Then Beth walks in with another man
+B03_fight a | They slept together, and Rob never called her. They fight, and she leaves.
+B04_quake a | Minutes later, the whole building shakes and the lights go out. The news reports a tanker 
+B05_roof a | From the roof, they watch the city explode. Something taller than the buildings walks betw
+B06_bridge a | The plan is to cross the Brooklyn Bridge and get out. On the bridge, Rob's phone rings.
+B07_tail a | It is Beth, crying, trapped in her apartment, saying she cannot move. Then a giant tail sm
+B08_tv a | On a store television, the army fires at the creature, and smaller creatures swarm the sol
+B09_midtown a | The whole city is running away from Midtown. Beth lives in Midtown.
+B10_toward a | So while everyone runs from the monster, Rob walks straight toward it.
+B11_tunnel a | They take the subway tunnels, until something skitters out of the dark and bites their fri
+B12_hospital a | At an army hospital, her eyes start bleeding, and medics rush her away.
+B13_heli a | The last helicopter leaves at six, before they bomb the city.
+B14_tower a | And when Rob finally finds Beth's tower, it is leaning on the building next to it.

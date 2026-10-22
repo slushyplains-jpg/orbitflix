@@ -1,0 +1,142 @@
+[
+ {
+  "name": "B01_grant",
+  "sentences": [
+   0,
+   1
+  ],
+  "at": 274,
+  "start": 259,
+  "end": 304
+ },
+ {
+  "name": "B02_slimy",
+  "sentences": [
+   2,
+   3
+  ],
+  "at": 600,
+  "start": 594,
+  "end": 620
+ },
+ {
+  "name": "B03_later",
+  "sentences": [
+   4,
+   4
+  ],
+  "at": 1570,
+  "start": 1564,
+  "end": 1590
+ },
+ {
+  "name": "B04_turns",
+  "sentences": [
+   5,
+   5
+  ],
+  "at": 1930,
+  "start": 1924,
+  "end": 1950
+ },
+ {
+  "name": "B05_police",
+  "sentences": [
+   6,
+   7
+  ],
+  "at": 2637,
+  "start": 2631,
+  "end": 2657
+ },
+ {
+  "name": "B06_swollen",
+  "sentences": [
+   8,
+   9
+  ],
+  "at": 2855,
+  "start": 2849,
+  "end": 2875
+ },
+ {
+  "name": "B07_lumps",
+  "sentences": [
+   10,
+   11
+  ],
+  "at": 2870,
+  "start": 2864,
+  "end": 2890
+ },
+ {
+  "name": "B08_morning",
+  "sentences": [
+   12,
+   12
+  ],
+  "at": 4103,
+  "start": 4097,
+  "end": 4123
+ },
+ {
+  "name": "B09_kylie",
+  "sentences": [
+   13,
+   14
+  ],
+  "at": 3537,
+  "start": 3531,
+  "end": 3557
+ },
+ {
+  "name": "B10_worms",
+  "sentences": [
+   15,
+   15
+  ],
+  "at": 4006,
+  "start": 4000,
+  "end": 4026
+ },
+ {
+  "name": "B11_monster",
+  "sentences": [
+   16,
+   16
+  ],
+  "at": 4719,
+  "start": 4713,
+  "end": 4739
+ },
+ {
+  "name": "B12_grenade",
+  "sentences": [
+   17,
+   17
+  ],
+  "at": 4198,
+  "start": 4192,
+  "end": 4218
+ },
+ {
+  "name": "B13_starla",
+  "sentences": [
+   18,
+   18
+  ],
+  "at": 4782,
+  "start": 4776,
+  "end": 4802
+ },
+ {
+  "name": "B14_forever",
+  "sentences": [
+   19,
+   20
+  ],
+  "at": 4872,
+  "start": 4866,
+  "end": 4892
+ }
+]

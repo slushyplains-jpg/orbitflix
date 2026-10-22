@@ -1,0 +1,156 @@
+[
+ {
+  "start": 267.0,
+  "sentences": [
+   0,
+   1
+  ],
+  "quote": "He's gonna borrow one of my lesson plans.",
+  "action": "Grant is a rich man in a small town in South Carolina. One night, he walks into the woods",
+  "visual_prompt": "Grant is a rich man in a small town in South Carolina. One night, he walks into the woods",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 625.0,
+  "sentences": [
+   2,
+   3
+  ],
+  "quote": "(RATTLING)",
+  "action": "They find a slimy trail on the ground, and a strange creature jumps out. It pushes its way",
+  "visual_prompt": "They find a slimy trail on the ground, and a strange creature jumps out. It pushes its way",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1585.0,
+  "sentences": [
+   4,
+   4
+  ],
+  "quote": "Oh, we gotta get you to the hospital. No.",
+  "action": "A day later, his wife Starla sees that his face is swollen.",
+  "visual_prompt": "A day later, his wife Starla sees that his face is swollen.",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 1938.0,
+  "sentences": [
+   5,
+   5
+  ],
+  "quote": "I love you, baby. I tried not to change.",
+  "action": "Soon he turns into a monster, and he chases her through the house.",
+  "visual_prompt": "Soon he turns into a monster, and he chases her through the house.",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 2632.0,
+  "sentences": [
+   6,
+   7
+  ],
+  "quote": "",
+  "action": "The police chief, Bill, and his men hunt Grant in the woods. They find Brenda, the woman w",
+  "visual_prompt": "The police chief, Bill, and his men hunt Grant in the woods. They find Brenda, the woman w",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 2867.0,
+  "sentences": [
+   8,
+   9
+  ],
+  "quote": "(SCREAMING)",
+  "action": "Her body is swollen, and the lumps inside her are moving. She cries that she is so hungry.",
+  "visual_prompt": "Her body is swollen, and the lumps inside her are moving. She cries that she is so hungry.",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 2864.0,
+  "sentences": [
+   10,
+   11
+  ],
+  "quote": "Somebody get her to stop doing that shit! It hurts, bitch!",
+  "action": "Then the lumps burst out as hundreds of tiny worms. They go for the men's mouths, so every",
+  "visual_prompt": "Then the lumps burst out as hundreds of tiny worms. They go for the men's mouths, so every",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 4107.0,
+  "sentences": [
+   12,
+   12
+  ],
+  "quote": "ALL: Starla!",
+  "action": "By morning, the worms have taken over the town.",
+  "visual_prompt": "By morning, the worms have taken over the town.",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 3541.0,
+  "sentences": [
+   13,
+   14
+  ],
+  "quote": "Kylie, honey, you okay?",
+  "action": "Kylie, a teenage girl, hides in a bathroom while her family bangs on the door. Their eyes",
+  "visual_prompt": "Kylie, a teenage girl, hides in a bathroom while her family bangs on the door. Their eyes",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 4006.0,
+  "sentences": [
+   15,
+   15
+  ],
+  "quote": "Honey, what do you mean?",
+  "action": "She says the worms are in their heads, and they all follow one monster.",
+  "visual_prompt": "She says the worms are in their heads, and they all follow one monster.",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 4736.0,
+  "sentences": [
+   16,
+   16
+  ],
+  "quote": "",
+  "action": "That monster is Grant.",
+  "visual_prompt": "That monster is Grant.",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 4205.0,
+  "sentences": [
+   17,
+   17
+  ],
+  "quote": "Now, if I use that to destroy Grant... He's the center of the whole system, right?",
+  "action": "Bill has a grenade, and he plans to blow Grant up.",
+  "visual_prompt": "Bill has a grenade, and he plans to blow Grant up.",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 4785.0,
+  "sentences": [
+   18,
+   18
+  ],
+  "quote": "You tried to kill me and run off with Pardy.",
+  "action": "But Starla walks in first, and talks to Grant alone.",
+  "visual_prompt": "But Starla walks in first, and talks to Grant alone.",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 4886.0,
+  "sentences": [
+   19,
+   20
+  ],
+  "quote": "And I can stay with you while you do what you need to do.",
+  "action": "She says she will stay with him forever. Is she lying, or does she mean it?",
+  "visual_prompt": "She says she will stay with him forever. Is she lying, or does she mean it?",
+  "needs_visual_scan": false
+ }
+]

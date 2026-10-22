@@ -45,7 +45,7 @@ def stats(path):
 for w in windows:
     s, e, name = float(w["start"]), float(w["end"]), w["name"]
     tmp = tempfile.mkdtemp(prefix="shots_")
-    subprocess.run(["ffmpeg", "-y", "-v", "error", "-headers", H, "-ss", str(s), "-t", str(e - s), "-i", link,
+    subprocess.run(["ffmpeg", "-y", "-v", "error", "-rw_timeout", "20000000", "-headers", H, "-ss", str(s), "-t", str(e - s), "-i", link,
                     "-vf", "fps=1,scale=240:-2", os.path.join(tmp, "f_%04d.jpg")], check=True)
     files = sorted(f for f in os.listdir(tmp) if f.endswith(".jpg"))
     # Shot changes from ffmpeg's scene detection on every frame, not on the 1 fps samples.
@@ -59,7 +59,7 @@ for w in windows:
                 cuts.append(k - 0.5)
             prev = cur
     else:
-        sc = subprocess.run(["ffmpeg", "-v", "info", "-headers", H, "-ss", str(s), "-t", str(e - s), "-i", link,
+        sc = subprocess.run(["ffmpeg", "-v", "info", "-rw_timeout", "20000000", "-headers", H, "-ss", str(s), "-t", str(e - s), "-i", link,
                              "-vf", "scale=320:-2,select='gt(scene,0.25)',showinfo", "-an", "-f", "null", "-"],
                             capture_output=True, text=True).stderr
         cuts = [float(x) for x in re.findall(r"pts_time:([\d.]+)", sc)]
