@@ -1,156 +1,156 @@
 [
  {
-  "start": 3388.0,
+  "start": 3504.0,
   "sentences": [
    0,
    0
   ],
-  "quote": "Seth? What are we gonna do? What are we gonna do?",
-  "action": "Dennis grabbing his arm in pain",
-  "visual_prompt": "Dennis grabbing his arm in pain",
+  "quote": "- Fuck! - Go!",
+  "action": "A student has to cut off a man's arm with a dull knife.",
+  "visual_prompt": "A student has to cut off a man's arm with a dull knife.",
   "needs_visual_scan": false
  },
  {
-  "start": 406.0,
+  "start": 296.0,
   "sentences": [
    1,
    2
   ],
-  "quote": "No. You can't see the stars from a motel. And that wasn't the deal.",
-  "action": "Seth in the forest on the camping trip",
-  "visual_prompt": "Seth in the forest on the camping trip",
+  "quote": "Here. Over there, by the fire pit.",
+  "action": "His name is Seth, and all he wanted was a camping trip with his girlfriend, Polly. But the",
+  "visual_prompt": "His name is Seth, and all he wanted was a camping trip with his girlfriend, Polly. But the",
   "needs_visual_scan": false
  },
  {
-  "start": 685.0,
+  "start": 686.0,
   "sentences": [
    3,
    3
   ],
-  "quote": "Clear the back seat. Make room for two more.",
-  "action": "a gun pointed at Polly by the road during the carjacking",
-  "visual_prompt": "a gun pointed at Polly by the road during the carjacking",
+  "quote": "- (alarm pings) - Turn it off. Get out of the car.",
+  "action": "Two criminals point a gun at them, and steal their car.",
+  "visual_prompt": "Two criminals point a gun at them, and steal their car.",
   "needs_visual_scan": false
  },
  {
-  "start": 1333.0,
+  "start": 1536.0,
   "sentences": [
    4,
    5
   ],
   "quote": "",
-  "action": "the lonely gas station at night",
-  "visual_prompt": "the lonely gas station at night",
+  "action": "At a lonely gas station, one of the criminals walks into the dark bathroom alone. Suddenly",
+  "visual_prompt": "At a lonely gas station, one of the criminals walks into the dark bathroom alone. Suddenly",
   "needs_visual_scan": false
  },
  {
-  "start": 1908.0,
+  "start": 1960.0,
   "sentences": [
    6,
    7
   ],
-  "quote": "",
-  "action": "the security monitor showing the body on the ground",
-  "visual_prompt": "the security monitor showing the body on the ground",
+  "quote": "Get away from it.",
+  "action": "Her dead body starts to move all by itself. It follows Seth across the floor, going for hi",
+  "visual_prompt": "Her dead body starts to move all by itself. It follows Seth across the floor, going for hi",
   "needs_visual_scan": false
  },
  {
-  "start": 3251.0,
+  "start": 2431.0,
   "sentences": [
    8,
-   8
+   9
   ],
   "quote": "",
-  "action": "Dennis at the freezer door as the infection starts",
-  "visual_prompt": "Dennis at the freezer door as the infection starts",
+  "action": "Then it gets worse. Next, a police officer arrives, and a creature tears her in half.",
+  "visual_prompt": "Then it gets worse. Next, a police officer arrives, and a creature tears her in half.",
   "needs_visual_scan": false
  },
  {
-  "start": 3484.0,
+  "start": 3280.0,
   "sentences": [
-   9,
-   10
-  ],
-  "quote": "They shot me.",
-  "action": "the knife cutting into Dennis's arm",
-  "visual_prompt": "the knife cutting into Dennis's arm",
-  "needs_visual_scan": false
- },
- {
-  "start": 3550.0,
-  "sentences": [
-   11,
+   10,
    11
   ],
-  "quote": "...I figured if I ever got a second chance, she should too.",
-  "action": "Dennis looking down as he talks",
-  "visual_prompt": "Dennis looking down as he talks",
+  "quote": "",
+  "action": "Now everyone is trapped inside the gas station, with the doors locked. Outside, it waits i",
+  "visual_prompt": "Now everyone is trapped inside the gas station, with the doors locked. Outside, it waits i",
   "needs_visual_scan": false
  },
  {
-  "start": 3562.0,
+  "start": 3387.0,
   "sentences": [
    12,
    13
   ],
   "quote": "",
-  "action": "Seth and Polly listening to Dennis",
-  "visual_prompt": "Seth and Polly listening to Dennis",
+  "action": "Soon, a tiny splinter from the creature stabs a criminal named Dennis in the arm. It start",
+  "visual_prompt": "Soon, a tiny splinter from the creature stabs a criminal named Dennis in the arm. It start",
   "needs_visual_scan": false
  },
  {
-  "start": 3536.0,
+  "start": 3511.0,
   "sentences": [
    14,
-   14
+   15
   ],
-  "quote": "You were gonna give your nest egg to that trucker's wife?",
-  "action": "the dark gas station canopy outside",
-  "visual_prompt": "the dark gas station canopy outside",
+  "quote": "",
+  "action": "But Seth is no doctor, and all they have is a dull knife. Dennis screams as they start to",
+  "visual_prompt": "But Seth is no doctor, and all they have is a dull knife. Dennis screams as they start to",
   "needs_visual_scan": false
  },
  {
-  "start": 3699.0,
+  "start": 3526.0,
   "sentences": [
-   15,
+   16,
    16
   ],
-  "quote": "It goes for the warmest thing and kills it.",
-  "action": "Seth explaining that it hunts by heat",
-  "visual_prompt": "Seth explaining that it hunts by heat",
+  "quote": "- Alright, on three. One. - (Polly) Do it.",
+  "action": "On three, they finish the job.",
+  "visual_prompt": "On three, they finish the job.",
   "needs_visual_scan": false
  },
  {
-  "start": 3783.0,
+  "start": 3829.0,
   "sentences": [
    17,
    18
   ],
-  "quote": "Here, gotta get this hand cold.",
-  "action": "Seth bent over the counter, getting ready",
-  "visual_prompt": "Seth bent over the counter, getting ready",
-  "needs_visual_scan": false
- },
- {
-  "start": 3792.0,
-  "sentences": [
-   19,
-   20
-  ],
-  "quote": "You don't have to prove anything to me.",
-  "action": "the thermometer being checked",
-  "visual_prompt": "the thermometer being checked",
+  "quote": "- (Dennis on tape) Watch out! - See, it just hits the car.",
+  "action": "Seth figures out the creature hunts by heat. The creature goes straight for the hottest th",
+  "visual_prompt": "Seth figures out the creature hunts by heat. The creature goes straight for the hottest th",
   "needs_visual_scan": false
  },
  {
   "start": 3931.0,
   "sentences": [
+   19,
+   20
+  ],
+  "quote": "Not if you keep me above 89.6.",
+  "action": "So he packs his body in ice. Too cold, and he could die.",
+  "visual_prompt": "So he packs his body in ice. Too cold, and he could die.",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 3978.0,
+  "sentences": [
    21,
-   21
+   22
   ],
   "quote": "",
-  "action": "Seth lying in the ice bags",
-  "visual_prompt": "Seth lying in the ice bags",
+  "action": "Too warm, and the creature finds him. Polly watches the thermometer drop.",
+  "visual_prompt": "Too warm, and the creature finds him. Polly watches the thermometer drop.",
+  "needs_visual_scan": false
+ },
+ {
+  "start": 4094.0,
+  "sentences": [
+   23,
+   23
+  ],
+  "quote": "Alright, go! Go! Go!",
+  "action": "And now Seth has to walk out the door.",
+  "visual_prompt": "And now Seth has to walk out the door.",
   "needs_visual_scan": false
  }
 ]

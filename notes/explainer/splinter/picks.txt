@@ -1,14 +1,14 @@
-B01_criminal b | Dennis grabbing his arm in pain
-B02_starts b | Seth in the forest on the camping trip
-B03_criminals c | a gun pointed at Polly by the road during the carjacking
-B04_lonely c | the lonely gas station at night
-B05_starts a | the security monitor showing the body on the ground
-B06_splinter a | Dennis at the freezer door as the infection starts
-B07_dennis b | the knife cutting into Dennis's arm
-B08_afterwards a | Dennis looking down as he talks
-B09_truck b | Seth and Polly listening to Dennis
-B10_creature c | the dark gas station canopy outside
-B11_figures b | Seth explaining that it hunts by heat
-B12_packs a | Seth bent over the counter, getting ready
-B13_creature 3792 | the thermometer being checked
-B14_beat b | Seth lying in the ice bags
+B01_student a | A student has to cut off a man's arm with a dull knife.
+B02_wanted a | His name is Seth, and all he wanted was a camping trip with his girlfriend, Polly. But the
+B03_criminals 11:26 | Two criminals point a gun at them, and steal their car.
+B04_lonely a | At a lonely gas station, one of the criminals walks into the dark bathroom alone. Suddenly
+B05_starts 32:40 | Her dead body starts to move all by itself. It follows Seth across the floor, going for hi
+B06_worse 40:31 | Then it gets worse. Next, a police officer arrives, and a creature tears her in half.
+B07_everyone 54:40 | Now everyone is trapped inside the gas station, with the doors locked. Outside, it waits i
+B08_splinter b | Soon, a tiny splinter from the creature stabs a criminal named Dennis in the arm. It start
+B09_doctor 58:31 | But Seth is no doctor, and all they have is a dull knife. Dennis screams as they start to 
+B10_three a | On three, they finish the job.
+B11_figures a | Seth figures out the creature hunts by heat. The creature goes straight for the hottest th
+B12_packs b | So he packs his body in ice. Too cold, and he could die.
+B13_creature a | Too warm, and the creature finds him. Polly watches the thermometer drop.
+B14_beat 68:14 | And now Seth has to walk out the door.
