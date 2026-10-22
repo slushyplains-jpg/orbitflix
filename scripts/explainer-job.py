@@ -28,6 +28,8 @@ if os.path.exists(vj):
     v = json.load(open(vj))
     if v.get("script_sha") == hashlib.sha1(job["script"].encode()).hexdigest():
         job["ttsSpeed"] = v["speed"]
+        if v.get("wav") and os.path.exists(v["wav"]):
+            job["voiceWav"] = v["wav"]  # the render reuses the checked narration
     else:
         print("warning: script changed after the voice check; rerun it so the length is right", file=sys.stderr)
 out_dir = os.path.expanduser("~/Desktop/explainer-jobs")

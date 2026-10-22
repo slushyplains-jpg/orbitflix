@@ -19,6 +19,7 @@ type Job = {
   outputDir?: string;
   voice?: string;
   ttsSpeed?: number;
+  voiceWav?: string;
   enableScan?: boolean;
   look?: string;
   zoom?: number;
@@ -110,6 +111,7 @@ async function main() {
       jobKey,
       voice: job.voice,
       ttsSpeed: job.ttsSpeed ?? 0.9,
+      voiceWav: job.voiceWav,
       enableScan: job.enableScan ?? false,
       look: job.look ?? "none",
       zoom: job.zoom,

@@ -25,6 +25,9 @@ type RenderOpts = {
   jobKey: string;
   voice?: string;
   ttsSpeed?: number;
+  // A voiceover already made by the voice check for this exact script. When set, the render
+  // uses it instead of running the voice model a second time.
+  voiceWav?: string;
   enableScan?: boolean;
   zoom?: number;
   look?: string;
@@ -416,9 +419,14 @@ export async function runRenderJob(
       stage: "voiceover",
       clipsDone: 0,
       clipsTotal: opts.clips.length,
-      message: "Kokoro TTS synthesizing",
+      message: opts.voiceWav && fs.existsSync(opts.voiceWav) ? "Using the checked voiceover" : "Kokoro TTS synthesizing",
     });
-    const ttsP = spawnDone(
+    const ttsP = opts.voiceWav && fs.existsSync(opts.voiceWav)
+      ? (async () => {
+          fs.copyFileSync(opts.voiceWav as string, wavFile);
+          return { duration: await probeDuration(wavFile) };
+        })()
+      : spawnDone(
       "/usr/local/bin/python3.11",
       [
         ttsScript,

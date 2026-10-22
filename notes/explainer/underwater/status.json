@@ -13,7 +13,7 @@
       "note": "23 sentences, 237 words, est 56.3s"
     },
     "voice": {
-      "at": "2026-10-21T21:41:06",
+      "at": "2026-10-22T15:55:23",
       "note": "59.3s at 1.0x"
     },
     "footage": {
@@ -21,12 +21,12 @@
       "note": "14 clips from picks.txt"
     },
     "render": {
-      "at": "2026-10-21T22:20:55",
-      "note": "59.3s, Underwater (2020) (4).mp4"
+      "at": "2026-10-22T15:58:30",
+      "note": "59.3s, Underwater (2020) (5).mp4"
     },
     "verify": {
-      "at": "2026-10-21T22:20:55",
-      "note": "length 59.3s, black 1.8s, audio yes, captions in 21/28 samples"
+      "at": "2026-10-22T15:58:30",
+      "note": "length 59.3s, black 1.8s, audio yes, captions in 22/28 samples"
     }
   },
   "history": [
@@ -37,6 +37,10 @@
     {
       "at": "2026-10-21T22:14:15",
       "reset_from": "footage"
+    },
+    {
+      "at": "2026-10-22T15:55:24",
+      "reset_from": "render"
     }
   ]
 }

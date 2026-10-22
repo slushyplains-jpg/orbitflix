@@ -45,9 +45,19 @@ if not MIN_SEC <= sec <= MAX_SEC:
             print(f"FAIL too long by {sec - hi:.1f}s even with a speed change; cut about {int((sec - hi + 1.5) * words / sec) + 1} words, starting with the weakest sentence")
         sys.exit(1)
 import hashlib  # noqa: E402
+import shutil  # noqa: E402
 text = open(script, encoding="utf-8").read().strip()
-json.dump({"speed": new_speed, "seconds_at_template_speed": round(sec, 2), "script_sha": hashlib.sha1(text.encode()).hexdigest()},
-          open(os.path.join(os.path.dirname(os.path.abspath(script)), "voice.json"), "w"), indent=1)
+notes_dir = os.path.dirname(os.path.abspath(script))
+# Keep this narration for the render, so the voice model runs once per script, not twice.
+# A small speed change is applied by time-stretching the file (pitch stays the same).
+keep = os.path.join(notes_dir, "voice.wav")
+if new_speed == speed:
+    shutil.copyfile(out, keep)
+else:
+    subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", out, "-filter:a", f"atempo={new_speed / speed:.4f}", keep], check=True)
+json.dump({"speed": new_speed, "seconds_at_template_speed": round(sec, 2), "wav": keep,
+           "script_sha": hashlib.sha1(text.encode()).hexdigest()},
+          open(os.path.join(notes_dir, "voice.json"), "w"), indent=1)
 print(verdict)
 sys.path.insert(0, here)
 from explainer_record import record, slug_of  # noqa: E402
