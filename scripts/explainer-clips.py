@@ -12,6 +12,9 @@ import re
 import subprocess
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from explainer_sync import to_sdh  # noqa: E402
+
 slug = sys.argv[1]
 here = os.path.dirname(os.path.abspath(__file__))
 d = os.path.join(os.path.dirname(here), "notes/explainer", slug)
@@ -46,7 +49,8 @@ for line in open(os.path.join(d, "picks.txt"), encoding="utf-8"):
         sys.exit(f"{name} has no candidates; write a time from shots/{name}.jpg instead of NONE")
     else:
         start = float(choice)
-    quote = next((x for a, b, x in cues if a <= start + 0.5 and b >= start), "")
+    sub_t = to_sdh(slug, start)  # clip starts are stream time; the subtitles may be offset
+    quote = next((x for a, b, x in cues if a <= sub_t + 0.5 and b >= sub_t), "")
     clips.append({"start": start, "sentences": beats[name]["sentences"], "quote": quote, "action": action.strip(),
                   "visual_prompt": action.strip(), "needs_visual_scan": False})
 json.dump(clips, open(os.path.join(d, "clips.json"), "w"), indent=1)

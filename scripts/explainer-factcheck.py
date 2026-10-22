@@ -74,6 +74,10 @@ else:
 vc = md.split("## Viral check", 1)[1] if "## Viral check" in md else ""
 need = ["Scroll", "Premise", "Root for", "Moments", "Ending", "Cut"]
 missing_vc = [k for k in need if not re.search(rf"\b{k}\b\s*[-:]", vc)]
+mline = next((l for l in vc.splitlines() if re.search(r"\bMoments\b\s*[-:]", l)), "")
+n_moments = len(re.findall(r"\(\d\)", mline))
+if mline and not 3 <= n_moments <= 4:
+    fails.append(f"the viral check lists {n_moments} moments; a Short has 3 or 4, written as (1) name, sentences; (2) ...")
 if missing_vc:
     fails.append(f"script.md needs a '## Viral check' section answering: {missing_vc}")
 for f in fails:

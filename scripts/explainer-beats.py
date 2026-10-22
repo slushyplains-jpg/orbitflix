@@ -11,6 +11,9 @@ import os
 import re
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from explainer_sync import to_stream  # noqa: E402
+
 CLIPS = 14
 slug = sys.argv[1]
 d = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "notes/explainer", slug)
@@ -49,20 +52,31 @@ if len(sents) < CLIPS or len(sents) > 2 * CLIPS:
 # subtitle time is only when someone talks about it, so it is a weak fallback.
 pic_of = {i: picture.get(i, cited.get(i)) for i in range(len(sents))}
 missing_pic = [i for i in range(len(sents)) if i not in picture]
-groups = [[i] for i in range(len(sents))]
-while len(groups) > CLIPS:
-    # Merge the two neighbouring sentences whose pictures are closest, so a clip never has to
-    # show two different scenes. Shorter pairs win ties.
-    best = None
-    for k, (g, h) in enumerate(zip(groups, groups[1:])):
-        if len(g) == 1 and len(h) == 1:
-            pa, pb = pic_of[g[0]], pic_of[h[0]]
-            gap = abs(pa - pb) if pa is not None and pb is not None else 10**6
-            key = (gap, len(sents[g[0]]) + len(sents[h[0]]))
-            if best is None or key < best[0]:
-                best = (key, k)
-    k = best[1]
-    groups[k:k + 2] = [groups[k] + groups[k + 1]]
+# Split the sentences, in order, into exactly CLIPS groups of one or two, choosing the pairs whose
+# pictures are closest (fewest scene changes inside a clip). Dynamic programming, so it always finds
+# a split for any count from CLIPS to 2 * CLIPS.
+n = len(sents)
+def pair_cost(i):
+    pa, pb = pic_of[i], pic_of[i + 1]
+    gap = abs(pa - pb) if pa is not None and pb is not None else 10**6
+    return gap * 1000 + len(sents[i]) + len(sents[i + 1])
+INF = float("inf")
+dp = [[INF] * (CLIPS + 1) for _ in range(n + 1)]
+back = [[0] * (CLIPS + 1) for _ in range(n + 1)]
+dp[0][0] = 0
+for i in range(n):
+    for k in range(CLIPS):
+        if dp[i][k] == INF:
+            continue
+        if dp[i][k] < dp[i + 1][k + 1]:
+            dp[i + 1][k + 1], back[i + 1][k + 1] = dp[i][k], 1
+        if i + 1 < n and dp[i][k] + pair_cost(i) < dp[i + 2][k + 1]:
+            dp[i + 2][k + 1], back[i + 2][k + 1] = dp[i][k] + pair_cost(i), 2
+groups, i, k = [], n, CLIPS
+while i > 0:
+    size = back[i][k]
+    groups.insert(0, list(range(i - size, i)))
+    i, k = i - size, k - 1
 
 ats = [next((pic_of[i] for i in g if pic_of[i] is not None), None) for g in groups]
 beats, flagged = [], []
@@ -73,6 +87,7 @@ for k, g in enumerate(groups):
         nxt = next((ats[j] for j in range(k + 1, len(ats)) if ats[j] is not None), None)
         at = ((prev or nxt or 60) + (nxt or prev or 60)) // 2
         flagged.append(k + 1)
+    at = round(to_stream(slug, at))  # Picture times are subtitle time; the stream may run ahead or behind
     word = re.sub(r"[^a-z]", "", (re.findall(r"[A-Za-z]{5,}", sents[g[0]]) or ["beat"])[0].lower())
     pad = (15, 30) if k == 0 else (6, 20)  # the picture time is exact, so the window can be tight
     beats.append({"name": f"B{k + 1:02d}_{word}", "sentences": [g[0], g[-1]], "at": at, "start": max(0, at - pad[0]), "end": at + pad[1]})

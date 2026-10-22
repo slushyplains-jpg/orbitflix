@@ -45,7 +45,7 @@ while time.time() < deadline:
         break
     if "[runner] failed" in text:
         line = text[text.index("[runner] failed"):].splitlines()[0]
-        sys.exit(re.sub(r"token=\S+", "token=...", line))
+        sys.exit(re.sub(r"https?://\S+", "<link>", re.sub(r"token=\S+", "token=...", line)))
     time.sleep(15)
 if not result:
     sys.exit("render did not finish within 40 minutes; check the log, then rerun with --wait-only")

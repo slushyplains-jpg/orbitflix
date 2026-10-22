@@ -10,7 +10,7 @@ import time
 import urllib.request
 from playwright.sync_api import sync_playwright
 
-PORTS = [8080, 8081, 8082, 8083, 8084, 8085, 3000, 3001, 5173]
+PORTS = list(range(8080, 8091)) + list(range(3000, 3011)) + [5173, 5174]
 
 
 def find_site():

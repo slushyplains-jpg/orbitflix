@@ -22,7 +22,8 @@ Read `notes/explainer/<slug>/story.md` (from `explainer-research`) and `examples
    - **The cliffhanger:** the dilemma just before the climax.
    Everything else is cut, or covered by one bridge sentence ("And it is only the beginning.", "Then it gets worse.", "The only way out is a crazy plan."). Never summarize the skipped events.
 3. **Write each moment in 3 to 6 sentences:** where we are, what happens, what it costs, and one short line that lets it land ("She has to live with that.", "Three people. Two boats."). About 230 words and 15 to 22 sentences in total (the 14 cuts need at least 14). If a sentence brings a new event, the next one should usually stay with it.
-4. **Simple words.** Write for someone half paying attention on a phone:
+4. **Every sentence must be something you can see.** An action, a place, a face, an object. Backstory told in dialogue, what someone studies, plans, wants or remembers cannot be shown, so cut it or replace it with the moment on screen that shows it. A side story (someone's past crime, a phone call about home) is cut, not summarized. If you cannot find a Picture time where the thing is visible, the sentence goes.
+5. **Simple words.** Write for someone half paying attention on a phone:
    - Words a 10-year-old knows. Say "an underwater base", not "a drilling station"; "the base is about to blow up", not "the reactor is melting"; "heavy diving suits", not "pressure suits".
    - One idea per sentence. Most sentences under 15 words, a few longer ones to carry the story.
    - Say what the danger is ("a creature with no eyes", "a man with an axe"). Never "something" more than once.
@@ -32,15 +33,15 @@ Read `notes/explainer/<slug>/story.md` (from `explainer-research`) and `examples
    - Specific, true details beat general ones (a bathrobe, a stuffed bunny named Lil Paul). Check every detail against the subtitles; a wrong detail kills trust faster than a dull one.
    - Never: the ending, a template ending ("Will they survive?"), colons, semicolons, double quotes, or abbreviations with periods.
    The linter measures the reading level and lists hard words; it fails a script that is too hard to follow.
-5. **Viral check.** Start `script.md` with a `## Viral check` section and answer each in one line. If an answer is weak, rewrite that part first:
+6. **Viral check.** Start `script.md` with a `## Viral check` section and answer each in one line. If an answer is weak, rewrite that part first:
    - Scroll: why sentence 1 stops a thumb.
    - Premise: the movie in one line, as the script has told it by sentence 5.
    - Root for: who, and the detail that makes us care.
-   - Moments: the 3 or 4 moments with their sentence numbers (more than 4 means it is too rushed).
+   - Moments: written as `(1) the door, 0 to 6; (2) the plan, 7 to 9; (3) ...`. The fact check fails unless there are 3 or 4; more means it is too rushed, so cut moments instead of shortening them.
    - Ending: the exact question the viewer has at the last word.
    - Cut: the weakest sentence in the draft, and what replaced it.
-6. **Fact check and pictures** in `script.md`, under the viral check: a table `| # | Sentence (short) | Picture | Source |` where # is the 0-based sentence number or a range like `4-5`, and Source has the SDH times (3:59, 1:02:14) and/or "plot summary".
-   **Picture** is the time the thing is ON SCREEN, which is often not when someone talks about it: use action and sound cues in the digest ("(water rushing)", "(screaming)", "Run!"), the plot summary, and the scene order. "They walk across the ocean floor" needs the walking scene, not the scene where they plan it over a map. Give sentences that belong to one image the same Picture time; the footage tool pairs sentences by Picture time so one clip never has to show two scenes. Before writing a row, look at `sdh.srt` near the cited time and confirm the line says what the sentence claims, including who does it. Then run `python3.11 scripts/explainer-factcheck.py <slug>`; it must print RESULT PASS. It also checks the story.md fields, the Model line in hooks.md, the viral check, and that every sentence has a Picture time.
+7. **Fact check and pictures** in `script.md`, under the viral check: a table `| # | Sentence (short) | Picture | Source |` where # is the 0-based sentence number or a range like `4-5`, and Source has the SDH times (3:59, 1:02:14) and/or "plot summary".
+   **Picture** is the time the thing is ON SCREEN, which is often not when someone talks about it: use action and sound cues in the digest ("(water rushing)", "(screaming)", "Run!"), the plot summary, and the scene order. "They walk across the ocean floor" needs the walking scene, not the scene where they plan it over a map. Give sentences that belong to one image the same Picture time; the footage tool pairs sentences by Picture time so one clip never has to show two scenes. Picture times are in subtitle time; the footage tool measures how far the stream drifts from the subtitles (`sync.json`, often minutes when the subtitles come from another release) and converts them. Before writing a row, look at `sdh.srt` near the cited time and confirm the line says what the sentence claims, including who does it. Then run `python3.11 scripts/explainer-factcheck.py <slug>`; it must print RESULT PASS. It also checks the story.md fields, the Model line in hooks.md, the viral check, and that every sentence has a Picture time.
 
 ## Stage 3: lint gate
 

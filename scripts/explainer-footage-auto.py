@@ -33,10 +33,6 @@ here = os.path.dirname(os.path.abspath(__file__))
 d = os.path.join(os.path.dirname(here), "notes/explainer", slug)
 shots = os.path.join(d, "shots")
 os.makedirs(shots, exist_ok=True)
-if not os.path.exists(os.path.join(d, "beats.json")):
-    # Beats come from the script and its fact check, so nobody has to search the subtitles.
-    subprocess.run(["/usr/local/bin/python3.11", os.path.join(here, "explainer-beats.py"), slug], check=True)
-beats = json.load(open(os.path.join(d, "beats.json")))
 sents = [s for s in re.split(r"(?<=[.!?])\s+", open(os.path.join(d, "script.txt"), encoding="utf-8").read().strip()) if s]
 H = "User-Agent: Mozilla/5.0\r\nReferer: https://stellarconductornexus.com/\r\n"
 PY = "/usr/local/bin/python3.11"
@@ -61,6 +57,25 @@ else:
 link = open(link_file).read().strip()
 
 
+def scrub(msg):
+    # Never let a signed stream link reach the console or a log.
+    return re.sub(r"token=\S+", "token=...", re.sub(r"https?://\S+", "<link>", msg.replace(link, "<link>")))
+
+
+if not os.path.exists(os.path.join(d, "sync.json")):
+    # Subtitle times can drift from the stream (another release, frame rate or intro); measure it once.
+    print("syncing subtitles to the stream (about a minute)")
+    r = subprocess.run([PY, os.path.join(here, "explainer_sync.py"), slug, link_file], capture_output=True, text=True)
+    print(scrub(r.stdout.strip() or r.stderr.strip()[-300:]))
+if not os.path.exists(os.path.join(d, "beats.json")):
+    # Beats come from the Picture times in script.md, converted to stream time with sync.json.
+    r = subprocess.run([PY, os.path.join(here, "explainer-beats.py"), slug], capture_output=True, text=True)
+    print(scrub(r.stdout.strip() or r.stderr.strip()[-300:]))
+    if r.returncode:
+        sys.exit("could not build beats.json")
+beats = json.load(open(os.path.join(d, "beats.json")))
+
+
 def grid(beat):
     wf = os.path.join(tmp, f"{beat['name']}.windows.json")
     json.dump([{k: beat[k] for k in ("name", "start", "end")}], open(wf, "w"))
@@ -69,7 +84,7 @@ def grid(beat):
                            text=True, timeout=300)
     except subprocess.TimeoutExpired:
         return beat["name"], 1, f"{beat['name']}: timed out after 5 minutes"
-    return beat["name"], r.returncode, (r.stdout.strip() or r.stderr.strip()[-200:]).replace(link, "<link>")
+    return beat["name"], r.returncode, scrub(r.stdout.strip() or r.stderr.strip()[-200:])
 
 
 print(f"building {len(beats)} grids, 4 at a time")
