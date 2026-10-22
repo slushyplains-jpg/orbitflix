@@ -40,3 +40,9 @@ notes/explainer/*/candidates*
 notes/explainer/*/sdh_digest.txt
 notes/explainer/*/voice.wav
 notes/explainer/.queue-cache.json
+notes/explainer/**/shots/
+notes/explainer/**/*.srt
+notes/explainer/**/candidates_*.jpg
+notes/explainer/**/sdh_digest.txt
+notes/explainer/**/voice.wav
+notes/explainer/**/link*.txt
