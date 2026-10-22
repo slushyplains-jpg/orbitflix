@@ -43,15 +43,9 @@ Read `notes/explainer/<slug>/story.md` (from `explainer-research`) and `examples
 7. **Fact check and pictures** in `script.md`, under the viral check: a table `| # | Sentence (short) | Picture | Source |` where # is the 0-based sentence number or a range like `4-5`, and Source has the SDH times (3:59, 1:02:14) and/or "plot summary".
    **Picture** is the time the thing is ON SCREEN, which is often not when someone talks about it: use action and sound cues in the digest ("(water rushing)", "(screaming)", "Run!"), the plot summary, and the scene order. "They walk across the ocean floor" needs the walking scene, not the scene where they plan it over a map. Give sentences that belong to one image the same Picture time; the footage tool pairs sentences by Picture time so one clip never has to show two scenes. Picture times are in subtitle time; the footage tool measures how far the stream drifts from the subtitles (`sync.json`, often minutes when the subtitles come from another release) and converts them. Before writing a row, look at `sdh.srt` near the cited time and confirm the line says what the sentence claims, including who does it. Then run `python3.11 scripts/explainer-factcheck.py <slug>`; it must print RESULT PASS. It also checks the story.md fields, the Model line in hooks.md, the viral check, and that every sentence has a Picture time.
 
-## Stage 3: lint gate
+## Stages 3 and 4: the checks (one command)
 
-`python3.11 scripts/explainer-lint.py notes/explainer/<slug>/script.txt` and `python3.11 scripts/explainer-factcheck.py <slug>` must both print RESULT PASS. Fix every WARN too unless there is a clear reason, and if you keep one, note the reason in `script.md`.
+`python3.11 scripts/explainer-check.py <slug>` runs the fact check, the linter and the voice check in order, records each stage as it passes, and stops at the first failure with only what needs fixing. Run it once after writing, and again after each fix.
 
-## Stage 4: voice gate
-
-The linter prints an estimated voice length (good to about 2 s). Adjust the script until the estimate is 58 to 60 s before running the voice check, so the slow voice check normally runs once.
-
-
-`python3.11 scripts/explainer-voicecheck.py notes/explainer/<slug>/script.txt` must print PASS (57 to 61 seconds with the `final` template's voice and speed). If it fails, it says how many words to add or cut. Change the script, then rerun both gates.
-
-Run the checks in this order: `explainer-factcheck.py <slug>` (records research and story), then the linter (records lint), then the voice check (records voice). Do not record stages by hand.
+- **Edit `script.txt` and `script.md` with the Edit tool** (or rewrite the whole file with Write; the script is short). Never write Python, sed or other code to change text: it is slow, and a failed match wastes a whole turn.
+- **Length:** the voice check fixes small misses itself by speaking up to 6 percent faster or slower (nobody hears that), and the render uses that speed. Only change words when it fails, and then add or cut story, never filler ("in the middle of the woods", "number by number").

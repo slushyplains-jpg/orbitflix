@@ -12,7 +12,7 @@ import sys
 
 SPLIT = re.compile(r"(?<=[.!?])\s+")
 # Kokoro am_liam at 1.0x speaks about 4.1 words/s, so 55-63 s is roughly 228-255 words.
-WORDS_MIN, WORDS_MAX = 228, 255
+WORDS_MIN, WORDS_MAX = 210, 265
 CLIPS_REQUIRED = 14
 GENERIC_ENDINGS = [
     "what is out there", "will anyone get out", "will they make it", "what happens next",

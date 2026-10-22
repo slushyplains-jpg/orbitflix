@@ -27,14 +27,28 @@ subprocess.run(["/usr/local/bin/python3.11", os.path.join(here, "explainer-tts.p
 w = wave.open(out)
 sec = w.getnframes() / w.getframerate()
 words = len(open(script, encoding="utf-8").read().split())
-print(f"voice {sec:.1f}s at {speed}x ({words} words, {words / sec:.2f} words/s), file {out}")
-if sec < MIN_SEC:
-    print(f"FAIL too short by {MIN_SEC - sec:.1f}s, add about {int((MIN_SEC - sec) * words / sec) + 1} words")
-    sys.exit(1)
-if sec > MAX_SEC:
-    print(f"FAIL too long by {sec - MAX_SEC:.1f}s, cut about {int((sec - MAX_SEC) * words / sec) + 1} words")
-    sys.exit(1)
-print("PASS")
+print(f"voice {sec:.1f}s at {speed}x ({words} words, {words / sec:.2f} words/s)")
+# Small misses are fixed by speaking a little faster or slower (up to 6 percent, which nobody hears),
+# not by padding or trimming words. Only big misses need the script changed.
+TARGET, MAX_SHIFT = 59.0, 0.06
+new_speed, verdict = speed, "PASS"
+if not MIN_SEC <= sec <= MAX_SEC:
+    factor = sec / TARGET
+    if abs(factor - 1) <= MAX_SHIFT:
+        new_speed = round(speed * factor, 3)
+        verdict = f"PASS (speed set to {new_speed}x so it lands at about {TARGET:.0f}s)"
+    else:
+        lo, hi = TARGET * (1 - MAX_SHIFT), TARGET * (1 + MAX_SHIFT)
+        if sec < lo:
+            print(f"FAIL too short by {lo - sec:.1f}s even with a speed change; add about {int((lo - sec + 1.5) * words / sec) + 1} words of story (a new visible detail), not filler")
+        else:
+            print(f"FAIL too long by {sec - hi:.1f}s even with a speed change; cut about {int((sec - hi + 1.5) * words / sec) + 1} words, starting with the weakest sentence")
+        sys.exit(1)
+import hashlib  # noqa: E402
+text = open(script, encoding="utf-8").read().strip()
+json.dump({"speed": new_speed, "seconds_at_template_speed": round(sec, 2), "script_sha": hashlib.sha1(text.encode()).hexdigest()},
+          open(os.path.join(os.path.dirname(os.path.abspath(script)), "voice.json"), "w"), indent=1)
+print(verdict)
 sys.path.insert(0, here)
-from explainer_record import record, slug_of
-record(slug_of(script), "voice", f"{sec:.1f}s at {speed}x")
+from explainer_record import record, slug_of  # noqa: E402
+record(slug_of(script), "voice", f"{sec:.1f}s at {speed}x" + ("" if new_speed == speed else f", render at {new_speed}x"))

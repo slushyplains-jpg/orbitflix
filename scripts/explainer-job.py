@@ -22,6 +22,14 @@ job.update(
     script=open(os.path.join(notes, "script.txt"), encoding="utf-8").read().strip(),
     clips=json.load(open(os.path.join(notes, "clips.json"), encoding="utf-8")),
 )
+vj = os.path.join(notes, "voice.json")
+if os.path.exists(vj):
+    import hashlib
+    v = json.load(open(vj))
+    if v.get("script_sha") == hashlib.sha1(job["script"].encode()).hexdigest():
+        job["ttsSpeed"] = v["speed"]
+    else:
+        print("warning: script changed after the voice check; rerun it so the length is right", file=sys.stderr)
 out_dir = os.path.expanduser("~/Desktop/explainer-jobs")
 os.makedirs(out_dir, exist_ok=True)
 out = os.path.join(out_dir, f"{slug}.json")

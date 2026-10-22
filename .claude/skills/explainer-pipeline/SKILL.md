@@ -13,7 +13,7 @@ Every Short goes through the same seven stages. Each stage has an owning skill a
 |---|---|---|---|
 | 1 | research | `explainer-research` | `story.md` exists with every field filled |
 | 2 | story | `explainer-story` | hooks with a Model line, one script in the viral-recap shape, the viral check and the fact check (checked by `explainer-factcheck.py`) |
-| 3 | lint | `explainer-story` | `python3.11 scripts/explainer-lint.py notes/explainer/<slug>/script.txt` prints RESULT PASS (run after the fact check) |
+| 3 | lint | `explainer-story` | `explainer-check.py <slug>` (fact check, lint and voice in one command) prints ALL PASS |
 | 4 | voice | `explainer-story` | `python3.11 scripts/explainer-voicecheck.py notes/explainer/<slug>/script.txt` prints PASS (57 to 61 s) |
 | 5 | footage | `explainer-footage` | `explainer-clips.py <slug>` prints RESULT PASS (14 clips) |
 | 6 | render | `explainer-render` | `explainer-finish.py` prints done |
@@ -26,6 +26,8 @@ Each check script records its own stage when it passes (`explainer-factcheck.py`
 One session makes the whole Short, ideally on Sonnet (pick it in the model picker): research, story, footage picks, render. There are no helpers. The writing and the picture matching both need judgment, and the remaining steps are scripts, so a smaller model saves little and matches clips badly. Before footage, make sure the ORBIT dev server answers on a localhost port (start it with the preview tools if not). Run `scripts/explainer-finish.py` in the foreground with a Bash timeout of 600000, and rerun it with `--wait-only` if it times out.
 
 ## Rules that apply to every stage
+
+0. **Edit text files with the Edit or Write tool, never with Python, sed or heredoc scripts.** Run the pipeline's commands as they are; do not write new code during a run.
 
 1. **Never skip a gate.** If a gate fails, fix the cause in the owning stage and run the gate again. A failed length check goes back to the story stage, never forward.
 2. **Never render before stages 1 to 5 pass.** A render is the most expensive step and the only one the user sees.
