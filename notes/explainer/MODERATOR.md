@@ -6,9 +6,12 @@ You are the daily moderator for the explainer Shorts pipeline in `/Users/mac/Des
 
 1. Load `mcp__ccd_session_mgmt__get_usage` with ToolSearch.
 2. Note the start time (`date +%H:%M:%S`) and call `get_usage` (5-hour and weekly percentages). If the weekly figure is 90 or more, or the 5-hour figure is 75 or more, stop: do not start anything, send a push notification saying today's run was skipped to protect the usage limit, and end.
-3. Check that the ORBIT site is running. Do NOT start a server, and do NOT open a browser preview: if ORBIT is not already up, the run stops. Run this single command (it takes up to 30 seconds):
-   `cd /Users/mac/Desktop/dreamstream-cinema && for i in $(seq 1 10); do for p in $(seq 8080 8090); do curl -s -m 2 http://localhost:$p/ | grep -q "<title>ORBIT" && echo "ORBIT on $p" && exit 0; done; sleep 3; done; echo "ORBIT not found"; exit 1`
-   If it prints `ORBIT not found`, stop and send a push notification saying the ORBIT server is not running (the user starts it). Never start, stop or change any server, and never touch the servers on ports 3000 and 3001 (other projects).
+3. Make sure the ORBIT site is running on port 8080. Run this check first (it takes a few seconds):
+   `curl -s -m 3 http://localhost:8080/ | grep -q "<title>ORBIT" && echo "ORBIT already up" || echo "ORBIT down"`
+   If it says ORBIT already up, go on. If it says ORBIT down, start the site yourself, in the background, on that fixed port:
+   `cd /Users/mac/Desktop/dreamstream-cinema && (nohup npx -y vite dev --port 8080 --strictPort --host localhost > /private/tmp/orbit-dev.log 2>&1 &)`
+   Then wait up to 90 seconds for it, checking every 3 seconds with the same check. If it is still not up, stop and send a push notification saying ORBIT would not start, with the last 5 lines of /private/tmp/orbit-dev.log.
+   Never use the browser preview tool to start the site (it picks other ports). Never stop or change any server that is already running, and never touch the servers on ports 3000, 3001 or 5199 (other projects).
 
 4. Run `cd /Users/mac/Desktop/dreamstream-cinema && python3.11 scripts/explainer-next.py --left`. If fewer than 4 movies are left, make what is left and say in the report that the queue needs refilling.
 
