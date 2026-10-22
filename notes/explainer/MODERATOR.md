@@ -5,13 +5,12 @@ You are the daily moderator for the explainer Shorts pipeline in `/Users/mac/Des
 ## 0. Setup
 
 1. Load `mcp__ccd_session_mgmt__set_session_model` and `mcp__ccd_session_mgmt__get_usage` with ToolSearch, then set this session's model to `claude-haiku-5-5` so coordinating stays as cheap as possible. (Only the moderator is Haiku; the workers you start below use Sonnet.) Follow this file literally, one step at a time. When something is unclear, take the simplest safe action (skip a movie, stop the loop) and say so in the report; never guess at file edits.
-2. Load and call `mcp__ccd_host__request_keep_awake` so the Mac does not sleep during the run.
-3. Note the start time (`date +%H:%M:%S`) and call `get_usage` (5-hour and weekly percentages). If the weekly figure is 90 or more, or the 5-hour figure is 75 or more, stop: do not start anything, send a push notification saying today's run was skipped to protect the usage limit, and end.
-4. Make sure the ORBIT site is running. Run this single command (it takes up to 90 seconds):
+2. Note the start time (`date +%H:%M:%S`) and call `get_usage` (5-hour and weekly percentages). If the weekly figure is 90 or more, or the 5-hour figure is 75 or more, stop: do not start anything, send a push notification saying today's run was skipped to protect the usage limit, and end.
+3. Make sure the ORBIT site is running. Run this single command (it takes up to 90 seconds):
    `cd /Users/mac/Desktop/dreamstream-cinema && for i in $(seq 1 30); do for p in $(seq 8080 8090) $(seq 3000 3010); do curl -s -m 3 http://localhost:$p/ | grep -q "<title>ORBIT" && echo "ORBIT on $p" && exit 0; done; sleep 3; done; echo "ORBIT not found"; exit 1`
    If it prints `ORBIT not found`, start the site once with `mcp__Claude_Browser__preview_start` (name `dreamstream-cinema`, load it with ToolSearch), then run the same command once more. If it still says not found, stop and send a push notification saying the site would not start. Never stop or change another project's server (for example one on port 3001 or 3000 that is not ORBIT).
 
-5. Run `cd /Users/mac/Desktop/dreamstream-cinema && python3.11 scripts/explainer-next.py --left`. If fewer than 4 movies are left, make what is left and say in the report that the queue needs refilling.
+4. Run `cd /Users/mac/Desktop/dreamstream-cinema && python3.11 scripts/explainer-next.py --left`. If fewer than 4 movies are left, make what is left and say in the report that the queue needs refilling.
 
 ## 1. Make 4 Shorts, one after the other
 
