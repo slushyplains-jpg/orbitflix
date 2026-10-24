@@ -13,7 +13,8 @@ You are the daily moderator for the explainer Shorts pipeline in `/Users/mac/Des
      `cd /Users/mac/Desktop/dreamstream-cinema && (nohup /Users/mac/.nvm/versions/node/v22.22.3/bin/node node_modules/.bin/vite dev --port 8080 --strictPort --host localhost > /private/tmp/orbit-dev.log 2>&1 &)`
    - Then wait up to 60 seconds, running this check every 5 seconds: `curl -s -m 8 http://localhost:8080/ | grep -q "<title>ORBIT" && echo "ORBIT running"`. The first load can take 10 seconds, so do not give up early.
    - If it still does not say `ORBIT running` after 60 seconds, stop and send a push notification saying ORBIT would not start, with the last 5 lines of /private/tmp/orbit-dev.log.
-   Never start a second server when one is already running, never use the browser preview tool to start the site, and never stop or change a server that is already running, including ones on ports 3000, 3001 or 5199 (other projects).
+   Stale server rule: if the check says `ORBIT down` but something is listening on port 8080, find out whether it is a stale copy of this project's own dev server. Run `lsof -nP -iTCP:8080 -sTCP:LISTEN -t` to get its PID, then `ps -o command= -p <PID>`. Only if that command line contains `/Users/mac/Desktop/dreamstream-cinema/node_modules/.bin/vite` may you stop that one process (`kill <PID>`, then wait 3 seconds), and then start the site again with the Node 22 command in step 3 and check as above. If the process belongs to any other project, or the command line does not match, do NOT stop it: stop and report.
+   Never start a second server when one is already running, never use the browser preview tool to start the site, and never stop or change any other server, including ones on ports 3000, 3001 or 5199 (other projects).
 
 4. Run `cd /Users/mac/Desktop/dreamstream-cinema && python3.11 scripts/explainer-next.py --left`. If fewer than 4 movies are left, make what is left and say in the report that the queue needs refilling.
 
